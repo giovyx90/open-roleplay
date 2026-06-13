@@ -1,0 +1,7 @@
+{
+  "parent": "custom/tools/crime/weapons/pistol/92fs/92fs_magazine",
+  "textures": {
+    "0": "custom/tools/crime/weapons/pistol/glock/ppk",
+    "particle": "custom/tools/crime/weapons/pistol/glock/ppk"
+  }
+}

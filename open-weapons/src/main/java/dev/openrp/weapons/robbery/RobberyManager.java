@@ -80,7 +80,7 @@ public class RobberyManager {
       final RobberySession session = new RobberySession(robber.getUniqueId(), victim.getUniqueId(), System.currentTimeMillis(), victim.getLocation().clone());
       double tagOffset = module.getUtilitySettings().statusTagYOffset();
       TextDisplay display = StatusTextDisplays.spawn(victim,
-            Component.text("☠ BEING ROBBED ☠", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}),
+            Component.text("☠ SOTTO RAPINA ☠", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}),
             tagOffset);
       session.setTextDisplay(display);
       session.setTask((new BukkitRunnable() {
@@ -88,11 +88,11 @@ public class RobberyManager {
             if (RobberyManager.this.activeRobberies.containsKey(victim.getUniqueId())) {
                RobberyManager.this.endRobbery(victim.getUniqueId());
                if (robber.isOnline()) {
-                  robber.sendMessage(Component.text("Robbery session with " + victim.getName() + " has ended.", NamedTextColor.YELLOW));
+                  robber.sendMessage(Component.text("Sessione rapina con " + victim.getName() + " terminata.", NamedTextColor.YELLOW));
                }
 
                if (victim.isOnline()) {
-                  victim.sendMessage(Component.text("Your robbery session has ended.", NamedTextColor.GREEN));
+                  victim.sendMessage(Component.text("La tua sessione rapina e' terminata.", NamedTextColor.GREEN));
                }
             }
          }
@@ -110,8 +110,8 @@ public class RobberyManager {
                this.cancel();
             } else if (!robber.getWorld().equals(session.getStartLocation().getWorld())) {
                RobberyManager.this.endRobbery(victim.getUniqueId());
-               robber.sendMessage(Component.text("You left the robbery area. Robbery cancelled.", NamedTextColor.YELLOW));
-               victim.sendMessage(Component.text("The robber left. Robbery cancelled.", NamedTextColor.GREEN));
+               robber.sendMessage(Component.text("Hai lasciato l'area rapina. Rapina annullata.", NamedTextColor.YELLOW));
+               victim.sendMessage(Component.text("Il rapinatore si e' allontanato. Rapina annullata.", NamedTextColor.GREEN));
                this.cancel();
             } else {
                double vDist = victim.getLocation().distance(session.getStartLocation());
@@ -122,8 +122,8 @@ public class RobberyManager {
                   this.cancel();
                } else if (rDist > 10.0) {
                   RobberyManager.this.endRobbery(victim.getUniqueId());
-                  robber.sendMessage(Component.text("You left the robbery area. Robbery cancelled.", NamedTextColor.YELLOW));
-                  victim.sendMessage(Component.text("The robber left. Robbery cancelled.", NamedTextColor.GREEN));
+                  robber.sendMessage(Component.text("Hai lasciato l'area rapina. Rapina annullata.", NamedTextColor.YELLOW));
+                  victim.sendMessage(Component.text("Il rapinatore si e' allontanato. Rapina annullata.", NamedTextColor.GREEN));
                   this.cancel();
                }
             }
@@ -131,18 +131,18 @@ public class RobberyManager {
       }).runTaskTimer(this.module.getCore(), 20L, 20L));
       this.activeRobberies.put(victim.getUniqueId(), session);
       this.incrementDailyRobberies(robber);
-      emitRobberyEvent("crime.robbery.started", robber, victim, session, "Player robbery started.",
+      emitRobberyEvent("crime.robbery.started", robber, victim, session, "Rapina giocatore iniziata.",
               StaffBoardSeverity.WARNING);
    }
 
    private void applyFleeKillable(final Player victim, Player robber, RobberySession session) {
       session.setMarkedKillable(true);
       this.endRobbery(victim.getUniqueId());
-      emitRobberyEvent("crime.robbery.failed", robber, victim, session, "Victim fled robbery.",
+      emitRobberyEvent("crime.robbery.failed", robber, victim, session, "La vittima e' fuggita dalla rapina.",
               StaffBoardSeverity.WARNING);
-      robber.sendMessage(Component.text(victim.getName() + " fled from the robbery! They are now KILLABLE for 5 minutes.", NamedTextColor.GREEN));
+      robber.sendMessage(Component.text(victim.getName() + " e' fuggito dalla rapina! Ora e' UCCIDIBILE per 5 minuti.", NamedTextColor.GREEN));
       victim.sendMessage(
-         Component.text("You fled from the robbery! You are now KILLABLE for 5 minutes.", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
+         Component.text("Sei fuggito dalla rapina! Ora sei UCCIDIBILE per 5 minuti.", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       double tagOffset = module.getUtilitySettings().statusTagYOffset();
       final TextDisplay td = StatusTextDisplays.spawn(victim,
@@ -177,7 +177,7 @@ public class RobberyManager {
 
                   RobberyManager.this.killableTags.remove(victim.getUniqueId());
                   if (victim.isOnline()) {
-                     victim.sendMessage(Component.text("You are no longer killable.", NamedTextColor.GREEN));
+                     victim.sendMessage(Component.text("Non sei piu' uccidibile.", NamedTextColor.GREEN));
                   }
 
                   this.cancel();

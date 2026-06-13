@@ -46,7 +46,7 @@ public class ArrestListener implements Listener {
                 event.setCancelled(true);
                 player.teleport(jailLoc);
             }
-            player.sendMessage(Component.text("You cannot leave the jail! Time remaining: " + record.getRemainingFormatted(), NamedTextColor.RED));
+            player.sendMessage(Component.text("Non puoi lasciare la cella! Tempo rimanente: " + record.getRemainingFormatted(), NamedTextColor.RED));
         }
     }
 
@@ -57,7 +57,7 @@ public class ArrestListener implements Listener {
         if (record == null) return;
 
         if (record.isExpired()) {
-            module.getArrestManager().release(player.getUniqueId(), "Time served");
+            module.getArrestManager().release(player.getUniqueId(), "Pena scontata");
         } else {
             // Ensure they are uncuffed when they enter jail (e.g. if arrested offline)
             module.getHandcuffManager().uncuff(player);
@@ -67,9 +67,9 @@ public class ArrestListener implements Listener {
             if (jailLoc != null) {
                 player.teleport(jailLoc);
             }
-            player.sendMessage(Component.text("You are still arrested! Time remaining: " + record.getRemainingFormatted(), NamedTextColor.RED));
+            player.sendMessage(Component.text("Sei ancora arrestato! Tempo rimanente: " + record.getRemainingFormatted(), NamedTextColor.RED));
             if (record.getBailAmount() > 0) {
-                player.sendMessage(Component.text("Use /bail to pay $" + String.format("%.2f", record.getBailAmount()) + " and get released.", NamedTextColor.YELLOW));
+                player.sendMessage(Component.text("Usa /bail per pagare $" + String.format("%.2f", record.getBailAmount()) + " e venire rilasciato.", NamedTextColor.YELLOW));
             }
         }
     }
@@ -98,7 +98,7 @@ public class ArrestListener implements Listener {
 
         if (!player.hasPermission("openrp.weapons.arrest.bypass")) {
             event.setCancelled(true);
-            player.sendMessage(Component.text("You cannot use commands while arrested! Use /bail to pay your bail.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non puoi usare comandi mentre sei arrestato! Usa /bail per pagare la cauzione.", NamedTextColor.RED));
         }
     }
 }

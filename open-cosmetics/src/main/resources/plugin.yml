@@ -1,0 +1,28 @@
+name: OpenCosmetics
+main: dev.openrp.cosmetics.OpenCosmeticsPlugin
+version: ${project.version}
+api-version: '1.21'
+authors:
+  - Open Roleplay
+description: Cosmetici armi per Open Roleplay.
+softdepend:
+  - OpenWeapons
+commands:
+  opencosmetics:
+    description: Gestisce i cosmetici arma.
+    usage: /opencosmetics
+    aliases:
+      - weaponcosmetic
+permissions:
+  openrp.cosmetics.use:
+    description: Permette di usare le stazioni e le GUI cosmetiche.
+    default: true
+  openrp.cosmetics.admin:
+    description: Permette di creare gettoni, stazioni e applicare skin da comando.
+    default: op
+  openrp.weapons.cosmetic.use:
+    description: Alias compatibile per usare i cosmetici arma.
+    default: true
+  openrp.weapons.cosmetic.admin:
+    description: Alias compatibile per amministrare i cosmetici arma.
+    default: op

@@ -112,17 +112,17 @@ public class WantedManager {
    private void broadcastAdded(WantedRecord record) {
       Component message = ((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)Component.text()
                                                    .append(
-                                                      Component.text("New wanted record added", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
+                                                      Component.text("Nuova scheda ricercato aggiunta", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
                                                    ))
                                                 .append(Component.newline()))
                                              .append(Component.newline()))
-                                          .append(Component.text("Added by: ", NamedTextColor.GRAY)))
+                                          .append(Component.text("Aggiunta da: ", NamedTextColor.GRAY)))
                                        .append(Component.text(record.getOfficerName(), NamedTextColor.WHITE)))
                                     .append(Component.newline()))
-                                 .append(Component.text("Wanted: ", NamedTextColor.GRAY)))
+                                 .append(Component.text("Ricercato: ", NamedTextColor.GRAY)))
                               .append(Component.text(record.getPlayerName(), NamedTextColor.WHITE)))
                            .append(Component.newline()))
-                        .append(Component.text("Reason: ", NamedTextColor.GRAY)))
+                        .append(Component.text("Motivo: ", NamedTextColor.GRAY)))
                      .append(Component.text(record.getReason(), NamedTextColor.WHITE)))
                   .append(Component.newline()))
                .append(Component.newline()))
@@ -153,7 +153,7 @@ public class WantedManager {
       try {
          config.save(this.file);
       } catch (Exception e) {
-         this.module.getCore().getLogger().warning("[Wanted] Failed to save wanted.yml: " + e.getMessage());
+         this.module.getCore().getLogger().warning("[Wanted] Impossibile salvare wanted.yml: " + e.getMessage());
       }
    }
 
@@ -167,17 +167,17 @@ public class WantedManager {
                   String path = "wanted." + key;
                   WantedRecord record = new WantedRecord(
                      UUID.fromString(key),
-                     config.getString(path + ".playerName", "Unknown"),
-                     config.getString(path + ".reason", "No reason provided"),
+                     config.getString(path + ".playerName", "Sconosciuto"),
+                     config.getString(path + ".reason", "Nessun motivo indicato"),
                      config.getBoolean(path + ".arrestRequired", false),
                      UUID.fromString(config.getString(path + ".officerUuid")),
-                     config.getString(path + ".officerName", "Unknown"),
+                     config.getString(path + ".officerName", "Sconosciuto"),
                      Instant.ofEpochMilli(config.getLong(path + ".createdAt"))
                   );
                   this.records.put(record.getPlayerUuid(), record);
                   this.publish(record);
                } catch (Exception e) {
-                  this.module.getCore().getLogger().warning("[Wanted] Failed to load wanted record " + key + ": " + e.getMessage());
+                  this.module.getCore().getLogger().warning("[Wanted] Impossibile caricare la scheda ricercato " + key + ": " + e.getMessage());
                }
             }
          }

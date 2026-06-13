@@ -39,16 +39,16 @@ public class FriskCommand implements CommandExecutor {
 
    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
       if (!(sender instanceof Player player)) {
-         sender.sendMessage("Only players can use this command.");
+         sender.sendMessage("Solo i giocatori possono usare questo comando.");
          return true;
       } else {
          if (!player.hasPermission("openrp.frisk.use")) {
-            player.sendMessage(Component.text("You don't have permission to frisk players.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non hai il permesso di perquisire giocatori.", NamedTextColor.RED));
             return true;
          }
 
          if (args.length == 0) {
-            player.sendMessage(Component.text("Usage: /frisk <player>", NamedTextColor.RED));
+            player.sendMessage(Component.text("Uso: /frisk <giocatore>", NamedTextColor.RED));
             return true;
          }
 
@@ -56,7 +56,7 @@ public class FriskCommand implements CommandExecutor {
          if (subCmd.equalsIgnoreCase("accept")) {
             FriskCommand.FriskRequest req = this.pendingRequests.remove(player.getUniqueId());
             if (req == null) {
-               player.sendMessage(Component.text("You have no pending frisk requests.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Non hai richieste di perquisizione in sospeso.", NamedTextColor.RED));
                return true;
             } else {
                Player searcher = Bukkit.getPlayer(req.requesterUuid);
@@ -64,7 +64,7 @@ public class FriskCommand implements CommandExecutor {
                   this.openFriskInventory(searcher, player);
                   return true;
                } else {
-                  player.sendMessage(Component.text("The player who requested the frisk is no longer online.", NamedTextColor.RED));
+                  player.sendMessage(Component.text("Il giocatore che ha richiesto la perquisizione non e' piu' online.", NamedTextColor.RED));
                   return true;
                }
             }
@@ -77,12 +77,12 @@ public class FriskCommand implements CommandExecutor {
             Player target = Bukkit.getPlayer(subCmd);
             if (target != null && target.isOnline()) {
                if (target.getUniqueId().equals(player.getUniqueId())) {
-                  player.sendMessage(Component.text("You cannot frisk yourself.", NamedTextColor.RED));
+                  player.sendMessage(Component.text("Non puoi perquisire te stesso.", NamedTextColor.RED));
                   return true;
                }
 
                if (player.getLocation().distance(target.getLocation()) > 5.0) {
-                  player.sendMessage(Component.text("You are too far from " + target.getName() + " (max 5 blocks).", NamedTextColor.RED));
+                  player.sendMessage(Component.text("Sei troppo lontano da " + target.getName() + " (massimo 5 blocchi).", NamedTextColor.RED));
                   return true;
                }
 
@@ -91,7 +91,7 @@ public class FriskCommand implements CommandExecutor {
                   ItemStack itemInHand = player.getInventory().getItemInMainHand();
                   WeaponDefinition weapon = this.module.getWeaponRegistry().getWeapon(itemInHand);
                   if (weapon == null) {
-                     player.sendMessage(Component.text("You must be armed to frisk someone.", NamedTextColor.RED));
+                     player.sendMessage(Component.text("Devi essere armato per perquisire qualcuno.", NamedTextColor.RED));
                      return true;
                   }
                }
@@ -107,18 +107,18 @@ public class FriskCommand implements CommandExecutor {
                }
 
                if (forceFrisk) {
-                  player.sendMessage(Component.text("Target is in jail. Forcing frisk...", NamedTextColor.GREEN));
+                  player.sendMessage(Component.text("Il bersaglio e' in cella. Perquisizione forzata...", NamedTextColor.GREEN));
                   this.openFriskInventory(player, target);
                   return true;
                } else {
                   this.pendingRequests.put(target.getUniqueId(), new FriskCommand.FriskRequest(player.getUniqueId(), isFdo));
-                  player.sendMessage(Component.text("Frisk request sent to " + target.getName() + ". Waiting for response...", NamedTextColor.YELLOW));
-                  Component acceptBtn = Component.text("[Accept]", NamedTextColor.GREEN).clickEvent(ClickEvent.runCommand("/frisk accept"));
-                  Component denyBtn = Component.text("[Deny]", NamedTextColor.RED).clickEvent(ClickEvent.runCommand("/frisk deny"));
+                  player.sendMessage(Component.text("Richiesta di perquisizione inviata a " + target.getName() + ". In attesa di risposta...", NamedTextColor.YELLOW));
+                  Component acceptBtn = Component.text("[Accetta]", NamedTextColor.GREEN).clickEvent(ClickEvent.runCommand("/frisk accept"));
+                  Component denyBtn = Component.text("[Rifiuta]", NamedTextColor.RED).clickEvent(ClickEvent.runCommand("/frisk deny"));
                   target.sendMessage(
                      ((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)Component.text().append(Component.text("[Frisk] ", NamedTextColor.YELLOW)))
                                        .append(Component.text(player.getName(), NamedTextColor.WHITE)))
-                                    .append(Component.text(" wants to frisk you. ", NamedTextColor.GRAY)))
+                                    .append(Component.text(" vuole perquisirti. ", NamedTextColor.GRAY)))
                                  .append(acceptBtn))
                               .append(Component.text(" ", NamedTextColor.GRAY)))
                            .append(denyBtn))
@@ -127,15 +127,15 @@ public class FriskCommand implements CommandExecutor {
                   Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> {
                      FriskCommand.FriskRequest req = this.pendingRequests.get(target.getUniqueId());
                      if (req != null && req.requesterUuid.equals(player.getUniqueId())) {
-                        player.sendMessage(Component.text("Frisk request to " + target.getName() + " timed out.", NamedTextColor.RED));
-                        target.sendMessage(Component.text("Frisk request from " + player.getName() + " has expired.", NamedTextColor.GRAY));
+                        player.sendMessage(Component.text("Richiesta di perquisizione a " + target.getName() + " scaduta.", NamedTextColor.RED));
+                        target.sendMessage(Component.text("Richiesta di perquisizione da " + player.getName() + " scaduta.", NamedTextColor.GRAY));
                         this.handleDeny(target);
                      }
                   }, 1200L);
                   return true;
                }
             } else {
-               player.sendMessage(Component.text("Player not found or not online.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Giocatore non trovato o non online.", NamedTextColor.RED));
                return true;
             }
          }
@@ -145,19 +145,19 @@ public class FriskCommand implements CommandExecutor {
    private void handleDeny(Player player) {
       FriskCommand.FriskRequest req = this.pendingRequests.remove(player.getUniqueId());
       if (req == null) {
-         player.sendMessage(Component.text("You have no pending frisk requests.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non hai richieste di perquisizione in sospeso.", NamedTextColor.RED));
       } else {
          Player searcher = Bukkit.getPlayer(req.requesterUuid);
          if (searcher != null && searcher.isOnline()) {
-            searcher.sendMessage(Component.text(player.getName() + " denied your frisk request.", NamedTextColor.RED));
+            searcher.sendMessage(Component.text(player.getName() + " ha rifiutato la tua richiesta di perquisizione.", NamedTextColor.RED));
          }
 
          Location loc = player.getLocation().add(0.0, 2.2, 0.0);
          final TextDisplay display = (TextDisplay)player.getWorld().spawn(loc, TextDisplay.class, d -> {
             if (req.isFdo) {
-               d.text(Component.text("⚠ ARRESTABLE ⚠", NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD}));
+               d.text(Component.text("⚠ ARRESTABILE ⚠", NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD}));
             } else {
-               d.text(Component.text("☠ KILLABLE ☠", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}));
+               d.text(Component.text("☠ AGGREDIBILE ☠", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}));
             }
 
             d.setBillboard(Billboard.CENTER);
@@ -172,12 +172,12 @@ public class FriskCommand implements CommandExecutor {
                }
             }
          }).runTaskLater(this.module.getCore(), 1200L);
-         player.sendMessage(Component.text("Frisk request denied. You have been tagged.", NamedTextColor.YELLOW));
+         player.sendMessage(Component.text("Perquisizione rifiutata. Sei stato segnalato.", NamedTextColor.YELLOW));
       }
    }
 
    private void openFriskInventory(Player searcher, Player target) {
-      Component title = NexoUI.getGlyphTitle("frisk_gui", "Frisk");
+      Component title = NexoUI.getGlyphTitle("frisk_gui", "Perquisisci");
       FriskGUIHolder holder = new FriskGUIHolder(searcher.getUniqueId(), target.getUniqueId());
       Inventory viewInv = Bukkit.createInventory(holder, 54, title);
       holder.setInventory(viewInv);
@@ -203,8 +203,8 @@ public class FriskCommand implements CommandExecutor {
       }
 
       searcher.openInventory(viewInv);
-      searcher.sendMessage(Component.text("You are frisking " + target.getName() + " (view-only).", NamedTextColor.GREEN));
-      target.sendMessage(Component.text(searcher.getName() + " is now frisking you.", NamedTextColor.YELLOW));
+      searcher.sendMessage(Component.text("Stai perquisendo " + target.getName() + " (sola visualizzazione).", NamedTextColor.GREEN));
+      target.sendMessage(Component.text(searcher.getName() + " ti sta perquisendo.", NamedTextColor.YELLOW));
       emitSearchPerformed(searcher, target);
    }
 

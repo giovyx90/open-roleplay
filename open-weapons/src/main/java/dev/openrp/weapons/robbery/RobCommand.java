@@ -21,46 +21,46 @@ public class RobCommand implements CommandExecutor {
    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
       if (sender instanceof Player robber) {
          if (!robber.hasPermission("openrp.rob.use")) {
-            robber.sendMessage(Component.text("You don't have permission to rob players.", NamedTextColor.RED));
+            robber.sendMessage(Component.text("Non hai il permesso di rapinare giocatori.", NamedTextColor.RED));
             return true;
          }
 
          if (args.length == 0) {
-            robber.sendMessage(Component.text("Usage: /rob <player>", NamedTextColor.RED));
+            robber.sendMessage(Component.text("Uso: /rob <giocatore>", NamedTextColor.RED));
             return true;
          }
 
          Player victim = Bukkit.getPlayer(args[0]);
          if (victim != null && victim.isOnline()) {
             if (victim.getUniqueId().equals(robber.getUniqueId())) {
-               robber.sendMessage(Component.text("You cannot rob yourself.", NamedTextColor.RED));
+               robber.sendMessage(Component.text("Non puoi rapinare te stesso.", NamedTextColor.RED));
                return true;
             } else if (robber.getLocation().distance(victim.getLocation()) > 5.0) {
-               robber.sendMessage(Component.text("You are too far from " + victim.getName() + " (max 5 blocks).", NamedTextColor.RED));
+               robber.sendMessage(Component.text("Sei troppo lontano da " + victim.getName() + " (massimo 5 blocchi).", NamedTextColor.RED));
                return true;
             } else {
                ItemStack itemInHand = robber.getInventory().getItemInMainHand();
                WeaponDefinition weapon = this.module.getWeaponRegistry().getWeapon(itemInHand);
                if (weapon == null) {
-                  robber.sendMessage(Component.text("You must hold a weapon (firearm or melee) to rob someone.", NamedTextColor.RED));
+                  robber.sendMessage(Component.text("Devi impugnare un'arma, da fuoco o melee, per rapinare qualcuno.", NamedTextColor.RED));
                   return true;
                } else {
                   RobberyManager rm = this.module.getRobberyManager();
                   if (rm.isBeingRobbed(victim.getUniqueId())) {
-                     robber.sendMessage(Component.text("This player is already being robbed.", NamedTextColor.RED));
+                     robber.sendMessage(Component.text("Questo giocatore e' gia' sotto rapina.", NamedTextColor.RED));
                      return true;
                   } else if (rm.hasActiveRobbery(robber.getUniqueId())) {
-                     robber.sendMessage(Component.text("You are already robbing someone else.", NamedTextColor.RED));
+                     robber.sendMessage(Component.text("Stai gia' rapinando qualcun altro.", NamedTextColor.RED));
                      return true;
                   } else if (!rm.canRobToday(robber)) {
-                     robber.sendMessage(Component.text("You have reached your daily limit for robberies (2 per day).", NamedTextColor.RED));
+                     robber.sendMessage(Component.text("Hai raggiunto il limite giornaliero di rapine (2 al giorno).", NamedTextColor.RED));
                      return true;
                   } else {
                      rm.startRobbery(robber, victim);
-                     robber.sendMessage(Component.text("You are now robbing " + victim.getName() + ". You have 5 minutes.", NamedTextColor.GREEN));
+                     robber.sendMessage(Component.text("Stai rapinando " + victim.getName() + ". Hai 5 minuti.", NamedTextColor.GREEN));
                      victim.sendMessage(
                         Component.text(
-                           "You are being robbed! Do what the criminal says, or you will become killable. If you disconnect, your inventory will be given to the robber.",
+                           "Sei sotto rapina! Fai cio' che dice il criminale o diventerai uccidibile. Se ti disconnetti, il tuo inventario verra' dato al rapinatore.",
                            NamedTextColor.RED
                         )
                      );
@@ -69,11 +69,11 @@ public class RobCommand implements CommandExecutor {
                }
             }
          } else {
-            robber.sendMessage(Component.text("Player not found or not online.", NamedTextColor.RED));
+            robber.sendMessage(Component.text("Giocatore non trovato o non online.", NamedTextColor.RED));
             return true;
          }
       } else {
-         sender.sendMessage("Only players can use this command.");
+         sender.sendMessage("Solo i giocatori possono usare questo comando.");
          return true;
       }
    }

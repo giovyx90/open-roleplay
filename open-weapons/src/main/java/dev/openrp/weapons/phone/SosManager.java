@@ -44,42 +44,42 @@ public class SosManager implements Listener {
       pending.task = Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> {
          SosManager.PendingReason removed = this.pendingReasons.remove(caller.getUniqueId());
          if (removed == pending && caller.isOnline()) {
-            caller.sendMessage(Component.text("SOS request timed out.", NamedTextColor.RED));
+            caller.sendMessage(Component.text("Richiesta SOS scaduta.", NamedTextColor.RED));
          }
       }, 600L);
       this.pendingReasons.put(caller.getUniqueId(), pending);
       caller.closeInventory();
       caller.sendMessage(
-         Component.text("Type the reason for your " + service.getDisplayName() + " SOS call within 30 seconds. Type cancel to abort.", NamedTextColor.YELLOW)
+         Component.text("Scrivi il motivo della tua chiamata " + service.getDisplayName() + " SOS entro 30 secondi. Scrivi cancel per annullare.", NamedTextColor.YELLOW)
       );
    }
 
    public void startResponseInput(Player responder, String callId) {
       SosCall call = this.activeCalls.get(callId);
       if (call == null) {
-         responder.sendMessage(Component.text("That SOS call is no longer active.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Quella chiamata SOS non e' piu' attiva.", NamedTextColor.RED));
       } else if (!this.canUseCall(responder, call)) {
-         responder.sendMessage(Component.text("You cannot respond to this SOS call.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Non puoi rispondere a questa chiamata SOS.", NamedTextColor.RED));
       } else {
          this.clearPending(responder.getUniqueId());
          SosManager.PendingResponse pending = new SosManager.PendingResponse(callId);
          pending.task = Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> {
             SosManager.PendingResponse removed = this.pendingResponses.remove(responder.getUniqueId());
             if (removed == pending && responder.isOnline()) {
-               responder.sendMessage(Component.text("SOS response timed out.", NamedTextColor.RED));
+               responder.sendMessage(Component.text("Risposta SOS scaduta.", NamedTextColor.RED));
             }
          }, 600L);
          this.pendingResponses.put(responder.getUniqueId(), pending);
-         responder.sendMessage(Component.text("Type your response within 30 seconds. Type cancel to abort.", NamedTextColor.YELLOW));
+         responder.sendMessage(Component.text("Scrivi la risposta entro 30 secondi. Scrivi cancel per annullare.", NamedTextColor.YELLOW));
       }
    }
 
    public void activateGps(Player responder, String callId) {
       SosCall call = this.activeCalls.get(callId);
       if (call == null) {
-         responder.sendMessage(Component.text("That SOS call is no longer active.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Quella chiamata SOS non e' piu' attiva.", NamedTextColor.RED));
       } else if (!this.canUseCall(responder, call)) {
-         responder.sendMessage(Component.text("You cannot use GPS for this SOS call.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Non puoi usare il GPS per questa chiamata SOS.", NamedTextColor.RED));
       } else {
          this.module.getDispatchGpsManager().activate(responder, "SOS", () -> {
             Player caller = Bukkit.getPlayer(call.getCallerUuid());
@@ -121,7 +121,7 @@ public class SosManager implements Listener {
          String message = PlainTextComponentSerializer.plainText().serialize(event.message()).trim();
          if (message.equalsIgnoreCase("cancel")) {
             this.cancelPending(reason, response);
-            Bukkit.getScheduler().runTask(this.module.getCore(), () -> player.sendMessage(Component.text("SOS input cancelled.", NamedTextColor.RED)));
+            Bukkit.getScheduler().runTask(this.module.getCore(), () -> player.sendMessage(Component.text("Input SOS annullato.", NamedTextColor.RED)));
          } else {
             Bukkit.getScheduler().runTask(this.module.getCore(), () -> {
                if (reason != null) {
@@ -140,7 +140,7 @@ public class SosManager implements Listener {
       if (caller.isOnline()) {
          List<Player> recipients = this.module.getOnlineCompanyEmployees(service.getCompanyType());
          if (recipients.isEmpty()) {
-            caller.sendMessage(Component.text("No " + service.getDisplayName() + " units are currently available.", NamedTextColor.RED));
+            caller.sendMessage(Component.text("Nessuna unita' " + service.getDisplayName() + " e' attualmente disponibile.", NamedTextColor.RED));
          } else {
             String id = this.createCallId();
             SosCall call = new SosCall(id, service, caller.getUniqueId(), caller.getName(), caller.getLocation().clone(), reason, Instant.now());
@@ -154,7 +154,7 @@ public class SosManager implements Listener {
             }
 
             caller.sendMessage(
-               Component.text("Your SOS call has been sent to " + recipients.size() + " " + service.getDisplayName() + " unit(s).", NamedTextColor.GREEN)
+               Component.text("La tua chiamata SOS e' stata inviata a " + recipients.size() + " " + service.getDisplayName() + " unita'.", NamedTextColor.GREEN)
             );
          }
       }
@@ -163,22 +163,22 @@ public class SosManager implements Listener {
    private void submitResponse(Player responder, String callId, String message) {
       SosCall call = this.activeCalls.get(callId);
       if (call == null) {
-         responder.sendMessage(Component.text("That SOS call is no longer active.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Quella chiamata SOS non e' piu' attiva.", NamedTextColor.RED));
       } else if (!this.canUseCall(responder, call)) {
-         responder.sendMessage(Component.text("You cannot respond to this SOS call.", NamedTextColor.RED));
+         responder.sendMessage(Component.text("Non puoi rispondere a questa chiamata SOS.", NamedTextColor.RED));
       } else {
          Player caller = Bukkit.getPlayer(call.getCallerUuid());
          if (caller != null && caller.isOnline()) {
             caller.sendMessage(
-               ((Builder)((Builder)((Builder)((Builder)Component.text().append(Component.text("SOS response from ", NamedTextColor.GREEN)))
+               ((Builder)((Builder)((Builder)((Builder)Component.text().append(Component.text("Risposta SOS da ", NamedTextColor.GREEN)))
                            .append(Component.text(responder.getName(), NamedTextColor.WHITE)))
                         .append(Component.text(" (" + call.getService().getDisplayName() + "): ", NamedTextColor.GRAY)))
                      .append(Component.text(message, NamedTextColor.WHITE)))
                   .build()
             );
-            responder.sendMessage(Component.text("Response sent to " + call.getCallerName() + ".", NamedTextColor.GREEN));
+            responder.sendMessage(Component.text("Risposta inviata a " + call.getCallerName() + ".", NamedTextColor.GREEN));
          } else {
-            responder.sendMessage(Component.text("The caller is no longer online.", NamedTextColor.RED));
+            responder.sendMessage(Component.text("Il chiamante non e' piu' online.", NamedTextColor.RED));
          }
       }
    }
@@ -188,29 +188,29 @@ public class SosManager implements Listener {
       String coords = String.format("%.0f %.0f %.0f", loc.getX(), loc.getY(), loc.getZ());
       Component gps = ((TextComponent)Component.text("[GPS]", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD})
             .clickEvent(ClickEvent.runCommand("/sos gps " + call.getId())))
-         .hoverEvent(HoverEvent.showText(Component.text("Activate GPS", NamedTextColor.GREEN)));
-      Component respond = ((TextComponent)Component.text("[Respond]", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD})
+         .hoverEvent(HoverEvent.showText(Component.text("Attiva GPS", NamedTextColor.GREEN)));
+      Component respond = ((TextComponent)Component.text("[Rispondi]", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD})
             .clickEvent(ClickEvent.runCommand("/sos respond " + call.getId())))
-         .hoverEvent(HoverEvent.showText(Component.text("Reply to caller", NamedTextColor.AQUA)));
+         .hoverEvent(HoverEvent.showText(Component.text("Rispondi al chiamante", NamedTextColor.AQUA)));
       return ((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)Component.text()
                                                             .append(
                                                                Component.text(
-                                                                  "Emergency Dispatch - " + call.getService().getDisplayName(),
+                                                                  "Dispatch Emergenze - " + call.getService().getDisplayName(),
                                                                   NamedTextColor.RED,
                                                                   new TextDecoration[]{TextDecoration.BOLD}
                                                                )
                                                             ))
                                                          .append(Component.newline()))
-                                                      .append(Component.text("Coordinates: ", NamedTextColor.GRAY)))
+                                                      .append(Component.text("Coordinate: ", NamedTextColor.GRAY)))
                                                    .append(Component.text(coords, NamedTextColor.WHITE)))
                                                 .append(Component.newline()))
-                                             .append(Component.text("Caller: ", NamedTextColor.GRAY)))
+                                             .append(Component.text("Chiamante: ", NamedTextColor.GRAY)))
                                           .append(Component.text(call.getCallerName(), NamedTextColor.WHITE)))
                                        .append(Component.newline()))
-                                    .append(Component.text("Reason: ", NamedTextColor.GRAY)))
+                                    .append(Component.text("Motivo: ", NamedTextColor.GRAY)))
                                  .append(Component.text(call.getReason(), NamedTextColor.WHITE)))
                               .append(Component.newline()))
-                           .append(Component.text("Time: ", NamedTextColor.GRAY)))
+                           .append(Component.text("Ora: ", NamedTextColor.GRAY)))
                         .append(Component.text(DATE_FORMAT.format(call.getCreatedAt()), NamedTextColor.YELLOW)))
                      .append(Component.newline()))
                   .append(gps))

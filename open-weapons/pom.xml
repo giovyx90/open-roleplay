@@ -21,6 +21,12 @@
             <artifactId>paper-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>dev.openrp</groupId>
+            <artifactId>open-cosmetics</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.nexomc</groupId>
             <artifactId>nexo</artifactId>
             <scope>provided</scope>

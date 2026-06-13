@@ -16,56 +16,56 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class WeaponConfigEditor {
     private static final List<FieldSpec> BASE_FIELDS = List.of(
-            new FieldSpec("display-name", FieldType.STRING, "Display name"),
-            new FieldSpec("category", FieldType.WEAPON_CATEGORY, "Category"),
-            new FieldSpec("material", FieldType.MATERIAL, "Material"),
+            new FieldSpec("display-name", FieldType.STRING, "Nome visualizzato"),
+            new FieldSpec("category", FieldType.WEAPON_CATEGORY, "Categoria"),
+            new FieldSpec("material", FieldType.MATERIAL, "Materiale"),
             new FieldSpec("custom-model-data", FieldType.INT, "Custom model data"),
-            new FieldSpec("magazine-visual-offset", FieldType.INT, "Magazine visual offset"),
-            new FieldSpec("magazine-model-data", FieldType.INT, "Magazine model data"),
-            new FieldSpec("damage", FieldType.DOUBLE, "Damage"),
-            new FieldSpec("headshot-multiplier", FieldType.DOUBLE, "Headshot multiplier"),
-            new FieldSpec("fire-rate-ticks", FieldType.INT, "Fire rate ticks"),
-            new FieldSpec("reload-time-ticks", FieldType.INT, "Reload time ticks"),
-            new FieldSpec("magazine-size", FieldType.INT, "Magazine size"),
-            new FieldSpec("max-distance", FieldType.DOUBLE, "Max distance"),
-            new FieldSpec("ammo-type", FieldType.STRING, "Ammo type"),
-            new FieldSpec("sound-shoot", FieldType.STRING, "Shoot sound"),
-            new FieldSpec("sound-reload", FieldType.STRING, "Reload sound"),
-            new FieldSpec("automatic", FieldType.BOOLEAN, "Automatic"),
-            new FieldSpec("fire-modes", FieldType.FIRE_MODE_LIST, "Fire modes"),
-            new FieldSpec("scope-zoom-level", FieldType.NULLABLE_INT, "Scope zoom level"),
-            new FieldSpec("recoil", FieldType.DOUBLE, "Recoil"),
-            new FieldSpec("pellet-count", FieldType.INT, "Pellet count"),
-            new FieldSpec("hipfire-spread-deg", FieldType.DOUBLE, "Hipfire spread"),
-            new FieldSpec("ads-spread-deg", FieldType.DOUBLE, "ADS spread"),
-            new FieldSpec("moving-spread-multiplier", FieldType.DOUBLE, "Moving spread"),
-            new FieldSpec("sneak-spread-multiplier", FieldType.DOUBLE, "Sneak spread"),
-            new FieldSpec("jump-spread-multiplier", FieldType.DOUBLE, "Jump spread"),
-            new FieldSpec("falloff-start-distance", FieldType.DOUBLE, "Falloff start"),
-            new FieldSpec("falloff-end-distance", FieldType.DOUBLE, "Falloff end"),
-            new FieldSpec("falloff-min-multiplier", FieldType.DOUBLE, "Falloff min multiplier"),
-            new FieldSpec("attack-speed", FieldType.DOUBLE, "Attack speed"),
-            new FieldSpec("knockback", FieldType.DOUBLE, "Knockback"),
-            new FieldSpec("sound-hit", FieldType.STRING, "Hit sound")
+            new FieldSpec("magazine-visual-offset", FieldType.INT, "Offset visuale caricatore"),
+            new FieldSpec("magazine-model-data", FieldType.INT, "Model data caricatore"),
+            new FieldSpec("damage", FieldType.DOUBLE, "Danno"),
+            new FieldSpec("headshot-multiplier", FieldType.DOUBLE, "Moltiplicatore headshot"),
+            new FieldSpec("fire-rate-ticks", FieldType.INT, "Tick cadenza fuoco"),
+            new FieldSpec("reload-time-ticks", FieldType.INT, "Tick ricarica"),
+            new FieldSpec("magazine-size", FieldType.INT, "Capacita' caricatore"),
+            new FieldSpec("max-distance", FieldType.DOUBLE, "Distanza massima"),
+            new FieldSpec("ammo-type", FieldType.STRING, "Tipo munizioni"),
+            new FieldSpec("sound-shoot", FieldType.STRING, "Suono sparo"),
+            new FieldSpec("sound-reload", FieldType.STRING, "Suono ricarica"),
+            new FieldSpec("automatic", FieldType.BOOLEAN, "Automatico"),
+            new FieldSpec("fire-modes", FieldType.FIRE_MODE_LIST, "Modalita' fuoco"),
+            new FieldSpec("scope-zoom-level", FieldType.NULLABLE_INT, "Zoom ottica"),
+            new FieldSpec("recoil", FieldType.DOUBLE, "Rinculo"),
+            new FieldSpec("pellet-count", FieldType.INT, "Numero pallini"),
+            new FieldSpec("hipfire-spread-deg", FieldType.DOUBLE, "Dispersione senza mira"),
+            new FieldSpec("ads-spread-deg", FieldType.DOUBLE, "Dispersione in mira"),
+            new FieldSpec("moving-spread-multiplier", FieldType.DOUBLE, "Dispersione in movimento"),
+            new FieldSpec("sneak-spread-multiplier", FieldType.DOUBLE, "Dispersione accovacciato"),
+            new FieldSpec("jump-spread-multiplier", FieldType.DOUBLE, "Dispersione in salto"),
+            new FieldSpec("falloff-start-distance", FieldType.DOUBLE, "Inizio calo danno"),
+            new FieldSpec("falloff-end-distance", FieldType.DOUBLE, "Fine calo danno"),
+            new FieldSpec("falloff-min-multiplier", FieldType.DOUBLE, "Moltiplicatore minimo calo"),
+            new FieldSpec("attack-speed", FieldType.DOUBLE, "Velocita' attacco"),
+            new FieldSpec("knockback", FieldType.DOUBLE, "Contraccolpo"),
+            new FieldSpec("sound-hit", FieldType.STRING, "Suono colpo")
     );
     private static final List<FieldSpec> ARMOR_FIELDS = List.of(
-            new FieldSpec("display-name", FieldType.STRING, "Display name"),
+            new FieldSpec("display-name", FieldType.STRING, "Nome visualizzato"),
             new FieldSpec("custom-model-data", FieldType.INT, "Custom model data"),
-            new FieldSpec("color-rgb", FieldType.STRING, "Leather armor color, e.g. #282828"),
-            new FieldSpec("slowness-level", FieldType.INT, "Slowness amplifier, -1 disables it"),
-            new FieldSpec("damage-reduction", FieldType.DOUBLE, "Base damage reduction, 0.45 = 45%"),
-            new FieldSpec("nij-level", FieldType.STRING, "NIJ display level"),
-            new FieldSpec("max-durability", FieldType.INT, "Max vest durability"),
-            new FieldSpec("has-plate", FieldType.BOOLEAN, "Whether the vest has a ceramic plate")
+            new FieldSpec("color-rgb", FieldType.STRING, "Colore armatura in pelle, es. #282828"),
+            new FieldSpec("slowness-level", FieldType.INT, "Amplificatore lentezza, -1 lo disabilita"),
+            new FieldSpec("damage-reduction", FieldType.DOUBLE, "Riduzione danno base, 0.45 = 45%"),
+            new FieldSpec("nij-level", FieldType.STRING, "Livello NIJ visualizzato"),
+            new FieldSpec("max-durability", FieldType.INT, "Durabilita' massima giubbotto"),
+            new FieldSpec("has-plate", FieldType.BOOLEAN, "Indica se il giubbotto ha una piastra ceramica")
     );
     private static final List<FieldSpec> HELMET_FIELDS = List.of(
-            new FieldSpec("display-name", FieldType.STRING, "Display name"),
+            new FieldSpec("display-name", FieldType.STRING, "Nome visualizzato"),
             new FieldSpec("custom-model-data", FieldType.INT, "Custom model data"),
-            new FieldSpec("color-rgb", FieldType.STRING, "Leather helmet color, e.g. #323C32"),
-            new FieldSpec("damage-reduction", FieldType.DOUBLE, "Bullet damage reduction, 0.25 = 25%"),
-            new FieldSpec("negates-headshot", FieldType.BOOLEAN, "Whether headshot bonus is negated"),
-            new FieldSpec("prevents-melee-stun", FieldType.BOOLEAN, "Whether melee stun is blocked"),
-            new FieldSpec("max-durability", FieldType.INT, "Max helmet durability, 0 disables it")
+            new FieldSpec("color-rgb", FieldType.STRING, "Colore casco in pelle, es. #323C32"),
+            new FieldSpec("damage-reduction", FieldType.DOUBLE, "Riduzione danno proiettili, 0.25 = 25%"),
+            new FieldSpec("negates-headshot", FieldType.BOOLEAN, "Indica se il bonus headshot viene annullato"),
+            new FieldSpec("prevents-melee-stun", FieldType.BOOLEAN, "Indica se lo stun melee viene bloccato"),
+            new FieldSpec("max-durability", FieldType.INT, "Durabilita' massima casco, 0 la disabilita")
     );
 
     private final WeaponsModule module;
@@ -117,10 +117,10 @@ public class WeaponConfigEditor {
         YamlConfiguration config = loadConfig();
         ConfigurationSection section = config.getConfigurationSection(weaponId);
         if (section == null) {
-            return EditResult.error("Unknown weapon id: " + weaponId);
+            return EditResult.error("ID arma sconosciuto: " + weaponId);
         }
         if (!isAllowedPath(path)) {
-            return EditResult.error("Path is not editable in weapons.yml.");
+            return EditResult.error("Percorso non modificabile in weapons.yml.");
         }
         Object value = section.get(path);
         return EditResult.success(value == null ? "<unset>" : String.valueOf(value));
@@ -128,12 +128,12 @@ public class WeaponConfigEditor {
 
     public EditResult set(String actorName, String weaponId, String path, String rawValue) {
         if (!isAllowedPath(path)) {
-            return EditResult.error("Path is not editable in weapons.yml.");
+            return EditResult.error("Percorso non modificabile in weapons.yml.");
         }
         YamlConfiguration config = loadConfig();
         ConfigurationSection section = config.getConfigurationSection(weaponId);
         if (section == null) {
-            return EditResult.error("Unknown weapon id: " + weaponId);
+            return EditResult.error("ID arma sconosciuto: " + weaponId);
         }
 
         FieldSpec spec = specFor(path);
@@ -149,35 +149,35 @@ public class WeaponConfigEditor {
         try {
             config.save(weaponsFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save weapons.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare weapons.yml: " + ex.getMessage());
         }
         reload();
         audit(actorName, weaponId, path, oldValue, parsed);
-        return EditResult.success("Set " + weaponId + "." + path + " = " + parsed);
+        return EditResult.success("Imposta " + weaponId + "." + path + " = " + parsed);
     }
 
     public EditResult remove(String actorName, String weaponId, String path) {
         if (!isAllowedPath(path)) {
-            return EditResult.error("Path is not editable in weapons.yml.");
+            return EditResult.error("Percorso non modificabile in weapons.yml.");
         }
         YamlConfiguration config = loadConfig();
         ConfigurationSection section = config.getConfigurationSection(weaponId);
         if (section == null) {
-            return EditResult.error("Unknown weapon id: " + weaponId);
+            return EditResult.error("ID arma sconosciuto: " + weaponId);
         }
         if (!section.contains(path)) {
-            return EditResult.error("Path is already unset.");
+            return EditResult.error("Il percorso e' gia' non impostato.");
         }
         Object oldValue = section.get(path);
         section.set(path, null);
         try {
             config.save(weaponsFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save weapons.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare weapons.yml: " + ex.getMessage());
         }
         reload();
         audit(actorName, weaponId, path, oldValue, null);
-        return EditResult.success("Removed " + weaponId + "." + path);
+        return EditResult.success("Rimosso " + weaponId + "." + path);
     }
 
     public void reload() {
@@ -204,11 +204,11 @@ public class WeaponConfigEditor {
 
     public EditResult getArmor(String armorId, String path) {
         if (!isAllowedArmorPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml.");
+            return EditResult.error("Percorso non modificabile in armor.yml.");
         }
         ConfigurationSection section = armorSection(loadArmorConfig(), armorId);
         if (section == null) {
-            return EditResult.error("Unknown armor id: " + armorId);
+            return EditResult.error("ID armatura sconosciuto: " + armorId);
         }
         Object value = section.get(path);
         return EditResult.success(value == null ? "<unset>" : String.valueOf(value));
@@ -216,12 +216,12 @@ public class WeaponConfigEditor {
 
     public EditResult setArmor(String actorName, String armorId, String path, String rawValue) {
         if (!isAllowedArmorPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml.");
+            return EditResult.error("Percorso non modificabile in armor.yml.");
         }
         YamlConfiguration config = loadArmorConfig();
         ConfigurationSection section = armorSection(config, armorId);
         if (section == null) {
-            return EditResult.error("Unknown armor id: " + armorId);
+            return EditResult.error("ID armatura sconosciuto: " + armorId);
         }
 
         FieldSpec spec = armorSpecFor(path);
@@ -237,35 +237,35 @@ public class WeaponConfigEditor {
         try {
             config.save(armorFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save armor.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare armor.yml: " + ex.getMessage());
         }
         reloadArmor();
         auditArmor(actorName, armorId, path, oldValue, parsed);
-        return EditResult.success("Set armor " + armorId + "." + path + " = " + parsed);
+        return EditResult.success("Impostata armatura " + armorId + "." + path + " = " + parsed);
     }
 
     public EditResult removeArmor(String actorName, String armorId, String path) {
         if (!isAllowedArmorPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml.");
+            return EditResult.error("Percorso non modificabile in armor.yml.");
         }
         YamlConfiguration config = loadArmorConfig();
         ConfigurationSection section = armorSection(config, armorId);
         if (section == null) {
-            return EditResult.error("Unknown armor id: " + armorId);
+            return EditResult.error("ID armatura sconosciuto: " + armorId);
         }
         if (!section.contains(path)) {
-            return EditResult.error("Path is already unset.");
+            return EditResult.error("Il percorso e' gia' non impostato.");
         }
         Object oldValue = section.get(path);
         section.set(path, null);
         try {
             config.save(armorFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save armor.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare armor.yml: " + ex.getMessage());
         }
         reloadArmor();
         auditArmor(actorName, armorId, path, oldValue, null);
-        return EditResult.success("Removed armor " + armorId + "." + path);
+        return EditResult.success("Rimossa armatura " + armorId + "." + path);
     }
 
     public void reloadArmor() {
@@ -303,7 +303,7 @@ public class WeaponConfigEditor {
 
     public EditResult getHelmet(String helmetId, String path) {
         if (!isAllowedHelmetPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml helmets.");
+            return EditResult.error("Percorso non modificabile nei caschi di armor.yml.");
         }
         String normalizedId = normalizeConfigId(helmetId);
         ConfigurationSection section = helmetSection(loadArmorConfig(), normalizedId, false);
@@ -315,18 +315,18 @@ public class WeaponConfigEditor {
             Object fallback = defaultHelmetValue(normalizedId, path);
             return EditResult.success(fallback == null ? "<unset>" : String.valueOf(fallback));
         }
-        return EditResult.error("Unknown helmet id: " + helmetId);
+        return EditResult.error("ID casco sconosciuto: " + helmetId);
     }
 
     public EditResult setHelmet(String actorName, String helmetId, String path, String rawValue) {
         if (!isAllowedHelmetPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml helmets.");
+            return EditResult.error("Percorso non modificabile nei caschi di armor.yml.");
         }
         YamlConfiguration config = loadArmorConfig();
         String normalizedId = normalizeConfigId(helmetId);
         ConfigurationSection section = helmetSection(config, normalizedId, true);
         if (section == null) {
-            return EditResult.error("Unknown helmet id: " + helmetId);
+            return EditResult.error("ID casco sconosciuto: " + helmetId);
         }
 
         FieldSpec spec = helmetSpecFor(path);
@@ -342,36 +342,36 @@ public class WeaponConfigEditor {
         try {
             config.save(armorFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save armor.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare armor.yml: " + ex.getMessage());
         }
         reloadHelmet();
         auditHelmet(actorName, normalizedId, path, oldValue, parsed);
-        return EditResult.success("Set helmet " + normalizedId + "." + path + " = " + parsed);
+        return EditResult.success("Impostato casco " + normalizedId + "." + path + " = " + parsed);
     }
 
     public EditResult removeHelmet(String actorName, String helmetId, String path) {
         if (!isAllowedHelmetPath(path)) {
-            return EditResult.error("Path is not editable in armor.yml helmets.");
+            return EditResult.error("Percorso non modificabile nei caschi di armor.yml.");
         }
         YamlConfiguration config = loadArmorConfig();
         String normalizedId = normalizeConfigId(helmetId);
         ConfigurationSection section = helmetSection(config, normalizedId, false);
         if (section == null) {
-            return EditResult.error("Unknown helmet id: " + helmetId);
+            return EditResult.error("ID casco sconosciuto: " + helmetId);
         }
         if (!section.contains(path)) {
-            return EditResult.error("Path is already unset.");
+            return EditResult.error("Il percorso e' gia' non impostato.");
         }
         Object oldValue = section.get(path);
         section.set(path, null);
         try {
             config.save(armorFile);
         } catch (IOException ex) {
-            return EditResult.error("Could not save armor.yml: " + ex.getMessage());
+            return EditResult.error("Impossibile salvare armor.yml: " + ex.getMessage());
         }
         reloadHelmet();
         auditHelmet(actorName, normalizedId, path, oldValue, null);
-        return EditResult.success("Removed helmet " + normalizedId + "." + path);
+        return EditResult.success("Rimosso casco " + normalizedId + "." + path);
     }
 
     public void reloadHelmet() {
@@ -515,7 +515,7 @@ public class WeaponConfigEditor {
         String value = rawValue == null ? "" : rawValue.trim();
         if (type == FieldType.STRING) {
             if (value.isEmpty()) {
-                throw new IllegalArgumentException("Value cannot be empty. Use remove to unset.");
+                throw new IllegalArgumentException("Il valore non puo' essere vuoto. Usa remove per svuotarlo.");
             }
             return value;
         }
@@ -535,7 +535,7 @@ public class WeaponConfigEditor {
             if (value.equalsIgnoreCase("false") || value.equalsIgnoreCase("no") || value.equalsIgnoreCase("off")) {
                 return false;
             }
-            throw new IllegalArgumentException("Use true or false.");
+            throw new IllegalArgumentException("Usa true o false.");
         }
         if (type == FieldType.MATERIAL) {
             Material.valueOf(value.toUpperCase(Locale.ROOT));
@@ -552,7 +552,7 @@ public class WeaponConfigEditor {
                 modes.add(mode.name().toLowerCase(Locale.ROOT));
             }
             if (modes.isEmpty()) {
-                throw new IllegalArgumentException("Provide at least one fire mode.");
+                throw new IllegalArgumentException("Indica almeno una modalita' di fuoco.");
             }
             return modes;
         }
@@ -565,23 +565,23 @@ public class WeaponConfigEditor {
             case "semi", "single" -> FireMode.SEMI;
             case "auto", "automatic", "full_auto", "full-auto" -> FireMode.AUTO;
             case "burst", "raffica" -> FireMode.BURST;
-            default -> throw new IllegalArgumentException("Unknown fire mode: " + rawValue);
+            default -> throw new IllegalArgumentException("Modalita' fuoco sconosciuta: " + rawValue);
         };
     }
 
     private void audit(String actorName, String weaponId, String path, Object oldValue, Object newValue) {
-        module.getCore().getLogger().info("[OpenWeapons] Weapon config audit: " + actorName
-                + " changed " + weaponId + "." + path + " from " + oldValue + " to " + newValue);
+        module.getCore().getLogger().info("[OpenWeapons] Audit config arma: " + actorName
+                + " ha cambiato " + weaponId + "." + path + " da " + oldValue + " a " + newValue);
     }
 
     private void auditArmor(String actorName, String armorId, String path, Object oldValue, Object newValue) {
-        module.getCore().getLogger().info("[OpenWeapons] Armor config audit: " + actorName
-                + " changed " + armorId + "." + path + " from " + oldValue + " to " + newValue);
+        module.getCore().getLogger().info("[OpenWeapons] Audit config armatura: " + actorName
+                + " ha cambiato " + armorId + "." + path + " da " + oldValue + " a " + newValue);
     }
 
     private void auditHelmet(String actorName, String helmetId, String path, Object oldValue, Object newValue) {
-        module.getCore().getLogger().info("[OpenWeapons] Helmet config audit: " + actorName
-                + " changed " + helmetId + "." + path + " from " + oldValue + " to " + newValue);
+        module.getCore().getLogger().info("[OpenWeapons] Audit config casco: " + actorName
+                + " ha cambiato " + helmetId + "." + path + " da " + oldValue + " a " + newValue);
     }
 
     public record FieldSpec(String path, FieldType type, String label) {

@@ -37,7 +37,7 @@ public final class DamageDummyListener implements Listener {
       dummy.setSilent(true);
       dummy.setRemoveWhenFarAway(false);
       dummy.setCanPickupItems(false);
-      dummy.customName(Component.text("Damage Dummy " + formatHealth(dummy), NamedTextColor.RED));
+      dummy.customName(Component.text("Bersaglio danno " + formatHealth(dummy), NamedTextColor.RED));
       dummy.setCustomNameVisible(true);
    }
 
@@ -52,7 +52,7 @@ public final class DamageDummyListener implements Listener {
             return;
          }
          double after = living.getHealth();
-         living.customName(Component.text("Damage Dummy " + formatHealth(living)
+         living.customName(Component.text("Bersaglio danno " + formatHealth(living)
                + " -" + String.format(java.util.Locale.US, "%.1f", Math.max(0.0D, before - after)),
                NamedTextColor.RED));
       });

@@ -25,7 +25,7 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
 
    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
       if (!this.isAuthorized(sender)) {
-         sender.sendMessage(Component.text("Only law enforcement can use this command.", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Solo le forze dell'ordine possono usare questo comando.", NamedTextColor.RED));
          return true;
       }
 
@@ -37,31 +37,31 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
       switch (args[0].toLowerCase()) {
          case "add":
             if (!(sender instanceof Player player)) {
-               sender.sendMessage(Component.text("Only players can open the wanted GUI.", NamedTextColor.RED));
+               sender.sendMessage(Component.text("Solo i giocatori possono aprire la GUI ricercati.", NamedTextColor.RED));
                return true;
             }
 
             this.module.getWantedGUI().open(player);
             break;
          case "listonline":
-            this.sendList(sender, this.module.getWantedManager().getOnlineRecords(), "Online wanted records", this.parsePage(args, 1));
+            this.sendList(sender, this.module.getWantedManager().getOnlineRecords(), "Ricercati online", this.parsePage(args, 1));
             break;
          case "list":
-            this.sendList(sender, this.module.getWantedManager().getAllRecords(), "All wanted records", this.parsePage(args, 1));
+            this.sendList(sender, this.module.getWantedManager().getAllRecords(), "Tutti i ricercati", this.parsePage(args, 1));
             break;
          case "remove":
             if (args.length < 2) {
-               sender.sendMessage(Component.text("Usage: /wanted remove <player>", NamedTextColor.RED));
+               sender.sendMessage(Component.text("Uso: /wanted remove <giocatore>", NamedTextColor.RED));
                return true;
             }
 
             WantedRecord removed = this.module.getWantedManager().removeRecord(args[1]);
             if (removed == null) {
-               sender.sendMessage(Component.text("No active wanted record found for " + args[1] + ".", NamedTextColor.RED));
+               sender.sendMessage(Component.text("Nessuna scheda ricercato attiva trovata per " + args[1] + ".", NamedTextColor.RED));
                return true;
             }
 
-            sender.sendMessage(Component.text("Removed wanted record for " + removed.getPlayerName() + ".", NamedTextColor.GREEN));
+            sender.sendMessage(Component.text("Scheda ricercato rimossa per " + removed.getPlayerName() + ".", NamedTextColor.GREEN));
             break;
          default:
             this.sendHelp(sender);
@@ -79,14 +79,14 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
    }
 
    private void sendHelp(CommandSender sender) {
-      sender.sendMessage(Component.text("Wanted Commands", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}));
-      sender.sendMessage(Component.text("/wanted add", NamedTextColor.YELLOW).append(Component.text(" - Open the wanted record GUI", NamedTextColor.GRAY)));
+      sender.sendMessage(Component.text("Comandi Ricercati", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}));
+      sender.sendMessage(Component.text("/wanted add", NamedTextColor.YELLOW).append(Component.text(" - Apre la GUI scheda ricercato", NamedTextColor.GRAY)));
       sender.sendMessage(
-         Component.text("/wanted listonline [page]", NamedTextColor.YELLOW).append(Component.text(" - List online wanted players", NamedTextColor.GRAY))
+         Component.text("/wanted listonline [pagina]", NamedTextColor.YELLOW).append(Component.text(" - Elenca i ricercati online", NamedTextColor.GRAY))
       );
-      sender.sendMessage(Component.text("/wanted list [page]", NamedTextColor.YELLOW).append(Component.text(" - List all wanted players", NamedTextColor.GRAY)));
+      sender.sendMessage(Component.text("/wanted list [pagina]", NamedTextColor.YELLOW).append(Component.text(" - Elenca tutti i ricercati", NamedTextColor.GRAY)));
       sender.sendMessage(
-         Component.text("/wanted remove <player>", NamedTextColor.YELLOW).append(Component.text(" - Remove a wanted record", NamedTextColor.GRAY))
+         Component.text("/wanted remove <giocatore>", NamedTextColor.YELLOW).append(Component.text(" - Rimuove una scheda ricercato", NamedTextColor.GRAY))
       );
    }
 
@@ -106,7 +106,7 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
       List<WantedRecord> list = new ArrayList<>();
       records.forEach(list::add);
       if (list.isEmpty()) {
-         sender.sendMessage(Component.text("No wanted records found.", NamedTextColor.GRAY));
+         sender.sendMessage(Component.text("Nessuna scheda ricercato trovata.", NamedTextColor.GRAY));
       } else {
          list.sort((left, right) -> right.getCreatedAt().compareTo(left.getCreatedAt()));
          int totalPages = Math.max(1, (int)Math.ceil(list.size() / 6.0));
@@ -114,7 +114,7 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
          int start = (page - 1) * 6;
          int end = Math.min(start + 6, list.size());
          sender.sendMessage(
-            Component.text(title + " (" + list.size() + ") - Page " + page + "/" + totalPages, NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD})
+            Component.text(title + " (" + list.size() + ") - Pagina " + page + "/" + totalPages, NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD})
          );
 
          for (int i = start; i < end; i++) {
@@ -125,20 +125,20 @@ public class WantedCommand implements CommandExecutor, TabCompleter {
                                              .append(Component.text("#" + (i + 1) + " ", NamedTextColor.DARK_GRAY)))
                                           .append(Component.text(online ? "[ONLINE] " : "[OFFLINE] ", online ? NamedTextColor.GREEN : NamedTextColor.RED)))
                                        .append(Component.text(record.getPlayerName(), NamedTextColor.WHITE)))
-                                    .append(Component.text("  Arrest: ", NamedTextColor.DARK_GRAY)))
+                                    .append(Component.text("  Arresto: ", NamedTextColor.DARK_GRAY)))
                                  .append(
                                     Component.text(
-                                       record.isArrestRequired() ? "Yes" : "No", record.isArrestRequired() ? NamedTextColor.RED : NamedTextColor.GREEN
+                                       record.isArrestRequired() ? "Si" : "No", record.isArrestRequired() ? NamedTextColor.RED : NamedTextColor.GREEN
                                     )
                                  ))
-                              .append(Component.text("  Officer: ", NamedTextColor.DARK_GRAY)))
+                              .append(Component.text("  Agente: ", NamedTextColor.DARK_GRAY)))
                            .append(Component.text(record.getOfficerName(), NamedTextColor.WHITE)))
-                        .append(Component.text("  Added: ", NamedTextColor.DARK_GRAY)))
+                        .append(Component.text("  Aggiunta: ", NamedTextColor.DARK_GRAY)))
                      .append(Component.text(this.module.getWantedManager().formatDate(record.getCreatedAt()), NamedTextColor.YELLOW)))
                   .build()
             );
             sender.sendMessage(
-               ((Builder)((Builder)Component.text().append(Component.text("   Reason: ", NamedTextColor.DARK_GRAY)))
+               ((Builder)((Builder)Component.text().append(Component.text("   Motivo: ", NamedTextColor.DARK_GRAY)))
                      .append(Component.text(record.getReason(), NamedTextColor.GRAY)))
                   .build()
             );

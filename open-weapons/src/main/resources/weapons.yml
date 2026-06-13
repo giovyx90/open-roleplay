@@ -879,7 +879,7 @@ mp7:
   - auto
   magazine-model-data: 19
 manganello:
-  display-name: Baton
+  display-name: Manganello
   category: MELEE
   material: BLAZE_ROD
   damage: 2.4
@@ -887,7 +887,7 @@ manganello:
   knockback: 0.0
   sound-hit: entity.iron_golem.attack
 tirapugni:
-  display-name: Brass Knuckles
+  display-name: Tirapugni
   category: MELEE
   material: IRON_SWORD
   damage: 2.0
@@ -895,7 +895,7 @@ tirapugni:
   knockback: 0.1
   sound-hit: entity.player.attack.strong
 knife:
-  display-name: Knife
+  display-name: Coltello
   category: MELEE
   material: IRON_SWORD
   damage: 3.2
@@ -903,7 +903,7 @@ knife:
   knockback: 0.05
   sound-hit: entity.player.attack.crit
 sig_mcx_semiauto:
-  display-name: SIG MCX Semi-Auto
+  display-name: SIG MCX semiautomatica
   category: SEMI_AUTO_RIFLE
   material: CROSSBOW
   custom-model-data: 161
@@ -1142,7 +1142,7 @@ famas:
   - burst
   magazine-model-data: 22
 sig_mcx_assault:
-  display-name: SIG MCX Assault
+  display-name: SIG MCX d'assalto
   category: ASSAULT_RIFLE
   material: CROSSBOW
   custom-model-data: 5401
@@ -1518,7 +1518,7 @@ awp:
   scope-zoom-level: 6
   magazine-model-data: 21
 ariete:
-  display-name: Battering Ram
+  display-name: Ariete
   category: MELEE
   material: BLAZE_ROD
   damage: 6.4
@@ -1526,7 +1526,7 @@ ariete:
   knockback: 1.2
   sound-hit: entity.zombie.attack_wooden_door
 piede_di_porco:
-  display-name: Crowbar
+  display-name: Piede di porco
   category: MELEE
   material: BLAZE_ROD
   damage: 4.4
@@ -1534,7 +1534,7 @@ piede_di_porco:
   knockback: 0.4
   sound-hit: entity.iron_golem.attack
 ghost_pistol:
-  display-name: Ghost Pistol
+  display-name: Pistola fantasma
   category: PISTOL
   material: CROSSBOW
   custom-model-data: 5701
@@ -1592,7 +1592,7 @@ ghost_pistol:
   magazine-visual-offset: 2
   magazine-model-data: 30
 ghost_shotgun:
-  display-name: Ghost Shotgun
+  display-name: Fucile a pompa fantasma
   category: SHOTGUN
   material: CROSSBOW
   custom-model-data: 5781
@@ -1637,7 +1637,7 @@ ghost_shotgun:
   automatic: false
   pellet-count: 7
 ghost_smg:
-  display-name: Ghost SMG
+  display-name: SMG fantasma
   category: SMG
   material: CROSSBOW
   custom-model-data: 5821
@@ -1698,7 +1698,7 @@ ghost_smg:
   - auto
   magazine-model-data: 32
 ghost_rifle:
-  display-name: Ghost Rifle
+  display-name: Fucile fantasma
   category: SEMI_AUTO_RIFLE
   material: CROSSBOW
   custom-model-data: 5741

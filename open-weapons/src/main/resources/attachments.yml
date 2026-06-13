@@ -1,5 +1,5 @@
 holographic_sight:
-  display-name: "Holographic Sight"
+  display-name: "Mirino olografico"
   material: SPYGLASS
   custom-model-data: 10001
   slot: optic
@@ -20,7 +20,7 @@ holographic_sight:
   illegal: false
 
 scope_3x:
-  display-name: "3x Scope"
+  display-name: "Ottica 3x"
   material: SPYGLASS
   custom-model-data: 10002
   slot: optic
@@ -40,7 +40,7 @@ scope_3x:
   illegal: false
 
 scope_10x:
-  display-name: "10x Scope"
+  display-name: "Ottica 10x"
   material: SPYGLASS
   custom-model-data: 10008
   slot: optic
@@ -61,7 +61,7 @@ scope_10x:
   illegal: false
 
 vertical_grip:
-  display-name: "Vertical Grip"
+  display-name: "Impugnatura verticale"
   material: STICK
   custom-model-data: 10003
   slot: underbarrel
@@ -82,7 +82,7 @@ vertical_grip:
   illegal: false
 
 extended_magazine:
-  display-name: "Extended Magazine"
+  display-name: "Caricatore esteso"
   material: IRON_INGOT
   custom-model-data: 10004
   slot: magazine
@@ -104,7 +104,7 @@ extended_magazine:
   illegal: false
 
 suppressor:
-  display-name: "Suppressor"
+  display-name: "Silenziatore"
   material: IRON_INGOT
   custom-model-data: 10005
   slot: barrel
@@ -126,7 +126,7 @@ suppressor:
   illegal: true
 
 light_trigger:
-  display-name: "Light Trigger"
+  display-name: "Grilletto alleggerito"
   material: TRIPWIRE_HOOK
   custom-model-data: 10006
   slot: internal
@@ -148,7 +148,7 @@ light_trigger:
   illegal: true
 
 full_auto_converter:
-  display-name: "Full Auto Converter"
+  display-name: "Convertitore automatico"
   material: REDSTONE
   custom-model-data: 10007
   slot: internal

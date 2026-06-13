@@ -29,12 +29,12 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!canEdit(sender)) {
-            sender.sendMessage(Component.text("You need " + PERMISSION + " to edit weapon config.", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Ti serve " + PERMISSION + " per modificare la config armi.", NamedTextColor.RED));
             return true;
         }
         if (args.length == 0 || args[0].equalsIgnoreCase("gui")) {
             if (!(sender instanceof Player player)) {
-                sender.sendMessage("Console usage: /weaponconfig <get|set|remove|reload|list|fields|armor|helmet>");
+                sender.sendMessage("Uso da console: /weaponconfig <get|set|remove|reload|list|fields|armor|helmet>");
                 return true;
             }
             if (args.length >= 2 && args[1].equalsIgnoreCase("weapons")) {
@@ -59,26 +59,26 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
                 editor.reload();
                 editor.reloadArmor();
                 editor.reloadHelmet();
-                sender.sendMessage(Component.text("weapons.yml and armor.yml reloaded.", NamedTextColor.GREEN));
+                sender.sendMessage(Component.text("weapons.yml e armor.yml ricaricati.", NamedTextColor.GREEN));
                 return true;
             }
             case "list" -> {
-                sender.sendMessage(Component.text("Weapons: " + String.join(", ", editor.weaponIds()), NamedTextColor.YELLOW));
+                sender.sendMessage(Component.text("Armi: " + String.join(", ", editor.weaponIds()), NamedTextColor.YELLOW));
                 return true;
             }
             case "fields" -> {
                 if (args.length < 2) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig fields <weapon>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig fields <arma>", NamedTextColor.RED));
                     return true;
                 }
-                sender.sendMessage(Component.text("Fields: " + editor.fieldsFor(args[1]).stream()
+                sender.sendMessage(Component.text("Campi: " + editor.fieldsFor(args[1]).stream()
                         .map(WeaponConfigEditor.FieldSpec::path)
-                        .reduce((a, b) -> a + ", " + b).orElse("<none>"), NamedTextColor.YELLOW));
+                        .reduce((a, b) -> a + ", " + b).orElse("<nessuno>"), NamedTextColor.YELLOW));
                 return true;
             }
             case "get" -> {
                 if (args.length < 3) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig get <weapon> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig get <arma> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.get(args[1], args[2]);
@@ -87,7 +87,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "set" -> {
                 if (args.length < 4) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig set <weapon> <path> <value>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig set <arma> <percorso> <valore>", NamedTextColor.RED));
                     return true;
                 }
                 String value = String.join(" ", java.util.Arrays.copyOfRange(args, 3, args.length));
@@ -97,7 +97,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "remove" -> {
                 if (args.length < 3) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig remove <weapon> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig remove <arma> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.remove(sender.getName(), args[1], args[2]);
@@ -113,32 +113,32 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
 
     private boolean handleArmor(CommandSender sender, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(Component.text("Usage: /weaponconfig armor <list|fields|get|set|remove|reload>", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Uso: /weaponconfig armor <list|fields|get|set|remove|reload>", NamedTextColor.RED));
             return true;
         }
         switch (args[1].toLowerCase(Locale.ROOT)) {
             case "reload" -> {
                 editor.reloadArmor();
-                sender.sendMessage(Component.text("armor.yml reloaded.", NamedTextColor.GREEN));
+                sender.sendMessage(Component.text("armor.yml ricaricato.", NamedTextColor.GREEN));
                 return true;
             }
             case "list" -> {
-                sender.sendMessage(Component.text("Armor: " + String.join(", ", editor.armorIds()), NamedTextColor.YELLOW));
+                sender.sendMessage(Component.text("Armature: " + String.join(", ", editor.armorIds()), NamedTextColor.YELLOW));
                 return true;
             }
             case "fields" -> {
                 if (args.length < 3) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig armor fields <armor>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig armor fields <armatura>", NamedTextColor.RED));
                     return true;
                 }
-                sender.sendMessage(Component.text("Armor fields: " + editor.armorFieldsFor(args[2]).stream()
+                sender.sendMessage(Component.text("Campi armatura: " + editor.armorFieldsFor(args[2]).stream()
                         .map(WeaponConfigEditor.FieldSpec::path)
-                        .reduce((a, b) -> a + ", " + b).orElse("<none>"), NamedTextColor.YELLOW));
+                        .reduce((a, b) -> a + ", " + b).orElse("<nessuno>"), NamedTextColor.YELLOW));
                 return true;
             }
             case "get" -> {
                 if (args.length < 4) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig armor get <armor> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig armor get <armatura> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.getArmor(args[2], args[3]);
@@ -147,7 +147,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "set" -> {
                 if (args.length < 5) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig armor set <armor> <path> <value>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig armor set <armatura> <percorso> <valore>", NamedTextColor.RED));
                     return true;
                 }
                 String value = String.join(" ", java.util.Arrays.copyOfRange(args, 4, args.length));
@@ -157,7 +157,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "remove" -> {
                 if (args.length < 4) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig armor remove <armor> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig armor remove <armatura> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.removeArmor(sender.getName(), args[2], args[3]);
@@ -165,7 +165,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             default -> {
-                sender.sendMessage(Component.text("Usage: /weaponconfig armor <list|fields|get|set|remove|reload>", NamedTextColor.RED));
+                sender.sendMessage(Component.text("Uso: /weaponconfig armor <list|fields|get|set|remove|reload>", NamedTextColor.RED));
                 return true;
             }
         }
@@ -173,32 +173,32 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
 
     private boolean handleHelmet(CommandSender sender, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(Component.text("Usage: /weaponconfig helmet <list|fields|get|set|remove|reload>", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Uso: /weaponconfig helmet <list|fields|get|set|remove|reload>", NamedTextColor.RED));
             return true;
         }
         switch (args[1].toLowerCase(Locale.ROOT)) {
             case "reload" -> {
                 editor.reloadHelmet();
-                sender.sendMessage(Component.text("armor.yml helmets reloaded.", NamedTextColor.GREEN));
+                sender.sendMessage(Component.text("caschi in armor.yml ricaricati.", NamedTextColor.GREEN));
                 return true;
             }
             case "list" -> {
-                sender.sendMessage(Component.text("Helmets: " + String.join(", ", editor.helmetIds()), NamedTextColor.YELLOW));
+                sender.sendMessage(Component.text("Caschi: " + String.join(", ", editor.helmetIds()), NamedTextColor.YELLOW));
                 return true;
             }
             case "fields" -> {
                 if (args.length < 3) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig helmet fields <helmet>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig helmet fields <casco>", NamedTextColor.RED));
                     return true;
                 }
-                sender.sendMessage(Component.text("Helmet fields: " + editor.helmetFieldsFor(args[2]).stream()
+                sender.sendMessage(Component.text("Campi casco: " + editor.helmetFieldsFor(args[2]).stream()
                         .map(WeaponConfigEditor.FieldSpec::path)
-                        .reduce((a, b) -> a + ", " + b).orElse("<none>"), NamedTextColor.YELLOW));
+                        .reduce((a, b) -> a + ", " + b).orElse("<nessuno>"), NamedTextColor.YELLOW));
                 return true;
             }
             case "get" -> {
                 if (args.length < 4) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig helmet get <helmet> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig helmet get <casco> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.getHelmet(args[2], args[3]);
@@ -207,7 +207,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "set" -> {
                 if (args.length < 5) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig helmet set <helmet> <path> <value>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig helmet set <casco> <percorso> <valore>", NamedTextColor.RED));
                     return true;
                 }
                 String value = String.join(" ", java.util.Arrays.copyOfRange(args, 4, args.length));
@@ -217,7 +217,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
             }
             case "remove" -> {
                 if (args.length < 4) {
-                    sender.sendMessage(Component.text("Usage: /weaponconfig helmet remove <helmet> <path>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /weaponconfig helmet remove <casco> <percorso>", NamedTextColor.RED));
                     return true;
                 }
                 WeaponConfigEditor.EditResult result = editor.removeHelmet(sender.getName(), args[2], args[3]);
@@ -225,7 +225,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             default -> {
-                sender.sendMessage(Component.text("Usage: /weaponconfig helmet <list|fields|get|set|remove|reload>", NamedTextColor.RED));
+                sender.sendMessage(Component.text("Uso: /weaponconfig helmet <list|fields|get|set|remove|reload>", NamedTextColor.RED));
                 return true;
             }
         }
@@ -283,7 +283,7 @@ public class WeaponConfigCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendUsage(CommandSender sender) {
-        sender.sendMessage(Component.text("Usage: /weaponconfig <gui|get|set|remove|reload|list|fields|armor|helmet>", NamedTextColor.RED));
+        sender.sendMessage(Component.text("Uso: /weaponconfig <gui|get|set|remove|reload|list|fields|armor|helmet>", NamedTextColor.RED));
     }
 
     private List<String> filter(List<String> values, String prefix) {

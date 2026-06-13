@@ -200,7 +200,7 @@ public class HandcuffManager {
         ItemStack item = new ItemStack(Material.PAPER);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Handcuffs", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Manette", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.setCustomModelData(HANDCUFF_MODEL_DATA);
@@ -214,7 +214,7 @@ public class HandcuffManager {
         ItemStack item = new ItemStack(Material.PAPER);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Handcuffs", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Manette", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.setCustomModelData(BOUND_HANDCUFF_MODEL_DATA);
@@ -228,7 +228,7 @@ public class HandcuffManager {
         ItemStack item = new ItemStack(Material.PAPER);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Rope", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Corda", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.setCustomModelData(BOUND_ROPE_MODEL_DATA);
@@ -242,7 +242,7 @@ public class HandcuffManager {
         ItemStack item = new ItemStack(Material.PAPER);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Bolt Cutters", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Tronchesi", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.setCustomModelData(BOLT_CUTTER_MODEL_DATA);

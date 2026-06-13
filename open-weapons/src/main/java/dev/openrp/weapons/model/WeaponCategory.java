@@ -1,14 +1,14 @@
 package dev.openrp.weapons.model;
 
 public enum WeaponCategory {
-    PISTOL("Pistol"),
+    PISTOL("Pistola"),
     SMG("SMG"),
-    ASSAULT_RIFLE("Assault Rifle"),
-    SEMI_AUTO_RIFLE("Semi-Auto Rifle"),
-    SNIPER("Sniper Rifle"),
+    ASSAULT_RIFLE("Fucile d'assalto"),
+    SEMI_AUTO_RIFLE("Fucile semiautomatico"),
+    SNIPER("Fucile sniper"),
     SHOTGUN("Shotgun"),
     TASER("Taser"),
-    MELEE("Melee");
+    MELEE("Corpo a corpo");
 
     private final String displayName;
 

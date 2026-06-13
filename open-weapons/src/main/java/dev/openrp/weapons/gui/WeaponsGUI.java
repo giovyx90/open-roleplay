@@ -26,7 +26,7 @@ public class WeaponsGUI implements Listener {
     }
 
     public void open(Player player) {
-        Inventory inv = Bukkit.createInventory(null, 54, Component.text("Weapons Admin", NamedTextColor.DARK_RED, TextDecoration.BOLD));
+        Inventory inv = Bukkit.createInventory(null, 54, Component.text("Admin Armi", NamedTextColor.DARK_RED, TextDecoration.BOLD));
 
         int slot = 0;
         
@@ -72,7 +72,7 @@ public class WeaponsGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getView().title().equals(Component.text("Weapons Admin", NamedTextColor.DARK_RED, TextDecoration.BOLD))) {
+        if (!event.getView().title().equals(Component.text("Admin Armi", NamedTextColor.DARK_RED, TextDecoration.BOLD))) {
             return;
         }
 

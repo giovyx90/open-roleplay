@@ -49,7 +49,7 @@ public class AttachmentRegistry {
                 int customModelData = section.getInt("custom-model-data", 0);
                 AttachmentSlot slot = AttachmentSlot.fromConfig(section.getString("slot", "optic"));
                 if (slot == null) {
-                    throw new IllegalArgumentException("Invalid slot");
+                    throw new IllegalArgumentException("Slot non valido");
                 }
 
                 EnumSet<WeaponCategory> compatibleCategories = EnumSet.noneOf(WeaponCategory.class);
@@ -57,7 +57,7 @@ public class AttachmentRegistry {
                     compatibleCategories.add(WeaponCategory.valueOf(category.trim().toUpperCase(Locale.ROOT)));
                 }
                 if (compatibleCategories.isEmpty()) {
-                    throw new IllegalArgumentException("No compatible categories configured");
+                    throw new IllegalArgumentException("Nessuna categoria compatibile configurata");
                 }
                 Set<String> compatibleWeaponIds = section.getStringList("compatible-weapons").stream()
                         .map(value -> value.trim().toLowerCase(Locale.ROOT))
@@ -85,10 +85,10 @@ public class AttachmentRegistry {
                         section.getBoolean("illegal", false)
                 ));
             } catch (Exception e) {
-                core.getLogger().warning("[OpenWeapons] Failed to load attachment '" + key + "': " + e.getMessage());
+                core.getLogger().warning("[OpenWeapons] Impossibile caricare l'accessorio '" + key + "': " + e.getMessage());
             }
         }
-        core.getLogger().info("[OpenWeapons] Loaded " + attachments.size() + " weapon attachments.");
+        core.getLogger().info("[OpenWeapons] Caricati " + attachments.size() + " accessori arma.");
     }
 
     public AttachmentDefinition getAttachment(String id) {
@@ -134,11 +134,11 @@ public class AttachmentRegistry {
             lore.add(Component.text("Slot: ", NamedTextColor.GRAY)
                     .append(Component.text(slotDisplayName(def.getSlot()), NamedTextColor.WHITE))
                     .decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Fits: ", NamedTextColor.GRAY)
+            lore.add(Component.text("Compatibile: ", NamedTextColor.GRAY)
                     .append(Component.text(compatibleDisplay(def), NamedTextColor.WHITE))
                     .decoration(TextDecoration.ITALIC, false));
             if (def.isIllegal()) {
-                lore.add(Component.text("Illegal Modification", NamedTextColor.RED)
+                lore.add(Component.text("Modifica illegale", NamedTextColor.RED)
                         .decoration(TextDecoration.ITALIC, false));
             }
             meta.lore(lore);
@@ -153,12 +153,12 @@ public class AttachmentRegistry {
 
     public static String slotDisplayName(AttachmentSlot slot) {
         return switch (slot) {
-            case OPTIC -> "Optic";
-            case BARREL -> "Barrel";
-            case UNDERBARREL -> "Underbarrel";
-            case SIDE -> "Side";
-            case MAGAZINE -> "Magazine";
-            case INTERNAL -> "Internal";
+            case OPTIC -> "Ottica";
+            case BARREL -> "Canna";
+            case UNDERBARREL -> "Sottocanna";
+            case SIDE -> "Laterale";
+            case MAGAZINE -> "Caricatore";
+            case INTERNAL -> "Interno";
         };
     }
 

@@ -43,11 +43,11 @@ public class C4Manager implements Listener {
    private static final int[] TIMER_SECONDS = new int[]{30, 60, 120, 300};
    private static final int[] WIRE_SLOTS = new int[]{10, 11, 12, 13, 14};
    private static final C4Manager.Wire[] WIRES = new C4Manager.Wire[]{
-      new C4Manager.Wire("Red", Material.RED_WOOL, NamedTextColor.RED, "Cut the wire matching emergency lights."),
-      new C4Manager.Wire("Blue", Material.BLUE_WOOL, NamedTextColor.BLUE, "Cut the wire matching the calm signal."),
-      new C4Manager.Wire("Green", Material.GREEN_WOOL, NamedTextColor.GREEN, "Cut the wire matching a cleared route."),
-      new C4Manager.Wire("Yellow", Material.YELLOW_WOOL, NamedTextColor.YELLOW, "Cut the wire matching caution tape."),
-      new C4Manager.Wire("White", Material.WHITE_WOOL, NamedTextColor.WHITE, "Cut the wire matching a blank label.")
+      new C4Manager.Wire("Rosso", Material.RED_WOOL, NamedTextColor.RED, "Taglia il filo collegato alle luci di emergenza."),
+      new C4Manager.Wire("Blu", Material.BLUE_WOOL, NamedTextColor.BLUE, "Taglia il filo collegato al segnale stabile."),
+      new C4Manager.Wire("Verde", Material.GREEN_WOOL, NamedTextColor.GREEN, "Taglia il filo collegato al percorso libero."),
+      new C4Manager.Wire("Giallo", Material.YELLOW_WOOL, NamedTextColor.YELLOW, "Taglia il filo collegato al nastro di sicurezza."),
+      new C4Manager.Wire("Bianco", Material.WHITE_WOOL, NamedTextColor.WHITE, "Taglia il filo collegato all'etichetta vuota.")
    };
    private final WeaponsModule module;
    private final NamespacedKey chargeKey;
@@ -66,9 +66,9 @@ public class C4Manager implements Listener {
    public void openTimerGui(Player player, GrenadeDefinition definition, EquipmentSlot hand, Block clickedBlock, BlockFace blockFace) {
       if (this.isC4(definition)) {
          if (!player.hasPermission("openrp.c4.use")) {
-            player.sendMessage(Component.text("You are not authorized to arm C4.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non sei autorizzato ad armare il C4.", NamedTextColor.RED));
          } else if (clickedBlock == null) {
-            player.sendMessage(Component.text("Place the C4 on a surface.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Posiziona il C4 su una superficie.", NamedTextColor.RED));
          } else {
             Location placement = this.resolvePlacement(clickedBlock, blockFace);
             C4Manager.TimerHolder holder = new C4Manager.TimerHolder(definition, hand, placement);
@@ -83,7 +83,7 @@ public class C4Manager implements Listener {
             inventory.setItem(
                22,
                NexoUI.getCancelButton(
-                  Component.text("Cancel", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
+                  Component.text("Annulla", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
                )
             );
             player.openInventory(inventory);
@@ -123,12 +123,12 @@ public class C4Manager implements Listener {
                C4Charge charge = this.activeCharges.get(chargeId);
                if (charge != null && !charge.isDetonating()) {
                   if (!event.getPlayer().hasPermission("openrp.c4.defuse")) {
-                     event.getPlayer().sendMessage(Component.text("You are not trained to disarm C4.", NamedTextColor.RED));
+                     event.getPlayer().sendMessage(Component.text("Non sei addestrato a disinnescare il C4.", NamedTextColor.RED));
                   } else {
                      this.openDefuseGui(event.getPlayer(), charge);
                   }
                } else {
-                  event.getPlayer().sendMessage(Component.text("This charge cannot be disarmed now.", NamedTextColor.RED));
+                  event.getPlayer().sendMessage(Component.text("Questa carica non puo' essere disinnescata ora.", NamedTextColor.RED));
                }
             }
          }
@@ -156,7 +156,7 @@ public class C4Manager implements Listener {
                      }
 
                      player.closeInventory();
-                     player.sendMessage(Component.text("The C4 is no longer active.", NamedTextColor.RED));
+                     player.sendMessage(Component.text("Il C4 non e' piu' attivo.", NamedTextColor.RED));
                      return;
                   }
                }
@@ -246,7 +246,7 @@ public class C4Manager implements Listener {
       GrenadeDefinition currentDefinition = this.module.getGrenadeManager().getGrenade(inHand);
       if (!this.isC4(currentDefinition)) {
          player.closeInventory();
-         player.sendMessage(Component.text("You are no longer holding C4.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non hai piu' il C4 in mano.", NamedTextColor.RED));
       } else {
          this.consumeOne(player, holder.hand);
          player.closeInventory();
@@ -269,7 +269,7 @@ public class C4Manager implements Listener {
          charge.setDetonationTask(Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> this.detonate(charge), fuseSeconds * 20L));
          this.activeCharges.put(id, charge);
          holder.location.getWorld().playSound(holder.location, Sound.BLOCK_CHAIN_PLACE, 0.8F, 0.8F);
-         player.sendMessage(Component.text("C4 armed for " + this.formatSeconds(fuseSeconds) + ".", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("C4 armato per " + this.formatSeconds(fuseSeconds) + ".", NamedTextColor.GREEN));
       }
    }
 
@@ -282,7 +282,7 @@ public class C4Manager implements Listener {
       inventory.setItem(
          4,
          new ItemBuilder(Material.PAPER)
-            .name(Component.text("Wire clue", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .name(Component.text("Indizio filo", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
             .lore(new Component[]{Component.text(WIRES[correctWire].hint, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
@@ -305,7 +305,7 @@ public class C4Manager implements Listener {
       }
 
       charge.getLocation().getWorld().playSound(charge.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1.0F, 1.4F);
-      player.sendMessage(Component.text("C4 disarmed.", NamedTextColor.GREEN));
+      player.sendMessage(Component.text("C4 disinnescato.", NamedTextColor.GREEN));
    }
 
    private void forceDetonateSoon(Player player, C4Charge charge) {
@@ -317,7 +317,7 @@ public class C4Manager implements Listener {
 
          charge.setDetonationTask(Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> this.detonate(charge), 60L));
          charge.getLocation().getWorld().playSound(charge.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0F, 0.6F);
-         player.sendMessage(Component.text("Wrong wire. Detonation imminent.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Filo sbagliato. Detonazione imminente.", NamedTextColor.RED));
       }
    }
 
@@ -360,14 +360,14 @@ public class C4Manager implements Listener {
             Component.text(this.formatSeconds(seconds), NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD})
                .decoration(TextDecoration.ITALIC, false)
          )
-         .lore(new Component[]{Component.text("Arm C4 with this timer", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+         .lore(new Component[]{Component.text("Arma il C4 con questo timer", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
          .build();
    }
 
    private ItemStack wireItem(C4Manager.Wire wire) {
       return new ItemBuilder(wire.material)
          .name(Component.text(wire.name + " wire", wire.color, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-         .lore(new Component[]{Component.text("Cut this wire", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+         .lore(new Component[]{Component.text("Taglia questo filo", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
          .build();
    }
 

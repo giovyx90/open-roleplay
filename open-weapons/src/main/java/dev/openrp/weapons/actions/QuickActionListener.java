@@ -50,16 +50,16 @@ public class QuickActionListener implements Listener {
 
    private void open(Player actor, Player target) {
       QuickActionHolder holder = new QuickActionHolder(actor.getUniqueId(), target.getUniqueId());
-      Inventory inventory = Bukkit.createInventory(holder, 27, Component.text("Quick Actions: " + target.getName(), NamedTextColor.DARK_GRAY));
+      Inventory inventory = Bukkit.createInventory(holder, 27, Component.text("Azioni rapide: " + target.getName(), NamedTextColor.DARK_GRAY));
       holder.setInventory(inventory);
-      inventory.setItem(10, this.createButton(Material.SPYGLASS, "Frisk", NamedTextColor.YELLOW, List.of("Run /frisk on this player.")));
+      inventory.setItem(10, this.createButton(Material.SPYGLASS, "Perquisisci", NamedTextColor.YELLOW, List.of("Esegue /frisk su questo giocatore.")));
       inventory.setItem(
-         12, this.createButton(Material.IRON_BARS, "Arrest", NamedTextColor.RED, List.of("Available to law enforcement", "when the target is handcuffed."))
+         12, this.createButton(Material.IRON_BARS, "Arresto", NamedTextColor.RED, List.of("Disponibile alle forze dell'ordine", "quando il bersaglio e' ammanettato."))
       );
       inventory.setItem(
-         14, this.createButton(Material.SHEARS, "Remove Balaclava", NamedTextColor.AQUA, List.of("Law enforcement only.", "Target must be handcuffed."))
+         14, this.createButton(Material.SHEARS, "Rimuovi passamontagna", NamedTextColor.AQUA, List.of("Solo forze dell'ordine.", "Il bersaglio deve essere ammanettato."))
       );
-      inventory.setItem(16, this.createButton(Material.EMERALD, "Trade", NamedTextColor.GREEN, List.of("Run /trade on this player.")));
+      inventory.setItem(16, this.createButton(Material.EMERALD, "Scambia", NamedTextColor.GREEN, List.of("Esegue /trade su questo giocatore.")));
       actor.openInventory(inventory);
    }
 
@@ -88,11 +88,11 @@ public class QuickActionListener implements Listener {
                      }
                   } else {
                      actor.closeInventory();
-                     actor.sendMessage(Component.text("You are too far away from that player.", NamedTextColor.RED));
+                     actor.sendMessage(Component.text("Sei troppo lontano da quel giocatore.", NamedTextColor.RED));
                   }
                } else {
                   actor.closeInventory();
-                  actor.sendMessage(Component.text("That player is no longer online.", NamedTextColor.RED));
+                  actor.sendMessage(Component.text("Quel giocatore non e' piu' online.", NamedTextColor.RED));
                }
             }
          }
@@ -101,13 +101,13 @@ public class QuickActionListener implements Listener {
 
    private void removeBalaclava(Player actor, Player target) {
       if (!this.module.isLEO(actor.getUniqueId()) && !actor.hasPermission("openrp.quickactions.balaclava")) {
-         actor.sendMessage(Component.text("Only law enforcement can remove a balaclava.", NamedTextColor.RED));
+         actor.sendMessage(Component.text("Solo le forze dell'ordine possono rimuovere un passamontagna.", NamedTextColor.RED));
       } else if (!this.module.getHandcuffManager().isHandcuffed(target)) {
-         actor.sendMessage(Component.text("The target must be handcuffed.", NamedTextColor.RED));
+         actor.sendMessage(Component.text("Il bersaglio deve essere ammanettato.", NamedTextColor.RED));
       } else {
          ItemStack helmet = target.getInventory().getHelmet();
          if (!this.module.getBalaclavaManager().isBalaclava(helmet)) {
-            actor.sendMessage(Component.text("That player is not wearing a balaclava.", NamedTextColor.RED));
+            actor.sendMessage(Component.text("Quel giocatore non indossa un passamontagna.", NamedTextColor.RED));
          } else {
             target.getInventory().setHelmet(null);
             this.module.getBalaclavaManager().setMasked(target.getUniqueId(), false);
@@ -116,8 +116,8 @@ public class QuickActionListener implements Listener {
             leftovers.values().forEach(item -> actor.getWorld().dropItemNaturally(actor.getLocation(), item));
             actor.playSound(actor.getLocation(), Sound.ITEM_ARMOR_EQUIP_LEATHER, 0.8F, 1.2F);
             target.playSound(target.getLocation(), Sound.ITEM_ARMOR_EQUIP_LEATHER, 0.8F, 0.8F);
-            actor.sendMessage(Component.text("You removed " + target.getName() + "'s balaclava.", NamedTextColor.GREEN));
-            target.sendMessage(Component.text("An officer removed your balaclava.", NamedTextColor.YELLOW));
+            actor.sendMessage(Component.text("Hai rimosso il passamontagna di " + target.getName() + ".", NamedTextColor.GREEN));
+            target.sendMessage(Component.text("Un agente ti ha rimosso il passamontagna.", NamedTextColor.YELLOW));
          }
       }
    }

@@ -32,18 +32,18 @@ public class WeaponAnimationSuppressor implements Listener {
 
    public void enablePacketHook() {
       if (Bukkit.getPluginManager().getPlugin("packetevents") == null) {
-         this.module.getCore().getLogger().info("[OpenWeapons] PacketEvents not found; using Bukkit-only weapon animation suppression.");
+         this.module.getCore().getLogger().info("[OpenWeapons] PacketEvents non trovato; uso la soppressione animazioni arma solo tramite Bukkit.");
       } else {
          try {
             this.protocolHook = new PacketEventsWeaponAnimationHook(this.module, this.suppressEntityIds);
             this.protocolHook.enable();
-            this.module.getCore().getLogger().info("[OpenWeapons] PacketEvents weapon animation suppression enabled.");
+            this.module.getCore().getLogger().info("[OpenWeapons] Soppressione animazioni arma tramite PacketEvents abilitata.");
          } catch (Throwable throwable) {
             this.protocolHook = null;
             this.module
                .getCore()
                .getLogger()
-               .warning("[OpenWeapons] PacketEvents hook failed; using Bukkit-only weapon animation suppression: " + throwable.getMessage());
+               .warning("[OpenWeapons] Hook PacketEvents non riuscito; uso la soppressione animazioni arma solo tramite Bukkit: " + throwable.getMessage());
          }
       }
    }

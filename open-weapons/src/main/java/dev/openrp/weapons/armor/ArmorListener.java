@@ -79,18 +79,18 @@ public class ArmorListener implements Listener {
             ItemStack chestplate = player.getInventory().getChestplate();
             String armorId = armorManager.getArmorId(chestplate);
             if (!"vest_heavy".equals(armorId)) {
-                player.sendActionBar(Component.text("You must be wearing a Heavy Vest to apply a ceramic plate!", NamedTextColor.RED));
+                player.sendActionBar(Component.text("Devi indossare un giubbotto pesante per applicare una piastra ceramica!", NamedTextColor.RED));
                 return;
             }
 
             if (applyingPlate.contains(player.getUniqueId())) {
-                player.sendActionBar(Component.text("Already applying a plate...", NamedTextColor.YELLOW));
+                player.sendActionBar(Component.text("Stai gia' applicando una piastra...", NamedTextColor.YELLOW));
                 return;
             }
 
             // Start 3-second application
             applyingPlate.add(player.getUniqueId());
-            player.sendActionBar(Component.text("Applying ceramic plate... (3 seconds)", NamedTextColor.YELLOW));
+            player.sendActionBar(Component.text("Applicazione piastra ceramica... (3 secondi)", NamedTextColor.YELLOW));
             player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 0.5f, 1.5f);
 
             new BukkitRunnable() {
@@ -108,7 +108,7 @@ public class ArmorListener implements Listener {
                     ItemStack currentHand = player.getInventory().getItemInMainHand();
                     if (!armorManager.isCeramicPlate(currentHand)) {
                         applyingPlate.remove(player.getUniqueId());
-                        player.sendActionBar(Component.text("Plate application cancelled!", NamedTextColor.RED));
+                        player.sendActionBar(Component.text("Applicazione piastra annullata!", NamedTextColor.RED));
                         cancel();
                         return;
                     }
@@ -118,16 +118,16 @@ public class ArmorListener implements Listener {
                     String currentArmorId = armorManager.getArmorId(currentChest);
                     if (!"vest_heavy".equals(currentArmorId)) {
                         applyingPlate.remove(player.getUniqueId());
-                        player.sendActionBar(Component.text("Plate application cancelled — vest removed!", NamedTextColor.RED));
+                        player.sendActionBar(Component.text("Applicazione piastra annullata: giubbotto rimosso!", NamedTextColor.RED));
                         cancel();
                         return;
                     }
 
                     // Progress indicators
                     if (ticks == 20) {
-                        player.sendActionBar(Component.text("Applying ceramic plate... ▓░░", NamedTextColor.YELLOW));
+                        player.sendActionBar(Component.text("Applicazione piastra ceramica... ▓░░", NamedTextColor.YELLOW));
                     } else if (ticks == 40) {
-                        player.sendActionBar(Component.text("Applying ceramic plate... ▓▓░", NamedTextColor.YELLOW));
+                        player.sendActionBar(Component.text("Applicazione piastra ceramica... ▓▓░", NamedTextColor.YELLOW));
                     }
 
                     // Complete after 3 seconds (60 ticks)
@@ -140,7 +140,7 @@ public class ArmorListener implements Listener {
                         // Convert vest to plated
                         armorManager.convertHeavyToPlated(currentChest);
 
-                        player.sendActionBar(Component.text("✦ Ceramic plate installed!", NamedTextColor.GREEN));
+                        player.sendActionBar(Component.text("✦ Piastra ceramica installata!", NamedTextColor.GREEN));
                         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 0.8f, 1.2f);
                         cancel();
                     }

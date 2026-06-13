@@ -3,7 +3,7 @@ package dev.openrp.weapons.mechanics;
 import dev.openrp.weapons.armor.ArmorManager;
 import dev.openrp.weapons.armor.HelmetManager;
 import dev.openrp.weapons.attachments.AttachmentManager;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticManager;
+import dev.openrp.cosmetics.api.OpenCosmeticsApi;
 import it.meridian.core.hospital.GunshotSeverity;
 import it.meridian.core.hospital.HospitalModule;
 import dev.openrp.weapons.api.WeaponCombatDecision;
@@ -180,10 +180,10 @@ public class ShootingMechanics {
 
                         if (hitsTaken >= riotMaxBulletHits) {
                             targetPlayer.getInventory().setItemInMainHand(null);
-                            targetPlayer.sendMessage(Component.text("⚠ Your Riot Shield is broken!", NamedTextColor.RED));
+                            targetPlayer.sendMessage(Component.text("⚠ Il tuo scudo antisommossa e' rotto!", NamedTextColor.RED));
                             targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
                         } else {
-                            targetPlayer.sendActionBar(Component.text("Riot Shield hits: " + hitsTaken + "/" + riotMaxBulletHits, NamedTextColor.YELLOW));
+                            targetPlayer.sendActionBar(Component.text("Colpi scudo antisommossa: " + hitsTaken + "/" + riotMaxBulletHits, NamedTextColor.YELLOW));
                         }
 
                         drawBulletTrail(shooter, eyeLoc, hitLoc, direction, weapon);
@@ -201,7 +201,7 @@ public class ShootingMechanics {
                     if (isAntiMaterial(ammoType, ammo)) {
                         // .50 BMG destroys the shield completely
                         targetPlayer.getInventory().setItemInMainHand(null);
-                        targetPlayer.sendMessage(Component.text("⚠ Your Ballistic Shield was destroyed by .50 BMG!", NamedTextColor.DARK_RED));
+                        targetPlayer.sendMessage(Component.text("⚠ Il tuo scudo balistico e' stato distrutto da .50 BMG!", NamedTextColor.DARK_RED));
                         targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 0.5f);
                         shooter.getWorld().spawnParticle(Particle.EXPLOSION, hitLoc, 1);
                         // Bullet passes through after destroying shield — apply some damage
@@ -216,7 +216,7 @@ public class ShootingMechanics {
                         // Shield broken — start 10s cooldown
                         shieldManager.setDurability(mainHand, 0);
                         shieldManager.startCooldown(targetPlayer, shooter.getLocation());
-                        targetPlayer.sendMessage(Component.text("⚠ Your Ballistic Shield is broken! 10s cooldown.", NamedTextColor.RED));
+                        targetPlayer.sendMessage(Component.text("⚠ Il tuo scudo balistico e' rotto! Cooldown 10s.", NamedTextColor.RED));
                         targetPlayer.playSound(targetPlayer.getLocation(), Sound.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
                     } else {
                         // Shield absorbs
@@ -260,7 +260,7 @@ public class ShootingMechanics {
                             if (newDur <= 0) {
                                 setHelmet(target, null);
                                 if (target instanceof Player targetPlayer) {
-                                    targetPlayer.sendMessage(Component.text("Your " + helmetDef.getDisplayName() + " broke!", NamedTextColor.RED));
+                                    targetPlayer.sendMessage(Component.text("Il tuo " + helmetDef.getDisplayName() + " si e' rotto!", NamedTextColor.RED));
                                     targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
                                 }
                             } else {
@@ -305,7 +305,7 @@ public class ShootingMechanics {
                             int vestDurRemaining = Math.min(newDur, plateThreshold);
                             armorManager.convertPlatedToHeavy(chestplate, vestDurRemaining);
                             if (target instanceof Player targetPlayer) {
-                                targetPlayer.sendMessage(Component.text("⚠ Your ceramic plate broke!", NamedTextColor.RED));
+                                targetPlayer.sendMessage(Component.text("⚠ La tua piastra ceramica si e' rotta!", NamedTextColor.RED));
                                 targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
                             }
                         } else {
@@ -317,7 +317,7 @@ public class ShootingMechanics {
                             // Vest breaks
                             setChestplate(target, null);
                             if (target instanceof Player targetPlayer) {
-                                targetPlayer.sendMessage(Component.text("⚠ Your " + armorDef.getDisplayName() + " broke!", NamedTextColor.RED));
+                                targetPlayer.sendMessage(Component.text("⚠ Il tuo " + armorDef.getDisplayName() + " si e' rotto!", NamedTextColor.RED));
                                 targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
                                 // Remove slowness since vest is gone
                                 targetPlayer.removePotionEffect(PotionEffectType.SLOWNESS);
@@ -445,10 +445,10 @@ public class ShootingMechanics {
         float soundVolume = (float) Math.max(0.0D, configuredVolume * attachmentSoundMultiplier);
         boolean suppressAutomaticSkinFire = module != null
                 && module.isAutomaticSkinFireSuppressed(shooter.getUniqueId())
-                && getWeaponSkinSound(module, weaponItem, WeaponCosmeticManager.SOUND_AUTOMATIC) != null;
+                && getWeaponSkinSound(module, weaponItem, OpenCosmeticsApi.SOUND_AUTOMATIC) != null;
         String skinSound = suppressAutomaticSkinFire
                 ? null
-                : getWeaponSkinSound(module, weaponItem, WeaponCosmeticManager.SOUND_FIRE);
+                : getWeaponSkinSound(module, weaponItem, OpenCosmeticsApi.SOUND_FIRE);
         if (skinSound != null) {
             shooter.getWorld().playSound(eyeLoc, skinSound, SoundCategory.PLAYERS, soundVolume, 1.0f);
             return;
@@ -485,7 +485,7 @@ public class ShootingMechanics {
     }
 
     private static void playHitFeedback(Player shooter, ItemStack weaponItem, WeaponsModule module, boolean headshot) {
-        String soundKey = headshot ? WeaponCosmeticManager.SOUND_HEADSHOT : WeaponCosmeticManager.SOUND_HIT;
+        String soundKey = headshot ? OpenCosmeticsApi.SOUND_HEADSHOT : OpenCosmeticsApi.SOUND_HIT;
         String skinSound = getWeaponSkinSound(module, weaponItem, soundKey);
         if (skinSound != null) {
             shooter.getWorld().playSound(shooter.getLocation(), skinSound, SoundCategory.PLAYERS, 1.0f, 1.0f);
@@ -495,7 +495,7 @@ public class ShootingMechanics {
     }
 
     private static String getWeaponSkinSound(WeaponsModule module, ItemStack weaponItem, String soundKey) {
-        WeaponCosmeticManager cosmetics = module == null ? null : module.getWeaponCosmeticManager();
+        OpenCosmeticsApi cosmetics = module == null ? null : module.getOpenCosmeticsApi();
         return cosmetics == null ? null : cosmetics.getWeaponSkinSound(weaponItem, soundKey);
     }
 
@@ -769,7 +769,7 @@ public class ShootingMechanics {
                 .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)
                 .actor(shooter)
                 .location(shooter.getLocation())
-                .message(shooter.getName() + " fired " + weapon.getDisplayName() + ".")
+                .message(shooter.getName() + " ha sparato con " + weapon.getDisplayName() + ".")
                 .metadataJson(metadata.toJson())
                 .build());
     }
@@ -797,7 +797,7 @@ public class ShootingMechanics {
                 .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)
                 .actor(shooter)
                 .location(hitLoc)
-                .message(shooter.getName() + (bodyshot ? " body-shot a target with " : " headshot a target with ")
+                .message(shooter.getName() + (bodyshot ? " ha colpito un bersaglio al corpo con " : " ha colpito un bersaglio alla testa con ")
                         + weapon.getDisplayName() + ".")
                 .metadataJson(metadata.toJson());
 
@@ -805,8 +805,8 @@ public class ShootingMechanics {
             metadata.put("victim_uuid", targetPlayer.getUniqueId())
                     .put("victim_name", targetPlayer.getName());
             hitBuilder.target(targetPlayer)
-                    .message(shooter.getName() + (bodyshot ? " body-shot " : " headshot ")
-                            + targetPlayer.getName() + " with " + weapon.getDisplayName() + ".");
+                    .message(shooter.getName() + (bodyshot ? " ha colpito al corpo " : " ha colpito alla testa ")
+                            + targetPlayer.getName() + " con " + weapon.getDisplayName() + ".");
         }
         StaffBoardModuleRegistry.emit(hitBuilder.metadataJson(metadata.toJson()).build());
 
@@ -819,7 +819,7 @@ public class ShootingMechanics {
                     .target(targetPlayer)
                     .location(hitLoc)
                     .message(targetPlayer.getName()
-                            + (bodyshot ? " body-shot by " : " headshot by ")
+                            + (bodyshot ? " colpito al corpo da " : " colpito alla testa da ")
                             + shooter.getName() + ".")
                     .metadataJson(metadata.toJson())
                     .build());
@@ -896,11 +896,11 @@ public class ShootingMechanics {
 
     private static String spentCasingName(WeaponDefinition weapon) {
         return switch (weapon.getCategory()) {
-            case PISTOL -> "Spent Pistol Casing";
-            case SMG -> "Spent SMG Casing";
-            case SNIPER -> "Spent Sniper Casing";
-            case SHOTGUN -> "Spent Shotgun Shell";
-            default -> "Spent Rifle Casing";
+            case PISTOL -> "Bossolo pistola esausto";
+            case SMG -> "Bossolo SMG esausto";
+            case SNIPER -> "Bossolo sniper esausto";
+            case SHOTGUN -> "Cartuccia shotgun esausta";
+            default -> "Bossolo fucile esausto";
         };
     }
 

@@ -50,7 +50,7 @@ public class BalaclavaManager {
         ItemStack item = new ItemStack(Material.FIREWORK_STAR);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Balaclava", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Passamontagna", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.setCustomModelData(BALACLAVA_MODEL_DATA);
@@ -58,8 +58,8 @@ public class BalaclavaManager {
             meta.getPersistentDataContainer().set(balaclavaKey, PersistentDataType.BOOLEAN, true);
             
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text("Hides your identity", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("You will appear as 'Unidentified'", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Nasconde la tua identita'", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Apparirai come 'Non identificato'", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
             meta.lore(lore);
             
             item.setItemMeta(meta);

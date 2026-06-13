@@ -38,7 +38,7 @@ public class ArrestAdminCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
             if (!canViewArrests(sender)) {
-                sender.sendMessage(Component.text("You need openrp.police.arrests.manage to use arrest admin commands.", NamedTextColor.RED));
+                sender.sendMessage(Component.text("Ti serve openrp.police.arrests.manage per usare i comandi admin degli arresti.", NamedTextColor.RED));
                 return true;
             }
             sendHelp(sender);
@@ -48,37 +48,37 @@ public class ArrestAdminCommand implements CommandExecutor, TabCompleter {
         switch (args[0].toLowerCase()) {
             case "list" -> {
                 if (!canViewArrests(sender)) {
-                    sender.sendMessage(Component.text("You need openrp.police.view to list arrests.", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Ti serve openrp.police.view per vedere la lista degli arresti.", NamedTextColor.RED));
                     return true;
                 }
                 listArrests(sender);
             }
             case "info" -> {
                 if (!canViewArrests(sender)) {
-                    sender.sendMessage(Component.text("You need openrp.police.view to inspect arrests.", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Ti serve openrp.police.view per ispezionare gli arresti.", NamedTextColor.RED));
                     return true;
                 }
                 if (args.length < 2) {
-                    sender.sendMessage(Component.text("Usage: /arrests info <player>", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /arrests info <giocatore>", NamedTextColor.RED));
                     return true;
                 }
                 infoArrest(sender, args[1]);
             }
             case "release" -> {
                 if (!canManageArrests(sender)) {
-                    sender.sendMessage(Component.text("You need openrp.police.arrests.manage to release arrests.", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Ti serve openrp.police.arrests.manage per scarcerare giocatori.", NamedTextColor.RED));
                     return true;
                 }
                 if (args.length < 2) {
-                    sender.sendMessage(Component.text("Usage: /arrests release <player> [reason]", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Uso: /arrests release <giocatore> [motivo]", NamedTextColor.RED));
                     return true;
                 }
-                String reason = args.length > 2 ? String.join(" ", java.util.Arrays.copyOfRange(args, 2, args.length)) : "Released by admin";
+                String reason = args.length > 2 ? String.join(" ", java.util.Arrays.copyOfRange(args, 2, args.length)) : "Rilasciato da admin";
                 releaseArrest(sender, args[1], reason);
             }
             case "jails" -> {
                 if (!canViewArrests(sender)) {
-                    sender.sendMessage(Component.text("You need openrp.police.view to list jails.", NamedTextColor.RED));
+                    sender.sendMessage(Component.text("Ti serve openrp.police.view per vedere le celle.", NamedTextColor.RED));
                     return true;
                 }
                 listJails(sender);
@@ -104,21 +104,21 @@ public class ArrestAdminCommand implements CommandExecutor, TabCompleter {
     }
 
     private void sendHelp(CommandSender sender) {
-        sender.sendMessage(Component.text("═══ Arrest Admin Commands ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
-        sender.sendMessage(Component.text("/arrests list", NamedTextColor.YELLOW).append(Component.text(" - List all arrested players", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("/arrests info <player>", NamedTextColor.YELLOW).append(Component.text(" - Show arrest details", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("/arrests release <player> [reason]", NamedTextColor.YELLOW).append(Component.text(" - Force release a player", NamedTextColor.GRAY)));
-        sender.sendMessage(Component.text("/arrests jails", NamedTextColor.YELLOW).append(Component.text(" - List all jail regions", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("═══ Comandi Admin Arresti ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("/arrests list", NamedTextColor.YELLOW).append(Component.text(" - Mostra tutti i giocatori arrestati", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("/arrests info <giocatore>", NamedTextColor.YELLOW).append(Component.text(" - Mostra i dettagli dell'arresto", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("/arrests release <giocatore> [motivo]", NamedTextColor.YELLOW).append(Component.text(" - Scarcerazione forzata di un giocatore", NamedTextColor.GRAY)));
+        sender.sendMessage(Component.text("/arrests jails", NamedTextColor.YELLOW).append(Component.text(" - Mostra tutte le regioni cella", NamedTextColor.GRAY)));
     }
 
     private void listArrests(CommandSender sender) {
         Collection<ArrestRecord> arrests = module.getArrestManager().getAllArrests();
         if (arrests.isEmpty()) {
-            sender.sendMessage(Component.text("No players are currently arrested.", NamedTextColor.GRAY));
+            sender.sendMessage(Component.text("Nessun giocatore e' attualmente arrestato.", NamedTextColor.GRAY));
             return;
         }
 
-        sender.sendMessage(Component.text("═══ Currently Arrested (" + arrests.size() + ") ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("═══ Arrestati attuali (" + arrests.size() + ") ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
         for (ArrestRecord record : arrests) {
             boolean online = Bukkit.getPlayer(record.getPlayerUuid()) != null;
             Component status = online
@@ -140,58 +140,58 @@ public class ArrestAdminCommand implements CommandExecutor, TabCompleter {
     private void infoArrest(CommandSender sender, String playerName) {
         Player target = Bukkit.getPlayer(playerName);
         if (target == null) {
-            sender.sendMessage(Component.text("Player not found or not online.", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Giocatore non trovato o non online.", NamedTextColor.RED));
             return;
         }
 
         ArrestRecord record = module.getArrestManager().getRecord(target.getUniqueId());
         if (record == null) {
-            sender.sendMessage(Component.text(playerName + " is not currently arrested.", NamedTextColor.RED));
+            sender.sendMessage(Component.text(playerName + " non e' attualmente arrestato.", NamedTextColor.RED));
             return;
         }
 
-        sender.sendMessage(Component.text("═══ Arrest Info: " + record.getPlayerName() + " ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
-        sender.sendMessage(Component.text("  Officer: ", NamedTextColor.GRAY).append(Component.text(record.getOfficerName(), NamedTextColor.WHITE)));
-        sender.sendMessage(Component.text("  Reason: ", NamedTextColor.GRAY).append(Component.text(record.getReason(), NamedTextColor.WHITE)));
-        sender.sendMessage(Component.text("  Jail: ", NamedTextColor.GRAY).append(Component.text(record.getJailRegionId(), NamedTextColor.AQUA)));
+        sender.sendMessage(Component.text("═══ Info arresto: " + record.getPlayerName() + " ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("  Agente: ", NamedTextColor.GRAY).append(Component.text(record.getOfficerName(), NamedTextColor.WHITE)));
+        sender.sendMessage(Component.text("  Motivo: ", NamedTextColor.GRAY).append(Component.text(record.getReason(), NamedTextColor.WHITE)));
+        sender.sendMessage(Component.text("  Cella: ", NamedTextColor.GRAY).append(Component.text(record.getJailRegionId(), NamedTextColor.AQUA)));
 
         String timeStr;
         if (record.getJailTimeHours() < 1) {
-            timeStr = String.format("%.0f minutes", record.getJailTimeHours() * 60);
+            timeStr = String.format("%.0f minuti", record.getJailTimeHours() * 60);
         } else {
-            timeStr = String.format("%.1f hours", record.getJailTimeHours());
+            timeStr = String.format("%.1f ore", record.getJailTimeHours());
         }
-        sender.sendMessage(Component.text("  Sentence: ", NamedTextColor.GRAY).append(Component.text(timeStr, NamedTextColor.YELLOW)));
-        sender.sendMessage(Component.text("  Remaining: ", NamedTextColor.GRAY).append(Component.text(record.getRemainingFormatted(), NamedTextColor.YELLOW)));
-        sender.sendMessage(Component.text("  Bail: ", NamedTextColor.GRAY).append(Component.text(record.getBailAmount() > 0 ? "$" + String.format("%.2f", record.getBailAmount()) : "No bail", NamedTextColor.GOLD)));
-        sender.sendMessage(Component.text("  Arrested at: ", NamedTextColor.GRAY).append(Component.text(DATE_FMT.format(record.getArrestTime()), NamedTextColor.WHITE)));
-        sender.sendMessage(Component.text("  Release at: ", NamedTextColor.GRAY).append(Component.text(DATE_FMT.format(record.getReleaseTime()), NamedTextColor.WHITE)));
+        sender.sendMessage(Component.text("  Pena: ", NamedTextColor.GRAY).append(Component.text(timeStr, NamedTextColor.YELLOW)));
+        sender.sendMessage(Component.text("  Rimanente: ", NamedTextColor.GRAY).append(Component.text(record.getRemainingFormatted(), NamedTextColor.YELLOW)));
+        sender.sendMessage(Component.text("  Cauzione: ", NamedTextColor.GRAY).append(Component.text(record.getBailAmount() > 0 ? "$" + String.format("%.2f", record.getBailAmount()) : "Nessuna cauzione", NamedTextColor.GOLD)));
+        sender.sendMessage(Component.text("  Arrestato il: ", NamedTextColor.GRAY).append(Component.text(DATE_FMT.format(record.getArrestTime()), NamedTextColor.WHITE)));
+        sender.sendMessage(Component.text("  Scarcerazione il: ", NamedTextColor.GRAY).append(Component.text(DATE_FMT.format(record.getReleaseTime()), NamedTextColor.WHITE)));
     }
 
     private void releaseArrest(CommandSender sender, String playerName, String reason) {
         Player target = Bukkit.getPlayer(playerName);
         if (target == null) {
-            sender.sendMessage(Component.text("Player not found or not online.", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Giocatore non trovato o non online.", NamedTextColor.RED));
             return;
         }
 
         if (!module.getArrestManager().isArrested(target.getUniqueId())) {
-            sender.sendMessage(Component.text(playerName + " is not currently arrested.", NamedTextColor.RED));
+            sender.sendMessage(Component.text(playerName + " non e' attualmente arrestato.", NamedTextColor.RED));
             return;
         }
 
         module.getArrestManager().release(target.getUniqueId(), reason);
-        sender.sendMessage(Component.text("Released " + playerName + " from jail. Reason: " + reason, NamedTextColor.GREEN));
+        sender.sendMessage(Component.text("Rilasciato " + playerName + " dal carcere. Motivo: " + reason, NamedTextColor.GREEN));
     }
 
     private void listJails(CommandSender sender) {
         List<String> jails = module.getArrestManager().getJailRegions();
         if (jails.isEmpty()) {
-            sender.sendMessage(Component.text("No jail regions found. Create WorldGuard regions starting with 'jail_'.", NamedTextColor.RED));
+            sender.sendMessage(Component.text("Nessuna regione cella trovata. Crea regioni WorldGuard che iniziano con 'jail_'.", NamedTextColor.RED));
             return;
         }
 
-        sender.sendMessage(Component.text("═══ Available Jail Regions (" + jails.size() + ") ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("═══ Regioni cella disponibili (" + jails.size() + ") ═══", NamedTextColor.GOLD, TextDecoration.BOLD));
         for (String jail : jails) {
             sender.sendMessage(Component.text("  • " + jail, NamedTextColor.AQUA));
         }

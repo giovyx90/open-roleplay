@@ -27,7 +27,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class AttachmentWorkbenchGUI implements Listener {
-    private static final String TITLE = "Weapon Workbench";
+    private static final String TITLE = "Banco armi";
     private static final int SIZE = 27;
     private static final int WEAPON_SLOT = 11;
     private static final int CONFIRM_SLOT = 13;
@@ -139,7 +139,7 @@ public class AttachmentWorkbenchGUI implements Listener {
             returned = true;
         }
         if (returned) {
-            player.sendActionBar(Component.text("Workbench items returned.", NamedTextColor.YELLOW));
+            player.sendActionBar(Component.text("Oggetti del banco restituiti.", NamedTextColor.YELLOW));
         }
     }
 
@@ -150,23 +150,23 @@ public class AttachmentWorkbenchGUI implements Listener {
         AttachmentDefinition attachment = module.getAttachmentRegistry().getAttachment(attachmentStack);
 
         if (weapon == null) {
-            player.sendActionBar(Component.text("Invalid weapon.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Arma non valida.", NamedTextColor.RED));
             return;
         }
         if (attachment == null) {
-            player.sendActionBar(Component.text("Invalid attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio non valido.", NamedTextColor.RED));
             return;
         }
         if (!attachment.getCompatibleCategories().contains(weapon.getCategory())) {
-            player.sendActionBar(Component.text("Incompatible attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio incompatibile.", NamedTextColor.RED));
             return;
         }
         if (module.getAttachmentManager().getAttachmentId(weaponStack, attachment.getSlot()) != null) {
-            player.sendActionBar(Component.text("Slot already occupied.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Slot gia' occupato.", NamedTextColor.RED));
             return;
         }
         if (!module.getAttachmentManager().canInstall(weaponStack, weapon, attachment)) {
-            player.sendActionBar(Component.text("Incompatible attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio incompatibile.", NamedTextColor.RED));
             return;
         }
 
@@ -176,7 +176,7 @@ public class AttachmentWorkbenchGUI implements Listener {
         inv.setItem(ATTACHMENT_SLOT, null);
         holder.setInstalling(true);
         player.closeInventory();
-        player.sendActionBar(Component.text("Installing attachment...", NamedTextColor.YELLOW));
+        player.sendActionBar(Component.text("Installazione accessorio...", NamedTextColor.YELLOW));
 
         Location fallbackDropLocation = player.getLocation().clone();
         new BukkitRunnable() {
@@ -199,7 +199,7 @@ public class AttachmentWorkbenchGUI implements Listener {
                 }
                 if (onlinePlayer != null) {
                     onlinePlayer.playSound(onlinePlayer.getLocation(), Sound.BLOCK_ANVIL_USE, 0.7f, 1.4f);
-                    onlinePlayer.sendActionBar(Component.text("Attachment installed.", NamedTextColor.GREEN));
+                    onlinePlayer.sendActionBar(Component.text("Accessorio installato.", NamedTextColor.GREEN));
                 }
             }
         }.runTaskLater(module.getCore(), Math.max(1, attachment.getInstallTimeTicks()));
@@ -209,7 +209,7 @@ public class AttachmentWorkbenchGUI implements Listener {
         ItemStack weaponStack = inv.getItem(WEAPON_SLOT);
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(weaponStack);
         if (weapon == null) {
-            player.sendActionBar(Component.text("Invalid weapon.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Arma non valida.", NamedTextColor.RED));
             return;
         }
 
@@ -222,7 +222,7 @@ public class AttachmentWorkbenchGUI implements Listener {
 
         Map<AttachmentSlot, AttachmentDefinition> installed = module.getAttachmentManager().getInstalledAttachments(weaponStack);
         if (installed.isEmpty()) {
-            player.sendActionBar(Component.text("Invalid attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio non valido.", NamedTextColor.RED));
             return;
         }
 
@@ -234,21 +234,21 @@ public class AttachmentWorkbenchGUI implements Listener {
             }
         }
         player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 0.7f, 1.2f);
-        player.sendActionBar(Component.text("Attachment removed.", NamedTextColor.GREEN));
+        player.sendActionBar(Component.text("Accessorio rimosso.", NamedTextColor.GREEN));
         updateControlItems(inv);
     }
 
     private void removeSlot(Player player, ItemStack weaponStack, AttachmentSlot slot) {
         AttachmentDefinition removed = module.getAttachmentManager().removeAttachment(weaponStack, slot);
         if (removed == null) {
-            player.sendActionBar(Component.text("Invalid attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio non valido.", NamedTextColor.RED));
             return;
         }
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(weaponStack);
         module.getAttachmentAuditLogger().log(player, "remove", weapon, removed);
         giveOrDrop(player, module.getAttachmentRegistry().createItemStack(removed.getId()));
         player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 0.7f, 1.2f);
-        player.sendActionBar(Component.text("Attachment removed.", NamedTextColor.GREEN));
+        player.sendActionBar(Component.text("Accessorio rimosso.", NamedTextColor.GREEN));
     }
 
     private boolean isValidInputClick(InventoryClickEvent event, int slot) {
@@ -272,7 +272,7 @@ public class AttachmentWorkbenchGUI implements Listener {
 
     private void updateControlItems(Inventory inv) {
         inv.setItem(CONFIRM_SLOT, new ItemBuilder(Material.LIME_CONCRETE)
-                .name(Component.text("Install", NamedTextColor.GREEN, TextDecoration.BOLD)
+                .name(Component.text("Installa", NamedTextColor.GREEN, TextDecoration.BOLD)
                         .decoration(TextDecoration.ITALIC, false))
                 .build());
         inv.setItem(REMOVE_SLOT, removeButton(inv));
@@ -283,9 +283,9 @@ public class AttachmentWorkbenchGUI implements Listener {
         AttachmentDefinition attachment = module.getAttachmentRegistry().getAttachment(attachmentItem);
         if (attachment != null) {
             return new ItemBuilder(Material.REDSTONE_TORCH)
-                    .name(Component.text("Remove " + AttachmentRegistry.slotDisplayName(attachment.getSlot()), NamedTextColor.RED)
+                    .name(Component.text("Rimuovi " + AttachmentRegistry.slotDisplayName(attachment.getSlot()), NamedTextColor.RED)
                             .decoration(TextDecoration.ITALIC, false))
-                    .lore(Component.text("Mounted item in this slot is returned.", NamedTextColor.GRAY)
+                    .lore(Component.text("L'oggetto montato in questo slot viene restituito.", NamedTextColor.GRAY)
                             .decoration(TextDecoration.ITALIC, false))
                     .build();
         }
@@ -293,12 +293,12 @@ public class AttachmentWorkbenchGUI implements Listener {
         ItemStack weaponItem = inv.getItem(WEAPON_SLOT);
         Map<AttachmentSlot, AttachmentDefinition> installed = module.getAttachmentManager().getInstalledAttachments(weaponItem);
         String summary = installed.isEmpty()
-                ? "None"
+                ? "Nessuna"
                 : installed.values().stream().map(AttachmentDefinition::getDisplayName).collect(Collectors.joining(" / "));
         return new ItemBuilder(Material.HOPPER)
-                .name(Component.text("Remove Mods", NamedTextColor.RED)
+                .name(Component.text("Rimuovi mod", NamedTextColor.RED)
                         .decoration(TextDecoration.ITALIC, false))
-                .lore(Component.text("Installed: " + summary, NamedTextColor.GRAY)
+                .lore(Component.text("Installato: " + summary, NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, false))
                 .build();
     }
@@ -311,7 +311,7 @@ public class AttachmentWorkbenchGUI implements Listener {
         giveOrDrop(player, fallbackDropLocation, weapon);
         giveOrDrop(player, fallbackDropLocation, attachment);
         if (player != null) {
-            player.sendActionBar(Component.text("Incompatible attachment.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Accessorio incompatibile.", NamedTextColor.RED));
         }
     }
 

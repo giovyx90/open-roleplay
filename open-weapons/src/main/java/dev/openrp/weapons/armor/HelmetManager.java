@@ -77,16 +77,16 @@ public class HelmetManager {
       }
       this.helmets.clear();
       this.helmets.putAll(loaded);
-      this.core.getLogger().info("[OpenWeapons] Loaded " + this.helmets.size() + " helmet definition(s) from armor.yml.");
+      this.core.getLogger().info("[OpenWeapons] Caricate " + this.helmets.size() + " definizione/i casco da armor.yml.");
    }
 
    private Map<String, HelmetDefinition> defaultDefinitions() {
       Map<String, HelmetDefinition> defaults = new LinkedHashMap<>();
-      defaults.put("ballistic_helmet", new HelmetDefinition("ballistic_helmet", "Ballistic Helmet", 12020,
+      defaults.put("ballistic_helmet", new HelmetDefinition("ballistic_helmet", "Casco balistico", 12020,
          0.15, true, false, 30, 0x323C32));
-      defaults.put("riot_helmet", new HelmetDefinition("riot_helmet", "Riot Helmet", 12021,
+      defaults.put("riot_helmet", new HelmetDefinition("riot_helmet", "Casco antisommossa", 12021,
          0.0, false, true, 0, 0x1E1E1E));
-      defaults.put("sf_helmet", new HelmetDefinition("sf_helmet", "Special Forces Helmet", 12022,
+      defaults.put("sf_helmet", new HelmetDefinition("sf_helmet", "Casco forze speciali", 12022,
          0.25, true, false, 50, 0x3C372D));
       return defaults;
    }
@@ -142,7 +142,7 @@ public class HelmetManager {
          }
          return Integer.decode(value) & 0xFFFFFF;
       } catch (NumberFormatException ex) {
-         this.core.getLogger().warning("[OpenWeapons] Invalid helmet color '" + rawValue + "', using fallback.");
+         this.core.getLogger().warning("[OpenWeapons] Colore casco non valido '" + rawValue + "', using fallback.");
          return fallback;
       }
    }
@@ -240,24 +240,24 @@ public class HelmetManager {
       lore.add(Component.text(""));
       if (def.getDamageReduction() > 0.0) {
          lore.add(
-            ((TextComponent)Component.text("Bullet Protection: ", NamedTextColor.GRAY)
+            ((TextComponent)Component.text("Protezione balistica: ", NamedTextColor.GRAY)
                   .append(Component.text(String.format("%.0f%%", def.getDamageReduction() * 100.0), NamedTextColor.GREEN)))
                .decoration(TextDecoration.ITALIC, false)
          );
       } else {
          lore.add(
-            ((TextComponent)Component.text("Bullet Protection: ", NamedTextColor.GRAY).append(Component.text("None", NamedTextColor.RED)))
+            ((TextComponent)Component.text("Protezione balistica: ", NamedTextColor.GRAY).append(Component.text("Nessuna", NamedTextColor.RED)))
                .decoration(TextDecoration.ITALIC, false)
          );
       }
 
       if (def.negatesHeadshot()) {
-         lore.add(Component.text("✦ Negates headshot bonus", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("✦ Annulla il bonus colpo alla testa", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
       }
 
       if (def.preventsMeleeStun()) {
-         lore.add(Component.text("✦ Prevents melee stun", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Only protects against melee", NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("✦ Previene lo stordimento melee", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Protegge solo dal corpo a corpo", NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
       }
 
       if (def.getMaxDurability() > 0) {
@@ -274,7 +274,7 @@ public class HelmetManager {
 
          NamedTextColor durColor = filled > 10 ? NamedTextColor.GREEN : (filled > 5 ? NamedTextColor.YELLOW : NamedTextColor.RED);
          lore.add(
-            ((TextComponent)((TextComponent)Component.text("Durability: ", NamedTextColor.GRAY).append(Component.text(durBar.toString(), durColor)))
+            ((TextComponent)((TextComponent)Component.text("Durabilita': ", NamedTextColor.GRAY).append(Component.text(durBar.toString(), durColor)))
                   .append(Component.text(" " + currentDurability + "/" + maxDur, NamedTextColor.GRAY)))
                .decoration(TextDecoration.ITALIC, false)
          );

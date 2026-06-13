@@ -2,8 +2,7 @@ package dev.openrp.weapons.listeners;
 
 import dev.openrp.weapons.attachments.AttachmentSlot;
 import dev.openrp.weapons.api.WeaponCombatDecision;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticManager;
-import dev.openrp.weapons.cosmetics.WeaponVisualVariantResolver;
+import dev.openrp.cosmetics.api.OpenCosmeticsApi;
 import dev.openrp.weapons.mechanics.GroundedFireRules;
 import dev.openrp.weapons.mechanics.ShootingMechanics;
 import dev.openrp.weapons.model.AmmoDefinition;
@@ -873,8 +872,8 @@ public class GunListener implements Listener {
             tryLoadMagazine(player, weaponItem, weapon, state, magazine);
         } else {
             sendWeaponStatus(player, Component.text(state.hasMagazine()
-                    ? "Press F to remove the inserted magazine."
-                    : "No compatible magazine found.", NamedTextColor.YELLOW));
+                    ? "Premi F per rimuovere il caricatore inserito."
+                    : "Nessun caricatore compatibile trovato.", NamedTextColor.YELLOW));
         }
         if (!state.isReloading()) {
             updateActionBar(player, state, weapon, weaponItem);
@@ -902,7 +901,7 @@ public class GunListener implements Listener {
 
         if (module.getCombatStunManager().isStunned(player.getUniqueId())) {
             long remaining = module.getCombatStunManager().getRemainingStunTimeSeconds(player.getUniqueId());
-            sendWeaponStatus(player, Component.text("You are stunned and cannot shoot for " + remaining + "s", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Sei stordito e non puoi sparare per " + remaining + "s", NamedTextColor.RED));
             return;
         }
 
@@ -911,7 +910,7 @@ public class GunListener implements Listener {
                 return;
             }
             player.playSound(player.getLocation(), Sound.BLOCK_DISPENSER_FAIL, 1.0f, 1.5f);
-            sendWeaponStatus(player, Component.text(usesLooseAmmoReload(weapon) ? "No shells loaded." : "No magazine loaded.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text(usesLooseAmmoReload(weapon) ? "Nessuna cartuccia caricata." : "Nessun caricatore inserito.", NamedTextColor.RED));
             return;
         }
 
@@ -920,7 +919,7 @@ public class GunListener implements Listener {
                 return;
             }
             player.playSound(player.getLocation(), Sound.BLOCK_DISPENSER_FAIL, 1.0f, 2.0f); // Click
-            sendWeaponStatus(player, Component.text(usesLooseAmmoReload(weapon) ? "No shells." : "Empty magazine.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text(usesLooseAmmoReload(weapon) ? "Nessuna cartuccia." : "Caricatore vuoto.", NamedTextColor.RED));
             return;
         }
 
@@ -956,7 +955,7 @@ public class GunListener implements Listener {
             stopAutoFire(player);
             stopBurstFire(player);
             if (feedback) {
-                sendWeaponStatus(player, Component.text("Aim with shift to fire.", NamedTextColor.RED));
+                sendWeaponStatus(player, Component.text("Mira con shift per sparare.", NamedTextColor.RED));
             }
             return false;
         }
@@ -964,7 +963,7 @@ public class GunListener implements Listener {
             stopAutoFire(player);
             stopBurstFire(player);
             if (feedback) {
-                sendWeaponStatus(player, Component.text("You cannot fire while airborne.", NamedTextColor.RED));
+                sendWeaponStatus(player, Component.text("Non puoi sparare mentre sei in aria.", NamedTextColor.RED));
             }
             return false;
         }
@@ -972,7 +971,7 @@ public class GunListener implements Listener {
             stopAutoFire(player);
             stopBurstFire(player);
             if (feedback) {
-                sendWeaponStatus(player, Component.text("Stabilizing aim...", NamedTextColor.YELLOW));
+                sendWeaponStatus(player, Component.text("Stabilizzazione mira...", NamedTextColor.YELLOW));
             }
             return false;
         }
@@ -981,7 +980,7 @@ public class GunListener implements Listener {
             stopBurstFire(player);
             if (feedback) {
                 long remaining = module.getCombatStunManager().getRemainingStunTimeSeconds(player.getUniqueId());
-                sendWeaponStatus(player, Component.text("You are stunned and cannot shoot for " + remaining + "s", NamedTextColor.RED));
+                sendWeaponStatus(player, Component.text("Sei stordito e non puoi sparare per " + remaining + "s", NamedTextColor.RED));
             }
             return false;
         }
@@ -1063,7 +1062,7 @@ public class GunListener implements Listener {
             player.getWorld().createExplosion(player.getLocation(), 1.4f, false, false);
             player.damage(8.0);
             removeActiveWeapon(player);
-            sendWeaponStatus(player, Component.text("The printed frame detonated.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Il telaio stampato e' esploso.", NamedTextColor.RED));
             return false;
         }
 
@@ -1074,17 +1073,17 @@ public class GunListener implements Listener {
             item.setItemMeta(meta);
             player.damage(ghostJamDamage(weapon));
             player.playSound(player.getLocation(), Sound.BLOCK_DISPENSER_FAIL, 1.0f, 0.7f);
-            sendWeaponStatus(player, Component.text("The printed mechanism jammed.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Il meccanismo stampato si e' inceppato.", NamedTextColor.RED));
             if (next <= 0) {
                 removeActiveWeapon(player);
-                player.sendMessage(Component.text("The printed weapon broke apart.", NamedTextColor.RED));
+                player.sendMessage(Component.text("L'arma stampata si e' distrutta.", NamedTextColor.RED));
             }
             return false;
         }
 
         if (next <= 0) {
             removeActiveWeapon(player);
-            player.sendMessage(Component.text("The printed weapon broke apart.", NamedTextColor.RED));
+            player.sendMessage(Component.text("L'arma stampata si e' distrutta.", NamedTextColor.RED));
             return false;
         }
 
@@ -1134,9 +1133,9 @@ public class GunListener implements Listener {
 
     private void updateGhostLore(ItemMeta meta, int durability, int max) {
         meta.lore(List.of(
-                Component.text("Printed weapon. No repair.", NamedTextColor.GRAY)
+                Component.text("Arma stampata. Non riparabile.", NamedTextColor.GRAY)
                         .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false),
-                Component.text("Ghost durability: " + durability + " / " + max, NamedTextColor.YELLOW)
+                Component.text("Durabilita' ghost: " + durability + " / " + max, NamedTextColor.YELLOW)
                         .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false)
         ));
     }
@@ -1145,7 +1144,7 @@ public class GunListener implements Listener {
         if (autoFireTasks.containsKey(player.getUniqueId())) return; // Already firing
         int periodTicks = effectiveFireRateTicks(getActiveWeaponItem(player), weapon);
         ItemStack activeWeapon = getActiveWeaponItem(player);
-        String automaticSound = getWeaponSkinSound(activeWeapon, WeaponCosmeticManager.SOUND_AUTOMATIC);
+        String automaticSound = getWeaponSkinSound(activeWeapon, OpenCosmeticsApi.SOUND_AUTOMATIC);
         if (automaticSound != null) {
             playCustomWeaponSound(player, automaticSound, 1.0f, 1.0f);
             module.setAutomaticSkinFireSuppressed(player.getUniqueId(), true);
@@ -1156,7 +1155,7 @@ public class GunListener implements Listener {
             public void run() {
                 if (!player.isOnline() || player.isDead() || state.isReloading() || !state.hasMagazine() || state.getCurrentAmmo() <= 0) {
                     if (!state.hasMagazine()) {
-                        sendWeaponStatus(player, Component.text("No magazine loaded.", NamedTextColor.RED));
+                        sendWeaponStatus(player, Component.text("Nessun caricatore inserito.", NamedTextColor.RED));
                     } else if (state.getCurrentAmmo() <= 0) {
                         player.playSound(player.getLocation(), Sound.BLOCK_DISPENSER_FAIL, 1.0f, 2.0f);
                     }
@@ -1262,7 +1261,7 @@ public class GunListener implements Listener {
         stopBurstFire(player);
         semiFireLocks.remove(player.getUniqueId());
         player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.6f, 1.4f);
-        sendWeaponStatus(player, Component.text("Fire mode: " + nextMode.getDisplayName(), NamedTextColor.YELLOW));
+        sendWeaponStatus(player, Component.text("Modalita' fuoco: " + nextMode.getDisplayName(), NamedTextColor.YELLOW));
     }
 
     private boolean lockSemiFire(Player player, WeaponDefinition weapon) {
@@ -1314,7 +1313,7 @@ public class GunListener implements Listener {
             return;
         }
         if (!state.hasMagazine()) {
-            sendWeaponStatus(player, Component.text("No magazine inserted.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Nessun caricatore inserito.", NamedTextColor.RED));
             return;
         }
 
@@ -1325,7 +1324,7 @@ public class GunListener implements Listener {
         giveOrDrop(player, magazine);
         player.playSound(player.getLocation(), Sound.ITEM_ARMOR_EQUIP_IRON, 0.8f, 1.3f);
         animateWeaponBriefly(player, weapon);
-        sendWeaponStatus(player, Component.text("Magazine removed.", NamedTextColor.YELLOW));
+        sendWeaponStatus(player, Component.text("Caricatore rimosso.", NamedTextColor.YELLOW));
     }
 
     private boolean tryStartReloadFromAvailableAmmunition(Player player, ItemStack weaponItem, WeaponDefinition weapon, WeaponState state) {
@@ -1404,14 +1403,14 @@ public class GunListener implements Listener {
         ItemStack sourceItem = source.item();
         String magazineWeaponId = module.getMagazineManager().getWeaponId(sourceItem);
         if (!weapon.getId().equals(magazineWeaponId)) {
-            sendWeaponStatus(player, Component.text("Incompatible magazine.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Caricatore incompatibile.", NamedTextColor.RED));
             return;
         }
 
         ItemStack insertedMagazine = sourceItem.clone();
         insertedMagazine.setAmount(1);
         if (module.getMagazineManager().getAmmoCount(insertedMagazine) <= 0) {
-            sendWeaponStatus(player, Component.text("Magazine is empty.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Il caricatore e' vuoto.", NamedTextColor.RED));
             return;
         }
         int insertedAmmo = Math.min(module.getMagazineManager().getAmmoCount(insertedMagazine),
@@ -1423,7 +1422,7 @@ public class GunListener implements Listener {
         state.setReloading(true);
         persistState(weaponItem, weapon, state);
         consumeOneMagazineSource(player, source);
-        sendWeaponStatus(player, Component.text("Reloading...", NamedTextColor.YELLOW));
+        sendWeaponStatus(player, Component.text("Ricarica...", NamedTextColor.YELLOW));
         stopAimingAnimation(player);
         setWeaponVisual(player, weapon, WeaponVisualState.RELOADING);
         playReloadSound(player, weapon, weaponItem);
@@ -1463,13 +1462,13 @@ public class GunListener implements Listener {
         if (ammoNeeded <= 0) {
             state.setHasMagazine(true);
             persistState(weaponItem, weapon, state);
-            sendWeaponStatus(player, Component.text("Shells already loaded.", NamedTextColor.YELLOW));
+            sendWeaponStatus(player, Component.text("Cartucce gia' caricate.", NamedTextColor.YELLOW));
             return;
         }
 
         int ammoFound = countAmmo(player, weapon.getAmmoType());
         if (ammoFound <= 0) {
-            sendWeaponStatus(player, Component.text("No " + weapon.getAmmoType() + " rounds.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Munizioni " + weapon.getAmmoType() + " esaurite.", NamedTextColor.RED));
             return;
         }
 
@@ -1478,7 +1477,7 @@ public class GunListener implements Listener {
         state.setReloading(true);
         state.setHasMagazine(currentAmmo > 0);
         persistState(weaponItem, weapon, state);
-        sendWeaponStatus(player, Component.text("Loading shells...", NamedTextColor.YELLOW));
+        sendWeaponStatus(player, Component.text("Caricamento cartucce...", NamedTextColor.YELLOW));
         stopAimingAnimation(player);
         setWeaponVisual(player, weapon, WeaponVisualState.RELOADING);
         playReloadSound(player, weapon, weaponItem);
@@ -1564,7 +1563,7 @@ public class GunListener implements Listener {
         String weaponId = module.getMagazineManager().getWeaponId(magazine);
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(weaponId);
         if (weapon == null) {
-            sendWeaponStatus(player, Component.text("Invalid magazine.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Caricatore non valido.", NamedTextColor.RED));
             return;
         }
 
@@ -1572,13 +1571,13 @@ public class GunListener implements Listener {
         int capacity = module.getMagazineManager().getCapacity(magazine);
         int ammoNeeded = capacity - currentAmmo;
         if (ammoNeeded <= 0) {
-            sendWeaponStatus(player, Component.text("Magazine already full.", NamedTextColor.YELLOW));
+            sendWeaponStatus(player, Component.text("Caricatore gia' pieno.", NamedTextColor.YELLOW));
             return;
         }
 
         int ammoFound = countAmmo(player, weapon.getAmmoType());
         if (ammoFound <= 0) {
-            sendWeaponStatus(player, Component.text("No " + weapon.getAmmoType() + " rounds.", NamedTextColor.RED));
+            sendWeaponStatus(player, Component.text("Munizioni " + weapon.getAmmoType() + " esaurite.", NamedTextColor.RED));
             return;
         }
 
@@ -1586,7 +1585,7 @@ public class GunListener implements Listener {
         consumeAmmo(player, weapon.getAmmoType(), amountToTake);
         module.getMagazineManager().setAmmoCount(magazine, weapon, currentAmmo + amountToTake);
         player.playSound(player.getLocation(), Sound.ITEM_BUNDLE_INSERT, 0.8f, 1.4f);
-        sendWeaponStatus(player, Component.text("Magazine: " + (currentAmmo + amountToTake) + " / " + capacity, NamedTextColor.YELLOW));
+        sendWeaponStatus(player, Component.text("Caricatore: " + (currentAmmo + amountToTake) + " / " + capacity, NamedTextColor.YELLOW));
     }
 
     private int countAmmo(Player player, String ammoType) {
@@ -1624,7 +1623,7 @@ public class GunListener implements Listener {
     }
 
     private void playReloadSound(Player player, WeaponDefinition weapon, ItemStack weaponItem) {
-        String skinSound = getWeaponSkinSound(weaponItem, WeaponCosmeticManager.SOUND_RELOAD);
+        String skinSound = getWeaponSkinSound(weaponItem, OpenCosmeticsApi.SOUND_RELOAD);
         if (skinSound != null) {
             playCustomWeaponSound(player, skinSound, 1.0f, 1.0f);
             return;
@@ -1637,7 +1636,7 @@ public class GunListener implements Listener {
     }
 
     private String getWeaponSkinSound(ItemStack weaponItem, String soundKey) {
-        WeaponCosmeticManager cosmetics = module.getWeaponCosmeticManager();
+        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
         return cosmetics == null ? null : cosmetics.getWeaponSkinSound(weaponItem, soundKey);
     }
 
@@ -1735,7 +1734,7 @@ public class GunListener implements Listener {
         }
         meta.getPersistentDataContainer().set(weaponVisualStateKey, PersistentDataType.STRING, visual.name());
         meta.getPersistentDataContainer().set(weaponHasMagazineVisualKey, PersistentDataType.BYTE, hasMagazine ? (byte) 1 : (byte) 0);
-        WeaponCosmeticManager cosmetics = module.getWeaponCosmeticManager();
+        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
         if (cosmetics != null) {
             Integer rgb = cosmetics.getWeaponColorRgb(item);
             cosmetics.applyVisualCustomModelData(meta, cmd, rgb);
@@ -1755,11 +1754,8 @@ public class GunListener implements Listener {
     private List<String> getVisualVariantCandidates(ItemStack item, boolean hasMagazine) {
         boolean optic = hasVisualAttachment(item, AttachmentSlot.OPTIC);
         boolean grip = hasVisualAttachment(item, AttachmentSlot.UNDERBARREL);
-        WeaponCosmeticManager cosmetics = module.getWeaponCosmeticManager();
-        String led = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponLed(item);
-        String color = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponColor(item);
-        String skin = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponSkin(item);
-        return WeaponVisualVariantResolver.candidates(optic, hasMagazine, grip, led, color, skin);
+        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
+        return cosmetics == null ? List.of() : cosmetics.visualVariantCandidates(item, optic, hasMagazine, grip);
     }
 
     private boolean hasVisualAttachment(ItemStack item, AttachmentSlot slot) {
@@ -2178,11 +2174,11 @@ public class GunListener implements Listener {
     private void updateWeaponLore(ItemStack item, WeaponDefinition weapon, WeaponState state) {
         String shots = state.hasMagazine() || usesLooseAmmoReload(weapon)
                 ? state.getCurrentAmmo() + " / " + effectiveMagazineSize(item, weapon)
-                : "No mag";
+                : "Nessun caricatore";
         if (module.getAttachmentManager() != null) {
             module.getAttachmentManager().updateWeaponLore(item, weapon, shots);
         } else {
-            module.getWeaponRegistry().updateWeaponLore(item, weapon, "None", shots);
+            module.getWeaponRegistry().updateWeaponLore(item, weapon, "Nessuna", shots);
         }
     }
 
@@ -2254,7 +2250,7 @@ public class GunListener implements Listener {
     private void updateActionBar(Player player, WeaponState state, WeaponDefinition weapon, ItemStack item) {
         String ammo = state.hasMagazine() || usesLooseAmmoReload(weapon)
                 ? state.getCurrentAmmo() + " / " + effectiveMagazineSize(item, weapon)
-                : "No mag";
+                : "Nessun caricatore";
         sendWeaponStatus(player, Component.text(ammo + "  [" + weapon.getAmmoType() + "]  "
                 + state.getFireMode().getDisplayName(), NamedTextColor.WHITE), 25L);
     }

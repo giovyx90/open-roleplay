@@ -5,7 +5,7 @@ import java.util.Locale;
 public enum FireMode {
    SEMI("Semi"),
    AUTO("Auto"),
-   BURST("Burst");
+   BURST("Raffica");
 
    private final String displayName;
 

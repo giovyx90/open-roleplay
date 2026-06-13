@@ -35,7 +35,7 @@ public class ArrestGUI implements Listener {
     private final WeaponsModule module;
 
     private static Component buildTitle() {
-        return NexoUI.getGlyphTitle("arrest_gui", "Arrest");
+        return NexoUI.getGlyphTitle("arrest_gui", "Arresto");
     }
 
 
@@ -107,10 +107,10 @@ public class ArrestGUI implements Listener {
         }
 
         // ── Build display strings ──
-        String timeDisplay   = session.jailTimeHours < 0 ? "§cNot set" : "§a" + formatTime(session.jailTimeHours);
-        String regionDisplay = session.jailRegion != null ? "§a" + session.jailRegion : "§cNot set";
-        String bailDisplay   = session.bailAmount > 0 ? "§a$" + String.format("%.2f", session.bailAmount) : "§cNot set";
-        String reasonDisplay = session.reason != null ? "§a" + session.reason : "§cNot set";
+        String timeDisplay   = session.jailTimeHours < 0 ? "§cNon impostato" : "§a" + formatTime(session.jailTimeHours);
+        String regionDisplay = session.jailRegion != null ? "§a" + session.jailRegion : "§cNon impostato";
+        String bailDisplay   = session.bailAmount > 0 ? "§a$" + String.format("%.2f", session.bailAmount) : "§cNon impostato";
+        String reasonDisplay = session.reason != null ? "§a" + session.reason : "§cNon impostato";
 
         // ── Row 1: Target Head (slot 4) ──
         gui.setItem(SLOT_TARGET_HEAD, createTargetHead(session.targetUuid, session.targetName,
@@ -120,33 +120,33 @@ public class ArrestGUI implements Listener {
         gui.setItem(SLOT_TIME, NexoUI.getArrestTimeButton(
                 Component.text("ᴊᴀɪʟ ᴛɪᴍᴇ", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false),
                 List.of(
-                        Component.text("Cʟɪᴄᴋ ᴛᴏ sᴇᴛ ᴊᴀɪʟ ᴅᴜʀᴀᴛɪᴏɴ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+                        Component.text("Cʟɪᴄᴄᴀ ᴘᴇʀ ɪᴍᴘᴏsᴛᴀʀᴇ ʟᴀ ᴅᴜʀᴀᴛᴀ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                         Component.empty(),
-                        Component.text("Cᴜʀʀᴇɴᴛ: " + timeDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
+                        Component.text("Aᴛᴛᴜᴀʟᴇ: " + timeDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
                 )));
 
         gui.setItem(SLOT_MONEY, NexoUI.getArrestMoneyButton(
-                Component.text("ʙᴀɪʟ ᴀᴍᴏᴜɴᴛ", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false),
+                Component.text("ɪᴍᴘᴏʀᴛᴏ ᴄᴀᴜᴢɪᴏɴᴇ", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false),
                 List.of(
-                        Component.text("Cʟɪᴄᴋ ᴛᴏ sᴇᴛ ʙᴀɪʟ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+                        Component.text("Cʟɪᴄᴄᴀ ᴘᴇʀ ɪᴍᴘᴏsᴛᴀʀᴇ ʟᴀ ᴄᴀᴜᴢɪᴏɴᴇ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                         Component.empty(),
-                        Component.text("Cᴜʀʀᴇɴᴛ: " + bailDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
+                        Component.text("Aᴛᴛᴜᴀʟᴇ: " + bailDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
                 )));
 
         gui.setItem(SLOT_REASON, NexoUI.getArrestReasonButton(
-                Component.text("ᴀʀʀᴇsᴛ ʀᴇᴀsᴏɴ", NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false),
+                Component.text("ᴍᴏᴛɪᴠᴏ ᴀʀʀᴇsᴛᴏ", NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false),
                 List.of(
-                        Component.text("Cʟɪᴄᴋ ᴛᴏ sᴇᴛ ʀᴇᴀsᴏɴ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+                        Component.text("Cʟɪᴄᴄᴀ ᴘᴇʀ ɪᴍᴘᴏsᴛᴀʀᴇ ɪʟ ᴍᴏᴛɪᴠᴏ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                         Component.empty(),
-                        Component.text("Cᴜʀʀᴇɴᴛ: " + reasonDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
+                        Component.text("Aᴛᴛᴜᴀʟᴇ: " + reasonDisplay, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
                 )));
 
         // ── Row 2: Jail Region selector ──
         List<String> regions = module.getArrestManager().getJailRegions();
         if (regions.isEmpty()) {
             gui.setItem(SLOT_REGION, createSimpleItem(Material.BARRIER,
-                    Component.text("ɴᴏ ᴊᴀɪʟ ʀᴇɢɪᴏɴs", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false),
-                    List.of(Component.text("Cʀᴇᴀᴛᴇ WᴏʀʟᴅGᴜᴀʀᴅ ʀᴇɢɪᴏɴs", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false))));
+                    Component.text("ɴᴇssᴜɴᴀ ʀᴇɢɪᴏɴᴇ ᴄᴇʟʟᴀ", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false),
+                    List.of(Component.text("Cʀᴇᴀ ʀᴇɢɪᴏɴɪ WᴏʀʟᴅGᴜᴀʀᴅ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false))));
         } else {
             if (session.jailRegion == null) {
                 session.jailRegion = regions.get(0);
@@ -156,10 +156,10 @@ public class ArrestGUI implements Listener {
 
         // ── Row 6: Confirm / Cancel ──
         gui.setItem(SLOT_CONFIRM, NexoUI.getConfirmButton(
-                Component.text("ᴄᴏɴꜰɪʀᴍ ᴀʀʀᴇsᴛ", NamedTextColor.GREEN, TextDecoration.BOLD)
+                Component.text("ᴄᴏɴꜰᴇʀᴍᴀ ᴀʀʀᴇsᴛᴏ", NamedTextColor.GREEN, TextDecoration.BOLD)
                         .decoration(TextDecoration.ITALIC, false)));
         gui.setItem(SLOT_CANCEL, NexoUI.getCancelButton(
-                Component.text("ᴄᴀɴᴄᴇʟ", NamedTextColor.RED, TextDecoration.BOLD)
+                Component.text("ᴀɴɴᴜʟʟᴀ", NamedTextColor.RED, TextDecoration.BOLD)
                         .decoration(TextDecoration.ITALIC, false)));
 
         officer.openInventory(gui);
@@ -178,7 +178,7 @@ public class ArrestGUI implements Listener {
                         double hours = Double.parseDouble(text.replace(",", ""));
                         if (hours <= 0) {
                             return Collections.singletonList(
-                                    AnvilGUI.ResponseAction.replaceInputText("Must be > 0"));
+                                    AnvilGUI.ResponseAction.replaceInputText("Deve essere > 0"));
                         }
                         session.jailTimeHours = hours;
                         return Collections.singletonList(AnvilGUI.ResponseAction.run(
@@ -186,11 +186,11 @@ public class ArrestGUI implements Listener {
                                         () -> openMainGUI(officer, session))));
                     } catch (NumberFormatException e) {
                         return Collections.singletonList(
-                                AnvilGUI.ResponseAction.replaceInputText("Not a number"));
+                                AnvilGUI.ResponseAction.replaceInputText("Non e' un numero"));
                     }
                 })
                 .text("1.0")
-                .title("Jail Time (hours)")
+                .title("Tempo in cella (ore)")
                 .plugin(module.getCore())
                 .open(officer);
     }
@@ -204,7 +204,7 @@ public class ArrestGUI implements Listener {
                         double bail = Double.parseDouble(text.replace(",", "").replace("$", ""));
                         if (bail < 0) {
                             return Collections.singletonList(
-                                    AnvilGUI.ResponseAction.replaceInputText("Must be >= 0"));
+                                    AnvilGUI.ResponseAction.replaceInputText("Deve essere >= 0"));
                         }
                         session.bailAmount = bail;
                         return Collections.singletonList(AnvilGUI.ResponseAction.run(
@@ -212,11 +212,11 @@ public class ArrestGUI implements Listener {
                                         () -> openMainGUI(officer, session))));
                     } catch (NumberFormatException e) {
                         return Collections.singletonList(
-                                AnvilGUI.ResponseAction.replaceInputText("Not a number"));
+                                AnvilGUI.ResponseAction.replaceInputText("Non e' un numero"));
                     }
                 })
                 .text("0.00")
-                .title("Bail Amount ($)")
+                .title("Importo cauzione ($)")
                 .plugin(module.getCore())
                 .open(officer);
     }
@@ -226,17 +226,17 @@ public class ArrestGUI implements Listener {
                 .onClick((slot, stateSnapshot) -> {
                     if (slot != AnvilGUI.Slot.OUTPUT) return Collections.emptyList();
                     String text = stateSnapshot.getText();
-                    if (text == null || text.isBlank() || text.equals("Type reason...")) {
+                    if (text == null || text.isBlank() || text.equals("Scrivi motivo...")) {
                         return Collections.singletonList(
-                                AnvilGUI.ResponseAction.replaceInputText("Cannot be empty"));
+                                AnvilGUI.ResponseAction.replaceInputText("Non puo' essere vuoto"));
                     }
                     session.reason = text;
                     return Collections.singletonList(AnvilGUI.ResponseAction.run(
                             () -> Bukkit.getScheduler().runTask(module.getCore(),
                                     () -> openMainGUI(officer, session))));
                 })
-                .text("Type reason...")
-                .title("Arrest Reason")
+                .text("Scrivi motivo...")
+                .title("Motivo arresto")
                 .plugin(module.getCore())
                 .open(officer);
     }
@@ -293,21 +293,21 @@ public class ArrestGUI implements Listener {
             // ── Confirm ──
             case SLOT_CONFIRM -> {
                 if (session.jailTimeHours < 0) {
-                    officer.sendMessage(Component.text("You must set a jail time!", NamedTextColor.RED));
+                    officer.sendMessage(Component.text("Devi impostare il tempo in cella!", NamedTextColor.RED));
                     return;
                 }
                 if (session.jailRegion == null) {
-                    officer.sendMessage(Component.text("You must select a jail region!", NamedTextColor.RED));
+                    officer.sendMessage(Component.text("Devi selezionare una regione cella!", NamedTextColor.RED));
                     return;
                 }
                 if (session.reason == null) {
-                    officer.sendMessage(Component.text("You must set a reason!", NamedTextColor.RED));
+                    officer.sendMessage(Component.text("Devi impostare un motivo!", NamedTextColor.RED));
                     return;
                 }
 
                 org.bukkit.OfflinePlayer target = Bukkit.getOfflinePlayer(session.targetUuid);
                 if (target == null) {
-                    officer.sendMessage(Component.text("The target player could not be found.", NamedTextColor.RED));
+                    officer.sendMessage(Component.text("Il giocatore bersaglio non e' stato trovato.", NamedTextColor.RED));
                     officer.closeInventory();
                     return;
                 }
@@ -322,16 +322,16 @@ public class ArrestGUI implements Listener {
                 module.getArrestManager().arrest(record);
                 officer.closeInventory();
 
-                String targetName = target.getName() != null ? target.getName() : "Unknown";
+                String targetName = target.getName() != null ? target.getName() : "Sconosciuto";
                 String timeStr = formatTime(session.jailTimeHours);
-                officer.sendMessage(Component.text("Successfully arrested " + targetName
-                        + " for " + timeStr + ".", NamedTextColor.GREEN));
+                officer.sendMessage(Component.text("Arresto completato per " + targetName
+                        + " per " + timeStr + ".", NamedTextColor.GREEN));
                 return;
             }
             // ── Cancel ──
             case SLOT_CANCEL -> {
                 officer.closeInventory();
-                officer.sendMessage(Component.text("Arrest cancelled.", NamedTextColor.RED));
+                officer.sendMessage(Component.text("Arresto annullato.", NamedTextColor.RED));
                 return;
             }
         }
@@ -364,11 +364,11 @@ public class ArrestGUI implements Listener {
 
     private String formatTime(double hours) {
         if (hours < 1) {
-            return String.format("%.0f ᴍɪɴᴜᴛᴇs", hours * 60);
+            return String.format("%.0f ᴍɪɴᴜᴛɪ", hours * 60);
         } else if (hours == (int) hours) {
-            return String.format("%.0f ʜᴏᴜʀ(s)", hours);
+            return String.format("%.0f ᴏʀᴀ/ᴇ", hours);
         } else {
-            return String.format("%.1f ʜᴏᴜʀ(s)", hours);
+            return String.format("%.1f ᴏʀᴇ", hours);
         }
     }
 
@@ -379,9 +379,9 @@ public class ArrestGUI implements Listener {
             meta.displayName(Component.text(regionName.toUpperCase(), NamedTextColor.AQUA)
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text("ᴊᴀɪʟ ʀᴇɢɪᴏɴ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("ʀᴇɢɪᴏɴᴇ ᴄᴇʟʟᴀ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
             lore.add(Component.empty());
-            lore.add(Component.text("Cʟɪᴄᴋ ᴛᴏ ᴄʜᴀɴɢᴇ ʀᴇɢɪᴏɴ", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Cʟɪᴄᴄᴀ ᴘᴇʀ ᴄᴀᴍʙɪᴀʀᴇ ʀᴇɢɪᴏɴᴇ", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
             if (selected) {
                 meta.setEnchantmentGlintOverride(true);
             }
@@ -408,14 +408,14 @@ public class ArrestGUI implements Listener {
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         if (meta != null) {
             meta.setOwningPlayer(Bukkit.getOfflinePlayer(targetUuid));
-            meta.displayName(Component.text("ᴀʀʀᴇsᴛ: " + targetName, NamedTextColor.GOLD)
+            meta.displayName(Component.text("ᴀʀʀᴇsᴛᴏ: " + targetName, NamedTextColor.GOLD)
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
             lore.add(Component.empty());
-            lore.add(Component.text("Tɪᴍᴇ: " + time, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Rᴇɢɪᴏɴ: " + region, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Bᴀɪʟ: " + bail, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Rᴇᴀsᴏɴ: " + reason, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Tᴇᴍᴘᴏ: " + time, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Rᴇɢɪᴏɴᴇ: " + region, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Cᴀᴜᴢɪᴏɴᴇ: " + bail, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Mᴏᴛɪᴠᴏ: " + reason, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
             meta.lore(lore);
             item.setItemMeta(meta);
         }

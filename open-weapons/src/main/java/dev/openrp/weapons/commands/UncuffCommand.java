@@ -38,28 +38,28 @@ public class UncuffCommand implements CommandExecutor, Listener {
         if (!(sender instanceof Player player)) return true;
 
         if (!player.hasPermission("openrp.weapons.uncuff")) {
-            player.sendMessage(Component.text("You don't have permission to do this.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non hai il permesso di farlo.", NamedTextColor.RED));
             return true;
         }
 
         if (module.getHandcuffManager().isRestrained(player)) {
-            player.sendMessage(Component.text("You cannot do this while restrained!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non puoi farlo mentre sei immobilizzato!", NamedTextColor.RED));
             return true;
         }
 
         if (args.length != 1) {
-            player.sendMessage(Component.text("Usage: /uncuff <handcuffed_player>", NamedTextColor.RED));
+            player.sendMessage(Component.text("Uso: /uncuff <giocatore_ammanettato>", NamedTextColor.RED));
             return true;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
         if (target == null || !target.isOnline()) {
-            player.sendMessage(Component.text("Player not found.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Giocatore non trovato.", NamedTextColor.RED));
             return true;
         }
 
         if (!module.getHandcuffManager().isHandcuffed(target)) {
-            player.sendMessage(Component.text("This player is not handcuffed.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Questo giocatore non e' ammanettato.", NamedTextColor.RED));
             return true;
         }
 
@@ -67,29 +67,29 @@ public class UncuffCommand implements CommandExecutor, Listener {
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(item);
 
         if (weapon == null || weapon.getCategory() == WeaponCategory.MELEE) {
-            player.sendMessage(Component.text("You must hold a firearm to threaten the officer.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Devi impugnare un'arma da fuoco per minacciare l'agente.", NamedTextColor.RED));
             return true;
         }
 
         UUID officerId = module.getHandcuffManager().getOfficerWhoCuffed(target);
         if (officerId == null) {
-            player.sendMessage(Component.text("The officer who handcuffed them is no longer online.", NamedTextColor.RED));
+            player.sendMessage(Component.text("L'agente che li ha ammanettati non e' piu' online.", NamedTextColor.RED));
             return true;
         }
 
         Player officer = Bukkit.getPlayer(officerId);
         if (officer == null || !officer.isOnline()) {
-            player.sendMessage(Component.text("The officer who handcuffed them is no longer online.", NamedTextColor.RED));
+            player.sendMessage(Component.text("L'agente che li ha ammanettati non e' piu' online.", NamedTextColor.RED));
             return true;
         }
 
         if (player.getLocation().distance(officer.getLocation()) > 15) {
-            player.sendMessage(Component.text("You are too far from the officer to threaten them!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Sei troppo lontano dall'agente per minacciarlo!", NamedTextColor.RED));
             return true;
         }
 
         if (activeAttempts.containsKey(officer.getUniqueId())) {
-            player.sendMessage(Component.text("The officer is already being threatened!", NamedTextColor.RED));
+            player.sendMessage(Component.text("L'agente e' gia' sotto minaccia!", NamedTextColor.RED));
             return true;
         }
 
@@ -98,8 +98,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
     }
 
     private void startIntimidation(Player sender, Player officer, Player victim) {
-        sender.sendMessage(Component.text("You ordered the officer to free " + victim.getName() + "!", NamedTextColor.YELLOW));
-        officer.sendMessage(Component.text("You are under armed threat! You have 15 seconds to uncuff " + victim.getName() + " or you will be KILLABLE!", NamedTextColor.RED, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("Hai ordinato all'agente di liberare " + victim.getName() + "!", NamedTextColor.YELLOW));
+        officer.sendMessage(Component.text("Sei sotto minaccia armata! Hai 15 secondi per liberare " + victim.getName() + " o diventerai UCCIDIBILE!", NamedTextColor.RED, TextDecoration.BOLD));
 
         // "UNCUFF ME!" above the handcuffed criminal (victim)
         Component uncuffTag = Component.text("⚠ UNCUFF ME! ⚠", NamedTextColor.RED, TextDecoration.BOLD);
@@ -128,8 +128,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
                 }
 
                 if (!module.getHandcuffManager().isHandcuffed(victim)) {
-            officer.sendMessage(Component.text("You uncuffed them and are now safe.", NamedTextColor.GREEN));
-                    sender.sendMessage(Component.text("The officer complied.", NamedTextColor.GREEN));
+            officer.sendMessage(Component.text("Li hai liberati e ora sei al sicuro.", NamedTextColor.GREEN));
+                    sender.sendMessage(Component.text("L'agente ha obbedito.", NamedTextColor.GREEN));
                     cleanup();
                     return;
                 }
@@ -142,8 +142,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
                 ItemStack item = sender.getInventory().getItemInMainHand();
                 WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(item);
                 if (weapon == null || weapon.getCategory() == WeaponCategory.MELEE) {
-                    sender.sendMessage(Component.text("You lowered your weapon! Threat cancelled.", NamedTextColor.RED));
-                    officer.sendMessage(Component.text("The attacker lowered their weapon.", NamedTextColor.GREEN));
+                    sender.sendMessage(Component.text("Hai abbassato l'arma! Minaccia annullata.", NamedTextColor.RED));
+                    officer.sendMessage(Component.text("L'aggressore ha abbassato l'arma.", NamedTextColor.GREEN));
                     cleanup();
                     return;
                 }
@@ -195,7 +195,7 @@ public class UncuffCommand implements CommandExecutor, Listener {
         BukkitTask task = activeAttempts.remove(officer.getUniqueId());
         if (task != null) task.cancel();
 
-        officer.sendMessage(Component.text("Time's up! You are now KILLABLE for 5 minutes.", NamedTextColor.RED, TextDecoration.BOLD));
+        officer.sendMessage(Component.text("Tempo scaduto! Ora sei UCCIDIBILE per 5 minuti.", NamedTextColor.RED, TextDecoration.BOLD));
         officer.getWorld().playSound(officer.getLocation(), Sound.ENTITY_WITHER_SPAWN, 0.5f, 1.0f);
 
         applyKillableTag(officer);
@@ -219,7 +219,7 @@ public class UncuffCommand implements CommandExecutor, Listener {
                     if (td.isValid()) td.remove();
                     killableTags.remove(officer.getUniqueId());
                     if (officer.isOnline()) {
-                        officer.sendMessage(Component.text("You are no longer killable.", NamedTextColor.GREEN));
+                        officer.sendMessage(Component.text("Non sei piu' uccidibile.", NamedTextColor.GREEN));
                     }
                     this.cancel();
                     return;

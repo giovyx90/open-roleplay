@@ -1,0 +1,86 @@
+{
+  "weapons.ak47.sugarline.fire": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/fire_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_3",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_4",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_5",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.headshot": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/headshot",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.hit": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/hit",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.reload": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/reload",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.m4a1.royal.fire": {
+    "sounds": [
+      {
+        "name": "weapons/m4a1/royal/fire_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/fire_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/fire_3",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.m4a1.royal.reload": {
+    "sounds": [
+      {
+        "name": "weapons/m4a1/royal/reload_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_3",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_4",
+        "volume": 0.85
+      }
+    ]
+  }
+}

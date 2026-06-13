@@ -1,0 +1,133 @@
+{
+  "oversized_in_gui": true,
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "item/paper"
+    },
+    "entries": [
+      {
+        "threshold": 17,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/corda"
+        }
+      },
+      {
+        "threshold": 19,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/tronchesi"
+        }
+      },
+      {
+        "threshold": 28,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/manette"
+        }
+      },
+      {
+        "threshold": 31,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/manette_mani"
+        }
+      },
+      {
+        "threshold": 40,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/scanner"
+        }
+      },
+      {
+        "threshold": 41,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/corda_mani"
+        }
+      },
+      {
+        "threshold": 90,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/telecomando_allarme"
+        }
+      },
+      {
+        "threshold": 91,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/radiolina"
+        }
+      },
+      {
+        "threshold": 92,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/paletta_fdo"
+        }
+      },
+      {
+        "threshold": 9001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/crosshair"
+        }
+      },
+      {
+        "threshold": 9010,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_led_usa"
+        }
+      },
+      {
+        "threshold": 9011,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_led_italy"
+        }
+      },
+      {
+        "threshold": 9012,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_led_france"
+        }
+      },
+      {
+        "threshold": 9013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_led_anime"
+        }
+      },
+      {
+        "threshold": 9014,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_color_token",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9015,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/tokens/m4a1_led_pacman"
+        }
+      }
+    ],
+    "index": 0
+  }
+}

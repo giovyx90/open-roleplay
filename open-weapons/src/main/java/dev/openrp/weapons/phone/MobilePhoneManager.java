@@ -25,16 +25,16 @@ public class MobilePhoneManager {
       ItemStack item = new ItemStack(Material.PAPER);
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
-         meta.displayName(Component.text("Mobile Phone", NamedTextColor.GRAY)
+         meta.displayName(Component.text("Telefono cellulare", NamedTextColor.GRAY)
             .decoration(TextDecoration.BOLD, false)
             .decoration(TextDecoration.ITALIC, false));
          meta.setCustomModelData(163);
          meta.getPersistentDataContainer().set(this.phoneKey, PersistentDataType.BYTE, (byte)1);
          List<Component> lore = new ArrayList<>();
          lore.add(Component.text(""));
-         lore.add(Component.text("Required for company radio", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Right-click to open apps", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Use /c <company> to chat", NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Richiesto per la radio aziendale", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Clic destro per aprire le app", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Usa /c <azienda> per chattare", NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
          meta.lore(lore);
          item.setItemMeta(meta);
       }

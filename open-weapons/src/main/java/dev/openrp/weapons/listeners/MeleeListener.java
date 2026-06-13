@@ -50,7 +50,7 @@ public class MeleeListener implements Listener {
                 // Riot shield blocks melee damage
                 event.setCancelled(true);
                 player.playSound(player.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1.0f, 1.0f);
-                player.sendActionBar(Component.text("Blocked by riot shield!", NamedTextColor.RED));
+                player.sendActionBar(Component.text("Bloccato dallo scudo antisommossa!", NamedTextColor.RED));
                 return;
             }
         }
@@ -171,13 +171,13 @@ public class MeleeListener implements Listener {
                 .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)
                 .actor(attacker)
                 .location(target.getLocation())
-                .message(attacker.getName() + " hit a target with " + weapon.getDisplayName() + ".")
+                .message(attacker.getName() + " ha colpito un bersaglio con " + weapon.getDisplayName() + ".")
                 .metadataJson(metadata.toJson());
         if (target instanceof Player targetPlayer) {
             metadata.put("victim_uuid", targetPlayer.getUniqueId())
                     .put("victim_name", targetPlayer.getName());
             hitBuilder.target(targetPlayer)
-                    .message(attacker.getName() + " hit " + targetPlayer.getName() + " with " + weapon.getDisplayName() + ".");
+                    .message(attacker.getName() + " ha colpito " + targetPlayer.getName() + " con " + weapon.getDisplayName() + ".");
         }
         module.getCore().getStaffBoardPublisher().emit(hitBuilder.metadataJson(metadata.toJson()).build());
 
@@ -221,12 +221,12 @@ public class MeleeListener implements Listener {
         }
 
         if (target instanceof Player targetPlayer) {
-            targetPlayer.sendActionBar(Component.text("⚡ You have been stunned!", NamedTextColor.RED));
+            targetPlayer.sendActionBar(Component.text("⚡ Sei stato stordito!", NamedTextColor.RED));
         }
     }
 
     private void notifyStunBlocked(Player attacker) {
-        attacker.sendActionBar(Component.text("Stun blocked by riot helmet!", NamedTextColor.YELLOW));
+        attacker.sendActionBar(Component.text("Stordimento bloccato dal casco antisommossa!", NamedTextColor.YELLOW));
     }
 
     /**
@@ -241,13 +241,13 @@ public class MeleeListener implements Listener {
 
         if (currentUses >= maxUses) {
             player.getInventory().remove(item);
-            player.sendMessage(Component.text("Your baton broke!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Il manganello si e' rotto!", NamedTextColor.RED));
             player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
         } else {
             meta.getPersistentDataContainer().set(usesKey, PersistentDataType.INTEGER, currentUses);
             int remaining = maxUses - currentUses;
             meta.lore(java.util.List.of(
-                    Component.text("Uses: " + remaining + "/" + maxUses, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
+                    Component.text("Usi: " + remaining + "/" + maxUses, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
             ));
             item.setItemMeta(meta);
         }

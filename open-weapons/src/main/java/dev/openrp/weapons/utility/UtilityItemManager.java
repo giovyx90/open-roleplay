@@ -58,15 +58,15 @@ public class UtilityItemManager {
             meta.getPersistentDataContainer().set(this.extinguisherChargesKey, PersistentDataType.INTEGER, 100);
          } else if (type == UtilityItemType.FIRE_AXE) {
             meta.getPersistentDataContainer().set(this.fireAxeUsesKey, PersistentDataType.INTEGER, settings.fireAxeUses());
-            meta.lore(this.buildLore(UtilityItemType.FIRE_AXE, "Durability: " + settings.fireAxeUses() + "/" + settings.fireAxeUses()));
+            meta.lore(this.buildLore(UtilityItemType.FIRE_AXE, "Durabilita': " + settings.fireAxeUses() + "/" + settings.fireAxeUses()));
          } else if (type == UtilityItemType.PAINT_SPRAY) {
             meta.getPersistentDataContainer().set(this.pepperSprayUsesKey, PersistentDataType.INTEGER, 30);
          } else if (type == UtilityItemType.GAG) {
             meta.getPersistentDataContainer().set(this.gagUsesKey, PersistentDataType.INTEGER, settings.gagUses());
-            meta.lore(this.buildLore(UtilityItemType.GAG, "Uses: " + settings.gagUses() + "/" + settings.gagUses()));
+            meta.lore(this.buildLore(UtilityItemType.GAG, "Usi: " + settings.gagUses() + "/" + settings.gagUses()));
          } else if (type == UtilityItemType.BLINDFOLD) {
             meta.getPersistentDataContainer().set(this.blindfoldUsesKey, PersistentDataType.INTEGER, settings.blindfoldUses());
-            meta.lore(this.buildLore(UtilityItemType.BLINDFOLD, "Uses: " + settings.blindfoldUses() + "/" + settings.blindfoldUses()));
+            meta.lore(this.buildLore(UtilityItemType.BLINDFOLD, "Usi: " + settings.blindfoldUses() + "/" + settings.blindfoldUses()));
          }
 
          item.setItemMeta(meta);
@@ -134,7 +134,7 @@ public class UtilityItemManager {
          int clamped = Math.max(0, Math.min(100, charges));
          ItemMeta meta = item.getItemMeta();
          meta.getPersistentDataContainer().set(this.extinguisherChargesKey, PersistentDataType.INTEGER, clamped);
-         meta.lore(this.buildLore(UtilityItemType.FIRE_EXTINGUISHER, "Durability: " + clamped + "/100"));
+         meta.lore(this.buildLore(UtilityItemType.FIRE_EXTINGUISHER, "Durabilita': " + clamped + "/100"));
          item.setItemMeta(meta);
       }
    }
@@ -153,7 +153,7 @@ public class UtilityItemManager {
          int clamped = Math.max(0, Math.min(30, uses));
          ItemMeta meta = item.getItemMeta();
          meta.getPersistentDataContainer().set(this.pepperSprayUsesKey, PersistentDataType.INTEGER, clamped);
-         meta.lore(this.buildLore(UtilityItemType.PAINT_SPRAY, "Uses: " + clamped + "/30"));
+         meta.lore(this.buildLore(UtilityItemType.PAINT_SPRAY, "Usi: " + clamped + "/30"));
          item.setItemMeta(meta);
       }
    }
@@ -175,13 +175,13 @@ public class UtilityItemManager {
          meta.getPersistentDataContainer().set(this.fireAxeUsesKey, PersistentDataType.INTEGER, clamped);
          if (clamped <= 0) {
             meta.displayName(
-               Component.text("Broken Fire Axe", NamedTextColor.GRAY)
+               Component.text("Ascia antincendio rotta", NamedTextColor.GRAY)
                   .decoration(TextDecoration.BOLD, false)
                   .decoration(TextDecoration.ITALIC, false)
             );
          }
 
-         meta.lore(this.buildLore(UtilityItemType.FIRE_AXE, "Durability: " + clamped + "/" + maxUses));
+         meta.lore(this.buildLore(UtilityItemType.FIRE_AXE, "Durabilita': " + clamped + "/" + maxUses));
          item.setItemMeta(meta);
       }
    }
@@ -205,7 +205,7 @@ public class UtilityItemManager {
       int clamped = Math.max(0, Math.min(maxUses, uses));
       ItemMeta meta = item.getItemMeta();
       meta.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, clamped);
-      meta.lore(this.buildLore(type, "Uses: " + clamped + "/" + maxUses));
+      meta.lore(this.buildLore(type, "Usi: " + clamped + "/" + maxUses));
       item.setItemMeta(meta);
    }
 
@@ -239,13 +239,13 @@ public class UtilityItemManager {
          ItemMeta meta = item.getItemMeta();
          meta.getPersistentDataContainer().set(this.fingerprintDataKey, PersistentDataType.STRING, data);
          meta.displayName(
-            Component.text("Fingerprint Sheet", NamedTextColor.GRAY)
+            Component.text("Scheda impronte", NamedTextColor.GRAY)
                .decoration(TextDecoration.BOLD, false)
                .decoration(TextDecoration.ITALIC, false)
          );
          meta.lore(
             List.of(
-               (TextComponent)Component.text("Forensic trace recorded.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+               (TextComponent)Component.text("Traccia forense registrata.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                (TextComponent)Component.text(data, NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
             )
          );

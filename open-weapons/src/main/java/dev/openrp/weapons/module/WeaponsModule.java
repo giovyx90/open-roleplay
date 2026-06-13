@@ -2,6 +2,8 @@ package dev.openrp.weapons.module;
 
 import it.meridian.core.CorePlugin;
 import it.meridian.core.module.NextModule;
+import dev.openrp.cosmetics.api.OpenCosmeticsApi;
+import dev.openrp.cosmetics.api.OpenCosmeticsWeaponBridge;
 import dev.openrp.weapons.api.WeaponCombatDecision;
 import dev.openrp.weapons.api.WeaponCombatPolicy;
 import dev.openrp.weapons.api.WeaponImpactContext;
@@ -31,11 +33,6 @@ import dev.openrp.weapons.commands.WeaponsCommand;
 import dev.openrp.weapons.config.WeaponConfigCommand;
 import dev.openrp.weapons.config.WeaponConfigEditor;
 import dev.openrp.weapons.config.WeaponConfigGUI;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticCommand;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticEditorGUI;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticManager;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticStationManager;
-import dev.openrp.weapons.cosmetics.WeaponCosmeticWorkbenchGUI;
 import dev.openrp.weapons.c4.C4Manager;
 import dev.openrp.weapons.dispatch.DispatchGpsManager;
 import dev.openrp.weapons.grenades.GrenadeListener;
@@ -91,6 +88,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.ServicePriority;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -99,7 +97,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class WeaponsModule implements NextModule {
@@ -135,16 +132,12 @@ public class WeaponsModule implements NextModule {
     private UtilityItemListener utilityItemListener;
     private UtilitySettings utilitySettings;
     private WeaponAnimationSuppressor weaponAnimationSuppressor;
-    private WeaponCosmeticManager weaponCosmeticManager;
-    private WeaponCosmeticWorkbenchGUI weaponCosmeticWorkbenchGUI;
-    private WeaponCosmeticEditorGUI weaponCosmeticEditorGUI;
-    private WeaponCosmeticStationManager weaponCosmeticStationManager;
+    private OpenCosmeticsWeaponBridge cosmeticsBridge;
     private WeaponConfigEditor weaponConfigEditor;
     private WeaponConfigGUI weaponConfigGUI;
     private YamlConfiguration messagesConfig;
     private final List<Listener> listeners = new ArrayList<>();
     private final List<WeaponCombatPolicy> combatPolicies = new CopyOnWriteArrayList<>();
-    private final Set<UUID> automaticSkinFireSuppression = ConcurrentHashMap.newKeySet();
 
     @Override
     public String getName() {
@@ -173,9 +166,9 @@ public class WeaponsModule implements NextModule {
         if (!attachmentsFile.exists()) {
             core.saveResource("attachments.yml", false);
         }
-        File messagesFile = new File(core.getDataFolder(), "messages_en.yml");
+        File messagesFile = new File(core.getDataFolder(), "messages_it.yml");
         if (!messagesFile.exists()) {
-            core.saveResource("messages_en.yml", false);
+            core.saveResource("messages_it.yml", false);
         }
         this.messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
 
@@ -190,16 +183,11 @@ public class WeaponsModule implements NextModule {
         this.attachmentRegistry.load(attachmentsFile);
         this.attachmentManager = new AttachmentManager(this, attachmentRegistry);
         this.attachmentAuditLogger = new AttachmentAuditLogger(this);
-        File cosmeticsFile = new File(core.getDataFolder(), "weapon_cosmetics.yml");
-        if (!cosmeticsFile.exists()) {
-            core.saveResource("weapon_cosmetics.yml", false);
-        }
-        backfillWeaponCosmeticDefaults(cosmeticsFile);
-        this.weaponCosmeticManager = new WeaponCosmeticManager(core, weaponRegistry);
-        this.weaponRegistry.setDisplayNameDecorator(weaponCosmeticManager::decorateWeaponDisplayName);
-        this.weaponCosmeticWorkbenchGUI = new WeaponCosmeticWorkbenchGUI(this, weaponCosmeticManager);
-        this.weaponCosmeticEditorGUI = new WeaponCosmeticEditorGUI(this, weaponCosmeticManager);
-        this.weaponCosmeticStationManager = new WeaponCosmeticStationManager(this, weaponCosmeticWorkbenchGUI);
+        registerCosmeticsBridge();
+        this.weaponRegistry.setDisplayNameDecorator((item, weapon, baseName) -> {
+            OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+            return cosmetics == null ? baseName : cosmetics.decorateWeaponDisplayName(item, baseName);
+        });
 
         this.magazineManager = new MagazineManager(core);
         this.utilitySettings = UtilitySettings.fromConfig(core.getConfig().getConfigurationSection("weapons.utility"));
@@ -276,10 +264,6 @@ public class WeaponsModule implements NextModule {
         // GUI and Commands — Categorized Items GUI (replaces old Weapons GUI)
         this.attachmentWorkbenchGUI = new AttachmentWorkbenchGUI(this);
         registerListener(attachmentWorkbenchGUI);
-        registerListener(weaponCosmeticWorkbenchGUI);
-        registerListener(weaponCosmeticEditorGUI);
-        registerListener(weaponCosmeticStationManager);
-        weaponCosmeticStationManager.load();
 
         ItemsGUI itemsGui = new ItemsGUI(this);
         registerListener(itemsGui);
@@ -299,21 +283,13 @@ public class WeaponsModule implements NextModule {
             core.getCommand("weaponconfig").setExecutor(weaponConfigCommand);
             core.getCommand("weaponconfig").setTabCompleter(weaponConfigCommand);
         } else {
-            core.getLogger().warning("[OpenWeapons] /weaponconfig is missing from plugin.yml.");
-        }
-
-        if (core.getCommand("weaponcosmetic") != null) {
-            WeaponCosmeticCommand cosmeticCommand = new WeaponCosmeticCommand(this, weaponCosmeticManager);
-            core.getCommand("weaponcosmetic").setExecutor(cosmeticCommand);
-            core.getCommand("weaponcosmetic").setTabCompleter(cosmeticCommand);
-        } else {
-            core.getLogger().warning("[OpenWeapons] /weaponcosmetic is missing from plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /weaponconfig manca in plugin.yml.");
         }
 
         if (core.getCommand("weaponbench") != null) {
             core.getCommand("weaponbench").setExecutor(new AttachmentWorkbenchCommand(this));
         } else {
-            core.getLogger().warning("[OpenWeapons] /weaponbench is missing from plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /weaponbench manca in plugin.yml.");
         }
 
         UncuffCommand uncuffCommand = new UncuffCommand(this);
@@ -344,24 +320,24 @@ public class WeaponsModule implements NextModule {
             core.getCommand("wanted").setExecutor(wantedCommand);
             core.getCommand("wanted").setTabCompleter(wantedCommand);
         } else {
-            core.getLogger().warning("[OpenWeapons] /wanted is missing from plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /wanted manca in plugin.yml.");
         }
 
         if (core.getCommand("sos") != null) {
             core.getCommand("sos").setExecutor(new SosCommand(this));
         } else {
-            core.getLogger().warning("[OpenWeapons] /sos is missing from plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /sos manca in plugin.yml.");
         }
 
         if (core.getCommand("lawradio") != null) {
             core.getCommand("lawradio").setExecutor(lawRadioManager);
         } else {
-            core.getLogger().warning("[OpenWeapons] /lawradio is missing from plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /lawradio manca in plugin.yml.");
         }
 
         syncOnlineJumpRestrictions();
 
-        core.getLogger().info("[OpenWeapons] Module enabled successfully.");
+        core.getLogger().info("[OpenWeapons] Modulo abilitato correttamente.");
     }
 
     private void backfillWeaponVisualDefaults(File weaponsFile) {
@@ -396,39 +372,10 @@ public class WeaponsModule implements NextModule {
 
             if (changed) {
                 current.save(weaponsFile);
-                core.getLogger().info("[OpenWeapons] Added missing weapon visual model data to weapons.yml.");
+                core.getLogger().info("[OpenWeapons] Aggiunti i model data visuali mancanti delle armi in weapons.yml.");
             }
         } catch (Exception e) {
-            core.getLogger().warning("[OpenWeapons] Could not backfill weapon visual model data: " + e.getMessage());
-        }
-    }
-
-    private void backfillWeaponCosmeticDefaults(File cosmeticsFile) {
-        try (InputStream resource = core.getResource("weapon_cosmetics.yml")) {
-            if (resource == null) {
-                return;
-            }
-
-            YamlConfiguration defaults = YamlConfiguration.loadConfiguration(
-                    new InputStreamReader(resource, StandardCharsets.UTF_8));
-            YamlConfiguration current = YamlConfiguration.loadConfiguration(cosmeticsFile);
-            boolean changed = false;
-
-            changed |= migrateLegacyLedTokenDefaults(current, defaults);
-            changed |= migrateLegacyColorTokenDefaults(current, defaults);
-            changed |= migrateLegacySkinDisplayDefaults(current, defaults);
-            for (String key : List.of("weapons", "leds", "colors", "skins")) {
-                if (defaults.contains(key)) {
-                    changed |= mergeMissingConfigValue(current, defaults, key);
-                }
-            }
-
-            if (changed) {
-                current.save(cosmeticsFile);
-                core.getLogger().info("[OpenWeapons] Added missing weapon cosmetic token defaults to weapon_cosmetics.yml.");
-            }
-        } catch (Exception e) {
-            core.getLogger().warning("[OpenWeapons] Could not backfill weapon cosmetic defaults: " + e.getMessage());
+            core.getLogger().warning("[OpenWeapons] Impossibile completare il backfill dei model data visuali delle armi: " + e.getMessage());
         }
     }
 
@@ -467,7 +414,7 @@ public class WeaponsModule implements NextModule {
                 core.getLogger().info("[OpenWeapons] Migrated grenade visuals to dedicated resource-pack models.");
             }
         } catch (Exception e) {
-            core.getLogger().warning("[OpenWeapons] Could not backfill grenade visual model data: " + e.getMessage());
+            core.getLogger().warning("[OpenWeapons] Impossibile completare il backfill dei model data visuali delle granate: " + e.getMessage());
         }
     }
 
@@ -479,109 +426,13 @@ public class WeaponsModule implements NextModule {
                 && customModelData <= 275;
     }
 
-    private boolean migrateLegacyLedTokenDefaults(YamlConfiguration current, YamlConfiguration defaults) {
-        ConfigurationSection defaultLeds = defaults.getConfigurationSection("leds");
-        ConfigurationSection currentLeds = current.getConfigurationSection("leds");
-        if (defaultLeds == null || currentLeds == null) {
-            return false;
+    private void registerCosmeticsBridge() {
+        if (cosmeticsBridge != null) {
+            Bukkit.getServicesManager().unregister(OpenCosmeticsWeaponBridge.class, cosmeticsBridge);
         }
-
-        boolean changed = false;
-        for (String ledId : defaultLeds.getKeys(false)) {
-            ConfigurationSection defaultOption = defaultLeds.getConfigurationSection(ledId);
-            ConfigurationSection currentOption = currentLeds.getConfigurationSection(ledId);
-            if (defaultOption == null || currentOption == null) {
-                continue;
-            }
-            int defaultCustomModelData = defaultOption.getInt("token-custom-model-data", 0);
-            if (defaultCustomModelData <= 0) {
-                continue;
-            }
-            if (!currentOption.contains("token-custom-model-data")) {
-                currentOption.set("token-custom-model-data", defaultCustomModelData);
-                changed = true;
-            }
-            String currentMaterial = currentOption.getString("token-material", "");
-            String defaultMaterial = defaultOption.getString("token-material", "");
-            if (currentMaterial.equalsIgnoreCase("REDSTONE_TORCH") && !defaultMaterial.isBlank()) {
-                currentOption.set("token-material", defaultMaterial);
-                changed = true;
-            }
-        }
-        return changed;
-    }
-
-    private boolean migrateLegacyColorTokenDefaults(YamlConfiguration current, YamlConfiguration defaults) {
-        ConfigurationSection defaultColors = defaults.getConfigurationSection("colors");
-        ConfigurationSection currentColors = current.getConfigurationSection("colors");
-        if (defaultColors == null || currentColors == null) {
-            return false;
-        }
-
-        boolean changed = false;
-        for (String colorId : defaultColors.getKeys(false)) {
-            ConfigurationSection defaultOption = defaultColors.getConfigurationSection(colorId);
-            ConfigurationSection currentOption = currentColors.getConfigurationSection(colorId);
-            if (defaultOption == null || currentOption == null) {
-                continue;
-            }
-            String defaultMaterial = defaultOption.getString("token-material", "");
-            if (!defaultMaterial.isBlank() && !currentOption.getString("token-material", "").equalsIgnoreCase(defaultMaterial)) {
-                currentOption.set("token-material", defaultMaterial);
-                changed = true;
-            }
-            int defaultCustomModelData = defaultOption.getInt("token-custom-model-data", 0);
-            if (defaultCustomModelData > 0 && currentOption.getInt("token-custom-model-data", 0) != defaultCustomModelData) {
-                currentOption.set("token-custom-model-data", defaultCustomModelData);
-                changed = true;
-            }
-            String defaultHex = defaultOption.getString("hex", "");
-            if (!defaultHex.isBlank() && !currentOption.contains("hex")) {
-                currentOption.set("hex", defaultHex);
-                changed = true;
-            }
-        }
-        return changed;
-    }
-
-    private boolean migrateLegacySkinDisplayDefaults(YamlConfiguration current, YamlConfiguration defaults) {
-        ConfigurationSection defaultSkins = defaults.getConfigurationSection("skins");
-        ConfigurationSection currentSkins = current.getConfigurationSection("skins");
-        if (defaultSkins == null || currentSkins == null) {
-            return false;
-        }
-
-        boolean changed = false;
-        for (String weaponId : defaultSkins.getKeys(false)) {
-            ConfigurationSection defaultWeapon = defaultSkins.getConfigurationSection(weaponId);
-            ConfigurationSection currentWeapon = currentSkins.getConfigurationSection(weaponId);
-            if (defaultWeapon == null || currentWeapon == null) {
-                continue;
-            }
-            for (String skinId : defaultWeapon.getKeys(false)) {
-                ConfigurationSection defaultSkin = defaultWeapon.getConfigurationSection(skinId);
-                ConfigurationSection currentSkin = currentWeapon.getConfigurationSection(skinId);
-                if (defaultSkin == null || currentSkin == null) {
-                    continue;
-                }
-                String currentDisplayName = currentSkin.getString("display-name", "");
-                String defaultDisplayName = defaultSkin.getString("display-name", "");
-                if (skinId.equalsIgnoreCase("gold-reserve") && currentDisplayName.contains("Gold Reserve")
-                        && !defaultDisplayName.isBlank()) {
-                    currentSkin.set("display-name", defaultDisplayName);
-                    changed = true;
-                }
-                if (!currentSkin.contains("name-suffix") && defaultSkin.contains("name-suffix")) {
-                    currentSkin.set("name-suffix", defaultSkin.get("name-suffix"));
-                    changed = true;
-                }
-                if (!currentSkin.contains("suffix-gradient") && defaultSkin.contains("suffix-gradient")) {
-                    currentSkin.set("suffix-gradient", defaultSkin.get("suffix-gradient"));
-                    changed = true;
-                }
-            }
-        }
-        return changed;
+        this.cosmeticsBridge = new OpenWeaponsCosmeticsBridge();
+        Bukkit.getServicesManager().register(OpenCosmeticsWeaponBridge.class, cosmeticsBridge, core, ServicePriority.Normal);
+        core.getLogger().info("[OpenWeapons] Bridge Open Cosmetics registrato.");
     }
 
     private boolean mergeMissingConfigValue(ConfigurationSection currentParent, ConfigurationSection defaultParent, String key) {
@@ -626,12 +477,15 @@ public class WeaponsModule implements NextModule {
         if (weaponAnimationSuppressor != null) {
             weaponAnimationSuppressor.disablePacketHook();
         }
+        if (cosmeticsBridge != null) {
+            Bukkit.getServicesManager().unregister(OpenCosmeticsWeaponBridge.class, cosmeticsBridge);
+            cosmeticsBridge = null;
+        }
         Bukkit.getOnlinePlayers().forEach(JumpRestrictionManager::clearAll);
         for (Listener listener : listeners) {
             HandlerList.unregisterAll(listener);
         }
         listeners.clear();
-        automaticSkinFireSuppression.clear();
     }
 
     public CorePlugin getCore() {
@@ -662,27 +516,21 @@ public class WeaponsModule implements NextModule {
         return attachmentWorkbenchGUI;
     }
 
-    public WeaponCosmeticManager getWeaponCosmeticManager() {
-        return weaponCosmeticManager;
+    public OpenCosmeticsApi getOpenCosmeticsApi() {
+        var registration = Bukkit.getServicesManager().getRegistration(OpenCosmeticsApi.class);
+        return registration == null ? null : registration.getProvider();
     }
 
     public void setAutomaticSkinFireSuppressed(UUID playerId, boolean suppressed) {
-        if (playerId == null) {
-            return;
-        }
-        if (suppressed) {
-            automaticSkinFireSuppression.add(playerId);
-        } else {
-            automaticSkinFireSuppression.remove(playerId);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        if (cosmetics != null) {
+            cosmetics.setAutomaticSkinFireSuppressed(playerId, suppressed);
         }
     }
 
     public boolean isAutomaticSkinFireSuppressed(UUID playerId) {
-        return playerId != null && automaticSkinFireSuppression.contains(playerId);
-    }
-
-    public WeaponCosmeticStationManager getWeaponCosmeticStationManager() {
-        return weaponCosmeticStationManager;
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics != null && cosmetics.isAutomaticSkinFireSuppressed(playerId);
     }
 
     public MagazineManager getMagazineManager() {
@@ -811,91 +659,90 @@ public class WeaponsModule implements NextModule {
         }
     }
 
+    private final class OpenWeaponsCosmeticsBridge implements OpenCosmeticsWeaponBridge {
+        @Override
+        public String getWeaponId(ItemStack item) {
+            WeaponDefinition weapon = getWeaponDefinition(item);
+            return weapon == null ? null : weapon.getId();
+        }
+
+        @Override
+        public boolean isWeapon(ItemStack item) {
+            return getWeaponDefinition(item) != null;
+        }
+
+        @Override
+        public void refreshWeaponVisual(ItemStack item) {
+            WeaponsModule.this.refreshWeaponVisual(item);
+        }
+    }
+
     public boolean supportsWeaponCosmetics(String weaponId) {
-        return weaponCosmeticManager != null && weaponCosmeticManager.supportsWeapon(weaponId);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics != null && cosmetics.supportsWeapon(weaponId);
     }
 
     public boolean supportsWeaponCosmeticType(String weaponId, String type) {
-        return weaponCosmeticManager != null && weaponCosmeticManager.supportsWeaponCosmeticType(weaponId, type);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics != null && cosmetics.supportsWeaponCosmeticType(weaponId, type);
     }
 
     public List<String> getWeaponCosmeticSkinIds(String weaponId) {
-        return weaponCosmeticManager == null ? List.of() : weaponCosmeticManager.getSkinIds(weaponId);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? List.of() : cosmetics.getSkinIds(weaponId);
     }
 
     public List<String> getWeaponCosmeticLedIds() {
-        return weaponCosmeticManager == null ? List.of() : weaponCosmeticManager.getLedIds();
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? List.of() : cosmetics.getLedIds();
     }
 
     public List<String> getWeaponCosmeticColorIds() {
-        return weaponCosmeticManager == null ? List.of() : weaponCosmeticManager.getColorIds();
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? List.of() : cosmetics.getColorIds();
     }
 
     public String getWeaponCosmeticSkinDisplayName(String weaponId, String skinId) {
-        if (weaponCosmeticManager == null) {
-            return skinId;
-        }
-        WeaponCosmeticManager.SkinOption option = weaponCosmeticManager.getSkinOption(weaponId, skinId);
-        return option == null ? skinId : option.displayName();
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? skinId : cosmetics.getSkinDisplayName(weaponId, skinId);
     }
 
     public String getWeaponCosmeticLedDisplayName(String ledId) {
-        if (weaponCosmeticManager == null) {
-            return ledId;
-        }
-        WeaponCosmeticManager.CosmeticOption option = weaponCosmeticManager.getLedOption(ledId);
-        return option == null ? ledId : option.displayName();
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? ledId : cosmetics.getLedDisplayName(ledId);
     }
 
     public String getWeaponCosmeticColorDisplayName(String colorId) {
-        if (weaponCosmeticManager == null) {
-            return colorId;
-        }
-        WeaponCosmeticManager.CosmeticOption option = weaponCosmeticManager.getColorOption(colorId);
-        return option == null ? colorId : option.displayName();
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? colorId : cosmetics.getColorDisplayName(colorId);
     }
 
     public String getWeaponCosmeticColorHex(String colorId) {
-        if (weaponCosmeticManager == null) {
-            return WeaponCosmeticManager.NONE;
-        }
-        WeaponCosmeticManager.CosmeticOption option = weaponCosmeticManager.getColorOption(colorId);
-        return option == null || option.rgb() == null
-                ? WeaponCosmeticManager.NONE
-                : WeaponCosmeticManager.formatHex(option.rgb());
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? OpenCosmeticsApi.NONE : cosmetics.getColorHex(colorId);
     }
 
     public ItemStack createWeaponCosmeticToken(String type, String id, int amount) {
-        return weaponCosmeticManager == null ? null : weaponCosmeticManager.createToken(type, id, amount);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics == null ? null : cosmetics.createToken(type, id, amount);
     }
 
     public boolean applyWeaponCosmeticSelection(ItemStack weaponItem, String skinId, String ledId, String color) {
-        if (weaponCosmeticManager == null) {
-            return false;
-        }
-        Integer rgb = WeaponCosmeticManager.normalize(color).equals(WeaponCosmeticManager.NONE)
-                ? null
-                : WeaponCosmeticManager.parseColorRgb(color);
-        if (color != null && !color.isBlank() && rgb == null
-                && !WeaponCosmeticManager.normalize(color).equals(WeaponCosmeticManager.NONE)) {
-            return false;
-        }
-        boolean applied = weaponCosmeticManager.applySelection(weaponItem, skinId, ledId, rgb);
-        if (applied) {
-            refreshWeaponVisual(weaponItem);
-        }
-        return applied;
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        return cosmetics != null && cosmetics.applySelection(weaponItem, skinId, ledId, color);
     }
 
     public void openWeaponCosmeticWorkbench(Player player) {
-        if (player != null && weaponCosmeticWorkbenchGUI != null) {
-            weaponCosmeticWorkbenchGUI.open(player);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        if (player != null && cosmetics != null) {
+            cosmetics.openWorkbench(player);
         }
     }
 
     public void openWeaponCosmeticEditor(Player player) {
-        if (player != null && weaponCosmeticEditorGUI != null) {
-            weaponCosmeticEditorGUI.open(player);
+        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
+        if (player != null && cosmetics != null) {
+            cosmetics.openEditor(player);
         }
     }
 
@@ -1114,8 +961,8 @@ public class WeaponsModule implements NextModule {
 
     private void logPolicyError(WeaponCombatPolicy policy, String phase, Throwable error) {
         if (core != null) {
-            core.getLogger().warning("[OpenWeapons] Combat policy " + policy.getClass().getName()
-                    + " failed during " + phase + ": " + error.getMessage());
+            core.getLogger().warning("[OpenWeapons] Policy combattimento " + policy.getClass().getName()
+                    + " fallita durante " + phase + ": " + error.getMessage());
         }
     }
 

@@ -25,19 +25,19 @@ public class BailCommand implements CommandExecutor {
 
         ArrestRecord record = module.getArrestManager().getRecord(player.getUniqueId());
         if (record == null) {
-            player.sendMessage(Component.text("You are not arrested.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non sei arrestato.", NamedTextColor.RED));
             return true;
         }
 
         if (record.getBailAmount() <= 0) {
-            player.sendMessage(Component.text("There is no bail set for your arrest. You must serve your time.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non e' stata impostata una cauzione per il tuo arresto. Devi scontare la pena.", NamedTextColor.RED));
             return true;
         }
 
         // Get BankModule
         BankModule bankModule = module.getCore().getModuleManager().getModule(BankModule.class);
         if (bankModule == null || !bankModule.isDatabaseReady()) {
-            player.sendMessage(Component.text("Banking system is not available.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Il sistema bancario non e' disponibile.", NamedTextColor.RED));
             return true;
         }
 
@@ -48,13 +48,13 @@ public class BailCommand implements CommandExecutor {
 
         accountDAO.getAccount(accountName, AccountType.PLAYER).thenAccept(account -> {
             if (account == null) {
-                player.sendMessage(Component.text("You don't have a bank account.", NamedTextColor.RED));
+                player.sendMessage(Component.text("Non hai un conto bancario.", NamedTextColor.RED));
                 return;
             }
 
             if (account.getBalance() < record.getBailAmount()) {
-                player.sendMessage(Component.text("Insufficient funds! You need $" + String.format("%.2f", record.getBailAmount())
-                        + " but only have $" + String.format("%.2f", account.getBalance()) + ".", NamedTextColor.RED));
+                player.sendMessage(Component.text("Fondi insufficienti! Ti servono $" + String.format("%.2f", record.getBailAmount())
+                        + ", ma hai solo $" + String.format("%.2f", account.getBalance()) + ".", NamedTextColor.RED));
                 return;
             }
 
@@ -63,12 +63,12 @@ public class BailCommand implements CommandExecutor {
             account.setAccountingBalance(account.getBalance());
             accountDAO.updateAccount(account).thenRun(() -> {
                 module.getCore().getServer().getScheduler().runTask(module.getCore(), () -> {
-                    module.getArrestManager().release(player.getUniqueId(), "Bail paid ($" + String.format("%.2f", record.getBailAmount()) + ")");
-                    player.sendMessage(Component.text("Bail paid! $" + String.format("%.2f", record.getBailAmount()) + " has been deducted from your account.", NamedTextColor.GREEN));
+                    module.getArrestManager().release(player.getUniqueId(), "Cauzione pagata ($" + String.format("%.2f", record.getBailAmount()) + ")");
+                    player.sendMessage(Component.text("Cauzione pagata! $" + String.format("%.2f", record.getBailAmount()) + " sono stati scalati dal tuo conto.", NamedTextColor.GREEN));
                 });
             });
         }).exceptionally(ex -> {
-            player.sendMessage(Component.text("An error occurred while processing your bail payment.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Si e' verificato un errore durante il pagamento della cauzione.", NamedTextColor.RED));
             ex.printStackTrace();
             return null;
         });

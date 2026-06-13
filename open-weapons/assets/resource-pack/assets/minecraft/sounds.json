@@ -1,0 +1,415 @@
+{
+  "ar.fire": {
+    "sounds": [
+      "weapons/ar/fire_1",
+      "weapons/ar/fire_2",
+      "weapons/ar/fire_3",
+      "weapons/ar/fire_4",
+      "weapons/ar/fire_5",
+      "weapons/ar/fire_6"
+    ]
+  },
+  "ar.fire2": {
+    "sounds": [
+      "weapons/ar/fire_7",
+      "weapons/ar/fire_8",
+      "weapons/ar/fire_9",
+      "weapons/ar/fire_10",
+      "weapons/ar/fire_11",
+      "weapons/ar/fire_12"
+    ]
+  },
+  "ar.raise": {
+    "sounds": [
+      "weapons/ar/raise"
+    ]
+  },
+  "ar.reload_1": {
+    "sounds": [
+      "weapons/ar/reload_1"
+    ]
+  },
+  "ar.reload_2": {
+    "sounds": [
+      "weapons/ar/reload_2"
+    ]
+  },
+  "ar.reload_3": {
+    "sounds": [
+      "weapons/ar/reload_3"
+    ]
+  },
+  "ar.scope_in": {
+    "sounds": [
+      "weapons/ar/scope_in"
+    ]
+  },
+  "ar.scope_out": {
+    "sounds": [
+      "weapons/ar/scope_out"
+    ]
+  },
+  "effects.hit": {
+    "sounds": [
+      "weapons/effects/hit"
+    ]
+  },
+  "effects.kill": {
+    "sounds": [
+      "weapons/effects/kill"
+    ]
+  },
+  "effects.risk": {
+    "sounds": [
+      "weapons/effects/risk_1",
+      "weapons/effects/risk_2",
+      "weapons/effects/risk_3"
+    ]
+  },
+  "pistol.fire": {
+    "sounds": [
+      "weapons/pistol/fire_1"
+    ]
+  },
+  "pistol.reload_1": {
+    "sounds": [
+      "weapons/pistol/reload_1"
+    ]
+  },
+  "pistol.reload_2": {
+    "sounds": [
+      "weapons/pistol/reload_2"
+    ]
+  },
+  "pistol.reload_3": {
+    "sounds": [
+      "weapons/pistol/reload_3"
+    ]
+  },
+  "pistol.scope_in": {
+    "sounds": [
+      "weapons/pistol/scope_in"
+    ]
+  },
+  "pistol.scope_out": {
+    "sounds": [
+      "weapons/pistol/scope_out"
+    ]
+  },
+  "smg.fire": {
+    "sounds": [
+      "weapons/smg/fire_1",
+      "weapons/smg/fire_2",
+      "weapons/smg/fire_3",
+      "weapons/smg/fire_4",
+      "weapons/smg/fire_5",
+      "weapons/smg/fire_6"
+    ]
+  },
+  "smg.fire2": {
+    "sounds": [
+      "weapons/smg/fire_7"
+    ]
+  },
+  "smg.reload_1": {
+    "sounds": [
+      "weapons/smg/reload_1"
+    ]
+  },
+  "smg.reload_2": {
+    "sounds": [
+      "weapons/smg/reload_2"
+    ]
+  },
+  "smg.reload_3": {
+    "sounds": [
+      "weapons/smg/reload_3"
+    ]
+  },
+  "smg.scope_in": {
+    "sounds": [
+      "weapons/smg/scope_in"
+    ]
+  },
+  "smg.scope_out": {
+    "sounds": [
+      "weapons/smg/scope_out"
+    ]
+  },
+  "weapons.ak47.sugarline.fire": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/fire_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_3",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_4",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/ak47/sugarline/fire_5",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.headshot": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/headshot",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.hit": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/hit",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak47.sugarline.reload": {
+    "sounds": [
+      {
+        "name": "weapons/ak47/sugarline/reload",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.ak_47.fire": {
+    "sounds": [
+      "weapons/ak_47/fire_1",
+      "weapons/ak_47/fire_2",
+      "weapons/ak_47/fire_3",
+      "weapons/ak_47/fire_4"
+    ]
+  },
+  "weapons.ar_15.fire": {
+    "sounds": [
+      "weapons/ar_15/fire_1",
+      "weapons/ar_15/fire_2",
+      "weapons/ar_15/fire_3",
+      "weapons/ar_15/fire_4"
+    ]
+  },
+  "weapons.ar_15.reload": {
+    "sounds": [
+      "weapons/ar_15/reload"
+    ]
+  },
+  "weapons.awp.fire": {
+    "sounds": [
+      "weapons/awp/fire_1",
+      "weapons/awp/fire_2",
+      "weapons/awp/fire_3",
+      "weapons/awp/fire_4"
+    ]
+  },
+  "weapons.awp.reload": {
+    "sounds": [
+      "weapons/awp/reload"
+    ]
+  },
+  "weapons.barrett_mrad.fire": {
+    "sounds": [
+      "weapons/barrett_mrad/fire_1",
+      "weapons/barrett_mrad/fire_2",
+      "weapons/barrett_mrad/fire_3",
+      "weapons/barrett_mrad/fire_4"
+    ]
+  },
+  "weapons.barrett_mrad.reload": {
+    "sounds": [
+      "weapons/barrett_mrad/reload"
+    ]
+  },
+  "weapons.beretta_92fs.fire": {
+    "sounds": [
+      "weapons/beretta_92fs/fire_1",
+      "weapons/beretta_92fs/fire_2",
+      "weapons/beretta_92fs/fire_3",
+      "weapons/beretta_92fs/fire_4"
+    ]
+  },
+  "weapons.beretta_92fs.reload": {
+    "sounds": [
+      "weapons/beretta_92fs/reload"
+    ]
+  },
+  "weapons.desert_eagle.reload": {
+    "sounds": [
+      "weapons/desert_eagle/reload"
+    ]
+  },
+  "weapons.famas.fire": {
+    "sounds": [
+      "weapons/famas/fire_1",
+      "weapons/famas/fire_2",
+      "weapons/famas/fire_3",
+      "weapons/famas/fire_4"
+    ]
+  },
+  "weapons.fn_scar_h.fire": {
+    "sounds": [
+      "weapons/fn_scar_h/fire_1",
+      "weapons/fn_scar_h/fire_2",
+      "weapons/fn_scar_h/fire_3",
+      "weapons/fn_scar_h/fire_4"
+    ]
+  },
+  "weapons.fn_scar_h.reload": {
+    "sounds": [
+      "weapons/fn_scar_h/reload"
+    ]
+  },
+  "weapons.glock_19.fire": {
+    "sounds": [
+      "weapons/glock_19/fire_1",
+      "weapons/glock_19/fire_2",
+      "weapons/glock_19/fire_3",
+      "weapons/glock_19/fire_4"
+    ]
+  },
+  "weapons.glock_19.reload": {
+    "sounds": [
+      "weapons/glock_19/reload"
+    ]
+  },
+  "weapons.hk416.fire": {
+    "sounds": [
+      "weapons/hk416/fire_1",
+      "weapons/hk416/fire_2",
+      "weapons/hk416/fire_3",
+      "weapons/hk416/fire_4"
+    ]
+  },
+  "weapons.hk416.reload": {
+    "sounds": [
+      "weapons/hk416/reload"
+    ]
+  },
+  "weapons.m4a1.fire": {
+    "sounds": [
+      "weapons/m4a1/fire_1",
+      "weapons/m4a1/fire_2",
+      "weapons/m4a1/fire_3",
+      "weapons/m4a1/fire_4"
+    ]
+  },
+  "weapons.m4a1.reload": {
+    "sounds": [
+      "weapons/m4a1/reload"
+    ]
+  },
+  "weapons.m4a1.royal.fire": {
+    "sounds": [
+      {
+        "name": "weapons/m4a1/royal/fire_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/fire_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/fire_3",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.m4a1.royal.reload": {
+    "sounds": [
+      {
+        "name": "weapons/m4a1/royal/reload_1",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_2",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_3",
+        "volume": 0.85
+      },
+      {
+        "name": "weapons/m4a1/royal/reload_4",
+        "volume": 0.85
+      }
+    ]
+  },
+  "weapons.mp5.fire": {
+    "sounds": [
+      "weapons/mp5/fire_1",
+      "weapons/mp5/fire_2",
+      "weapons/mp5/fire_3"
+    ]
+  },
+  "weapons.mp5.reload": {
+    "sounds": [
+      "weapons/mp5/reload_1",
+      "weapons/mp5/reload_2",
+      "weapons/mp5/reload_3",
+      "weapons/mp5/reload_4"
+    ]
+  },
+  "weapons.mp7.fire": {
+    "sounds": [
+      "weapons/mp7/fire_1",
+      "weapons/mp7/fire_2",
+      "weapons/mp7/fire_3",
+      "weapons/mp7/fire_4"
+    ]
+  },
+  "weapons.mp7.reload": {
+    "sounds": [
+      "weapons/mp7/reload"
+    ]
+  },
+  "weapons.ppk.fire": {
+    "sounds": [
+      "weapons/ppk/fire_1",
+      "weapons/ppk/fire_2",
+      "weapons/ppk/fire_3",
+      "weapons/ppk/fire_4"
+    ]
+  },
+  "weapons.ppk.reload": {
+    "sounds": [
+      "weapons/ppk/reload"
+    ]
+  },
+  "weapons.remington_870.fire": {
+    "sounds": [
+      "weapons/remington_870/fire_1",
+      "weapons/remington_870/fire_2",
+      "weapons/remington_870/fire_3",
+      "weapons/remington_870/fire_4"
+    ]
+  },
+  "weapons.remington_870.reload": {
+    "sounds": [
+      "weapons/remington_870/reload"
+    ]
+  },
+  "weapons.sig_mcx.fire": {
+    "sounds": [
+      "weapons/sig_mcx/fire_1",
+      "weapons/sig_mcx/fire_2",
+      "weapons/sig_mcx/fire_3",
+      "weapons/sig_mcx/fire_4"
+    ]
+  },
+  "weapons.sig_mcx.reload": {
+    "sounds": [
+      "weapons/sig_mcx/reload"
+    ]
+  }
+}

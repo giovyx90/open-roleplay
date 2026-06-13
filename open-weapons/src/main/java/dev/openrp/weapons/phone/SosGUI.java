@@ -38,9 +38,9 @@ public class SosGUI implements Listener {
          gui.setItem(i, filler);
       }
 
-      gui.setItem(11, this.createServiceItem(Material.SHIELD, "Police", NamedTextColor.BLUE));
-      gui.setItem(13, this.createServiceItem(Material.GOLDEN_APPLE, "Hospital", NamedTextColor.GREEN));
-      gui.setItem(15, this.createServiceItem(Material.CAMPFIRE, "Fire Department", NamedTextColor.RED));
+      gui.setItem(11, this.createServiceItem(Material.SHIELD, "Polizia", NamedTextColor.BLUE));
+      gui.setItem(13, this.createServiceItem(Material.GOLDEN_APPLE, "Ospedale", NamedTextColor.GREEN));
+      gui.setItem(15, this.createServiceItem(Material.CAMPFIRE, "Vigili del fuoco", NamedTextColor.RED));
       player.openInventory(gui);
    }
 
@@ -74,7 +74,7 @@ public class SosGUI implements Listener {
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
          meta.displayName(Component.text(name, color, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false));
-         meta.lore(List.of((TextComponent)Component.text("Click to call " + name, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)));
+         meta.lore(List.of((TextComponent)Component.text("Clicca per chiamare " + name, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)));
          item.setItemMeta(meta);
       }
 

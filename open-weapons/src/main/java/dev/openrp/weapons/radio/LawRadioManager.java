@@ -58,15 +58,15 @@ public class LawRadioManager implements Listener, CommandExecutor {
 
    public ItemStack createLawRadio() {
       ItemStack item = new ItemBuilder(Material.PAPER)
-         .name(Component.text("Law Radio", NamedTextColor.GRAY)
+         .name(Component.text("Radio forze dell'ordine", NamedTextColor.GRAY)
             .decoration(TextDecoration.BOLD, false)
             .decoration(TextDecoration.ITALIC, false))
          .customModelData(91)
          .lore(
             new Component[]{
                Component.text("", NamedTextColor.GRAY),
-               Component.text("Law enforcement cross-corps radio", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
-               Component.text("Right-click to open radio controls", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
+               Component.text("Radio interforze", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+               Component.text("Clic destro per aprire i controlli radio", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
             }
          )
          .build();
@@ -97,7 +97,7 @@ public class LawRadioManager implements Listener, CommandExecutor {
                event.setCancelled(true);
                Player player = event.getPlayer();
                if (!this.canUseRadio(player)) {
-                  player.sendMessage(Component.text("Only law enforcement can use this radio.", NamedTextColor.RED));
+                  player.sendMessage(Component.text("Solo le forze dell'ordine possono usare questa radio.", NamedTextColor.RED));
                } else {
                   this.openMainGui(player);
                }
@@ -149,7 +149,7 @@ public class LawRadioManager implements Listener, CommandExecutor {
          Bukkit.getScheduler().runTask(this.module.getCore(), () -> {
             if (message.equalsIgnoreCase("cancel")) {
                this.radioChat.remove(player.getUniqueId());
-               player.sendMessage(Component.text("Law radio chat disabled.", NamedTextColor.YELLOW));
+               player.sendMessage(Component.text("Chat radio disattivata.", NamedTextColor.YELLOW));
             } else {
                this.sendRadioMessage(player, message);
             }
@@ -161,7 +161,7 @@ public class LawRadioManager implements Listener, CommandExecutor {
       if (sender instanceof Player player) {
          if (args.length == 0) {
             if (!this.canUseRadio(player)) {
-               player.sendMessage(Component.text("Only law enforcement can use this radio.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Solo le forze dell'ordine possono usare questa radio.", NamedTextColor.RED));
                return true;
             } else {
                this.openMainGui(player);
@@ -171,7 +171,7 @@ public class LawRadioManager implements Listener, CommandExecutor {
             switch (args[0].toLowerCase()) {
                case "gps":
                   if (args.length < 2) {
-                     player.sendMessage(Component.text("Usage: /lawradio gps <supportId>", NamedTextColor.RED));
+                     player.sendMessage(Component.text("Uso: /lawradio gps <supportId>", NamedTextColor.RED));
                      return true;
                   }
 
@@ -182,31 +182,31 @@ public class LawRadioManager implements Listener, CommandExecutor {
                   break;
                case "support":
                   if (args.length < 2) {
-                     player.sendMessage(Component.text("Usage: /lawradio support <1-5>", NamedTextColor.RED));
+                     player.sendMessage(Component.text("Uso: /lawradio support <1-5>", NamedTextColor.RED));
                      return true;
                   }
 
                   try {
                      this.sendSupportRequest(player, Integer.parseInt(args[1]));
                   } catch (NumberFormatException e) {
-                     player.sendMessage(Component.text("Severity must be between 1 and 5.", NamedTextColor.RED));
+                     player.sendMessage(Component.text("La gravita' deve essere tra 1 e 5.", NamedTextColor.RED));
                   }
                   break;
                default:
-                  player.sendMessage(Component.text("Usage: /lawradio <gps|toggle|support>", NamedTextColor.RED));
+                  player.sendMessage(Component.text("Uso: /lawradio <gps|toggle|support>", NamedTextColor.RED));
             }
 
             return true;
          }
       } else {
-         sender.sendMessage(Component.text("Only players can use law radio actions.", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Solo i giocatori possono usare le azioni radio.", NamedTextColor.RED));
          return true;
       }
    }
 
    private void openMainGui(Player player) {
       LawRadioManager.MainHolder holder = new LawRadioManager.MainHolder();
-      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("law_radio_gui", "Law Radio"));
+      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("law_radio_gui", "Radio forze dell'ordine"));
       holder.inventory = inventory;
       this.fill(inventory);
       inventory.setItem(
@@ -214,32 +214,32 @@ public class LawRadioManager implements Listener, CommandExecutor {
          new ItemBuilder(Material.NOTE_BLOCK)
             .name(
                Component.text(
-                     this.radioChat.contains(player.getUniqueId()) ? "Radio Chat: ON" : "Radio Chat: OFF",
+                     this.radioChat.contains(player.getUniqueId()) ? "Chat radio: ON" : "Chat radio: OFF",
                      this.radioChat.contains(player.getUniqueId()) ? NamedTextColor.GREEN : NamedTextColor.RED,
                      new TextDecoration[]{TextDecoration.BOLD}
                   )
                   .decoration(TextDecoration.ITALIC, false)
             )
-            .lore(new Component[]{Component.text("Toggle law enforcement radio chat", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .lore(new Component[]{Component.text("Attiva/disattiva chat radio forze dell'ordine", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inventory.setItem(
          15,
          new ItemBuilder(Material.REDSTONE_TORCH)
-            .name(Component.text("Request Support", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Select severity level 1-5", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Richiedi supporto", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Seleziona gravita' 1-5", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inventory.setItem(
          22,
-         NexoUI.getCancelButton(Component.text("Close", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+         NexoUI.getCancelButton(Component.text("Chiudi", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
       );
       player.openInventory(inventory);
    }
 
    private void openSupportGui(Player player) {
       LawRadioManager.SupportHolder holder = new LawRadioManager.SupportHolder();
-      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("law_support_gui", "Support"));
+      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("law_support_gui", "Supporto"));
       holder.inventory = inventory;
       this.fill(inventory);
 
@@ -248,12 +248,12 @@ public class LawRadioManager implements Listener, CommandExecutor {
             9 + level,
             new ItemBuilder(Material.RED_CONCRETE)
                .name(
-                  Component.text("Support LV" + level, this.severityColor(level), new TextDecoration[]{TextDecoration.BOLD})
+                  Component.text("Supporto LV" + level, this.severityColor(level), new TextDecoration[]{TextDecoration.BOLD})
                      .decoration(TextDecoration.ITALIC, false)
                )
                .lore(
                   new Component[]{
-                     Component.text(level == 5 ? "Maximum severity" : "Severity level " + level, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
+                     Component.text(level == 5 ? "Gravita' massima" : "Livello gravita' " + level, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
                   }
                )
                .build()
@@ -265,15 +265,15 @@ public class LawRadioManager implements Listener, CommandExecutor {
 
    private void toggleRadioChat(Player player) {
       if (!this.canUseRadio(player)) {
-         player.sendMessage(Component.text("Only law enforcement can use this radio.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Solo le forze dell'ordine possono usare questa radio.", NamedTextColor.RED));
       } else if (!player.hasPermission("openrp.radio.use") && !this.hasRadio(player)) {
-         player.sendMessage(Component.text("You need a Law Radio item.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Ti serve una Radio forze dell'ordine.", NamedTextColor.RED));
       } else {
          if (this.radioChat.remove(player.getUniqueId())) {
-            player.sendMessage(Component.text("Law radio chat disabled.", NamedTextColor.YELLOW));
+            player.sendMessage(Component.text("Chat radio disattivata.", NamedTextColor.YELLOW));
          } else {
             this.radioChat.add(player.getUniqueId());
-            player.sendMessage(Component.text("Law radio chat enabled. Type in chat to transmit, or type cancel.", NamedTextColor.GREEN));
+            player.sendMessage(Component.text("Chat radio attivata. Scrivi in chat per trasmettere, oppure cancel.", NamedTextColor.GREEN));
          }
 
          player.closeInventory();
@@ -283,10 +283,10 @@ public class LawRadioManager implements Listener, CommandExecutor {
    private void sendRadioMessage(Player sender, String message) {
       if (!this.canUseRadio(sender)) {
          this.radioChat.remove(sender.getUniqueId());
-         sender.sendMessage(Component.text("You can no longer use law radio.", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Non puoi piu' usare la radio.", NamedTextColor.RED));
       } else if (!sender.hasPermission("openrp.radio.use") && !this.hasRadio(sender)) {
          this.radioChat.remove(sender.getUniqueId());
-         sender.sendMessage(Component.text("Law radio chat disabled because you do not have a radio.", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Chat radio disattivata perche' non hai una radio.", NamedTextColor.RED));
       } else {
          Component component = ((Builder)((Builder)((Builder)((Builder)Component.text()
                         .append(Component.text("[LAW RADIO] ", NamedTextColor.DARK_AQUA, new TextDecoration[]{TextDecoration.BOLD})))
@@ -305,14 +305,14 @@ public class LawRadioManager implements Listener, CommandExecutor {
 
    private void sendSupportRequest(Player caller, int level) {
       if (!this.canUseRadio(caller)) {
-         caller.sendMessage(Component.text("Only law enforcement can request radio support.", NamedTextColor.RED));
+         caller.sendMessage(Component.text("Solo le forze dell'ordine possono richiedere supporto radio.", NamedTextColor.RED));
       } else if (!caller.hasPermission("openrp.radio.use") && !this.hasRadio(caller)) {
-         caller.sendMessage(Component.text("You need a Law Radio item.", NamedTextColor.RED));
+         caller.sendMessage(Component.text("Ti serve una Radio forze dell'ordine.", NamedTextColor.RED));
       } else if (level >= 1 && level <= 5) {
          long now = System.currentTimeMillis();
          if (this.globalSupportCooldownUntil > now) {
             long remaining = Math.max(1L, (this.globalSupportCooldownUntil - now + 999L) / 1000L);
-            caller.sendMessage(Component.text("Support request cooldown: " + remaining + "s.", NamedTextColor.RED));
+            caller.sendMessage(Component.text("Cooldown richiesta supporto: " + remaining + "s.", NamedTextColor.RED));
          } else {
             String id = UUID.randomUUID().toString().substring(0, 8);
             LawRadioManager.SupportCall call = new LawRadioManager.SupportCall(
@@ -329,21 +329,21 @@ public class LawRadioManager implements Listener, CommandExecutor {
                recipients++;
             }
 
-            caller.sendMessage(Component.text("Support LV" + level + " request sent to " + recipients + " unit(s).", NamedTextColor.GREEN));
+            caller.sendMessage(Component.text("Supporto LV" + level + " richiesta inviata a " + recipients + " unita'.", NamedTextColor.GREEN));
          }
       } else {
-         caller.sendMessage(Component.text("Severity must be between 1 and 5.", NamedTextColor.RED));
+         caller.sendMessage(Component.text("La gravita' deve essere tra 1 e 5.", NamedTextColor.RED));
       }
    }
 
    private void activateSupportGps(Player player, String supportId) {
       LawRadioManager.SupportCall call = this.activeSupportCalls.get(supportId);
       if (call == null) {
-         player.sendMessage(Component.text("That support request is no longer active.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Quella richiesta supporto non e' piu' attiva.", NamedTextColor.RED));
       } else if (!this.canUseRadio(player) && !player.hasPermission("openrp.radio.monitor")) {
-         player.sendMessage(Component.text("You cannot use this support GPS.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non puoi usare questo GPS supporto.", NamedTextColor.RED));
       } else {
-         this.module.getDispatchGpsManager().activate(player, "SUPPORT LV" + call.level(), () -> {
+         this.module.getDispatchGpsManager().activate(player, "SUPPORTO LV" + call.level(), () -> {
             Player caller = Bukkit.getPlayer(call.callerUuid());
             return caller != null && caller.isOnline() ? caller.getLocation().clone() : call.location().clone();
          });
@@ -352,23 +352,23 @@ public class LawRadioManager implements Listener, CommandExecutor {
 
    private Component buildSupportAlert(LawRadioManager.SupportCall call) {
       String coords = String.format("%.0f %.0f %.0f", call.location().getX(), call.location().getY(), call.location().getZ());
-      Component gps = ((TextComponent)Component.text("[Activate GPS]", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD})
+      Component gps = ((TextComponent)Component.text("[Attiva GPS]", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD})
             .clickEvent(ClickEvent.runCommand("/lawradio gps " + call.id())))
-         .hoverEvent(HoverEvent.showText(Component.text("Activate support GPS", NamedTextColor.GREEN)));
+         .hoverEvent(HoverEvent.showText(Component.text("Attiva GPS supporto", NamedTextColor.GREEN)));
       return ((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)Component.text()
                                              .append(
                                                 Component.text(
-                                                   "SUPPORT LV" + call.level(), this.severityColor(call.level()), new TextDecoration[]{TextDecoration.BOLD}
+                                                   "SUPPORTO LV" + call.level(), this.severityColor(call.level()), new TextDecoration[]{TextDecoration.BOLD}
                                                 )
                                              ))
                                           .append(Component.newline()))
-                                       .append(Component.text("Coordinates: ", NamedTextColor.GRAY)))
+                                       .append(Component.text("Coordinate: ", NamedTextColor.GRAY)))
                                     .append(Component.text(coords, NamedTextColor.WHITE)))
                                  .append(Component.newline()))
-                              .append(Component.text("Caller: ", NamedTextColor.GRAY)))
+                              .append(Component.text("Chiamante: ", NamedTextColor.GRAY)))
                            .append(Component.text(call.callerName(), NamedTextColor.WHITE)))
                         .append(Component.newline()))
-                     .append(Component.text("Time: ", NamedTextColor.GRAY)))
+                     .append(Component.text("Ora: ", NamedTextColor.GRAY)))
                   .append(Component.text(DATE_FORMAT.format(call.createdAt()), NamedTextColor.YELLOW)))
                .append(Component.newline()))
             .append(gps))

@@ -1,7 +1,6 @@
 package dev.openrp.weapons.attachments;
 
-import dev.openrp.weapons.cosmetics.WeaponCosmeticManager;
-import dev.openrp.weapons.cosmetics.WeaponVisualVariantResolver;
+import dev.openrp.cosmetics.api.OpenCosmeticsApi;
 import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.model.WeaponVisualState;
 import dev.openrp.weapons.module.WeaponsModule;
@@ -198,7 +197,7 @@ public class AttachmentManager {
                 .map(AttachmentDefinition::getDisplayName)
                 .collect(Collectors.joining(" / "));
         if (modsDisplay.isBlank()) {
-            modsDisplay = "None";
+            modsDisplay = "Nessuna";
         }
         if (shotsText == null || shotsText.isBlank()) {
             module.getWeaponRegistry().updateWeaponLore(weaponItem, weapon, modsDisplay);
@@ -221,7 +220,7 @@ public class AttachmentManager {
         if (customModelData <= 0) {
             return;
         }
-        WeaponCosmeticManager cosmetics = module.getWeaponCosmeticManager();
+        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
         if (cosmetics != null) {
             Integer rgb = cosmetics.getWeaponColorRgb(weaponItem);
             cosmetics.applyVisualCustomModelData(meta, customModelData, rgb);
@@ -257,10 +256,7 @@ public class AttachmentManager {
     private List<String> getVisualVariantCandidates(ItemStack item, boolean hasMagazine) {
         boolean optic = getAttachment(item, AttachmentSlot.OPTIC) != null;
         boolean grip = getAttachment(item, AttachmentSlot.UNDERBARREL) != null;
-        WeaponCosmeticManager cosmetics = module.getWeaponCosmeticManager();
-        String led = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponLed(item);
-        String color = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponColor(item);
-        String skin = cosmetics == null ? WeaponCosmeticManager.NONE : cosmetics.getWeaponSkin(item);
-        return WeaponVisualVariantResolver.candidates(optic, hasMagazine, grip, led, color, skin);
+        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
+        return cosmetics == null ? List.of() : cosmetics.visualVariantCandidates(item, optic, hasMagazine, grip);
     }
 }

@@ -18,11 +18,11 @@ public class AttachmentWorkbenchCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Only players can use this command.");
+            sender.sendMessage("Solo i giocatori possono usare questo comando.");
             return true;
         }
         if (!player.hasPermission("openrp.weapons.workbench")) {
-            player.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Non hai il permesso di usare questo comando.", NamedTextColor.RED));
             return true;
         }
         module.getAttachmentWorkbenchGUI().open(player);

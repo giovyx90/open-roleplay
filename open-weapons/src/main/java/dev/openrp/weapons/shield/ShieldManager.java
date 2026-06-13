@@ -79,7 +79,7 @@ public class ShieldManager {
 
          if (this.getDurability(mainHand) <= 0) {
             this.setDurability(mainHand, 80);
-            player.sendActionBar(Component.text("Ballistic Shield ready.", NamedTextColor.GREEN));
+            player.sendActionBar(Component.text("Scudo balistico pronto.", NamedTextColor.GREEN));
          }
 
          return this.isBallisticShield(mainHand) && this.getDurability(mainHand) > 0 && this.isSourceInFront(player, source);
@@ -169,7 +169,7 @@ public class ShieldManager {
             ItemStack mainHand = player.getInventory().getItemInMainHand();
             if (this.isBallisticShield(mainHand) && this.getDurability(mainHand) <= 0) {
                this.setDurability(mainHand, 80);
-               player.sendMessage(Component.text("Ballistic Shield is ready again.", NamedTextColor.GREEN));
+               player.sendMessage(Component.text("Scudo balistico di nuovo pronto.", NamedTextColor.GREEN));
             }
          }
       }, 200L);
@@ -225,7 +225,7 @@ public class ShieldManager {
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
          meta.displayName(
-            Component.text("Riot Shield", NamedTextColor.GRAY)
+            Component.text("Scudo antisommossa", NamedTextColor.GRAY)
                .decoration(TextDecoration.BOLD, false)
                .decoration(TextDecoration.ITALIC, false)
          );
@@ -233,11 +233,11 @@ public class ShieldManager {
          meta.getPersistentDataContainer().set(this.shieldKey, PersistentDataType.STRING, "riot_shield");
          List<Component> lore = new ArrayList<>();
          lore.add(Component.text(""));
-         lore.add(Component.text("Blocks melee damage", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Does NOT block bullets", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Blocca danni corpo a corpo", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("NON blocca i proiettili", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
          lore.add(Component.text(""));
-         lore.add(Component.text("⚠ Prevents jumping while held", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Main hand only", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("⚠ Impedisce di saltare mentre lo tieni", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Solo mano principale", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
          meta.lore(lore);
          item.setItemMeta(meta);
       }
@@ -250,7 +250,7 @@ public class ShieldManager {
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
          meta.displayName(
-            Component.text("Ballistic Shield", NamedTextColor.GRAY)
+            Component.text("Scudo balistico", NamedTextColor.GRAY)
                .decoration(TextDecoration.BOLD, false)
                .decoration(TextDecoration.ITALIC, false)
          );
@@ -267,9 +267,9 @@ public class ShieldManager {
    private List<Component> buildBallisticLore(int currentDurability) {
       List<Component> lore = new ArrayList<>();
       lore.add(Component.text(""));
-      lore.add(Component.text("✦ Blocks bullet damage", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
-      lore.add(Component.text("⚠ Prevents jumping while held", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
-      lore.add(Component.text("Main hand only", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("✦ Blocca danni da proiettile", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("⚠ Impedisce di saltare mentre lo tieni", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Solo mano principale", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
       lore.add(Component.text(""));
       int maxDur = 80;
       int bars = 20;
@@ -283,12 +283,12 @@ public class ShieldManager {
 
       NamedTextColor durColor = filled > 10 ? NamedTextColor.GREEN : (filled > 5 ? NamedTextColor.YELLOW : NamedTextColor.RED);
       lore.add(
-         ((TextComponent)((TextComponent)Component.text("Durability: ", NamedTextColor.GRAY).append(Component.text(durBar.toString(), durColor)))
+         ((TextComponent)((TextComponent)Component.text("Durabilita': ", NamedTextColor.GRAY).append(Component.text(durBar.toString(), durColor)))
                .append(Component.text(" " + currentDurability + "/" + maxDur, NamedTextColor.GRAY)))
             .decoration(TextDecoration.ITALIC, false)
       );
       lore.add(Component.text(""));
-      lore.add(Component.text("⚠ .50 BMG will destroy this shield", NamedTextColor.DARK_RED).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("⚠ Il .50 BMG distrugge questo scudo", NamedTextColor.DARK_RED).decoration(TextDecoration.ITALIC, false));
       return lore;
    }
 

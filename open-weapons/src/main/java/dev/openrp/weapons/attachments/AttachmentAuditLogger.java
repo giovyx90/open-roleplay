@@ -48,7 +48,7 @@ public class AttachmentAuditLogger {
             Files.writeString(logPath, line, StandardCharsets.UTF_8,
                     StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (Exception e) {
-            module.getCore().getLogger().warning("[OpenWeapons] Failed to write attachment audit log: " + e.getMessage());
+            module.getCore().getLogger().warning("[OpenWeapons] Impossibile scrivere il log audit accessori: " + e.getMessage());
         }
     }
 

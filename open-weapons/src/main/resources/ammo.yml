@@ -1,5 +1,5 @@
 9mm:
-  display-name: 9mm Ammo
+  display-name: Munizioni 9mm
   material: IRON_NUGGET
   custom-model-data: 48
   max-stack: 64
@@ -8,7 +8,7 @@
   flesh-damage-multiplier: 1.0
   shield-durability-damage: 1
 46mm:
-  display-name: 4.6x30mm Ammo
+  display-name: Munizioni 4.6x30mm
   material: IRON_NUGGET
   custom-model-data: 49
   max-stack: 64
@@ -17,7 +17,7 @@
   flesh-damage-multiplier: 0.95
   shield-durability-damage: 1
 50ae:
-  display-name: .50 AE Ammo
+  display-name: Munizioni .50 AE
   material: IRON_NUGGET
   custom-model-data: 52
   max-stack: 32
@@ -26,7 +26,7 @@
   flesh-damage-multiplier: 1.2
   shield-durability-damage: 5
 556nato:
-  display-name: 5.56 Ammo
+  display-name: Munizioni 5.56
   material: IRON_NUGGET
   custom-model-data: 47
   max-stack: 64
@@ -35,7 +35,7 @@
   flesh-damage-multiplier: 1.0
   shield-durability-damage: 3
 762nato:
-  display-name: 7.62 Ammo
+  display-name: Munizioni 7.62
   material: IRON_NUGGET
   custom-model-data: 53
   max-stack: 32
@@ -44,7 +44,7 @@
   flesh-damage-multiplier: 1.12
   shield-durability-damage: 5
 12gauge:
-  display-name: 12 Gauge Shells
+  display-name: Cartucce calibro 12
   material: IRON_NUGGET
   custom-model-data: 51
   max-stack: 32
@@ -53,7 +53,7 @@
   flesh-damage-multiplier: 1.0
   shield-durability-damage: 3
 magazines:
-  display-name: Universal Magazines
+  display-name: Caricatori universali
   material: IRON_NUGGET
   custom-model-data: 54
   max-stack: 64

@@ -52,10 +52,10 @@ public class AmmoRegistry {
                 ammoTypes.put(key, new AmmoDefinition(key, displayName, material, customModelData, maxStack,
                         penetrationClass, armorDurabilityDamage, fleshDamageMultiplier, shieldDurabilityDamage));
             } catch (Exception e) {
-                core.getLogger().warning("[OpenWeapons] Failed to load ammo '" + key + "': " + e.getMessage());
+                core.getLogger().warning("[OpenWeapons] Impossibile caricare le munizioni '" + key + "': " + e.getMessage());
             }
         }
-        core.getLogger().info("[OpenWeapons] Loaded " + ammoTypes.size() + " ammo types.");
+        core.getLogger().info("[OpenWeapons] Caricati " + ammoTypes.size() + " tipi di munizioni.");
     }
 
     public AmmoDefinition getAmmo(String id) {

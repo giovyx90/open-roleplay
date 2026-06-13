@@ -65,7 +65,7 @@ public class ArmorManager {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(armorFile);
         ConfigurationSection root = config.getConfigurationSection("armors");
         if (root == null) {
-            core.getLogger().warning("[OpenWeapons] armor.yml has no 'armors' section; using built-in armor defaults.");
+            core.getLogger().warning("[OpenWeapons] armor.yml non contiene la sezione 'armors'; uso i default integrati.");
             armors.clear();
             armors.putAll(defaults);
             return;
@@ -92,7 +92,7 @@ public class ArmorManager {
         }
         armors.clear();
         armors.putAll(loaded);
-        core.getLogger().info("[OpenWeapons] Loaded " + armors.size() + " armor definition(s) from armor.yml.");
+        core.getLogger().info("[OpenWeapons] Caricate " + armors.size() + " definizione/i armatura da armor.yml.");
     }
 
     private Map<String, ArmorDefinition> defaultDefinitions() {
@@ -100,7 +100,7 @@ public class ArmorManager {
         // Light vest — no slowness, 50 durability
         defaults.put("vest_light", new ArmorDefinition(
                 "vest_light",
-                "Light Bulletproof Vest",
+                "Giubbotto antiproiettile leggero",
                 12010,
                 -1,      // No slowness
                 0.25,    // 25% damage reduction
@@ -113,7 +113,7 @@ public class ArmorManager {
         // Heavy vest — Slowness I, 100 durability
         defaults.put("vest_heavy", new ArmorDefinition(
                 "vest_heavy",
-                "Heavy Bulletproof Vest",
+                "Giubbotto antiproiettile pesante",
                 12011,
                 0,       // Slowness I (amplifier 0)
                 0.45,    // 45% damage reduction
@@ -126,7 +126,7 @@ public class ArmorManager {
         // Heavy vest with ceramic plate — Slowness II, 125 durability (100 vest + 25 plate)
         defaults.put("vest_heavy_plated", new ArmorDefinition(
                 "vest_heavy_plated",
-                "Heavy Plated Bulletproof Vest",
+                "Giubbotto antiproiettile pesante con piastra",
                 12012,
                 1,       // Slowness II (amplifier 1)
                 0.45,    // 45% damage reduction
@@ -191,7 +191,7 @@ public class ArmorManager {
             }
             return Integer.decode(value) & 0xFFFFFF;
         } catch (NumberFormatException ex) {
-            core.getLogger().warning("[OpenWeapons] Invalid armor color '" + rawValue + "', using fallback.");
+            core.getLogger().warning("[OpenWeapons] Colore armatura non valido '" + rawValue + "', using fallback.");
             return fallback;
         }
     }
@@ -374,19 +374,19 @@ public class ArmorManager {
         ItemStack item = new ItemStack(Material.IRON_INGOT);
         var meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(Component.text("Ceramic Plate", NamedTextColor.GRAY)
+            meta.displayName(Component.text("Piastra ceramica", NamedTextColor.GRAY)
                     .decoration(TextDecoration.BOLD, false)
                     .decoration(TextDecoration.ITALIC, false));
             meta.getPersistentDataContainer().set(ceramicPlateKey, PersistentDataType.BOOLEAN, true);
 
             List<Component> lore = new ArrayList<>();
             lore.add(Component.text(""));
-            lore.add(Component.text("Right-click while wearing a Heavy Vest", NamedTextColor.GRAY)
+            lore.add(Component.text("Clic destro mentre indossi un giubbotto pesante", NamedTextColor.GRAY)
                     .decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("to insert this plate (3s application).", NamedTextColor.GRAY)
+            lore.add(Component.text("per inserire questa piastra (applicazione 3s).", NamedTextColor.GRAY)
                     .decoration(TextDecoration.ITALIC, false));
             lore.add(Component.text(""));
-            lore.add(Component.text("Adds +25 durability to the vest.", NamedTextColor.GREEN)
+            lore.add(Component.text("Aggiunge +25 durabilita' al giubbotto.", NamedTextColor.GREEN)
                     .decoration(TextDecoration.ITALIC, false));
             meta.lore(lore);
             item.setItemMeta(meta);
@@ -484,20 +484,20 @@ public class ArmorManager {
     private List<Component> buildLore(ArmorDefinition def, int currentDurability) {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text(""));
-        lore.add(Component.text("NIJ Level: ", NamedTextColor.GRAY)
+        lore.add(Component.text("Livello NIJ: ", NamedTextColor.GRAY)
                 .append(Component.text(def.getNijLevel(), NamedTextColor.AQUA))
                 .decoration(TextDecoration.ITALIC, false));
-        lore.add(Component.text("Damage Reduction: ", NamedTextColor.GRAY)
+        lore.add(Component.text("Riduzione danno: ", NamedTextColor.GRAY)
                 .append(Component.text(String.format("%.0f%%", def.getDamageReduction() * 100), NamedTextColor.GREEN))
                 .decoration(TextDecoration.ITALIC, false));
 
         if (def.hasSlowness()) {
-            lore.add(Component.text("Slowness: ", NamedTextColor.GRAY)
-                    .append(Component.text("Level " + (def.getSlownessLevel() + 1), NamedTextColor.RED))
+            lore.add(Component.text("Lentezza: ", NamedTextColor.GRAY)
+                    .append(Component.text("Livello " + (def.getSlownessLevel() + 1), NamedTextColor.RED))
                     .decoration(TextDecoration.ITALIC, false));
         } else {
-            lore.add(Component.text("Slowness: ", NamedTextColor.GRAY)
-                    .append(Component.text("None", NamedTextColor.GREEN))
+            lore.add(Component.text("Lentezza: ", NamedTextColor.GRAY)
+                    .append(Component.text("Nessuna", NamedTextColor.GREEN))
                     .decoration(TextDecoration.ITALIC, false));
         }
 
@@ -512,23 +512,23 @@ public class ArmorManager {
             durBar.append(i < filled ? "█" : "░");
         }
         NamedTextColor durColor = filled > 10 ? NamedTextColor.GREEN : filled > 5 ? NamedTextColor.YELLOW : NamedTextColor.RED;
-        lore.add(Component.text("Durability: ", NamedTextColor.GRAY)
+        lore.add(Component.text("Durabilita': ", NamedTextColor.GRAY)
                 .append(Component.text(durBar.toString(), durColor))
                 .append(Component.text(" " + currentDurability + "/" + maxDur, NamedTextColor.GRAY))
                 .decoration(TextDecoration.ITALIC, false));
 
         if (def.hasPlate()) {
             lore.add(Component.text(""));
-            lore.add(Component.text("✦ Ceramic Plate Installed", NamedTextColor.GOLD)
+            lore.add(Component.text("✦ Piastra ceramica installata", NamedTextColor.GOLD)
                     .decoration(TextDecoration.ITALIC, false));
         }
 
         lore.add(Component.text(""));
         if ("vest_light".equals(def.getId())) {
-            lore.add(Component.text("Stops handgun rounds", NamedTextColor.DARK_GRAY)
+            lore.add(Component.text("Ferma colpi da pistola", NamedTextColor.DARK_GRAY)
                     .decoration(TextDecoration.ITALIC, false));
         } else {
-            lore.add(Component.text("Stops rifle & AP rounds", NamedTextColor.DARK_GRAY)
+            lore.add(Component.text("Ferma colpi da fucile e AP", NamedTextColor.DARK_GRAY)
                     .decoration(TextDecoration.ITALIC, false));
         }
 

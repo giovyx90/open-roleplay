@@ -1,0 +1,6118 @@
+{
+  "oversized_in_gui": true,
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "item/crossbow"
+    },
+    "entries": [
+      {
+        "threshold": 41,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_empty"
+        }
+      },
+      {
+        "threshold": 43,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_magazine"
+        }
+      },
+      {
+        "threshold": 44,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_grip"
+        }
+      },
+      {
+        "threshold": 47,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 49,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_reflex"
+        }
+      },
+      {
+        "threshold": 51,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 52,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 55,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 81,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_empty"
+        }
+      },
+      {
+        "threshold": 83,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_magazine"
+        }
+      },
+      {
+        "threshold": 84,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_grip"
+        }
+      },
+      {
+        "threshold": 87,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 89,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex"
+        }
+      },
+      {
+        "threshold": 91,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 92,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 95,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 121,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_empty"
+        }
+      },
+      {
+        "threshold": 123,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_magazine"
+        }
+      },
+      {
+        "threshold": 124,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_grip"
+        }
+      },
+      {
+        "threshold": 127,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 129,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_reflex"
+        }
+      },
+      {
+        "threshold": 131,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 132,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 135,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 161,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_empty"
+        }
+      },
+      {
+        "threshold": 163,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_magazine"
+        }
+      },
+      {
+        "threshold": 164,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_grip"
+        }
+      },
+      {
+        "threshold": 167,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 169,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex"
+        }
+      },
+      {
+        "threshold": 171,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 172,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 175,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_empty"
+        }
+      },
+      {
+        "threshold": 203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_magazine"
+        }
+      },
+      {
+        "threshold": 204,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_grip"
+        }
+      },
+      {
+        "threshold": 207,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 209,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_reflex"
+        }
+      },
+      {
+        "threshold": 211,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 212,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 215,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_empty"
+        }
+      },
+      {
+        "threshold": 243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_magazine"
+        }
+      },
+      {
+        "threshold": 244,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_grip"
+        }
+      },
+      {
+        "threshold": 247,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 249,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_reflex"
+        }
+      },
+      {
+        "threshold": 251,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 252,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 255,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 281,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_empty"
+        }
+      },
+      {
+        "threshold": 283,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_magazine"
+        }
+      },
+      {
+        "threshold": 284,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_grip"
+        }
+      },
+      {
+        "threshold": 287,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 289,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_reflex"
+        }
+      },
+      {
+        "threshold": 291,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 292,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 295,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 321,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_empty"
+        }
+      },
+      {
+        "threshold": 323,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_magazine"
+        }
+      },
+      {
+        "threshold": 324,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_grip"
+        }
+      },
+      {
+        "threshold": 327,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 329,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_reflex"
+        }
+      },
+      {
+        "threshold": 331,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 332,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 335,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_empty"
+        }
+      },
+      {
+        "threshold": 444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_grip"
+        }
+      },
+      {
+        "threshold": 449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_reflex"
+        }
+      },
+      {
+        "threshold": 452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_empty"
+        }
+      },
+      {
+        "threshold": 483,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_magazine"
+        }
+      },
+      {
+        "threshold": 484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_grip"
+        }
+      },
+      {
+        "threshold": 487,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_reflex"
+        }
+      },
+      {
+        "threshold": 491,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 495,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1002,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_empty"
+        }
+      },
+      {
+        "threshold": 1004,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_magazine"
+        }
+      },
+      {
+        "threshold": 1005,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_grip"
+        }
+      },
+      {
+        "threshold": 1008,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1010,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_reflex"
+        }
+      },
+      {
+        "threshold": 1012,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1016,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_empty"
+        }
+      },
+      {
+        "threshold": 1043,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1044,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_grip"
+        }
+      },
+      {
+        "threshold": 1047,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1049,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1051,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1052,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1055,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1081,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_empty"
+        }
+      },
+      {
+        "threshold": 1083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1084,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_grip"
+        }
+      },
+      {
+        "threshold": 1087,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1089,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1091,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1092,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1095,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1121,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_empty"
+        }
+      },
+      {
+        "threshold": 1123,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1124,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_grip"
+        }
+      },
+      {
+        "threshold": 1127,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1129,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1131,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1132,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1135,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1161,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_empty"
+        }
+      },
+      {
+        "threshold": 1163,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1164,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_grip"
+        }
+      },
+      {
+        "threshold": 1167,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1169,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1171,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1172,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1175,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_empty"
+        }
+      },
+      {
+        "threshold": 1203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1204,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_grip"
+        }
+      },
+      {
+        "threshold": 1207,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1209,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1211,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1212,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1215,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_empty"
+        }
+      },
+      {
+        "threshold": 1243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1244,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_grip"
+        }
+      },
+      {
+        "threshold": 1247,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1249,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1251,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1252,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1255,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1281,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_empty"
+        }
+      },
+      {
+        "threshold": 1283,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1284,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_grip"
+        }
+      },
+      {
+        "threshold": 1287,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1289,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1291,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1292,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1295,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1321,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_empty"
+        }
+      },
+      {
+        "threshold": 1323,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1324,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_grip"
+        }
+      },
+      {
+        "threshold": 1327,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1329,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1331,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1332,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1335,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_empty"
+        }
+      },
+      {
+        "threshold": 1444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_grip"
+        }
+      },
+      {
+        "threshold": 1449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_empty"
+        }
+      },
+      {
+        "threshold": 1483,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_magazine"
+        }
+      },
+      {
+        "threshold": 1484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_grip"
+        }
+      },
+      {
+        "threshold": 1487,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 1489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_reflex"
+        }
+      },
+      {
+        "threshold": 1491,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 1492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 1495,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 2002,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_empty"
+        }
+      },
+      {
+        "threshold": 2004,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_magazine"
+        }
+      },
+      {
+        "threshold": 2005,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_grip"
+        }
+      },
+      {
+        "threshold": 2008,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 2010,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_reflex"
+        }
+      },
+      {
+        "threshold": 2012,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 2013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 2016,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_empty"
+        }
+      },
+      {
+        "threshold": 3043,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3044,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_grip"
+        }
+      },
+      {
+        "threshold": 3047,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3049,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3051,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3052,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3055,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3081,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_empty"
+        }
+      },
+      {
+        "threshold": 3083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3084,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_grip"
+        }
+      },
+      {
+        "threshold": 3087,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3089,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3091,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3092,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3095,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3121,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_empty"
+        }
+      },
+      {
+        "threshold": 3123,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3124,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_grip"
+        }
+      },
+      {
+        "threshold": 3127,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3129,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3131,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3132,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3135,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3161,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_empty"
+        }
+      },
+      {
+        "threshold": 3163,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3164,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_grip"
+        }
+      },
+      {
+        "threshold": 3167,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3169,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3171,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3172,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3175,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_empty"
+        }
+      },
+      {
+        "threshold": 3203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3204,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_grip"
+        }
+      },
+      {
+        "threshold": 3207,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3209,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3211,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3212,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3215,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_empty"
+        }
+      },
+      {
+        "threshold": 3243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3244,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_grip"
+        }
+      },
+      {
+        "threshold": 3247,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3249,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3251,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3252,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3255,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3281,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_empty"
+        }
+      },
+      {
+        "threshold": 3283,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3284,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_grip"
+        }
+      },
+      {
+        "threshold": 3287,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3289,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3291,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3292,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3295,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3321,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_empty"
+        }
+      },
+      {
+        "threshold": 3323,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3324,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_grip"
+        }
+      },
+      {
+        "threshold": 3327,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3329,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3331,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3332,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3335,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_empty"
+        }
+      },
+      {
+        "threshold": 3444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_grip"
+        }
+      },
+      {
+        "threshold": 3449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_empty"
+        }
+      },
+      {
+        "threshold": 3483,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_magazine"
+        }
+      },
+      {
+        "threshold": 3484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_grip"
+        }
+      },
+      {
+        "threshold": 3487,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 3489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_reflex"
+        }
+      },
+      {
+        "threshold": 3491,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 3492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 3495,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5101,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_empty"
+        }
+      },
+      {
+        "threshold": 5103,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_magazine"
+        }
+      },
+      {
+        "threshold": 5104,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_grip"
+        }
+      },
+      {
+        "threshold": 5107,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5109,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_reflex"
+        }
+      },
+      {
+        "threshold": 5111,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5112,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5115,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5301,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_empty"
+        }
+      },
+      {
+        "threshold": 5304,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_grip"
+        }
+      },
+      {
+        "threshold": 5309,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_reflex"
+        }
+      },
+      {
+        "threshold": 5312,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_empty"
+        }
+      },
+      {
+        "threshold": 5403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_magazine"
+        }
+      },
+      {
+        "threshold": 5404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_grip"
+        }
+      },
+      {
+        "threshold": 5407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex"
+        }
+      },
+      {
+        "threshold": 5411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_empty"
+        }
+      },
+      {
+        "threshold": 5503,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_magazine"
+        }
+      },
+      {
+        "threshold": 5504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_grip"
+        }
+      },
+      {
+        "threshold": 5507,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_reflex"
+        }
+      },
+      {
+        "threshold": 5511,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5515,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5601,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_empty"
+        }
+      },
+      {
+        "threshold": 5603,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_magazine"
+        }
+      },
+      {
+        "threshold": 5604,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_grip"
+        }
+      },
+      {
+        "threshold": 5607,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5609,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_reflex"
+        }
+      },
+      {
+        "threshold": 5611,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5612,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5615,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5701,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_empty"
+        }
+      },
+      {
+        "threshold": 5703,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_magazine"
+        }
+      },
+      {
+        "threshold": 5704,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_grip"
+        }
+      },
+      {
+        "threshold": 5707,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5709,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_reflex"
+        }
+      },
+      {
+        "threshold": 5711,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5712,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5715,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5741,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_empty"
+        }
+      },
+      {
+        "threshold": 5743,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_magazine"
+        }
+      },
+      {
+        "threshold": 5744,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_grip"
+        }
+      },
+      {
+        "threshold": 5747,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5749,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_reflex"
+        }
+      },
+      {
+        "threshold": 5751,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5752,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5755,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5781,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_static_empty"
+        }
+      },
+      {
+        "threshold": 5784,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_static_grip"
+        }
+      },
+      {
+        "threshold": 5789,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_static_reflex"
+        }
+      },
+      {
+        "threshold": 5792,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5821,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_empty"
+        }
+      },
+      {
+        "threshold": 5823,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_magazine"
+        }
+      },
+      {
+        "threshold": 5824,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_grip"
+        }
+      },
+      {
+        "threshold": 5827,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 5829,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_reflex"
+        }
+      },
+      {
+        "threshold": 5831,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 5832,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 5835,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6101,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_empty"
+        }
+      },
+      {
+        "threshold": 6103,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6104,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_grip"
+        }
+      },
+      {
+        "threshold": 6107,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6109,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6111,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6112,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6115,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6301,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_empty"
+        }
+      },
+      {
+        "threshold": 6304,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_grip"
+        }
+      },
+      {
+        "threshold": 6309,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6312,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_empty"
+        }
+      },
+      {
+        "threshold": 6403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_grip"
+        }
+      },
+      {
+        "threshold": 6407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_empty"
+        }
+      },
+      {
+        "threshold": 6503,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_grip"
+        }
+      },
+      {
+        "threshold": 6507,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6511,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6515,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6601,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_empty"
+        }
+      },
+      {
+        "threshold": 6603,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6604,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_grip"
+        }
+      },
+      {
+        "threshold": 6607,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6609,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6611,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6612,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6615,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6701,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_empty"
+        }
+      },
+      {
+        "threshold": 6703,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6704,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_grip"
+        }
+      },
+      {
+        "threshold": 6707,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6709,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6711,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6712,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6715,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6741,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_empty"
+        }
+      },
+      {
+        "threshold": 6743,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6744,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_grip"
+        }
+      },
+      {
+        "threshold": 6747,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6749,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6751,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6752,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6755,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6781,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_scope_empty"
+        }
+      },
+      {
+        "threshold": 6784,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_scope_grip"
+        }
+      },
+      {
+        "threshold": 6789,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6792,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6821,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_empty"
+        }
+      },
+      {
+        "threshold": 6823,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_magazine"
+        }
+      },
+      {
+        "threshold": 6824,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_grip"
+        }
+      },
+      {
+        "threshold": 6827,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 6829,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_reflex"
+        }
+      },
+      {
+        "threshold": 6831,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 6832,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 6835,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8101,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_empty"
+        }
+      },
+      {
+        "threshold": 8103,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8104,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_grip"
+        }
+      },
+      {
+        "threshold": 8107,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8109,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8111,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8112,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8115,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_empty"
+        }
+      },
+      {
+        "threshold": 8403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_grip"
+        }
+      },
+      {
+        "threshold": 8407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_empty"
+        }
+      },
+      {
+        "threshold": 8503,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_grip"
+        }
+      },
+      {
+        "threshold": 8507,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8511,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8515,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8601,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_empty"
+        }
+      },
+      {
+        "threshold": 8603,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8604,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_grip"
+        }
+      },
+      {
+        "threshold": 8607,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8609,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8611,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8612,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8615,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8701,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_empty"
+        }
+      },
+      {
+        "threshold": 8703,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8704,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_grip"
+        }
+      },
+      {
+        "threshold": 8707,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8709,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8711,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8712,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8715,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8741,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_empty"
+        }
+      },
+      {
+        "threshold": 8743,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8744,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_grip"
+        }
+      },
+      {
+        "threshold": 8747,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8749,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8751,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8752,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8755,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8781,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_reload_empty"
+        }
+      },
+      {
+        "threshold": 8784,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_reload_grip"
+        }
+      },
+      {
+        "threshold": 8789,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8792,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/shotgun/ghost_shotgun_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8821,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_empty"
+        }
+      },
+      {
+        "threshold": 8823,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_magazine"
+        }
+      },
+      {
+        "threshold": 8824,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_grip"
+        }
+      },
+      {
+        "threshold": 8827,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 8829,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_reflex"
+        }
+      },
+      {
+        "threshold": 8831,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 8832,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 8835,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9006,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_usa"
+        }
+      },
+      {
+        "threshold": 9007,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9012,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_italy"
+        }
+      },
+      {
+        "threshold": 9013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9018,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_france"
+        }
+      },
+      {
+        "threshold": 9019,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9024,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_anime"
+        }
+      },
+      {
+        "threshold": 9025,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9030,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9035,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_magazine_led_usa"
+        }
+      },
+      {
+        "threshold": 9036,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_magazine_led_italy"
+        }
+      },
+      {
+        "threshold": 9042,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9047,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_magazine_led_france"
+        }
+      },
+      {
+        "threshold": 9048,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9053,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_magazine_led_anime"
+        }
+      },
+      {
+        "threshold": 9054,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9059,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9064,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_usa"
+        }
+      },
+      {
+        "threshold": 9065,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9070,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_italy"
+        }
+      },
+      {
+        "threshold": 9071,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9076,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_france"
+        }
+      },
+      {
+        "threshold": 9077,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9082,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_anime"
+        }
+      },
+      {
+        "threshold": 9083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9088,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9093,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_magazine_led_usa"
+        }
+      },
+      {
+        "threshold": 9094,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9099,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_magazine_led_italy"
+        }
+      },
+      {
+        "threshold": 9100,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9105,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_magazine_led_france"
+        }
+      },
+      {
+        "threshold": 9106,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9111,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_magazine_led_anime"
+        }
+      },
+      {
+        "threshold": 9112,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9117,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9122,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_usa"
+        }
+      },
+      {
+        "threshold": 9123,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9128,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_italy"
+        }
+      },
+      {
+        "threshold": 9129,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9134,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_france"
+        }
+      },
+      {
+        "threshold": 9135,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9140,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_anime"
+        }
+      },
+      {
+        "threshold": 9141,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9146,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9151,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_magazine_led_usa"
+        }
+      },
+      {
+        "threshold": 9152,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_led_usa_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9157,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_magazine_led_italy"
+        }
+      },
+      {
+        "threshold": 9158,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_led_italy_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9163,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_magazine_led_france"
+        }
+      },
+      {
+        "threshold": 9164,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_led_france_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9169,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_magazine_led_anime"
+        }
+      },
+      {
+        "threshold": 9170,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_led_anime_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9175,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_pacman"
+        }
+      },
+      {
+        "threshold": 9176,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_empty_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9177,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_magazine_led_pacman"
+        }
+      },
+      {
+        "threshold": 9178,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_static_magazine_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9179,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_pacman"
+        }
+      },
+      {
+        "threshold": 9180,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_empty_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9181,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_magazine_led_pacman"
+        }
+      },
+      {
+        "threshold": 9182,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_aim_magazine_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9183,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_pacman"
+        }
+      },
+      {
+        "threshold": 9184,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_empty_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9185,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_magazine_led_pacman"
+        }
+      },
+      {
+        "threshold": 9186,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1_cosmetics/m4a1_reload_magazine_led_pacman_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_nomag_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9221,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_empty"
+        }
+      },
+      {
+        "threshold": 9223,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_magazine"
+        }
+      },
+      {
+        "threshold": 9241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_empty"
+        }
+      },
+      {
+        "threshold": 9243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_magazine"
+        }
+      },
+      {
+        "threshold": 9321,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9324,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9329,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9332,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_static_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9341,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_static_empty"
+        }
+      },
+      {
+        "threshold": 9344,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_static_grip"
+        }
+      },
+      {
+        "threshold": 9349,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_static_reflex"
+        }
+      },
+      {
+        "threshold": 9352,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9361,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_static_empty"
+        }
+      },
+      {
+        "threshold": 9364,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_static_grip"
+        }
+      },
+      {
+        "threshold": 9369,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_static_reflex"
+        }
+      },
+      {
+        "threshold": 9372,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_static_reflex_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9421,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_empty"
+        }
+      },
+      {
+        "threshold": 9423,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_magazine"
+        }
+      },
+      {
+        "threshold": 9424,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_grip"
+        }
+      },
+      {
+        "threshold": 9427,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9429,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_reflex"
+        }
+      },
+      {
+        "threshold": 9431,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 9432,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9435,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_empty"
+        }
+      },
+      {
+        "threshold": 9443,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_magazine"
+        }
+      },
+      {
+        "threshold": 9444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_grip"
+        }
+      },
+      {
+        "threshold": 9447,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_reflex"
+        }
+      },
+      {
+        "threshold": 9451,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 9452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9455,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9461,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9464,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9469,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9472,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_static_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 9481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_static_empty"
+        }
+      },
+      {
+        "threshold": 9484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_static_grip"
+        }
+      },
+      {
+        "threshold": 9489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_static_reflex"
+        }
+      },
+      {
+        "threshold": 9492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_static_empty"
+        }
+      },
+      {
+        "threshold": 9504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_static_grip"
+        }
+      },
+      {
+        "threshold": 9509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_static_reflex"
+        }
+      },
+      {
+        "threshold": 9512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9521,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_empty"
+        }
+      },
+      {
+        "threshold": 9523,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_magazine"
+        }
+      },
+      {
+        "threshold": 9524,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_grip"
+        }
+      },
+      {
+        "threshold": 9527,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9529,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_reflex"
+        }
+      },
+      {
+        "threshold": 9531,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 9532,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9535,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9541,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_empty"
+        }
+      },
+      {
+        "threshold": 9543,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_magazine"
+        }
+      },
+      {
+        "threshold": 9544,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_grip"
+        }
+      },
+      {
+        "threshold": 9547,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_magazine_grip"
+        }
+      },
+      {
+        "threshold": 9549,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_reflex"
+        }
+      },
+      {
+        "threshold": 9551,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 9552,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_reflex_grip"
+        }
+      },
+      {
+        "threshold": 9555,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_static_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10221,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_aiming_empty"
+        }
+      },
+      {
+        "threshold": 10223,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_aiming_magazine"
+        }
+      },
+      {
+        "threshold": 10241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_aiming_empty"
+        }
+      },
+      {
+        "threshold": 10243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_aiming_magazine"
+        }
+      },
+      {
+        "threshold": 10321,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10324,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10329,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10332,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_scope_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10341,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_scope_empty"
+        }
+      },
+      {
+        "threshold": 10344,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_scope_grip"
+        }
+      },
+      {
+        "threshold": 10349,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10352,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_gold_reserve_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10361,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_scope_empty"
+        }
+      },
+      {
+        "threshold": 10364,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_scope_grip"
+        }
+      },
+      {
+        "threshold": 10369,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10372,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_sugarline_bakery_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_scope_reflex_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10421,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_empty"
+        }
+      },
+      {
+        "threshold": 10423,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_magazine"
+        }
+      },
+      {
+        "threshold": 10424,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_grip"
+        }
+      },
+      {
+        "threshold": 10427,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10429,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10431,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 10432,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10435,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_empty"
+        }
+      },
+      {
+        "threshold": 10443,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_magazine"
+        }
+      },
+      {
+        "threshold": 10444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_grip"
+        }
+      },
+      {
+        "threshold": 10447,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10451,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 10452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10455,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10461,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10464,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10469,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10472,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_scope_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 10481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_scope_empty"
+        }
+      },
+      {
+        "threshold": 10484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_scope_grip"
+        }
+      },
+      {
+        "threshold": 10489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_scope_empty"
+        }
+      },
+      {
+        "threshold": 10504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_scope_grip"
+        }
+      },
+      {
+        "threshold": 10509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10521,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_empty"
+        }
+      },
+      {
+        "threshold": 10523,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_magazine"
+        }
+      },
+      {
+        "threshold": 10524,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_grip"
+        }
+      },
+      {
+        "threshold": 10527,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10529,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10531,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 10532,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10535,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10541,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_empty"
+        }
+      },
+      {
+        "threshold": 10543,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_magazine"
+        }
+      },
+      {
+        "threshold": 10544,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_grip"
+        }
+      },
+      {
+        "threshold": 10547,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_magazine_grip"
+        }
+      },
+      {
+        "threshold": 10549,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_reflex"
+        }
+      },
+      {
+        "threshold": 10551,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 10552,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_reflex_grip"
+        }
+      },
+      {
+        "threshold": 10555,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_scope_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 11201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_nomag_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 11203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12221,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_reloading_empty"
+        }
+      },
+      {
+        "threshold": 12223,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_gold_reserve_reloading_magazine"
+        }
+      },
+      {
+        "threshold": 12241,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_reloading_empty"
+        }
+      },
+      {
+        "threshold": 12243,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_sugarline_bakery_reloading_magazine"
+        }
+      },
+      {
+        "threshold": 12401,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12403,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12404,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12407,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12409,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12411,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12412,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12415,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_reload_reflex_magazine_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12421,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_empty"
+        }
+      },
+      {
+        "threshold": 12423,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_magazine"
+        }
+      },
+      {
+        "threshold": 12424,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_grip"
+        }
+      },
+      {
+        "threshold": 12427,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12429,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12431,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 12432,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12435,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_gold_reserve_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12441,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_empty"
+        }
+      },
+      {
+        "threshold": 12443,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_magazine"
+        }
+      },
+      {
+        "threshold": 12444,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_grip"
+        }
+      },
+      {
+        "threshold": 12447,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12449,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12451,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 12452,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12455,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_sugarline_bakery_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12461,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12464,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12469,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_reflex_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12472,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_reload_reflex_grip_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 12481,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_reload_empty"
+        }
+      },
+      {
+        "threshold": 12484,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_reload_grip"
+        }
+      },
+      {
+        "threshold": 12489,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12492,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_gold_reserve_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12501,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_reload_empty"
+        }
+      },
+      {
+        "threshold": 12504,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_reload_grip"
+        }
+      },
+      {
+        "threshold": 12509,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12512,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/shotgun/remington_870/remington_870_sugarline_bakery_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12521,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_empty"
+        }
+      },
+      {
+        "threshold": 12523,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_magazine"
+        }
+      },
+      {
+        "threshold": 12524,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_grip"
+        }
+      },
+      {
+        "threshold": 12527,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12529,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12531,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 12532,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12535,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_gold_reserve_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12541,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_empty"
+        }
+      },
+      {
+        "threshold": 12543,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_magazine"
+        }
+      },
+      {
+        "threshold": 12544,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_grip"
+        }
+      },
+      {
+        "threshold": 12547,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_magazine_grip"
+        }
+      },
+      {
+        "threshold": 12549,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_reflex"
+        }
+      },
+      {
+        "threshold": 12551,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_reflex_magazine"
+        }
+      },
+      {
+        "threshold": 12552,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_reflex_grip"
+        }
+      },
+      {
+        "threshold": 12555,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_royal_masquerade_reload_reflex_magazine_grip"
+        }
+      },
+      {
+        "threshold": 13201,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_nomag_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 13203,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_usa_empty"
+        }
+      },
+      {
+        "threshold": 14003,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_usa_magazine"
+        }
+      },
+      {
+        "threshold": 14011,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_usa_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_usa_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14021,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_italy_empty"
+        }
+      },
+      {
+        "threshold": 14023,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_italy_magazine"
+        }
+      },
+      {
+        "threshold": 14031,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_italy_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14033,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_italy_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_france_empty"
+        }
+      },
+      {
+        "threshold": 14043,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_france_magazine"
+        }
+      },
+      {
+        "threshold": 14051,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_france_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14053,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_france_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14061,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_anime_empty"
+        }
+      },
+      {
+        "threshold": 14063,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_anime_magazine"
+        }
+      },
+      {
+        "threshold": 14071,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_anime_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14073,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_anime_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14081,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_pacman_empty"
+        }
+      },
+      {
+        "threshold": 14083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_pacman_magazine"
+        }
+      },
+      {
+        "threshold": 14091,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_pacman_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 14093,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_led_pacman_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_usa_empty"
+        }
+      },
+      {
+        "threshold": 15003,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_usa_magazine"
+        }
+      },
+      {
+        "threshold": 15011,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_usa_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_usa_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15021,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_italy_empty"
+        }
+      },
+      {
+        "threshold": 15023,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_italy_magazine"
+        }
+      },
+      {
+        "threshold": 15031,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_italy_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15033,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_italy_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_france_empty"
+        }
+      },
+      {
+        "threshold": 15043,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_france_magazine"
+        }
+      },
+      {
+        "threshold": 15051,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_france_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15053,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_france_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15061,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_anime_empty"
+        }
+      },
+      {
+        "threshold": 15063,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_anime_magazine"
+        }
+      },
+      {
+        "threshold": 15071,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_anime_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15073,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_anime_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15081,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_pacman_empty"
+        }
+      },
+      {
+        "threshold": 15083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_pacman_magazine"
+        }
+      },
+      {
+        "threshold": 15091,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_pacman_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 15093,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_aiming_led_pacman_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16001,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_usa_empty"
+        }
+      },
+      {
+        "threshold": 16003,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_usa_magazine"
+        }
+      },
+      {
+        "threshold": 16011,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_usa_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16013,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_usa_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16021,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_italy_empty"
+        }
+      },
+      {
+        "threshold": 16023,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_italy_magazine"
+        }
+      },
+      {
+        "threshold": 16031,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_italy_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16033,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_italy_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16041,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_france_empty"
+        }
+      },
+      {
+        "threshold": 16043,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_france_magazine"
+        }
+      },
+      {
+        "threshold": 16051,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_france_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16053,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_france_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16061,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_anime_empty"
+        }
+      },
+      {
+        "threshold": 16063,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_anime_magazine"
+        }
+      },
+      {
+        "threshold": 16071,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_anime_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16073,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_anime_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16081,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_pacman_empty"
+        }
+      },
+      {
+        "threshold": 16083,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_pacman_magazine"
+        }
+      },
+      {
+        "threshold": 16091,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_pacman_empty_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 16093,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_reloading_led_pacman_magazine_colorable",
+          "tints": [
+            {
+              "type": "minecraft:custom_model_data",
+              "index": 0,
+              "default": -1
+            }
+          ]
+        }
+      }
+    ],
+    "index": 0
+  }
+}

@@ -30,28 +30,28 @@ public class ArrestCommand implements CommandExecutor, TabCompleter {
         PoliceModule police = module.getCore().getModuleManager().getModule(PoliceModule.class);
         if (police != null && police.getService() != null && !officer.hasPermission("openrp.weapons.arrest.bypass")) {
             if (!police.getService().canPerform(officer, PoliceAction.ARREST)) {
-                officer.sendMessage(Component.text("Only on-duty law enforcement officers can arrest players.", NamedTextColor.RED));
+                officer.sendMessage(Component.text("Solo gli agenti in servizio possono arrestare giocatori.", NamedTextColor.RED));
                 return true;
             }
         } else if (!module.isLEO(officer.getUniqueId()) && !officer.hasPermission("openrp.weapons.arrest.bypass")) {
-            officer.sendMessage(Component.text("Only law enforcement officers can arrest players.", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Solo le forze dell'ordine possono arrestare giocatori.", NamedTextColor.RED));
             return true;
         }
 
         if (args.length != 1) {
-            officer.sendMessage(Component.text("Usage: /arrest <player>", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Uso: /arrest <giocatore>", NamedTextColor.RED));
             return true;
         }
 
         @SuppressWarnings("deprecation")
         org.bukkit.OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
         if (target == null || (!target.isOnline() && !target.hasPlayedBefore())) {
-            officer.sendMessage(Component.text("Player not found or has never played here.", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Giocatore non trovato o mai entrato qui.", NamedTextColor.RED));
             return true;
         }
 
         if (target.getUniqueId().equals(officer.getUniqueId())) {
-            officer.sendMessage(Component.text("You cannot arrest yourself.", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Non puoi arrestare te stesso.", NamedTextColor.RED));
             return true;
         }
 
@@ -59,20 +59,20 @@ public class ArrestCommand implements CommandExecutor, TabCompleter {
         if (onlineTarget != null && onlineTarget.isOnline()) {
             // Must be handcuffed if online
             if (!module.getHandcuffManager().isHandcuffed(target.getUniqueId())) {
-                officer.sendMessage(Component.text("The player must be handcuffed before you can arrest them.", NamedTextColor.RED));
+                officer.sendMessage(Component.text("Il giocatore deve essere ammanettato prima dell'arresto.", NamedTextColor.RED));
                 return true;
             }
 
             // Must be nearby if online
             if (officer.getLocation().distance(onlineTarget.getLocation()) > 5) {
-                officer.sendMessage(Component.text("You must be closer to the player to arrest them.", NamedTextColor.RED));
+                officer.sendMessage(Component.text("Devi essere piu' vicino al giocatore per arrestarlo.", NamedTextColor.RED));
                 return true;
             }
         }
 
         // Already arrested
         if (module.getArrestManager().isArrested(target.getUniqueId())) {
-            officer.sendMessage(Component.text("This player is already arrested.", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Questo giocatore e' gia' arrestato.", NamedTextColor.RED));
             return true;
         }
 

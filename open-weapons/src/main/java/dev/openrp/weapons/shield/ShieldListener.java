@@ -175,7 +175,7 @@ public class ShieldListener implements Listener {
    }
 
    private void denyOffhandShield(Player player) {
-      player.sendActionBar(Component.text("Shields can only be held in main hand!", NamedTextColor.RED));
+      player.sendActionBar(Component.text("Gli scudi possono essere tenuti solo nella mano principale!", NamedTextColor.RED));
    }
 
    private Location projectileSourceLocation(Projectile projectile) {

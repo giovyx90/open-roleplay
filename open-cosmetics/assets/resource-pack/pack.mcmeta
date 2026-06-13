@@ -1,0 +1,10 @@
+{
+  "pack": {
+    "pack_format": 64,
+    "supported_formats": [
+      64,
+      120
+    ],
+    "description": "Open Roleplay - Open Cosmetics"
+  }
+}

@@ -1,6 +1,6 @@
 armors:
   vest_light:
-    display-name: "Light Bulletproof Vest"
+    display-name: "Giubbotto antiproiettile leggero"
     custom-model-data: 12010
     color-rgb: "#191950"
     slowness-level: -1
@@ -10,7 +10,7 @@ armors:
     has-plate: false
 
   vest_heavy:
-    display-name: "Heavy Bulletproof Vest"
+    display-name: "Giubbotto antiproiettile pesante"
     custom-model-data: 12011
     color-rgb: "#282828"
     slowness-level: 0
@@ -20,7 +20,7 @@ armors:
     has-plate: false
 
   vest_heavy_plated:
-    display-name: "Heavy Plated Bulletproof Vest"
+    display-name: "Giubbotto antiproiettile pesante con piastra"
     custom-model-data: 12012
     color-rgb: "#3C3C1E"
     slowness-level: 1
@@ -31,7 +31,7 @@ armors:
 
 helmets:
   ballistic_helmet:
-    display-name: "Ballistic Helmet"
+    display-name: "Casco balistico"
     custom-model-data: 12020
     color-rgb: "#323C32"
     damage-reduction: 0.15
@@ -40,7 +40,7 @@ helmets:
     max-durability: 30
 
   riot_helmet:
-    display-name: "Riot Helmet"
+    display-name: "Casco antisommossa"
     custom-model-data: 12021
     color-rgb: "#1E1E1E"
     damage-reduction: 0.0
@@ -49,7 +49,7 @@ helmets:
     max-durability: 0
 
   sf_helmet:
-    display-name: "Special Forces Helmet"
+    display-name: "Casco forze speciali"
     custom-model-data: 12022
     color-rgb: "#3C372D"
     damage-reduction: 0.25

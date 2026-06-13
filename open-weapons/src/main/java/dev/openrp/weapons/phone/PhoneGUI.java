@@ -28,7 +28,7 @@ public class PhoneGUI implements Listener {
 
    public void open(Player player) {
       PhoneGUI.PhoneGUIHolder holder = new PhoneGUI.PhoneGUIHolder();
-      Inventory gui = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("phone_apps_gui", "Phone Apps"));
+      Inventory gui = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("phone_apps_gui", "App telefono"));
       holder.setInventory(gui);
       ItemStack filler = NexoUI.getFiller();
 
@@ -60,7 +60,7 @@ public class PhoneGUI implements Listener {
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
          meta.displayName(Component.text("SOS", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false));
-         meta.lore(List.of((TextComponent)Component.text("Open emergency services", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)));
+         meta.lore(List.of((TextComponent)Component.text("Apri servizi di emergenza", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)));
          meta.setEnchantmentGlintOverride(true);
          item.setItemMeta(meta);
       }

@@ -44,7 +44,7 @@ public class WantedGUI implements Listener {
 
    private void openMainGUI(Player officer, WantedGUI.WantedSession session) {
       WantedGUI.WantedGUIHolder holder = new WantedGUI.WantedGUIHolder(session);
-      Inventory gui = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("wanted_gui", "Wanted Registry"));
+      Inventory gui = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("wanted_gui", "Registro ricercati"));
       holder.setInventory(gui);
       ItemStack filler = NexoUI.getFiller();
 
@@ -56,11 +56,11 @@ public class WantedGUI implements Listener {
       gui.setItem(
          12,
          NexoUI.getArrestReasonButton(
-            Component.text("Reason", NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false),
+            Component.text("Motivo", NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false),
             List.of(
-               Component.text("Click to set the wanted reason", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+               Component.text("Clicca per impostare il motivo della ricerca", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                Component.empty(),
-               Component.text("Current: " + (session.reason == null ? "Not set" : session.reason), NamedTextColor.WHITE)
+               Component.text("Attuale: " + (session.reason == null ? "Non impostato" : session.reason), NamedTextColor.WHITE)
                   .decoration(TextDecoration.ITALIC, false)
             )
          )
@@ -69,13 +69,13 @@ public class WantedGUI implements Listener {
       gui.setItem(
          21,
          NexoUI.getConfirmButton(
-            Component.text("Confirm wanted record", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
+            Component.text("Conferma scheda ricercato", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
          )
       );
       gui.setItem(
          23,
          NexoUI.getCancelButton(
-            Component.text("Cancel", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
+            Component.text("Annulla", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
          )
       );
       officer.openInventory(gui);
@@ -117,7 +117,7 @@ public class WantedGUI implements Listener {
                      break;
                   case 23:
                      officer.closeInventory();
-                     officer.sendMessage(Component.text("Wanted record cancelled.", NamedTextColor.RED));
+                     officer.sendMessage(Component.text("Scheda ricercato annullata.", NamedTextColor.RED));
                }
             }
          }
@@ -133,11 +133,11 @@ public class WantedGUI implements Listener {
                }
 
                String text = stateSnapshot.getText() == null ? "" : stateSnapshot.getText().trim();
-               if (!text.isBlank() && !text.equalsIgnoreCase("Player name")) {
+               if (!text.isBlank() && !text.equalsIgnoreCase("Nome giocatore")) {
                   OfflinePlayer target = Bukkit.getOfflinePlayer(text);
                   if (target != null && (target.isOnline() || target.hasPlayedBefore())) {
                      if (target.getUniqueId().equals(officer.getUniqueId())) {
-                        return Collections.singletonList(ResponseAction.replaceInputText("Not yourself"));
+                        return Collections.singletonList(ResponseAction.replaceInputText("Non te stesso"));
                      }
 
                      session.targetUuid = target.getUniqueId();
@@ -146,15 +146,15 @@ public class WantedGUI implements Listener {
                         ResponseAction.run(() -> Bukkit.getScheduler().runTask(this.module.getCore(), () -> this.openMainGUI(officer, session)))
                      );
                   } else {
-                     return Collections.singletonList(ResponseAction.replaceInputText("Player not found"));
+                     return Collections.singletonList(ResponseAction.replaceInputText("Giocatore non trovato"));
                   }
                } else {
-                  return Collections.singletonList(ResponseAction.replaceInputText("Player required"));
+                  return Collections.singletonList(ResponseAction.replaceInputText("Giocatore richiesto"));
                }
             }
          )
-         .text(session.targetName == null ? "Player name" : session.targetName)
-         .title("Wanted Player")
+         .text(session.targetName == null ? "Nome giocatore" : session.targetName)
+         .title("Giocatore ricercato")
          .plugin(this.module.getCore())
          .open(officer);
    }
@@ -167,42 +167,42 @@ public class WantedGUI implements Listener {
                   return Collections.emptyList();
                } else {
                   String text = stateSnapshot.getText() == null ? "" : stateSnapshot.getText().trim();
-                  if (!text.isBlank() && !text.equalsIgnoreCase("Reason...")) {
+                  if (!text.isBlank() && !text.equalsIgnoreCase("Motivo...")) {
                      session.reason = text;
                      return Collections.singletonList(
                         ResponseAction.run(() -> Bukkit.getScheduler().runTask(this.module.getCore(), () -> this.openMainGUI(officer, session)))
                      );
                   } else {
-                     return Collections.singletonList(ResponseAction.replaceInputText("Reason required"));
+                     return Collections.singletonList(ResponseAction.replaceInputText("Motivo richiesto"));
                   }
                }
             }
          )
-         .text(session.reason == null ? "Reason..." : session.reason)
-         .title("Wanted Reason")
+         .text(session.reason == null ? "Motivo..." : session.reason)
+         .title("Motivo ricerca")
          .plugin(this.module.getCore())
          .open(officer);
    }
 
    private void confirm(Player officer, WantedGUI.WantedSession session) {
       if (session.targetUuid == null || session.targetName == null) {
-         officer.sendMessage(Component.text("You must set a wanted player.", NamedTextColor.RED));
+         officer.sendMessage(Component.text("Devi impostare un giocatore ricercato.", NamedTextColor.RED));
       } else if (session.reason != null && !session.reason.isBlank()) {
          if (this.module.getWantedManager().isWanted(session.targetUuid)) {
-            officer.sendMessage(Component.text("That player is already wanted.", NamedTextColor.RED));
+            officer.sendMessage(Component.text("Quel giocatore e' gia' ricercato.", NamedTextColor.RED));
          } else {
             WantedRecord record = new WantedRecord(
                session.targetUuid, session.targetName, session.reason, session.arrestRequired, officer.getUniqueId(), officer.getName(), Instant.now()
             );
             if (!this.module.getWantedManager().addRecord(record)) {
-               officer.sendMessage(Component.text("That player is already wanted.", NamedTextColor.RED));
+               officer.sendMessage(Component.text("Quel giocatore e' gia' ricercato.", NamedTextColor.RED));
             } else {
                officer.closeInventory();
-               officer.sendMessage(Component.text("Wanted record added for " + session.targetName + ".", NamedTextColor.GREEN));
+               officer.sendMessage(Component.text("Scheda ricercato aggiunta per " + session.targetName + ".", NamedTextColor.GREEN));
             }
          }
       } else {
-         officer.sendMessage(Component.text("You must set a reason.", NamedTextColor.RED));
+         officer.sendMessage(Component.text("Devi impostare un motivo.", NamedTextColor.RED));
       }
    }
 
@@ -214,12 +214,12 @@ public class WantedGUI implements Listener {
             meta.setOwningPlayer(Bukkit.getOfflinePlayer(session.targetUuid));
          }
 
-         meta.displayName(Component.text("Wanted player", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
+         meta.displayName(Component.text("Giocatore ricercato", NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
          List<Component> lore = new ArrayList<>();
-         lore.add(Component.text("Click to set the wanted player", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Clicca per impostare il giocatore ricercato", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
          lore.add(Component.empty());
          lore.add(
-            Component.text("Current: " + (session.targetName == null ? "Not set" : session.targetName), NamedTextColor.WHITE)
+            Component.text("Attuale: " + (session.targetName == null ? "Non impostato" : session.targetName), NamedTextColor.WHITE)
                .decoration(TextDecoration.ITALIC, false)
          );
          meta.lore(lore);
@@ -234,13 +234,13 @@ public class WantedGUI implements Listener {
       ItemMeta meta = item.getItemMeta();
       if (meta != null) {
          meta.displayName(
-            Component.text("Arrest required", arrestRequired ? NamedTextColor.RED : NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false)
+            Component.text("Arresto richiesto", arrestRequired ? NamedTextColor.RED : NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false)
          );
          meta.lore(
             List.of(
-               (TextComponent)Component.text("Click to toggle", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+               (TextComponent)Component.text("Clicca per cambiare", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
                Component.empty(),
-               (TextComponent)Component.text("Current: " + (arrestRequired ? "Yes" : "No"), NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
+               (TextComponent)Component.text("Attuale: " + (arrestRequired ? "Si" : "No"), NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false)
             )
          );
          if (arrestRequired) {

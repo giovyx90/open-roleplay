@@ -31,12 +31,12 @@ public class RobListener implements Listener {
             .map(service -> service.createRobberyQuitLootbox(player, session.getRobberUuid(), robberName, player.getLocation()))
             .orElse(false);
          if (!created) {
-            this.module.getCore().getLogger().warning("[Robbery] NEXTLootbox unavailable - could not create review lootbox for " + player.getName());
+            this.module.getCore().getLogger().warning("[Robbery] NEXTLootbox non disponibile - impossibile creare la lootbox di revisione per " + player.getName());
             return;
          }
          rm.markPendingSlog(player.getUniqueId(), session.getRobberUuid());
          if (robber != null && robber.isOnline()) {
-            robber.sendMessage(Component.text(player.getName() + " fled the game during the robbery! Their lootbox is pending staff review.", NamedTextColor.GREEN));
+            robber.sendMessage(Component.text(player.getName() + " e' uscito dal gioco durante la rapina! La sua lootbox e' in attesa di revisione staff.", NamedTextColor.GREEN));
          }
       }
    }
@@ -52,7 +52,7 @@ public class RobListener implements Listener {
             .getScheduler()
             .runTaskLater(
                this.module.getCore(),
-               () -> player.sendMessage(Component.text("You left during a robbery! Your items have been dropped as a lootbox.", NamedTextColor.RED)),
+               () -> player.sendMessage(Component.text("Sei uscito durante una rapina! I tuoi oggetti sono stati lasciati in una lootbox.", NamedTextColor.RED)),
                20L
             );
       }

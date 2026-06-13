@@ -116,10 +116,10 @@ public class WeaponRegistry {
                             sneakSpreadMultiplier, jumpSpreadMultiplier, falloffStartDistance, falloffEndDistance, falloffMinMultiplier));
                 }
             } catch (Exception e) {
-                core.getLogger().warning("[OpenWeapons] Failed to load weapon '" + key + "': " + e.getMessage());
+                core.getLogger().warning("[OpenWeapons] Impossibile caricare l'arma '" + key + "': " + e.getMessage());
             }
         }
-        core.getLogger().info("[OpenWeapons] Loaded " + weapons.size() + " weapons.");
+        core.getLogger().info("[OpenWeapons] Caricate " + weapons.size() + " armi.");
     }
 
     public WeaponDefinition getWeapon(String id) {
@@ -159,7 +159,7 @@ public class WeaponRegistry {
             }
 
             item.setItemMeta(meta);
-            updateWeaponLore(item, def, "None");
+            updateWeaponLore(item, def, "Nessuna");
             applyFirearmUseAnimation(item, def);
         }
         return item;
@@ -201,17 +201,17 @@ public class WeaponRegistry {
             lore.add(Component.text(formatTooltipCategory(def), TAG_TEXT_COLOR)
                     .decoration(TextDecoration.BOLD, true)
                     .decoration(TextDecoration.ITALIC, false));
-            lore.add(statTextLine(GLYPH_AMMO, "Shots", shotsText, SHOTS_COLOR));
-            lore.add(statBarLine(GLYPH_DAMAGE, "Damage", scoreDamage(def), DAMAGE_COLOR));
-            lore.add(statBarLine(GLYPH_FIRE_RATE, "Rate", scoreFireRate(def), RATE_COLOR));
-            lore.add(statBarLine(GLYPH_RANGE, "Range", scoreRange(def), DAMAGE_COLOR));
-            lore.add(statBarLine(GLYPH_ACCURACY, "Aim", scoreAim(def), AIM_COLOR));
+            lore.add(statTextLine(GLYPH_AMMO, "Colpi", shotsText, SHOTS_COLOR));
+            lore.add(statBarLine(GLYPH_DAMAGE, "Danno", scoreDamage(def), DAMAGE_COLOR));
+            lore.add(statBarLine(GLYPH_FIRE_RATE, "Cadenza", scoreFireRate(def), RATE_COLOR));
+            lore.add(statBarLine(GLYPH_RANGE, "Portata", scoreRange(def), DAMAGE_COLOR));
+            lore.add(statBarLine(GLYPH_ACCURACY, "Mira", scoreAim(def), AIM_COLOR));
         } else {
             lore.add(Component.text(""));
-            lore.add(Component.text("Type: ", NamedTextColor.GRAY)
+            lore.add(Component.text("Tipo: ", NamedTextColor.GRAY)
                     .append(Component.text(def.getCategory().getDisplayName(), NamedTextColor.WHITE))
                     .decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Damage: ", NamedTextColor.GRAY)
+            lore.add(Component.text("Danno: ", NamedTextColor.GRAY)
                     .append(Component.text(formatDecimal(def.getDamage()), NamedTextColor.YELLOW))
                     .decoration(TextDecoration.ITALIC, false));
         }
@@ -256,11 +256,11 @@ public class WeaponRegistry {
 
     private String formatTooltipCategory(WeaponDefinition def) {
         return switch (def.getCategory()) {
-            case PISTOL -> "Pistol";
+            case PISTOL -> "Pistola";
             case SHOTGUN -> "Shotgun";
-            case SMG, ASSAULT_RIFLE, SEMI_AUTO_RIFLE, SNIPER -> "Rifle";
+            case SMG, ASSAULT_RIFLE, SEMI_AUTO_RIFLE, SNIPER -> "Fucile";
             case TASER -> "Taser";
-            case MELEE -> "Melee";
+            case MELEE -> "Corpo a corpo";
         };
     }
 

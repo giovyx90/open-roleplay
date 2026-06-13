@@ -55,19 +55,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 public class ItemsGUI implements Listener {
-   private static final String MAIN_TITLE = "Items Admin";
-   private static final String FIREARMS_TITLE = "Items Admin — Firearms";
-   private static final String MELEE_TITLE = "Items Admin — Melee";
-   private static final String AMMO_TITLE = "Items Admin — Ammo";
-   private static final String MAGAZINES_TITLE = "Items Admin — Magazines";
-   private static final String EQUIPMENT_TITLE = "Items Admin — Equipment";
-   private static final String UTILITIES_TITLE = "Items Admin — Utilities";
-   private static final String FURNITURE_TITLE = "Items Admin — Furniture";
-   private static final String FOOD_TITLE = "Items Admin — Food";
-   private static final String DRINKS_TITLE = "Items Admin — Drinks";
-   private static final String ATTACHMENTS_TITLE = "Items Admin — Attachments";
-   private static final String SEARCH_TITLE = "Items Admin — Search";
-   private static final String LIST_TITLE = "Items Admin — List";
+   private static final String MAIN_TITLE = "Catalogo Admin";
+   private static final String FIREARMS_TITLE = "Catalogo Admin - Armi da fuoco";
+   private static final String MELEE_TITLE = "Catalogo Admin - Corpo a corpo";
+   private static final String AMMO_TITLE = "Catalogo Admin - Munizioni";
+   private static final String MAGAZINES_TITLE = "Catalogo Admin - Caricatori";
+   private static final String EQUIPMENT_TITLE = "Catalogo Admin - Equipaggiamento";
+   private static final String UTILITIES_TITLE = "Catalogo Admin - Utility";
+   private static final String FURNITURE_TITLE = "Catalogo Admin - Arredi";
+   private static final String FOOD_TITLE = "Catalogo Admin - Cibo";
+   private static final String DRINKS_TITLE = "Catalogo Admin - Bevande";
+   private static final String ATTACHMENTS_TITLE = "Catalogo Admin - Accessori";
+   private static final String SEARCH_TITLE = "Catalogo Admin - Ricerca";
+   private static final String LIST_TITLE = "Catalogo Admin - Lista";
    private static final int PAGED_ITEMS_PER_PAGE = 45;
    private final WeaponsModule module;
    private final Map<UUID, String> activeSearchQueries = new HashMap<>();
@@ -101,28 +101,28 @@ public class ItemsGUI implements Listener {
          .forEach(weapon -> entries.add(this.catalogEntry(
             "magazines",
             weapon.getId() + "_magazine",
-            weapon.getDisplayName() + " Magazine",
+            weapon.getDisplayName() + " Caricatore",
             this.module.getMagazineManager().createMagazine(weapon, weapon.getMagazineSize())
          )));
 
       for (ArmorDefinition armor : this.module.getArmorManager().getAll()) {
          entries.add(this.catalogEntry("equipment", armor.getId(), armor.getDisplayName(), this.module.getArmorManager().createItemStack(armor.getId())));
       }
-      entries.add(this.catalogEntry("equipment", "ceramic_plate", "Ceramic Plate", this.module.getArmorManager().createCeramicPlate()));
+      entries.add(this.catalogEntry("equipment", "ceramic_plate", "Piastra ceramica", this.module.getArmorManager().createCeramicPlate()));
       for (HelmetDefinition helmet : this.module.getHelmetManager().getAll()) {
          entries.add(this.catalogEntry("equipment", helmet.getId(), helmet.getDisplayName(), this.module.getHelmetManager().createItemStack(helmet.getId())));
       }
-      entries.add(this.catalogEntry("equipment", "riot_shield", "Riot Shield", this.module.getShieldManager().createRiotShield()));
-      entries.add(this.catalogEntry("equipment", "ballistic_shield", "Ballistic Shield", this.module.getShieldManager().createBallisticShield()));
-      entries.add(this.catalogEntry("equipment", "balaclava", "Balaclava", this.module.getBalaclavaManager().createBalaclava()));
+      entries.add(this.catalogEntry("equipment", "riot_shield", "Scudo antisommossa", this.module.getShieldManager().createRiotShield()));
+      entries.add(this.catalogEntry("equipment", "ballistic_shield", "Scudo balistico", this.module.getShieldManager().createBallisticShield()));
+      entries.add(this.catalogEntry("equipment", "balaclava", "Passamontagna", this.module.getBalaclavaManager().createBalaclava()));
       for (GrenadeDefinition grenade : this.module.getGrenadeManager().getAll()) {
          entries.add(this.catalogEntry("equipment", grenade.getId(), grenade.getDisplayName(), this.module.getGrenadeManager().createItemStack(grenade.getId())));
       }
 
-      entries.add(this.catalogEntry("utilities", "handcuffs", "Handcuffs", this.module.getHandcuffManager().createHandcuffs()));
-      entries.add(this.catalogEntry("utilities", "bolt_cutters", "Bolt Cutters", this.module.getHandcuffManager().createBoltCutters()));
-      entries.add(this.catalogEntry("utilities", "mobile_phone", "Mobile Phone", this.module.getMobilePhoneManager().createMobilePhone()));
-      entries.add(this.catalogEntry("utilities", "law_radio", "Law Radio", this.module.getLawRadioManager().createLawRadio()));
+      entries.add(this.catalogEntry("utilities", "handcuffs", "Manette", this.module.getHandcuffManager().createHandcuffs()));
+      entries.add(this.catalogEntry("utilities", "bolt_cutters", "Tronchesi", this.module.getHandcuffManager().createBoltCutters()));
+      entries.add(this.catalogEntry("utilities", "mobile_phone", "Telefono cellulare", this.module.getMobilePhoneManager().createMobilePhone()));
+      entries.add(this.catalogEntry("utilities", "law_radio", "Radio forze dell'ordine", this.module.getLawRadioManager().createLawRadio()));
       for (UtilityItemType type : UtilityItemType.values()) {
          entries.add(this.catalogEntry("utilities", type.getId(), type.getDisplayName(), this.module.getUtilityItemManager().createItem(type)));
       }
@@ -218,54 +218,54 @@ public class ItemsGUI implements Listener {
       inv.setItem(
          10,
          new ItemBuilder(Material.CROSSBOW)
-            .name(Component.text("Firearms", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .name(Component.text("Armi da fuoco", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
             .lore(
-               new Component[]{Component.text("Pistols, SMGs, Rifles, Snipers, Shotguns, Taser", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)}
+               new Component[]{Component.text("Pistole, SMG, fucili, sniper, shotgun, taser", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)}
             )
             .build()
       );
       inv.setItem(
          11,
          new ItemBuilder(Material.IRON_SWORD)
-            .name(Component.text("Melee", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Knives, bats, and melee weapons", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Corpo a corpo", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Coltelli, mazze e armi corpo a corpo", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          12,
          new ItemBuilder(Material.ARROW)
-            .name(Component.text("Ammo", NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("All ammunition types", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Munizioni", NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Tutti i tipi di munizioni", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          13,
          new ItemBuilder(Material.OAK_STAIRS)
-            .name(Component.text("Furniture", NamedTextColor.LIGHT_PURPLE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Café and Kitchen furnishings", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Arredi", NamedTextColor.LIGHT_PURPLE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Arredi cafe e cucina", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          14,
          new ItemBuilder(Material.IRON_CHESTPLATE)
-            .name(Component.text("Equipment", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Armor, helmets, shields, balaclava, grenades", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Equipaggiamento", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Armature, caschi, scudi, passamontagna, granate", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          15,
          new ItemBuilder(Material.IRON_NUGGET)
-            .name(Component.text("Magazines", NamedTextColor.WHITE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Loaded magazines for firearms", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Caricatori", NamedTextColor.WHITE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Caricatori pieni per armi da fuoco", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          16,
          new ItemBuilder(Material.STICK)
-            .name(Component.text("Utilities", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .name(Component.text("Utility", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
             .lore(
                new Component[]{
-                  Component.text("Handcuffs, bolt cutters, mobile phone, law radio", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
+                  Component.text("Manette, tronchesi, telefono, radio forze dell'ordine", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
                }
             )
             .build()
@@ -273,22 +273,22 @@ public class ItemsGUI implements Listener {
       inv.setItem(
          17,
          new ItemBuilder(Material.SPYGLASS)
-            .name(Component.text("Attachments", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Optics, barrels, and grips", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Accessori", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Ottiche, canne e impugnature", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          21,
          new ItemBuilder(Material.BREAD)
-            .name(Component.text("Food", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Prepared foods from the cooking system", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Cibo", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Cibi preparati dal sistema cucina", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       inv.setItem(
          22,
          new ItemBuilder(Material.POTION)
-            .name(Component.text("Drinks", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Beverages and alcoholic products", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+            .name(Component.text("Bevande", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+            .lore(new Component[]{Component.text("Bevande e prodotti alcolici", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
             .build()
       );
       player.openInventory(inv);
@@ -298,7 +298,7 @@ public class ItemsGUI implements Listener {
       List<WeaponDefinition> firearms = this.module.getWeaponRegistry().getAll().stream().filter(w -> w.getCategory() != WeaponCategory.MELEE).toList();
       int size = this.clampSize(firearms.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Firearms", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Armi da fuoco", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -319,7 +319,7 @@ public class ItemsGUI implements Listener {
       List<WeaponDefinition> meleeWeapons = this.module.getWeaponRegistry().getByCategory(WeaponCategory.MELEE);
       int size = this.clampSize(meleeWeapons.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Melee", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Corpo a corpo", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -340,7 +340,7 @@ public class ItemsGUI implements Listener {
       List<AmmoDefinition> ammoList = this.module.getAmmoRegistry().getAll();
       int size = this.clampSize(ammoList.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Ammo", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Munizioni", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -366,7 +366,7 @@ public class ItemsGUI implements Listener {
          .toList();
       int size = this.clampSize(firearms.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Magazines", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Caricatori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -400,7 +400,7 @@ public class ItemsGUI implements Listener {
          + this.module.getGrenadeManager().getAll().size();
       int size = this.clampSize(count + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Equipment", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Equipaggiamento", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -452,7 +452,7 @@ public class ItemsGUI implements Listener {
    private void openUtilities(Player player) {
       int size = 54;
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Utilities", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Utility", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
       inv.setItem(slot++, this.module.getHandcuffManager().createHandcuffs());
@@ -477,7 +477,7 @@ public class ItemsGUI implements Listener {
       List<AttachmentDefinition> attachments = this.module.getAttachmentRegistry().getAll();
       int size = this.clampSize(attachments.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Items Admin — Attachments", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         null, size, Component.text("Catalogo Admin - Accessori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -632,8 +632,8 @@ public class ItemsGUI implements Listener {
          inv.setItem(
             22,
             new ItemBuilder(Material.BARRIER)
-               .name(Component.text("No items found", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false))
-               .lore(new Component[]{Component.text("Try a different query or category.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+               .name(Component.text("Nessun oggetto trovato", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false))
+               .lore(new Component[]{Component.text("Prova una ricerca o categoria diversa.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
                .build()
          );
       }
@@ -660,8 +660,8 @@ public class ItemsGUI implements Listener {
          if (entry.hasNexoId()) {
             lore.add(Component.text("Nexo ID: " + entry.nexoId(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
          }
-         lore.add(Component.text("Catalog ID: " + entry.fullId(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
-         lore.add(Component.text("Category: " + this.humanizeId(entry.category()), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("ID catalogo: " + entry.fullId(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Categoria: " + this.humanizeId(entry.category()), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
          meta.lore(lore);
          item.setItemMeta(meta);
       }
@@ -673,7 +673,7 @@ public class ItemsGUI implements Listener {
       if (event.getWhoClicked() instanceof Player player) {
          String title = this.getPlainTitle(event);
          if (title != null) {
-            if (title.startsWith("Items Admin")) {
+            if (title.startsWith("Catalogo Admin")) {
                event.setCancelled(true);
                ItemStack clicked = event.getCurrentItem();
                if (clicked != null && clicked.getType() != Material.AIR && clicked.getType() != Material.GRAY_STAINED_GLASS_PANE) {
@@ -770,7 +770,7 @@ public class ItemsGUI implements Listener {
          .sensitivity(StaffBoardSensitivity.SENSITIVE)
          .actor(player)
          .location(player.getLocation())
-         .message(player.getName() + " obtained " + weapon.getDisplayName() + " from Items Admin.")
+         .message(player.getName() + " ha ottenuto " + weapon.getDisplayName() + " dal Catalogo Admin.")
          .metadataJson(metadata.toJson())
          .build());
    }
@@ -817,7 +817,7 @@ public class ItemsGUI implements Listener {
       if (item == null || !item.hasItemMeta() || item.getItemMeta().lore() == null) {
          return false;
       }
-      return item.getItemMeta().lore().stream().map(PlainTextComponentSerializer.plainText()::serialize).anyMatch(line -> line.startsWith("Catalog ID: "));
+      return item.getItemMeta().lore().stream().map(PlainTextComponentSerializer.plainText()::serialize).anyMatch(line -> line.startsWith("ID catalogo: "));
    }
 
    private boolean isPagedAdminCategory(String title) {
@@ -868,8 +868,8 @@ public class ItemsGUI implements Listener {
       }
       for (Component line : item.getItemMeta().lore()) {
          String plain = PlainTextComponentSerializer.plainText().serialize(line);
-         if (plain.startsWith("Catalog ID: ")) {
-            return this.findCatalogEntry(player, plain.substring("Catalog ID: ".length()));
+         if (plain.startsWith("ID catalogo: ")) {
+            return this.findCatalogEntry(player, plain.substring("ID catalogo: ".length()));
          }
       }
       return Optional.empty();
@@ -882,7 +882,7 @@ public class ItemsGUI implements Listener {
             return nexoItem;
          }
          actor.sendMessage(Component.text(
-            "Nexo item unavailable in runtime: " + entry.nexoId() + ". Use /nexo reload or check the exact Nexo item id.",
+            "Oggetto Nexo non disponibile a runtime: " + entry.nexoId() + ". Usa /nexo reload o controlla l'id esatto dell'oggetto Nexo.",
             NamedTextColor.RED
          ));
          return Optional.empty();
@@ -905,7 +905,7 @@ public class ItemsGUI implements Listener {
 
    private String plainItemName(ItemStack item) {
       if (item == null || !item.hasItemMeta() || item.getItemMeta().displayName() == null) {
-         return item == null ? "Unknown" : this.humanizeId(item.getType().name());
+         return item == null ? "Sconosciuto" : this.humanizeId(item.getType().name());
       }
       return PlainTextComponentSerializer.plainText().serialize(item.getItemMeta().displayName());
    }
@@ -1084,9 +1084,9 @@ public class ItemsGUI implements Listener {
       List<Component> lore = new ArrayList<>();
       lore.add(Component.text("Nexo ID: " + entry.id(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
       if (workstation != null) {
-         lore.add(Component.text("Workstation: " + workstation.name(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Postazione: " + workstation.name(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
       }
-      lore.add(Component.text("Preview only - Nexo unavailable", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Solo anteprima - Nexo non disponibile", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
       meta.lore(lore);
       item.setItemMeta(meta);
       return Optional.of(item);
@@ -1107,14 +1107,14 @@ public class ItemsGUI implements Listener {
       if (meta.lore() != null) {
          lore.addAll(meta.lore());
       }
-      lore.add(Component.text("Recipe ID: " + recipe.id(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
-      lore.add(Component.text("Workstation: " + recipe.workstation().name(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("ID ricetta: " + recipe.id(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Postazione: " + recipe.workstation().name(), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
       if (recipe.alcoholDelta() > 0.0D) {
-         lore.add(Component.text("Alcohol: +" + recipe.alcoholDelta(), NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Alcol: +" + recipe.alcoholDelta(), NamedTextColor.GOLD).decoration(TextDecoration.ITALIC, false));
       } else if (recipe.hydrationDelta() > 0) {
-         lore.add(Component.text("Hydration: +" + recipe.hydrationDelta(), NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Idratazione: +" + recipe.hydrationDelta(), NamedTextColor.AQUA).decoration(TextDecoration.ITALIC, false));
       }
-      lore.add(Component.text("Admin spawn item", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Oggetto spawn admin", NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false));
       meta.lore(lore);
       item.setItemMeta(meta);
       return item;
@@ -1286,8 +1286,8 @@ public class ItemsGUI implements Listener {
    }
 
    private String humanizeId(String raw) {
-      return raw == null ? "Unknown" : raw.replace('_', ' ').replace('-', ' ').trim()
-         .transform(value -> value.isEmpty() ? "Unknown" : Character.toUpperCase(value.charAt(0)) + value.substring(1).toLowerCase(Locale.ROOT));
+      return raw == null ? "Sconosciuto" : raw.replace('_', ' ').replace('-', ' ').trim()
+         .transform(value -> value.isEmpty() ? "Sconosciuto" : Character.toUpperCase(value.charAt(0)) + value.substring(1).toLowerCase(Locale.ROOT));
    }
 
    private List<FurnitureEntry> detectNexoFurnitureEntries() {
@@ -1544,7 +1544,7 @@ public class ItemsGUI implements Listener {
    }
 
    private ItemStack backButton() {
-      return new ItemBuilder(Material.SPECTRAL_ARROW).name(Component.text("← Back", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false)).build();
+      return new ItemBuilder(Material.SPECTRAL_ARROW).name(Component.text("← Indietro", NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false)).build();
    }
 
    private void fillRemaining(Inventory inv, int fromSlot, int size) {

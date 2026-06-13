@@ -1,0 +1,82 @@
+{
+  "oversized_in_gui": true,
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "item/firework_star"
+    },
+    "entries": [
+      {
+        "threshold": 60,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/sacco_bottino",
+          "tints": [
+            {
+              "type": "constant",
+              "value": -1
+            },
+            {
+              "type": "firework",
+              "default": -7697782
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 193,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/paracadute",
+          "tints": [
+            {
+              "type": "constant",
+              "value": -1
+            },
+            {
+              "type": "firework",
+              "default": -7697782
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 194,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/paracadute_aperto",
+          "tints": [
+            {
+              "type": "constant",
+              "value": -1
+            },
+            {
+              "type": "firework",
+              "default": -7697782
+            }
+          ]
+        }
+      },
+      {
+        "threshold": 292,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/passamontagna",
+          "tints": [
+            {
+              "type": "constant",
+              "value": -1
+            },
+            {
+              "type": "firework",
+              "default": -7697782
+            }
+          ]
+        }
+      }
+    ],
+    "index": 0
+  }
+}

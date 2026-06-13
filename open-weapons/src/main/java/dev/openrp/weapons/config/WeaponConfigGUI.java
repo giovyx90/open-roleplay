@@ -40,19 +40,19 @@ public class WeaponConfigGUI implements Listener {
 
     public void openMain(Player player) {
         Inventory inv = Bukkit.createInventory(new RootHolder(), 27,
-                Component.text("Weapon Config", NamedTextColor.DARK_RED, TextDecoration.BOLD));
+                Component.text("Config Armi", NamedTextColor.DARK_RED, TextDecoration.BOLD));
         fill(inv);
         inv.setItem(11, new ItemBuilder(Material.CROSSBOW)
-                .name(Component.text("Weapons", NamedTextColor.RED))
+                .name(Component.text("Armi", NamedTextColor.RED))
                 .lore(
-                        Component.text("Edit weapons.yml firearm fields", NamedTextColor.GRAY),
-                        Component.text("Damage, recoil, model data, magazines", NamedTextColor.DARK_GRAY))
+                        Component.text("Modifica i campi armi di weapons.yml", NamedTextColor.GRAY),
+                        Component.text("Danno, rinculo, model data, caricatori", NamedTextColor.DARK_GRAY))
                 .build());
         inv.setItem(15, new ItemBuilder(Material.LEATHER_CHESTPLATE)
-                .name(Component.text("Protections", NamedTextColor.AQUA))
+                .name(Component.text("Protezioni", NamedTextColor.AQUA))
                 .lore(
-                        Component.text("Edit armor.yml protection fields", NamedTextColor.GRAY),
-                        Component.text("Vests, helmets and protection values", NamedTextColor.DARK_GRAY))
+                        Component.text("Modifica i campi protezione di armor.yml", NamedTextColor.GRAY),
+                        Component.text("Giubbotti, caschi e valori protezione", NamedTextColor.DARK_GRAY))
                 .build());
         player.openInventory(inv);
     }
@@ -60,7 +60,7 @@ public class WeaponConfigGUI implements Listener {
     public void openWeapons(Player player, int page) {
         List<String> weapons = editor.weaponIds();
         Inventory inv = Bukkit.createInventory(new WeaponListHolder(page), 54,
-                Component.text("Weapon Config", NamedTextColor.DARK_RED, TextDecoration.BOLD));
+                Component.text("Config Armi", NamedTextColor.DARK_RED, TextDecoration.BOLD));
         fill(inv);
         int start = Math.max(0, page) * PAGE_SIZE;
         for (int slot = 0; slot < PAGE_SIZE && start + slot < weapons.size(); slot++) {
@@ -70,18 +70,18 @@ public class WeaponConfigGUI implements Listener {
             inv.setItem(slot, new ItemBuilder(material)
                     .name(Component.text(weaponId, NamedTextColor.RED))
                     .lore(
-                            Component.text("Left click: edit fields", NamedTextColor.GRAY),
-                            Component.text("Command: /weaponconfig set " + weaponId + " <path> <value>", NamedTextColor.DARK_GRAY))
+                            Component.text("Clic sinistro: modifica campi", NamedTextColor.GRAY),
+                            Component.text("Comando: /weaponconfig set " + weaponId + " <path> <value>", NamedTextColor.DARK_GRAY))
                     .build());
         }
-        setNavigation(inv, page, weapons.size(), true, "Back to menu");
+        setNavigation(inv, page, weapons.size(), true, "Torna al menu");
         player.openInventory(inv);
     }
 
     public void openProtections(Player player, int page) {
         List<ProtectionEntry> entries = protectionEntries();
         Inventory inv = Bukkit.createInventory(new ProtectionListHolder(page), 54,
-                Component.text("Protection Config", NamedTextColor.DARK_AQUA, TextDecoration.BOLD));
+                Component.text("Config Protezioni", NamedTextColor.DARK_AQUA, TextDecoration.BOLD));
         fill(inv);
         int start = Math.max(0, page) * PAGE_SIZE;
         for (int slot = 0; slot < PAGE_SIZE && start + slot < entries.size(); slot++) {
@@ -92,12 +92,12 @@ public class WeaponConfigGUI implements Listener {
                     .name(Component.text(entry.id(), entry.type().color()))
                     .lore(
                             Component.text(entry.type().label(), NamedTextColor.GRAY),
-                            Component.text("Left click: edit fields", NamedTextColor.GREEN),
+                            Component.text("Clic sinistro: modifica campi", NamedTextColor.GREEN),
                             Component.text("Command: /weaponconfig " + entry.type().commandName()
                                     + " set " + entry.id() + " <path> <value>", NamedTextColor.DARK_GRAY))
                     .build());
         }
-        setNavigation(inv, page, entries.size(), true, "Back to menu");
+        setNavigation(inv, page, entries.size(), true, "Torna al menu");
         player.openInventory(inv);
     }
 
@@ -118,12 +118,12 @@ public class WeaponConfigGUI implements Listener {
                     .name(Component.text(field.path(), NamedTextColor.YELLOW))
                     .lore(
                             Component.text(field.label(), NamedTextColor.GRAY),
-                            Component.text("Current: " + trim(value, 34), NamedTextColor.WHITE),
-                            Component.text("Left click: edit via chat", NamedTextColor.GREEN),
-                            Component.text("Right click: remove/unset", NamedTextColor.RED))
+                            Component.text("Attuale: " + trim(value, 34), NamedTextColor.WHITE),
+                            Component.text("Clic sinistro: modifica via chat", NamedTextColor.GREEN),
+                            Component.text("Clic destro: rimuovi/svuota", NamedTextColor.RED))
                     .build());
         }
-        setNavigation(inv, page, fields.size(), true, type == ConfigType.WEAPON ? "Back to weapons" : "Back to protections");
+        setNavigation(inv, page, fields.size(), true, type == ConfigType.WEAPON ? "Torna alle armi" : "Torna alle protezioni");
         player.openInventory(inv);
     }
 
@@ -169,7 +169,7 @@ public class WeaponConfigGUI implements Listener {
         Player player = event.getPlayer();
         Bukkit.getScheduler().runTask(module.getCore(), () -> {
             if (message.equalsIgnoreCase("cancel")) {
-                player.sendMessage(Component.text("Config edit cancelled.", NamedTextColor.YELLOW));
+                player.sendMessage(Component.text("Modifica config annullata.", NamedTextColor.YELLOW));
                 openFields(player, edit.type(), edit.itemId(), edit.page());
                 return;
             }
@@ -264,8 +264,8 @@ public class WeaponConfigGUI implements Listener {
         }
         pendingEdits.put(player.getUniqueId(), new PendingEdit(holder.type(), holder.itemId(), field.path(), holder.page()));
         player.closeInventory();
-        player.sendMessage(Component.text("Type new value for " + holder.itemId() + "." + field.path()
-                + " in chat, or 'cancel'.", NamedTextColor.YELLOW));
+        player.sendMessage(Component.text("Scrivi il nuovo valore per " + holder.itemId() + "." + field.path()
+                + " in chat, oppure 'cancel'.", NamedTextColor.YELLOW));
     }
 
     private List<ProtectionEntry> protectionEntries() {
@@ -317,10 +317,10 @@ public class WeaponConfigGUI implements Listener {
 
     private void setNavigation(Inventory inv, int page, int total, boolean showBack, String backName) {
         if (page > 0) {
-            inv.setItem(PREV_SLOT, button(Material.ARROW, "Previous page", NamedTextColor.YELLOW));
+            inv.setItem(PREV_SLOT, button(Material.ARROW, "Pagina precedente", NamedTextColor.YELLOW));
         }
         if ((page + 1) * PAGE_SIZE < total) {
-            inv.setItem(NEXT_SLOT, button(Material.ARROW, "Next page", NamedTextColor.YELLOW));
+            inv.setItem(NEXT_SLOT, button(Material.ARROW, "Pagina successiva", NamedTextColor.YELLOW));
         }
         if (showBack) {
             inv.setItem(BACK_SLOT, button(Material.BARRIER, backName, NamedTextColor.RED));
@@ -358,9 +358,9 @@ public class WeaponConfigGUI implements Listener {
     }
 
     public enum ConfigType {
-        WEAPON("weapon", "Weapon", "Config", Material.CROSSBOW, NamedTextColor.RED),
-        ARMOR("armor", "Bulletproof Vest", "Armor", Material.LEATHER_CHESTPLATE, NamedTextColor.AQUA),
-        HELMET("helmet", "Helmet", "Helmet", Material.LEATHER_HELMET, NamedTextColor.BLUE);
+        WEAPON("weapon", "Arma", "Config", Material.CROSSBOW, NamedTextColor.RED),
+        ARMOR("armor", "Giubbotto antiproiettile", "Armatura", Material.LEATHER_CHESTPLATE, NamedTextColor.AQUA),
+        HELMET("helmet", "Casco", "Casco", Material.LEATHER_HELMET, NamedTextColor.BLUE);
 
         private final String commandName;
         private final String label;

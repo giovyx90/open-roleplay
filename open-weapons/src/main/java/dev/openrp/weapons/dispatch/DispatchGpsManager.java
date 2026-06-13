@@ -50,7 +50,7 @@ public class DispatchGpsManager {
       DispatchGpsManager.GpsSession session = this.activeGps.remove(player.getUniqueId());
       if (session == null) {
          if (notify) {
-            player.sendMessage(Component.text("No active dispatch GPS.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Nessun GPS dispatch attivo.", NamedTextColor.RED));
          }
       } else {
          if (session.task != null) {
@@ -63,7 +63,7 @@ public class DispatchGpsManager {
          }
 
          if (notify) {
-            player.sendMessage(Component.text("Dispatch GPS disabled.", NamedTextColor.GREEN));
+            player.sendMessage(Component.text("GPS dispatch disattivato.", NamedTextColor.GREEN));
          }
       }
    }
@@ -92,13 +92,13 @@ public class DispatchGpsManager {
             if (target != null && target.getWorld() != null) {
                target = target.clone();
                if (!player.getWorld().equals(target.getWorld())) {
-                  session.bar.name(Component.text(session.label + " GPS signal unavailable in this world. Target: " + target.getWorld().getName(), NamedTextColor.RED));
+                  session.bar.name(Component.text(session.label + " segnale GPS non disponibile in questo mondo. Bersaglio: " + target.getWorld().getName(), NamedTextColor.RED));
                } else {
                   Location playerLocation = player.getLocation();
                   double distance = playerLocation.distance(target);
                   if (distance <= session.arrivalDistance) {
                      this.stop(player, false);
-                     player.sendMessage(Component.text(session.label + " GPS target reached.", NamedTextColor.GREEN));
+                     player.sendMessage(Component.text(session.label + " bersaglio GPS raggiunto.", NamedTextColor.GREEN));
                   } else {
                      player.setCompassTarget(target);
                      session.bar.progress(Math.max(0.05F, Math.min(1.0F, (float)(distance / 120.0))));
@@ -106,7 +106,7 @@ public class DispatchGpsManager {
                   }
                }
             } else {
-               session.bar.name(Component.text(session.label + " GPS signal unavailable. Waiting for target...", NamedTextColor.RED));
+               session.bar.name(Component.text(session.label + " segnale GPS non disponibile. In attesa del bersaglio...", NamedTextColor.RED));
             }
          }
       }

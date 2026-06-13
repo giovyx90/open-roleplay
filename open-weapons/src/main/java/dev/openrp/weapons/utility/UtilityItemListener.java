@@ -188,11 +188,11 @@ public class UtilityItemListener implements Listener {
                      case PARACHUTE:
                         event.setCancelled(true);
                         if (!player.hasPermission("openrp.utility.wearables")) {
-                           player.sendMessage(Component.text("You cannot use this gear.", NamedTextColor.RED));
+                           player.sendMessage(Component.text("Non puoi usare questo equipaggiamento.", NamedTextColor.RED));
                            return;
                         }
 
-                        player.sendActionBar(Component.text("Hold the parachute while falling to deploy it.", NamedTextColor.YELLOW));
+                        player.sendActionBar(Component.text("Tieni il paracadute mentre cadi per aprirlo.", NamedTextColor.YELLOW));
                         break;
                      case GRAPPLING_HOOK:
                         event.setCancelled(true);
@@ -201,7 +201,7 @@ public class UtilityItemListener implements Listener {
                      case STRETCHER:
                         event.setCancelled(true);
                         if (!this.releaseStretcher(player)) {
-                           player.sendActionBar(Component.text("Right-click a nearby player to load the stretcher.", NamedTextColor.YELLOW));
+                           player.sendActionBar(Component.text("Clic destro su un giocatore vicino per caricarlo sulla barella.", NamedTextColor.YELLOW));
                         }
                         break;
                      case FIRE_EXTINGUISHER:
@@ -212,7 +212,7 @@ public class UtilityItemListener implements Listener {
                         if (event.getClickedBlock() != null) {
                            event.setCancelled(true);
                            if (!player.hasPermission("openrp.utility.roadbarrier")) {
-                              player.sendMessage(Component.text("You cannot deploy road barriers.", NamedTextColor.RED));
+                              player.sendMessage(Component.text("Non puoi piazzare barriere stradali.", NamedTextColor.RED));
                               return;
                            }
 
@@ -223,7 +223,7 @@ public class UtilityItemListener implements Listener {
                         if (event.getClickedBlock() != null) {
                            event.setCancelled(true);
                            if (!player.hasPermission("openrp.utility.roadbarrier")) {
-                              player.sendMessage(Component.text("You cannot deploy road equipment.", NamedTextColor.RED));
+                              player.sendMessage(Component.text("Non puoi piazzare equipaggiamento stradale.", NamedTextColor.RED));
                               return;
                            }
 
@@ -238,7 +238,7 @@ public class UtilityItemListener implements Listener {
                      case NIGHT_VISION_GOGGLES:
                         event.setCancelled(true);
                         if (!player.hasPermission("openrp.utility.wearables")) {
-                           player.sendMessage(Component.text("You cannot use this gear.", NamedTextColor.RED));
+                           player.sendMessage(Component.text("Non puoi usare questo equipaggiamento.", NamedTextColor.RED));
                            return;
                         }
 
@@ -250,11 +250,11 @@ public class UtilityItemListener implements Listener {
                         break;
                      case SCANNER:
                         event.setCancelled(true);
-                        player.sendActionBar(Component.text("Right-click a player to scan metallic items.", NamedTextColor.YELLOW));
+                        player.sendActionBar(Component.text("Clic destro su un giocatore per scansionare oggetti metallici.", NamedTextColor.YELLOW));
                         break;
                      case PAINT_SPRAY:
                         event.setCancelled(true);
-                        player.sendActionBar(Component.text("Right-click a player to use Pepper Spray.", NamedTextColor.YELLOW));
+                        player.sendActionBar(Component.text("Clic destro su un giocatore per usare lo spray al peperoncino.", NamedTextColor.YELLOW));
                         break;
                      case FINGERPRINT_SHEET:
                         event.setCancelled(true);
@@ -343,7 +343,7 @@ public class UtilityItemListener implements Listener {
       if (this.isGagged(event.getPlayer())) {
          event.setCancelled(true);
          Bukkit.getScheduler()
-            .runTask(this.module.getCore(), () -> event.getPlayer().sendMessage(Component.text("You cannot speak while gagged.", NamedTextColor.RED)));
+            .runTask(this.module.getCore(), () -> event.getPlayer().sendMessage(Component.text("Non puoi parlare mentre sei imbavagliato.", NamedTextColor.RED)));
       }
    }
 
@@ -360,7 +360,7 @@ public class UtilityItemListener implements Listener {
             || command.equals("/c")
             || command.equals("/chat")) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(Component.text("You cannot speak while gagged.", NamedTextColor.RED));
+            event.getPlayer().sendMessage(Component.text("Non puoi parlare mentre sei imbavagliato.", NamedTextColor.RED));
          }
       }
    }
@@ -478,19 +478,19 @@ public class UtilityItemListener implements Listener {
          ItemStack var6 = player.getInventory().getItem(holder.hand);
          if (this.manager.isType(var6, UtilityItemType.DUFFEL_BAG)) {
             this.saveDuffel(var6, event.getInventory().getContents());
-            player.sendActionBar(Component.text("Duffel Bag saved.", NamedTextColor.GREEN));
+            player.sendActionBar(Component.text("Borsone salvato.", NamedTextColor.GREEN));
          }
       }
    }
 
    private void openC4Remote(Player player) {
       if (!player.hasPermission("openrp.c4.remote")) {
-         player.sendMessage(Component.text("C4 remote signal locked.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Segnale remoto C4 bloccato.", NamedTextColor.RED));
       } else {
          List<C4Charge> charges = this.module.getC4Manager().getVisibleCharges(player);
          int size = Math.max(27, Math.min(54, (charges.size() + 8) / 9 * 9));
          UtilityItemListener.C4ListHolder holder = new UtilityItemListener.C4ListHolder();
-         Inventory inventory = Bukkit.createInventory(holder, size, NexoUI.getGlyphTitle("c4_remote_gui", "C4 Remote"));
+         Inventory inventory = Bukkit.createInventory(holder, size, NexoUI.getGlyphTitle("c4_remote_gui", "Telecomando C4"));
          holder.inventory = inventory;
          this.fill(inventory);
          int slot = 0;
@@ -508,8 +508,8 @@ public class UtilityItemListener implements Listener {
             inventory.setItem(
                13,
                new ItemBuilder(Material.BARRIER)
-                  .name(Component.text("No C4 charges", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-                  .lore(new Component[]{Component.text("You have no active charges.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+                  .name(Component.text("Nessuna carica C4", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+                  .lore(new Component[]{Component.text("Non hai cariche attive.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
                   .build()
             );
          }
@@ -521,11 +521,11 @@ public class UtilityItemListener implements Listener {
    private void openC4Detail(Player player, String chargeId) {
       C4Charge charge = this.module.getC4Manager().getCharge(chargeId);
       if (!this.module.getC4Manager().canRemoteManage(player, charge)) {
-         player.sendMessage(Component.text("C4 signal unavailable.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Segnale C4 non disponibile.", NamedTextColor.RED));
          this.openC4Remote(player);
       } else {
          UtilityItemListener.C4DetailHolder holder = new UtilityItemListener.C4DetailHolder(chargeId);
-         Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("c4_remote_detail_gui", "C4 Control"));
+         Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("c4_remote_detail_gui", "Controllo C4"));
          holder.inventory = inventory;
          this.fill(inventory);
 
@@ -534,10 +534,10 @@ public class UtilityItemListener implements Listener {
                C4_TIMER_SLOTS[i],
                new ItemBuilder(Material.CLOCK)
                   .name(
-                     Component.text("Set " + this.formatSeconds(C4_TIMER_SECONDS[i]), NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD})
+                     Component.text("Imposta " + this.formatSeconds(C4_TIMER_SECONDS[i]), NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD})
                         .decoration(TextDecoration.ITALIC, false)
                   )
-                  .lore(new Component[]{Component.text("Resets the timer from now.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+                  .lore(new Component[]{Component.text("Reimposta il timer da ora.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
                   .build()
             );
          }
@@ -546,14 +546,14 @@ public class UtilityItemListener implements Listener {
          inventory.setItem(
             22,
             new ItemBuilder(Material.FIRE_CHARGE)
-               .name(Component.text("Detonate Now", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-               .lore(new Component[]{Component.text("Remote detonation.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+               .name(Component.text("Detona ora", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+               .lore(new Component[]{Component.text("Detonazione remota.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
                .build()
          );
          inventory.setItem(
             26,
             NexoUI.getCancelButton(
-               Component.text("Back", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
+               Component.text("Indietro", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
             )
          );
          player.openInventory(inventory);
@@ -566,14 +566,14 @@ public class UtilityItemListener implements Listener {
       } else if (rawSlot == 22) {
          boolean success = this.module.getC4Manager().remoteDetonate(player, chargeId);
          player.closeInventory();
-         player.sendMessage(Component.text(success ? "C4 detonated." : "C4 signal unavailable.", success ? NamedTextColor.GREEN : NamedTextColor.RED));
+         player.sendMessage(Component.text(success ? "C4 detonato." : "Segnale C4 non disponibile.", success ? NamedTextColor.GREEN : NamedTextColor.RED));
       } else {
          for (int i = 0; i < C4_TIMER_SLOTS.length; i++) {
             if (rawSlot == C4_TIMER_SLOTS[i]) {
                boolean success = this.module.getC4Manager().remoteSetTimer(player, chargeId, C4_TIMER_SECONDS[i]);
                player.sendMessage(
                   Component.text(
-                     success ? "C4 timer set to " + this.formatSeconds(C4_TIMER_SECONDS[i]) + "." : "C4 signal unavailable.",
+                     success ? "Timer C4 impostato a " + this.formatSeconds(C4_TIMER_SECONDS[i]) + "." : "Segnale C4 non disponibile.",
                      success ? NamedTextColor.GREEN : NamedTextColor.RED
                   )
                );
@@ -587,12 +587,12 @@ public class UtilityItemListener implements Listener {
    private ItemStack c4ChargeItem(Player player, C4Charge charge) {
       double distance = player.getWorld().equals(charge.getLocation().getWorld()) ? player.getLocation().distance(charge.getLocation()) : -1.0;
       List<Component> lore = new ArrayList<>();
-      lore.add(Component.text("Owner: " + charge.getOwnerName(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Proprietario: " + charge.getOwnerName(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
       lore.add(
-         Component.text("Remaining: " + this.formatSeconds((int)charge.getRemainingSeconds()), NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false)
+         Component.text("Rimanente: " + this.formatSeconds((int)charge.getRemainingSeconds()), NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false)
       );
       lore.add(
-         Component.text(distance >= 0.0 ? "Distance: " + Math.round(distance) + "m" : "Different world", NamedTextColor.GRAY)
+         Component.text(distance >= 0.0 ? "Distanza: " + Math.round(distance) + "m" : "Mondo diverso", NamedTextColor.GRAY)
             .decoration(TextDecoration.ITALIC, false)
       );
       return new ItemBuilder(Material.FIREWORK_STAR)
@@ -604,35 +604,35 @@ public class UtilityItemListener implements Listener {
 
    private void placeBlockTracker(Player player, ItemStack item, Block block) {
       if (player.getLocation().distance(block.getLocation().add(0.5, 0.5, 0.5)) > 4.5) {
-         player.sendMessage(Component.text("Tracker target is too far away.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Il bersaglio del tracker e' troppo lontano.", NamedTextColor.RED));
       } else {
          String id = UUID.randomUUID().toString().substring(0, 8);
          Location location = block.getLocation().add(0.5, 0.5, 0.5);
-         this.trackerRecords.put(id, UtilityItemListener.TrackerRecord.forLocation(id, player.getUniqueId(), "Block " + block.getType().name(), location));
+         this.trackerRecords.put(id, UtilityItemListener.TrackerRecord.forLocation(id, player.getUniqueId(), "Blocco " + block.getType().name(), location));
          this.consumeOne(player, EquipmentSlot.HAND);
          player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8F, 1.4F);
-         player.sendMessage(Component.text("GPS tracker placed on block.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Tracker GPS piazzato sul blocco.", NamedTextColor.GREEN));
       }
    }
 
    private void placeEntityTracker(Player player, ItemStack item, Entity entity) {
       if (entity.equals(player)) {
-         player.sendMessage(Component.text("You cannot track yourself.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non puoi tracciare te stesso.", NamedTextColor.RED));
       } else if (player.getLocation().distance(entity.getLocation()) > 4.5) {
-         player.sendMessage(Component.text("Tracker target is too far away.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Il bersaglio del tracker e' troppo lontano.", NamedTextColor.RED));
       } else {
          String id = UUID.randomUUID().toString().substring(0, 8);
          this.trackerRecords.put(id, UtilityItemListener.TrackerRecord.forEntity(id, player.getUniqueId(), entity.getName(), entity.getUniqueId()));
          this.consumeOne(player, EquipmentSlot.HAND);
          player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8F, 1.4F);
-         player.sendMessage(Component.text("GPS tracker attached to " + entity.getName() + ".", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Tracker GPS agganciato a " + entity.getName() + ".", NamedTextColor.GREEN));
       }
    }
 
    private void openTrackerGui(Player player) {
       this.removeInvalidTrackers(player.getUniqueId());
       UtilityItemListener.TrackerHolder holder = new UtilityItemListener.TrackerHolder();
-      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("gps_tracker_gui", "GPS Trackers"));
+      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("gps_tracker_gui", "Tracker GPS"));
       holder.inventory = inventory;
       this.fill(inventory);
       int slot = 0;
@@ -659,7 +659,7 @@ public class UtilityItemListener implements Listener {
          inventory.setItem(
             13,
             new ItemBuilder(Material.BARRIER)
-               .name(Component.text("No trackers", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+               .name(Component.text("Nessun tracker", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
                .build()
          );
       }
@@ -672,14 +672,14 @@ public class UtilityItemListener implements Listener {
       if (record != null && record.ownerUuid.equals(player.getUniqueId())) {
          if (record.currentLocation() == null) {
             this.trackerRecords.remove(trackerId);
-            player.sendMessage(Component.text("Tracker signal expired and was removed.", NamedTextColor.YELLOW));
+            player.sendMessage(Component.text("Segnale tracker scaduto e rimosso.", NamedTextColor.YELLOW));
             Bukkit.getScheduler().runTask(this.module.getCore(), () -> this.openTrackerGui(player));
             return;
          }
          this.module.getDispatchGpsManager().activate(player, "TRACKER", record::currentLocation, 6000L, 4.0, settings.trackerShowCoordinates());
          player.closeInventory();
       } else {
-         player.sendMessage(Component.text("Tracker signal unavailable.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Segnale tracker non disponibile.", NamedTextColor.RED));
       }
    }
 
@@ -688,10 +688,10 @@ public class UtilityItemListener implements Listener {
       if (record != null && record.ownerUuid.equals(player.getUniqueId())) {
          this.trackerRecords.remove(trackerId);
          player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 0.7F, 1.1F);
-         player.sendMessage(Component.text("GPS tracker removed.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Tracker GPS rimosso.", NamedTextColor.GREEN));
          Bukkit.getScheduler().runTask(this.module.getCore(), () -> this.openTrackerGui(player));
       } else {
-         player.sendMessage(Component.text("Tracker signal unavailable.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Segnale tracker non disponibile.", NamedTextColor.RED));
       }
    }
 
@@ -703,39 +703,39 @@ public class UtilityItemListener implements Listener {
    private Component[] trackerLore(Location location) {
       List<Component> lore = new ArrayList<>();
       if (location == null) {
-         lore.add(Component.text("Signal unavailable", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Segnale non disponibile", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
       } else {
-         lore.add(Component.text("World: " + location.getWorld().getName(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+         lore.add(Component.text("Mondo: " + location.getWorld().getName(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
          if (settings.trackerShowRegion()) {
-            lore.add(Component.text("Region: " + worldGuardRegion(location), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Regione: " + worldGuardRegion(location), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false));
          }
          if (settings.trackerShowCoordinates()) {
             lore.add(Component.text(this.formatLocation(location), NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
          }
       }
-      lore.add(Component.text("Left-click to activate. Right-click or shift-click to remove.", NamedTextColor.YELLOW)
+      lore.add(Component.text("Clic sinistro per attivare. Clic destro o shift-clic per rimuovere.", NamedTextColor.YELLOW)
             .decoration(TextDecoration.ITALIC, false));
       return lore.toArray(Component[]::new);
    }
 
    private void startGag(Player actor, Player target) {
       if (this.isGagged(target)) {
-         actor.sendActionBar(Component.text(target.getName() + " is already gagged.", NamedTextColor.YELLOW));
+         actor.sendActionBar(Component.text(target.getName() + " e' gia' imbavagliato.", NamedTextColor.YELLOW));
          return;
       }
       ItemStack item = actor.getInventory().getItemInMainHand();
       if (this.manager.getRestraintUses(item, UtilityItemType.GAG) <= 0) {
-         actor.sendActionBar(Component.text("Gag has no uses left.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("Il bavaglio non ha piu' usi.", NamedTextColor.RED));
          return;
       }
-      this.startTimedAction(actor, target, "Applying gag...", "Gagging cancelled.", settings.restraintDurationMillis(), () -> {
+      this.startTimedAction(actor, target, "Applicazione bavaglio...", "Applicazione bavaglio annullata.", settings.restraintDurationMillis(), () -> {
          ItemStack current = actor.getInventory().getItemInMainHand();
          if (!this.manager.isType(current, UtilityItemType.GAG)) {
-            actor.sendMessage(Component.text("You are no longer holding a gag.", NamedTextColor.RED));
+            actor.sendMessage(Component.text("Non hai piu' il bavaglio in mano.", NamedTextColor.RED));
             return;
          }
          if (!this.manager.consumeRestraintUse(current, UtilityItemType.GAG)) {
-            actor.sendActionBar(Component.text("Gag has no uses left.", NamedTextColor.RED));
+            actor.sendActionBar(Component.text("Il bavaglio non ha piu' usi.", NamedTextColor.RED));
             return;
          }
          this.applyGag(actor, target);
@@ -744,22 +744,22 @@ public class UtilityItemListener implements Listener {
 
    private void startBlindfold(Player actor, Player target) {
       if (this.isBlindfolded(target)) {
-         actor.sendActionBar(Component.text(target.getName() + " is already blindfolded.", NamedTextColor.YELLOW));
+         actor.sendActionBar(Component.text(target.getName() + " ha gia' una benda.", NamedTextColor.YELLOW));
          return;
       }
       ItemStack item = actor.getInventory().getItemInMainHand();
       if (this.manager.getRestraintUses(item, UtilityItemType.BLINDFOLD) <= 0) {
-         actor.sendActionBar(Component.text("Blindfold has no uses left.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("La benda non ha piu' usi.", NamedTextColor.RED));
          return;
       }
-      this.startTimedAction(actor, target, "Applying blindfold...", "Blindfolding cancelled.", settings.restraintDurationMillis(), () -> {
+      this.startTimedAction(actor, target, "Applicazione benda...", "Applicazione benda annullata.", settings.restraintDurationMillis(), () -> {
          ItemStack current = actor.getInventory().getItemInMainHand();
          if (!this.manager.isType(current, UtilityItemType.BLINDFOLD)) {
-            actor.sendMessage(Component.text("You are no longer holding a blindfold.", NamedTextColor.RED));
+            actor.sendMessage(Component.text("Non hai piu' la benda in mano.", NamedTextColor.RED));
             return;
          }
          if (!this.manager.consumeRestraintUse(current, UtilityItemType.BLINDFOLD)) {
-            actor.sendActionBar(Component.text("Blindfold has no uses left.", NamedTextColor.RED));
+            actor.sendActionBar(Component.text("La benda non ha piu' usi.", NamedTextColor.RED));
             return;
          }
          this.applyBlindfold(actor, target);
@@ -768,22 +768,22 @@ public class UtilityItemListener implements Listener {
 
    private void applyGag(Player actor, Player target) {
       if (this.isGagged(target)) {
-         actor.sendActionBar(Component.text(target.getName() + " is already gagged.", NamedTextColor.YELLOW));
+         actor.sendActionBar(Component.text(target.getName() + " e' gia' imbavagliato.", NamedTextColor.YELLOW));
       } else {
          target.getPersistentDataContainer().set(this.gaggedKey, PersistentDataType.STRING, actor.getUniqueId().toString());
-         actor.sendMessage(Component.text("You gagged " + target.getName() + ".", NamedTextColor.GREEN));
-         target.sendMessage(Component.text("You have been gagged.", NamedTextColor.RED));
+         actor.sendMessage(Component.text("Hai imbavagliato " + target.getName() + ".", NamedTextColor.GREEN));
+         target.sendMessage(Component.text("Sei stato imbavagliato.", NamedTextColor.RED));
       }
    }
 
    private void applyBlindfold(Player actor, Player target) {
       if (this.isBlindfolded(target)) {
-         actor.sendActionBar(Component.text(target.getName() + " is already blindfolded.", NamedTextColor.YELLOW));
+         actor.sendActionBar(Component.text(target.getName() + " ha gia' una benda.", NamedTextColor.YELLOW));
       } else {
          target.getPersistentDataContainer().set(this.blindfoldedKey, PersistentDataType.STRING, actor.getUniqueId().toString());
          this.applyBlindfoldEffects(target);
-         actor.sendMessage(Component.text("You blindfolded " + target.getName() + ".", NamedTextColor.GREEN));
-         target.sendMessage(Component.text("You have been blindfolded.", NamedTextColor.RED));
+         actor.sendMessage(Component.text("Hai bendato " + target.getName() + ".", NamedTextColor.GREEN));
+         target.sendMessage(Component.text("Sei stato bendato.", NamedTextColor.RED));
       }
    }
 
@@ -810,19 +810,19 @@ public class UtilityItemListener implements Listener {
 
    private void startRopeTie(Player actor, Player target, ItemStack rope) {
       if (this.module.getHandcuffManager().isRestrained(target)) {
-         actor.sendActionBar(Component.text("Target is already restrained.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("Il bersaglio e' gia' immobilizzato.", NamedTextColor.RED));
       } else {
-         this.startTimedAction(actor, target, "Tying rope...", "Rope tying cancelled.", settings.restraintDurationMillis(), () -> {
+         this.startTimedAction(actor, target, "Legatura con corda...", "Legatura con corda annullata.", settings.restraintDurationMillis(), () -> {
             ItemStack current = actor.getInventory().getItemInMainHand();
             if (!this.manager.isType(current, UtilityItemType.ROPE)) {
-               actor.sendMessage(Component.text("You are no longer holding rope.", NamedTextColor.RED));
+               actor.sendMessage(Component.text("Non hai piu' la corda in mano.", NamedTextColor.RED));
             } else {
                this.module.getHandcuffManager().tieWithRope(target, actor);
                this.consumeOne(actor, EquipmentSlot.HAND);
                actor.playSound(actor.getLocation(), Sound.BLOCK_CHAIN_PLACE, 0.8F, 1.2F);
                target.playSound(target.getLocation(), Sound.BLOCK_CHAIN_PLACE, 0.8F, 1.0F);
-               actor.sendMessage(Component.text("You tied " + target.getName() + ".", NamedTextColor.GREEN));
-               target.sendMessage(Component.text("You have been tied with rope.", NamedTextColor.RED));
+               actor.sendMessage(Component.text("Hai legato " + target.getName() + ".", NamedTextColor.GREEN));
+               target.sendMessage(Component.text("Sei stato legato con la corda.", NamedTextColor.RED));
             }
          });
       }
@@ -832,15 +832,15 @@ public class UtilityItemListener implements Listener {
       boolean removed = false;
       if (this.isGagged(target)) {
          this.removeGag(target);
-         actor.sendMessage(Component.text("You removed the gag from " + target.getName() + ".", NamedTextColor.GREEN));
-         target.sendMessage(Component.text("Your gag has been removed.", NamedTextColor.GREEN));
+         actor.sendMessage(Component.text("Hai rimosso il bavaglio da " + target.getName() + ".", NamedTextColor.GREEN));
+         target.sendMessage(Component.text("Il tuo bavaglio e' stato rimosso.", NamedTextColor.GREEN));
          removed = true;
       }
 
       if (this.isBlindfolded(target)) {
          this.removeBlindfold(target);
-         actor.sendMessage(Component.text("You removed the blindfold from " + target.getName() + ".", NamedTextColor.GREEN));
-         target.sendMessage(Component.text("Your blindfold has been removed.", NamedTextColor.GREEN));
+         actor.sendMessage(Component.text("Hai rimosso la benda da " + target.getName() + ".", NamedTextColor.GREEN));
+         target.sendMessage(Component.text("La tua benda e' stata rimossa.", NamedTextColor.GREEN));
          removed = true;
       }
 
@@ -854,14 +854,14 @@ public class UtilityItemListener implements Listener {
 
    private void startRopeCut(Player actor, Player target) {
       if (this.module.getHandcuffManager().getRestraintType(target) != RestraintType.ROPE) {
-         actor.sendActionBar(Component.text("This player is not tied with rope.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("Questo giocatore non e' legato con la corda.", NamedTextColor.RED));
       } else {
-         this.startTimedAction(actor, target, "Cutting rope...", "Rope cutting cancelled.", settings.restraintDurationMillis(), () -> {
+         this.startTimedAction(actor, target, "Taglio corda...", "Taglio corda annullato.", settings.restraintDurationMillis(), () -> {
             this.module.getHandcuffManager().uncuff(target);
             actor.playSound(actor.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1.0F, 1.2F);
             target.playSound(target.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1.0F, 0.8F);
-            actor.sendMessage(Component.text("You cut the rope on " + target.getName() + ".", NamedTextColor.GREEN));
-            target.sendMessage(Component.text("You have been freed from rope.", NamedTextColor.GREEN));
+            actor.sendMessage(Component.text("Hai tagliato la corda su " + target.getName() + ".", NamedTextColor.GREEN));
+            target.sendMessage(Component.text("Sei stato liberato dalla corda.", NamedTextColor.GREEN));
          });
       }
    }
@@ -893,14 +893,14 @@ public class UtilityItemListener implements Listener {
 
    private void startMetalScan(Player scanner, Player target) {
       if (scanner.equals(target)) {
-         scanner.sendActionBar(Component.text("You cannot scan yourself.", NamedTextColor.RED));
+         scanner.sendActionBar(Component.text("Non puoi scansionare te stesso.", NamedTextColor.RED));
          return;
       }
-      this.startTimedAction(scanner, target, "Scanning metallic items...", "Metal scan cancelled.", settings.scannerDurationMillis(),
+      this.startTimedAction(scanner, target, "Scansione oggetti metallici...", "Scansione metalli annullata.", settings.scannerDurationMillis(),
             () -> {
                ItemStack current = scanner.getInventory().getItemInMainHand();
                if (!this.manager.isType(current, UtilityItemType.SCANNER)) {
-                  scanner.sendMessage(Component.text("You are no longer holding the scanner.", NamedTextColor.RED));
+                  scanner.sendMessage(Component.text("Non hai piu' lo scanner in mano.", NamedTextColor.RED));
                   return;
                }
                this.scanMetalItems(scanner, target);
@@ -971,7 +971,7 @@ public class UtilityItemListener implements Listener {
       long now = System.currentTimeMillis();
       Long cooldownUntil = this.grappleCooldowns.get(player.getUniqueId());
       if (cooldownUntil != null && cooldownUntil > now) {
-         player.sendActionBar(Component.text("Grappling Hook cooling down.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("Rampino in cooldown.", NamedTextColor.RED));
       } else {
          RayTraceResult result = player.getWorld().rayTraceBlocks(
                player.getEyeLocation(),
@@ -980,12 +980,12 @@ public class UtilityItemListener implements Listener {
                FluidCollisionMode.NEVER,
                true);
          if (result == null || result.getHitPosition() == null) {
-            player.sendActionBar(Component.text("No grapple point found.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Nessun punto di aggancio trovato.", NamedTextColor.RED));
             return;
          }
          Location anchor = result.getHitPosition().toLocation(player.getWorld());
          if (anchor.distance(player.getLocation()) < 2.0D) {
-            player.sendActionBar(Component.text("Grapple point is too close.", NamedTextColor.RED));
+            player.sendActionBar(Component.text("Il punto di aggancio e' troppo vicino.", NamedTextColor.RED));
             return;
          }
          player.playSound(player.getLocation(), Sound.ENTITY_FISHING_BOBBER_THROW, 1.0F, 0.8F);
@@ -1022,18 +1022,18 @@ public class UtilityItemListener implements Listener {
       if (this.stretcherTargets.containsKey(carrier.getUniqueId())) {
          this.releaseStretcher(carrier);
       } else if (target.equals(carrier)) {
-         carrier.sendMessage(Component.text("You cannot load yourself onto the stretcher.", NamedTextColor.RED));
+         carrier.sendMessage(Component.text("Non puoi caricare te stesso sulla barella.", NamedTextColor.RED));
       } else if (carrier.getLocation().distance(target.getLocation()) > 4.0) {
-         carrier.sendMessage(Component.text("Target is too far away.", NamedTextColor.RED));
+         carrier.sendMessage(Component.text("Il bersaglio e' troppo lontano.", NamedTextColor.RED));
       } else if (target.getPassengers().isEmpty() && !target.isInsideVehicle()) {
          if (carrier.addPassenger(target)) {
             this.stretcherTargets.put(carrier.getUniqueId(), target.getUniqueId());
             carrier.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 999999, 1, false, false, false));
-            carrier.sendMessage(Component.text("Stretcher loaded.", NamedTextColor.GREEN));
-            target.sendMessage(Component.text("You have been loaded onto a stretcher.", NamedTextColor.YELLOW));
+            carrier.sendMessage(Component.text("Barella caricata.", NamedTextColor.GREEN));
+            target.sendMessage(Component.text("Sei stato caricato su una barella.", NamedTextColor.YELLOW));
          }
       } else {
-         carrier.sendMessage(Component.text("Target cannot be loaded right now.", NamedTextColor.RED));
+         carrier.sendMessage(Component.text("Il bersaglio non puo' essere caricato ora.", NamedTextColor.RED));
       }
    }
 
@@ -1047,18 +1047,18 @@ public class UtilityItemListener implements Listener {
       if (target != null) {
          carrier.removePassenger(target);
          target.leaveVehicle();
-         target.sendMessage(Component.text("You have been released from the stretcher.", NamedTextColor.YELLOW));
+         target.sendMessage(Component.text("Sei stato rilasciato dalla barella.", NamedTextColor.YELLOW));
       }
 
       carrier.removePotionEffect(PotionEffectType.SLOWNESS);
-      carrier.sendMessage(Component.text("Stretcher released.", NamedTextColor.GREEN));
+      carrier.sendMessage(Component.text("Barella rilasciata.", NamedTextColor.GREEN));
       return true;
    }
 
    private void useFireExtinguisher(Player player, ItemStack item) {
       int charges = this.manager.getExtinguisherCharges(item);
       if (charges <= 0) {
-         player.sendActionBar(Component.text("Fire Extinguisher is empty.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("L'estintore e' vuoto.", NamedTextColor.RED));
       } else {
          Location eye = player.getEyeLocation();
          Vector direction = eye.getDirection().normalize();
@@ -1089,7 +1089,7 @@ public class UtilityItemListener implements Listener {
          player.setFireTicks(0);
          this.manager.setExtinguisherCharges(item, charges - 1);
          player.playSound(player.getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 0.9F, 1.2F);
-         player.sendActionBar(Component.text("Extinguisher durability: " + (charges - 1) + "/100. Fires cleared: " + extinguished, NamedTextColor.AQUA));
+         player.sendActionBar(Component.text("Durabilita' estintore: " + (charges - 1) + "/100. Fuochi spenti: " + extinguished, NamedTextColor.AQUA));
       }
    }
 
@@ -1116,7 +1116,7 @@ public class UtilityItemListener implements Listener {
 
       List<Block> hitbox = this.resolveBarrierHitbox(target, player);
       if (hitbox.stream().anyMatch(block -> !block.isPassable())) {
-         player.sendMessage(Component.text("There is not enough room to place the barrier.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non c'e' abbastanza spazio per piazzare la barriera.", NamedTextColor.RED));
       } else {
          Location location = target.getLocation().add(0.5, 0.0, 0.5);
          String id = UUID.randomUUID().toString().substring(0, 8);
@@ -1133,7 +1133,7 @@ public class UtilityItemListener implements Listener {
          });
          this.consumeOne(player, hand);
          player.playSound(location, Sound.BLOCK_CHAIN_PLACE, 0.8F, 0.9F);
-         player.sendMessage(Component.text("Road Barrier placed.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Barriera stradale piazzata.", NamedTextColor.GREEN));
       }
    }
 
@@ -1149,7 +1149,7 @@ public class UtilityItemListener implements Listener {
 
       List<Block> stripBlocks = this.resolveLine(target, player, 5);
       if (stripBlocks.stream().anyMatch(blockx -> !blockx.isPassable())) {
-         player.sendMessage(Component.text("There is not enough room to place the spike strip.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non c'e' abbastanza spazio per piazzare la striscia chiodata.", NamedTextColor.RED));
       } else {
          ItemStack displayStack = this.manager.createItem(UtilityItemType.SPIKE_STRIP);
          String id = UUID.randomUUID().toString().substring(0, 8);
@@ -1168,7 +1168,7 @@ public class UtilityItemListener implements Listener {
 
          this.consumeOne(player, hand);
          player.playSound(target.getLocation(), Sound.BLOCK_CHAIN_PLACE, 0.7F, 1.3F);
-         player.sendMessage(Component.text("Spike Strip placed.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Striscia chiodata piazzata.", NamedTextColor.GREEN));
       }
    }
 
@@ -1181,12 +1181,12 @@ public class UtilityItemListener implements Listener {
       boolean canRemove = owner != null && owner.equals(player.getUniqueId().toString())
             || canManageUtilityObjects(player);
       if (!canRemove) {
-         player.sendMessage(Component.text("You cannot remove this spike strip.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non puoi rimuovere questa striscia chiodata.", NamedTextColor.RED));
       } else {
          this.returnUtilityItem(player, UtilityItemType.SPIKE_STRIP);
          this.removeSpikeStripGroup(display);
          player.playSound(player.getLocation(), Sound.BLOCK_CHAIN_BREAK, 0.8F, 1.2F);
-         player.sendMessage(Component.text("Spike Strip removed.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Striscia chiodata rimossa.", NamedTextColor.GREEN));
       }
    }
 
@@ -1211,7 +1211,7 @@ public class UtilityItemListener implements Listener {
 
                for (Entity passenger : vehicle.getPassengers()) {
                   if (passenger instanceof Player player) {
-                     player.sendActionBar(Component.text("Tires punctured.", NamedTextColor.RED));
+                     player.sendActionBar(Component.text("Pneumatici forati.", NamedTextColor.RED));
                   }
                }
             }
@@ -1251,13 +1251,13 @@ public class UtilityItemListener implements Listener {
       boolean canRemove = owner != null && owner.equals(player.getUniqueId().toString())
             || canManageUtilityObjects(player);
       if (!canRemove) {
-         player.sendMessage(Component.text("You cannot remove this barrier.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Non puoi rimuovere questa barriera.", NamedTextColor.RED));
       } else {
          this.returnUtilityItem(player, UtilityItemType.ROAD_BARRIER);
          this.clearBarrierBlocks(display);
          display.remove();
          player.playSound(player.getLocation(), Sound.BLOCK_CHAIN_BREAK, 0.8F, 1.0F);
-         player.sendMessage(Component.text("Road Barrier removed.", NamedTextColor.GREEN));
+         player.sendMessage(Component.text("Barriera stradale rimossa.", NamedTextColor.GREEN));
       }
    }
 
@@ -1394,7 +1394,7 @@ public class UtilityItemListener implements Listener {
       Map<Integer, ItemStack> leftovers = player.getInventory().addItem(new ItemStack[]{this.manager.createItem(type)});
       if (!leftovers.isEmpty()) {
          leftovers.values().forEach(item -> player.getWorld().dropItemNaturally(player.getLocation(), item));
-         player.sendMessage(Component.text("Inventory full. The item was dropped nearby.", NamedTextColor.YELLOW));
+         player.sendMessage(Component.text("Inventario pieno. L'oggetto e' caduto a terra vicino a te.", NamedTextColor.YELLOW));
       }
    }
 
@@ -1422,7 +1422,7 @@ public class UtilityItemListener implements Listener {
    private void equipHelmetUtility(Player player, EquipmentSlot hand, ItemStack item) {
       ItemStack helmet = player.getInventory().getHelmet();
       if (helmet != null && !helmet.getType().isAir()) {
-         player.sendActionBar(Component.text("Helmet slot is occupied.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("Lo slot casco e' occupato.", NamedTextColor.RED));
       } else {
          ItemStack equipped = item.clone();
          equipped.setAmount(1);
@@ -1435,7 +1435,7 @@ public class UtilityItemListener implements Listener {
    private boolean equipChestUtility(Player player, EquipmentSlot hand, ItemStack item) {
       ItemStack chest = player.getInventory().getChestplate();
       if (chest != null && !chest.getType().isAir()) {
-         player.sendActionBar(Component.text("Chest slot is occupied.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("Lo slot petto e' occupato.", NamedTextColor.RED));
          return false;
       } else {
          ItemStack equipped = item.clone();
@@ -1455,18 +1455,18 @@ public class UtilityItemListener implements Listener {
    private void useFireAxe(Player player, ItemStack item, Block block) {
       Block targetBlock = this.normalizeFireAxeDoorBlock(block);
       if (!this.isFireAxeDoorTarget(targetBlock)) {
-         player.sendActionBar(Component.text("Fire Axe can only force wooden doors and trapdoors.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("L'ascia antincendio puo' forzare solo porte e botole di legno.", NamedTextColor.RED));
          return;
       }
       long now = System.currentTimeMillis();
       Long cooldownUntil = this.fireAxeCooldowns.get(player.getUniqueId());
       if (cooldownUntil != null && cooldownUntil > now) {
-         player.sendActionBar(Component.text("Fire Axe cooling down.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("Ascia antincendio in cooldown.", NamedTextColor.RED));
          return;
       }
       int uses = this.manager.getFireAxeUses(item);
       if (uses <= 0) {
-         player.sendActionBar(Component.text("Fire Axe is broken.", NamedTextColor.RED));
+         player.sendActionBar(Component.text("L'ascia antincendio e' rotta.", NamedTextColor.RED));
          return;
       }
       BlockData data = targetBlock.getBlockData();
@@ -1474,14 +1474,14 @@ public class UtilityItemListener implements Listener {
          return;
       }
       if (openable.isOpen()) {
-         player.sendActionBar(Component.text("Door is already open.", NamedTextColor.YELLOW));
+         player.sendActionBar(Component.text("La porta e' gia' aperta.", NamedTextColor.YELLOW));
          return;
       }
       this.setOpenState(targetBlock, true);
       this.manager.setFireAxeUses(item, uses - 1);
       this.fireAxeCooldowns.put(player.getUniqueId(), now + settings.fireAxeCooldownMillis());
       player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 0.9F, 0.8F);
-      player.sendActionBar(Component.text("Door forced open.", NamedTextColor.YELLOW));
+      player.sendActionBar(Component.text("Porta forzata aperta.", NamedTextColor.YELLOW));
       Material openedType = targetBlock.getType();
       Location openedLocation = targetBlock.getLocation().clone();
       Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> {
@@ -1631,15 +1631,15 @@ public class UtilityItemListener implements Listener {
 
       player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 0.7F, 1.6F);
       if (count == 0) {
-         player.sendActionBar(Component.text("UV scan found no forensic traces nearby.", NamedTextColor.GRAY));
+         player.sendActionBar(Component.text("La scansione UV non ha trovato tracce forensi vicine.", NamedTextColor.GRAY));
       } else {
-         player.sendActionBar(Component.text("UV scan found " + count + " trace(s).", NamedTextColor.LIGHT_PURPLE));
+         player.sendActionBar(Component.text("La scansione UV ha trovato " + count + " traccia/e.", NamedTextColor.LIGHT_PURPLE));
       }
    }
 
    private void showFingerprintSheet(Player player, Block block, ItemStack sheet) {
       if (block == null) {
-         player.sendMessage(Component.text("Right-click a block to read its last fingerprints.", NamedTextColor.YELLOW));
+         player.sendMessage(Component.text("Clic destro su un blocco per leggere le ultime impronte.", NamedTextColor.YELLOW));
       } else {
          this.showFingerprintSheet(player, this.locationKey(block.getLocation()), block.getType().name(), block.getLocation(), sheet);
       }
@@ -1647,7 +1647,7 @@ public class UtilityItemListener implements Listener {
 
    private void showFingerprintSheet(Player player, Entity entity, ItemStack sheet) {
       if (entity == null) {
-         player.sendMessage(Component.text("Right-click an object to read its last fingerprints.", NamedTextColor.YELLOW));
+         player.sendMessage(Component.text("Clic destro su un oggetto per leggere le ultime impronte.", NamedTextColor.YELLOW));
       } else {
          this.showFingerprintSheet(player, this.entityKey(entity), this.describeTraceEntity(entity), entity.getLocation(), sheet);
       }
@@ -1659,9 +1659,9 @@ public class UtilityItemListener implements Listener {
          traces = this.findNearbyForensicTraces(fallbackLocation);
       }
       if (traces.isEmpty()) {
-         player.sendMessage(Component.text("No fingerprints found on this object.", NamedTextColor.RED));
+         player.sendMessage(Component.text("Nessuna impronta trovata su questo oggetto.", NamedTextColor.RED));
       } else {
-         player.sendMessage(Component.text("Fingerprints on " + objectName, NamedTextColor.AQUA));
+         player.sendMessage(Component.text("Impronte su " + objectName, NamedTextColor.AQUA));
          int index = 1;
 
          for (UtilityItemListener.ForensicTrace trace : traces.stream().limit(10L).toList()) {
@@ -1695,17 +1695,17 @@ public class UtilityItemListener implements Listener {
       if (meta.lore() != null) {
          lore.addAll(meta.lore().stream().filter(line -> {
             String plain = PlainTextComponentSerializer.plainText().serialize(line);
-            return !plain.startsWith("Stored trace:");
+            return !plain.startsWith("Traccia salvata:");
          }).toList());
       }
-      lore.add(Component.text("Stored trace: " + trace.playerName + " on " + objectName, NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
+      lore.add(Component.text("Traccia salvata: " + trace.playerName + " su " + objectName, NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false));
       meta.lore(lore);
       sheet.setItemMeta(meta);
    }
 
    private void openDuffel(Player player, EquipmentSlot hand, ItemStack item) {
       UtilityItemListener.DuffelHolder holder = new UtilityItemListener.DuffelHolder(hand);
-      Inventory inventory = Bukkit.createInventory(holder, 9, Component.text("Duffel Bag", NamedTextColor.DARK_GRAY));
+      Inventory inventory = Bukkit.createInventory(holder, 9, Component.text("Borsone", NamedTextColor.DARK_GRAY));
       holder.inventory = inventory;
       ItemStack[] contents = this.loadDuffel(item);
       inventory.setContents(contents);
@@ -1778,7 +1778,7 @@ public class UtilityItemListener implements Listener {
 
          output.close();
       } catch (Exception e) {
-         this.module.getCore().getLogger().warning("[OpenWeapons] Failed to save Duffel Bag: " + e.getMessage());
+         this.module.getCore().getLogger().warning("[OpenWeapons] Impossibile salvare il borsone: " + e.getMessage());
       }
    }
 
@@ -1909,9 +1909,9 @@ public class UtilityItemListener implements Listener {
          found.add(this.itemName(offhand) + " x" + offhand.getAmount());
       }
 
-      scanner.sendMessage(Component.text("Metal scan for " + target.getName(), NamedTextColor.AQUA));
+      scanner.sendMessage(Component.text("Scansione metalli per " + target.getName(), NamedTextColor.AQUA));
       if (found.isEmpty()) {
-         scanner.sendMessage(Component.text("No metallic items detected.", NamedTextColor.GRAY));
+         scanner.sendMessage(Component.text("Nessun oggetto metallico rilevato.", NamedTextColor.GRAY));
       } else {
          found.stream().limit(30L).forEach(line -> scanner.sendMessage(Component.text("- " + line, NamedTextColor.GRAY)));
       }
@@ -1947,7 +1947,7 @@ public class UtilityItemListener implements Listener {
 
    private String itemName(ItemStack item) {
       if (item == null || item.getType().isAir()) {
-         return "Air";
+         return "Aria";
       } else {
          return item.hasItemMeta() && item.getItemMeta().hasDisplayName()
             ? PlainTextComponentSerializer.plainText().serialize(item.getItemMeta().displayName())
@@ -1958,15 +1958,15 @@ public class UtilityItemListener implements Listener {
    private void usePepperSpray(Player actor, Player target, ItemStack item) {
       int uses = this.manager.getPepperSprayUses(item);
       if (uses <= 0) {
-         actor.sendActionBar(Component.text("Pepper Spray is empty.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("Lo spray al peperoncino e' vuoto.", NamedTextColor.RED));
       } else {
          target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 600, 0, false, false, false));
          target.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 600, 1, false, false, false));
          this.manager.setPepperSprayUses(item, uses - 1);
          actor.playSound(actor.getLocation(), Sound.ENTITY_SPLASH_POTION_THROW, 0.8F, 1.5F);
          target.playSound(target.getLocation(), Sound.ENTITY_SPLASH_POTION_BREAK, 0.8F, 1.2F);
-         actor.sendActionBar(Component.text("Pepper Spray uses: " + (uses - 1) + "/30", NamedTextColor.YELLOW));
-         target.sendMessage(Component.text("You were hit with Pepper Spray.", NamedTextColor.RED));
+         actor.sendActionBar(Component.text("Usi spray al peperoncino: " + (uses - 1) + "/30", NamedTextColor.YELLOW));
+         target.sendMessage(Component.text("Sei stato colpito dallo spray al peperoncino.", NamedTextColor.RED));
       }
    }
 

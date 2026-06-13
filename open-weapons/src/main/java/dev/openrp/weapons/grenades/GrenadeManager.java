@@ -61,10 +61,10 @@ public class GrenadeManager {
                 grenades.put(key, new GrenadeDefinition(key, displayName, type, material, customModelData,
                         fuseTimeTicks, radius, damage, effectDurationTicks));
             } catch (Exception e) {
-                core.getLogger().warning("[OpenWeapons] Failed to load grenade '" + key + "': " + e.getMessage());
+                core.getLogger().warning("[OpenWeapons] Impossibile caricare la granata '" + key + "': " + e.getMessage());
             }
         }
-        core.getLogger().info("[OpenWeapons] Loaded " + grenades.size() + " grenades.");
+        core.getLogger().info("[OpenWeapons] Caricate " + grenades.size() + " granate.");
     }
 
     public GrenadeDefinition getGrenade(String id) {
@@ -109,9 +109,9 @@ public class GrenadeManager {
             
             List<Component> lore = new ArrayList<>();
             lore.add(Component.text(""));
-            lore.add(Component.text("Type: ", NamedTextColor.GRAY).append(Component.text(def.getType().name(), NamedTextColor.WHITE)).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Radius: ", NamedTextColor.GRAY).append(Component.text(def.getRadius(), NamedTextColor.YELLOW)).decoration(TextDecoration.ITALIC, false));
-            lore.add(Component.text("Fuse: ", NamedTextColor.GRAY).append(Component.text(def.getFuseTimeTicks() / 20.0 + "s", NamedTextColor.WHITE)).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Tipo: ", NamedTextColor.GRAY).append(Component.text(def.getType().name(), NamedTextColor.WHITE)).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Raggio: ", NamedTextColor.GRAY).append(Component.text(def.getRadius(), NamedTextColor.YELLOW)).decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Miccia: ", NamedTextColor.GRAY).append(Component.text(def.getFuseTimeTicks() / 20.0 + "s", NamedTextColor.WHITE)).decoration(TextDecoration.ITALIC, false));
             meta.lore(lore);
             item.setItemMeta(meta);
         }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "custom/tools/crime/weapons/sniper/awp/awpmagazine"
+  }
+}

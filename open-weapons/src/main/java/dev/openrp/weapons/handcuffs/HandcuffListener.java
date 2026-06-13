@@ -55,7 +55,7 @@ public class HandcuffListener implements Listener {
             event.setCancelled(true);
             if (manager.isRestrained(target)) {
                 if (manager.getRestraintType(target) == RestraintType.ROPE) {
-                    player.sendActionBar(Component.text("Use scissors to cut rope.", NamedTextColor.RED));
+                    player.sendActionBar(Component.text("Usa le forbici per tagliare la corda.", NamedTextColor.RED));
                     return;
                 }
                 startUncuffing(player, target);
@@ -64,8 +64,8 @@ public class HandcuffListener implements Listener {
 
             if (actionTask.containsKey(player.getUniqueId())) return;
 
-            player.sendMessage(Component.text("Applying handcuffs...", NamedTextColor.YELLOW));
-            target.sendActionBar(Component.text("Someone is handcuffing you!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Applicazione manette...", NamedTextColor.YELLOW));
+            target.sendActionBar(Component.text("Qualcuno ti sta ammanettando!", NamedTextColor.RED));
             
             long startTime = System.currentTimeMillis();
             long endTime = startTime + module.getUtilitySettings().handcuffDurationMillis();
@@ -77,15 +77,15 @@ public class HandcuffListener implements Listener {
                 public void run() {
                     if (!player.isOnline() || !target.isOnline() || player.getLocation().distance(target.getLocation()) > 4) {
                         actionTask.remove(player.getUniqueId());
-                        player.sendActionBar(Component.text("Handcuffing cancelled.", NamedTextColor.RED));
+                        player.sendActionBar(Component.text("Applicazione manette annullata.", NamedTextColor.RED));
                         cancel();
                         return;
                     }
                     
                     if (ticks % 10 == 0) {
                         player.playSound(player.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_OPEN, 0.5f, 0.5f);
-                        player.sendActionBar(progress("Handcuffing", startTime, endTime));
-                        target.sendActionBar(progress("Being handcuffed", startTime, endTime));
+                        player.sendActionBar(progress("Ammanettamento", startTime, endTime));
+                        target.sendActionBar(progress("Ti stanno ammanettando", startTime, endTime));
                     }
 
                     if (System.currentTimeMillis() >= endTime) {
@@ -96,8 +96,8 @@ public class HandcuffListener implements Listener {
                         player.playSound(player.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_CLOSE, 1.0f, 1.5f);
                         target.playSound(target.getLocation(), Sound.BLOCK_IRON_TRAPDOOR_CLOSE, 1.0f, 1.5f);
                         
-                        player.sendMessage(Component.text("You handcuffed " + target.getName(), NamedTextColor.GREEN));
-                        target.sendMessage(Component.text("You have been handcuffed!", NamedTextColor.RED));
+                        player.sendMessage(Component.text("Hai ammanettato " + target.getName(), NamedTextColor.GREEN));
+                        target.sendMessage(Component.text("Sei stato ammanettato!", NamedTextColor.RED));
                         cancel();
                     }
                     ticks++;
@@ -114,7 +114,7 @@ public class HandcuffListener implements Listener {
     private void startUncuffing(Player player, Player target) {
         if (actionTask.containsKey(player.getUniqueId())) return;
 
-        player.sendMessage(Component.text("Removing handcuffs...", NamedTextColor.YELLOW));
+        player.sendMessage(Component.text("Rimozione manette...", NamedTextColor.YELLOW));
 
         long startTime = System.currentTimeMillis();
         long endTime = startTime + module.getUtilitySettings().handcuffDurationMillis();
@@ -127,15 +127,15 @@ public class HandcuffListener implements Listener {
             public void run() {
                 if (!player.isOnline() || !target.isOnline() || player.getLocation().distance(target.getLocation()) > 4) {
                     actionTask.remove(player.getUniqueId());
-                    player.sendActionBar(Component.text("Uncuffing cancelled.", NamedTextColor.RED));
+                    player.sendActionBar(Component.text("Rimozione manette annullata.", NamedTextColor.RED));
                     cancel();
                     return;
                 }
 
                 if (ticks % 10 == 0) {
                     player.playSound(player.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1.0f, 0.5f);
-                    player.sendActionBar(progress("Uncuffing", startTime, endTime));
-                    target.sendActionBar(progress("Being uncuffed", startTime, endTime));
+                    player.sendActionBar(progress("Rimozione manette", startTime, endTime));
+                    target.sendActionBar(progress("Ti stanno liberando", startTime, endTime));
                 }
 
                 if (System.currentTimeMillis() >= endTime) {
@@ -145,8 +145,8 @@ public class HandcuffListener implements Listener {
                     player.playSound(player.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0f, 1.0f);
                     target.playSound(target.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0f, 1.0f);
 
-                    player.sendMessage(Component.text("You freed " + target.getName(), NamedTextColor.GREEN));
-                    target.sendMessage(Component.text("You have been freed!", NamedTextColor.GREEN));
+                    player.sendMessage(Component.text("Hai liberato " + target.getName(), NamedTextColor.GREEN));
+                    target.sendMessage(Component.text("Sei stato liberato!", NamedTextColor.GREEN));
                     cancel();
                 }
                 ticks++;
@@ -266,7 +266,7 @@ public class HandcuffListener implements Listener {
         if (event.isSprinting() && manager.isRestrained(event.getPlayer())) {
             manager.ensureBoundRestraintItem(event.getPlayer());
             event.setCancelled(true);
-            event.getPlayer().sendActionBar(Component.text("You cannot sprint while restrained!", NamedTextColor.RED));
+            event.getPlayer().sendActionBar(Component.text("Non puoi sprintare mentre sei immobilizzato!", NamedTextColor.RED));
         }
     }
 
@@ -292,7 +292,7 @@ public class HandcuffListener implements Listener {
                     && !msg.startsWith("/w")
                     && !msg.startsWith("/action")) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(Component.text("You cannot use commands while restrained!", NamedTextColor.RED));
+                event.getPlayer().sendMessage(Component.text("Non puoi usare comandi mentre sei immobilizzato!", NamedTextColor.RED));
             }
         }
     }

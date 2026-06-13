@@ -1,0 +1,231 @@
+{
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:custom_model_data",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "item/iron_nugget"
+    },
+    "entries": [
+      {
+        "threshold": 1,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/556_casing"
+        }
+      },
+      {
+        "threshold": 2,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/9mm_casing"
+        }
+      },
+      {
+        "threshold": 3,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/46mm_casing"
+        }
+      },
+      {
+        "threshold": 4,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/762_casing"
+        }
+      },
+      {
+        "threshold": 5,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ak47/ak47_magazine"
+        }
+      },
+      {
+        "threshold": 6,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/50ae_casing"
+        }
+      },
+      {
+        "threshold": 7,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/ar15/ar15_magazine"
+        }
+      },
+      {
+        "threshold": 8,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/12gauge_casing"
+        }
+      },
+      {
+        "threshold": 13,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/scarh/scarh_magazine"
+        }
+      },
+      {
+        "threshold": 15,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/m4a1/m4a1_magazine"
+        }
+      },
+      {
+        "threshold": 16,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp5/mp5_magazine"
+        }
+      },
+      {
+        "threshold": 17,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/sigmcx/sigmcx_magazine"
+        }
+      },
+      {
+        "threshold": 18,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/hk416/hk416_magazine"
+        }
+      },
+      {
+        "threshold": 19,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/smg/mp7/mp7_magazine"
+        }
+      },
+      {
+        "threshold": 20,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/barrett/barrett_magazine"
+        }
+      },
+      {
+        "threshold": 21,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/sniper/awp/awp_magazine"
+        }
+      },
+      {
+        "threshold": 22,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ar/famas/famas_magazine"
+        }
+      },
+      {
+        "threshold": 23,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/ppk/ppk_magazine"
+        }
+      },
+      {
+        "threshold": 24,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/glock/glock19_magazine"
+        }
+      },
+      {
+        "threshold": 27,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/92fs/92fs_magazine"
+        }
+      },
+      {
+        "threshold": 29,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/pistol/desert_eagle/desert_eagle_magazine"
+        }
+      },
+      {
+        "threshold": 30,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/pistol/ghost_pistol_magazine"
+        }
+      },
+      {
+        "threshold": 31,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/rifle/ghost_rifle_magazine"
+        }
+      },
+      {
+        "threshold": 32,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/weapons/ghost/smg/ghost_smg_magazine"
+        }
+      },
+      {
+        "threshold": 47,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/556_ammo"
+        }
+      },
+      {
+        "threshold": 48,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/9mm_ammo"
+        }
+      },
+      {
+        "threshold": 49,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/46mm_ammo"
+        }
+      },
+      {
+        "threshold": 51,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/12gauge_ammo"
+        }
+      },
+      {
+        "threshold": 52,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/50ae_ammo"
+        }
+      },
+      {
+        "threshold": 53,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/762_ammo"
+        }
+      },
+      {
+        "threshold": 54,
+        "model": {
+          "type": "minecraft:model",
+          "model": "custom/tools/crime/ammo/universal_magazine"
+        }
+      }
+    ],
+    "index": 0
+  },
+  "oversized_in_gui": true
+}

@@ -60,7 +60,7 @@ public class MagazineManager {
       if (meta != null) {
          int clampedAmmo = Math.max(0, Math.min(ammoCount, weapon.getMagazineSize()));
          meta.displayName(
-            Component.text(weapon.getDisplayName() + " Magazine", NamedTextColor.GRAY)
+            Component.text(weapon.getDisplayName() + " Caricatore", NamedTextColor.GRAY)
                .decoration(TextDecoration.BOLD, false)
                .decoration(TextDecoration.ITALIC, false)
          );
@@ -98,11 +98,11 @@ public class MagazineManager {
 
    private List<Component> buildLore(WeaponDefinition weapon, int ammoCount, int capacity) {
       return List.of(
-         ((TextComponent)Component.text("Weapon: ", NamedTextColor.GRAY).append(Component.text(weapon.getDisplayName(), NamedTextColor.WHITE)))
+         ((TextComponent)Component.text("Arma: ", NamedTextColor.GRAY).append(Component.text(weapon.getDisplayName(), NamedTextColor.WHITE)))
             .decoration(TextDecoration.ITALIC, false),
-         ((TextComponent)Component.text("Ammo: ", NamedTextColor.GRAY).append(Component.text(ammoCount + " / " + capacity, NamedTextColor.YELLOW)))
+         ((TextComponent)Component.text("Munizioni: ", NamedTextColor.GRAY).append(Component.text(ammoCount + " / " + capacity, NamedTextColor.YELLOW)))
             .decoration(TextDecoration.ITALIC, false),
-         ((TextComponent)Component.text("Caliber: ", NamedTextColor.GRAY).append(Component.text(weapon.getAmmoType(), NamedTextColor.WHITE)))
+         ((TextComponent)Component.text("Calibro: ", NamedTextColor.GRAY).append(Component.text(weapon.getAmmoType(), NamedTextColor.WHITE)))
             .decoration(TextDecoration.ITALIC, false)
       );
    }

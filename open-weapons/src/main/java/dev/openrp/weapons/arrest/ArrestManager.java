@@ -52,16 +52,16 @@ public class ArrestManager {
             }
 
             String timeStr = record.getJailTimeHours() >= 1
-                    ? String.format("%.0f hour(s)", record.getJailTimeHours())
-                    : String.format("%.0f minute(s)", record.getJailTimeHours() * 60);
+                    ? String.format("%.0f ora/e", record.getJailTimeHours())
+                    : String.format("%.0f minuto/i", record.getJailTimeHours() * 60);
 
             player.sendMessage(Component.text("═══════════════════════════════", NamedTextColor.DARK_RED));
-            player.sendMessage(Component.text("  You have been ARRESTED!", NamedTextColor.RED));
-            player.sendMessage(Component.text("  Reason: " + record.getReason(), NamedTextColor.GRAY));
-            player.sendMessage(Component.text("  Jail Time: " + timeStr, NamedTextColor.GRAY));
+            player.sendMessage(Component.text("  Sei stato arrestato!", NamedTextColor.RED));
+            player.sendMessage(Component.text("  Motivo: " + record.getReason(), NamedTextColor.GRAY));
+            player.sendMessage(Component.text("  Pena: " + timeStr, NamedTextColor.GRAY));
             if (record.getBailAmount() > 0) {
-                player.sendMessage(Component.text("  Bail: $" + String.format("%.2f", record.getBailAmount()), NamedTextColor.GOLD));
-                player.sendMessage(Component.text("  Use /bail to pay and get released.", NamedTextColor.YELLOW));
+                player.sendMessage(Component.text("  Cauzione: $" + String.format("%.2f", record.getBailAmount()), NamedTextColor.GOLD));
+                player.sendMessage(Component.text("  Usa /bail per pagare e venire rilasciato.", NamedTextColor.YELLOW));
             }
             player.sendMessage(Component.text("═══════════════════════════════", NamedTextColor.DARK_RED));
         }
@@ -78,7 +78,7 @@ public class ArrestManager {
         if (player != null && player.isOnline()) {
             // Teleport to world spawn
             player.teleport(player.getWorld().getSpawnLocation());
-            player.sendMessage(Component.text("You have been released from jail! Reason: " + reason, NamedTextColor.GREEN));
+            player.sendMessage(Component.text("Sei stato rilasciato dal carcere! Motivo: " + reason, NamedTextColor.GREEN));
         }
     }
 
@@ -101,7 +101,7 @@ public class ArrestManager {
         try {
             config.save(file);
         } catch (Exception e) {
-            module.getCore().getLogger().warning("Failed to save arrests.yml: " + e.getMessage());
+            module.getCore().getLogger().warning("Impossibile salvare arrests.yml: " + e.getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ public class ArrestManager {
                 arrestedPlayers.put(playerUuid, r);
                 publish(r);
             } catch (Exception e) {
-                module.getCore().getLogger().warning("Failed to load arrest record for " + key + ": " + e.getMessage());
+                module.getCore().getLogger().warning("Impossibile caricare il record arresto per " + key + ": " + e.getMessage());
             }
         }
     }
@@ -162,7 +162,7 @@ public class ArrestManager {
                 }
             }
         } catch (Exception e) {
-            module.getCore().getLogger().warning("[Arrest] Failed to query WorldGuard regions: " + e.getMessage());
+            module.getCore().getLogger().warning("[Arrest] Impossibile interrogare le regioni WorldGuard: " + e.getMessage());
         }
         return regions;
     }
@@ -185,7 +185,7 @@ public class ArrestManager {
                 }
             }
         } catch (Exception e) {
-            module.getCore().getLogger().warning("[Arrest] Failed to get region center: " + e.getMessage());
+            module.getCore().getLogger().warning("[Arrest] Impossibile ottenere il centro della regione: " + e.getMessage());
         }
         return null;
     }
@@ -214,7 +214,7 @@ public class ArrestManager {
                 }
             }
             for (UUID uuid : toRelease) {
-                release(uuid, "Time served");
+                release(uuid, "Pena scontata");
             }
         }, 20L, 20L); // Check every second
     }
@@ -251,7 +251,7 @@ public class ArrestManager {
                     record.getReleaseTime(),
                     "OpenWeapons");
         } catch (Exception e) {
-            module.getCore().getLogger().warning("[OpenWeapons] Could not publish arrest to NEXTPolice: " + e.getMessage());
+            module.getCore().getLogger().warning("[OpenWeapons] Impossibile pubblicare l'arresto verso NEXTPolice: " + e.getMessage());
         }
     }
 
@@ -275,7 +275,7 @@ public class ArrestManager {
                 .sensitivity(StaffBoardSensitivity.SENSITIVE)
                 .actor(record.getOfficerUuid(), record.getOfficerName())
                 .target(record.getPlayerUuid(), record.getPlayerName())
-                .message(record.getPlayerName() + " arrested by " + record.getOfficerName() + ".")
+                .message(record.getPlayerName() + " arrestato da " + record.getOfficerName() + ".")
                 .metadataJson(metadata.toJson())
                 .build());
     }
@@ -293,7 +293,7 @@ public class ArrestManager {
                 .severity(StaffBoardSeverity.NOTICE)
                 .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)
                 .target(record.getPlayerUuid(), record.getPlayerName())
-                .message(record.getPlayerName() + " released from jail.")
+                .message(record.getPlayerName() + " rilasciato dal carcere.")
                 .metadataJson(metadata.toJson())
                 .build());
     }

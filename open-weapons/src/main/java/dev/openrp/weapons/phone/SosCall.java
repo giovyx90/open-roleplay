@@ -52,9 +52,9 @@ public class SosCall {
    }
 
    public enum Service {
-      POLICE("Police", "LAW_ENFORCEMENT"),
-      HOSPITAL("Hospital", "HOSPITAL"),
-      FIRE_DEPARTMENT("Fire Department", "FIRE_DEPARTMENT");
+      POLICE("Polizia", "LAW_ENFORCEMENT"),
+      HOSPITAL("Ospedale", "HOSPITAL"),
+      FIRE_DEPARTMENT("Vigili del fuoco", "FIRE_DEPARTMENT");
 
       private final String displayName;
       private final String companyType;

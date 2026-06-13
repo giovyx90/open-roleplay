@@ -1,0 +1,10 @@
+# Messaggi italiani di OpenWeapons
+# Le chiavi tecniche di config/PDC restano in snake_case inglese (es. restraint_type, ballistic_shield, wanted_level).
+
+uncuff:
+  ultimatum_timer: "⏱ Ultimatum... {seconds}s"
+
+items:
+  handcuffs_name: "Manette"
+  rope_name: "Corda"
+  bolt_cutters_name: "Tronchesi"

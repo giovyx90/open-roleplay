@@ -22,7 +22,7 @@ public class WeaponsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Only players can use this command.");
+            sender.sendMessage("Solo i giocatori possono usare questo comando.");
             return true;
         }
 
@@ -31,12 +31,12 @@ public class WeaponsCommand implements CommandExecutor {
                     NextPermissions.Weapons.DEBUG,
                     NextPermissions.Weapons.ADMIN,
                     NextPermissions.Staff.RELOAD)) {
-                player.sendMessage(Component.text("You need openrp.weapons.debug or openrp.staff.reload to reload weapons.", NamedTextColor.RED));
+                player.sendMessage(Component.text("Ti serve openrp.weapons.debug o openrp.staff.reload per ricaricare le armi.", NamedTextColor.RED));
                 return true;
             }
             module.getWeaponRegistry().load(new java.io.File(module.getCore().getDataFolder(), "weapons.yml"));
             module.getAmmoRegistry().load(new java.io.File(module.getCore().getDataFolder(), "ammo.yml"));
-            player.sendMessage(Component.text("Weapons and Ammo configuration reloaded.", NamedTextColor.GREEN));
+            player.sendMessage(Component.text("Configurazione armi e munizioni ricaricata.", NamedTextColor.GREEN));
             return true;
         }
 
@@ -45,7 +45,7 @@ public class WeaponsCommand implements CommandExecutor {
                 NextPermissions.Weapons.GIVE,
                 NextPermissions.Weapons.ADMIN,
                 NextPermissions.Test.ITEMS)) {
-            player.sendMessage(Component.text("You need openrp.weapons.view to open this catalog.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Ti serve openrp.weapons.view per aprire questo catalogo.", NamedTextColor.RED));
             return true;
         }
 

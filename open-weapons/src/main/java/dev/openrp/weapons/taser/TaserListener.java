@@ -54,7 +54,7 @@ public class TaserListener implements Listener {
                Long lastUse = this.lastTaserTime.get(player.getUniqueId());
                if (lastUse != null && now - lastUse < 5000L) {
                   long remaining = (5000L - (now - lastUse)) / 1000L;
-                  player.sendActionBar(Component.text("Taser recharging... " + remaining + "s", NamedTextColor.RED));
+                  player.sendActionBar(Component.text("Taser in ricarica... " + remaining + "s", NamedTextColor.RED));
                } else {
                   this.lastTaserTime.put(player.getUniqueId(), now);
                   this.fireTaser(player, weapon);
@@ -84,15 +84,15 @@ public class TaserListener implements Listener {
             String taserRestriction = "taser:" + System.nanoTime();
             JumpRestrictionManager.restrict(targetPlayer, taserRestriction);
             Bukkit.getScheduler().runTaskLater(this.module.getCore(), () -> JumpRestrictionManager.release(targetPlayer, taserRestriction), 100L);
-            targetPlayer.sendActionBar(Component.text("⚡ You have been tased! Cannot run or jump!", NamedTextColor.YELLOW));
+            targetPlayer.sendActionBar(Component.text("⚡ Sei stato colpito dal taser! Non puoi correre o saltare!", NamedTextColor.YELLOW));
             this.taseredPlayers.put(targetPlayer.getUniqueId(), System.currentTimeMillis() + 5000L);
          }
 
-         shooter.sendActionBar(Component.text("⚡ Taser hit!", NamedTextColor.GREEN));
+         shooter.sendActionBar(Component.text("⚡ Taser a segno!", NamedTextColor.GREEN));
          shooter.playSound(shooter.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.5F);
       } else {
          hitLoc = eyeLoc.clone().add(direction.clone().multiply(15.0));
-         shooter.sendActionBar(Component.text("Taser missed!", NamedTextColor.RED));
+         shooter.sendActionBar(Component.text("Taser mancato!", NamedTextColor.RED));
       }
 
       double distance = eyeLoc.distance(hitLoc);
