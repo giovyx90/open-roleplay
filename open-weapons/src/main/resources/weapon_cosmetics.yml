@@ -1,0 +1,142 @@
+weapons:
+  m4a1:
+    enabled: true
+    led: true
+    color: true
+    skin: true
+  ak_47:
+    enabled: true
+    led: true
+    color: true
+    skin: true
+  ppk:
+    enabled: true
+    led: false
+    color: true
+    skin: true
+  mp5:
+    enabled: true
+    led: false
+    color: true
+    skin: true
+  remington_870:
+    enabled: true
+    led: false
+    color: true
+    skin: true
+
+leds:
+  usa:
+    display-name: "USA LED"
+    token-material: PAPER
+    token-custom-model-data: 9010
+  italy:
+    display-name: "Italy LED"
+    token-material: PAPER
+    token-custom-model-data: 9011
+  france:
+    display-name: "France LED"
+    token-material: PAPER
+    token-custom-model-data: 9012
+  anime:
+    display-name: "Anime LED"
+    token-material: PAPER
+    token-custom-model-data: 9013
+  pacman:
+    display-name: "Pacman LED"
+    token-material: PAPER
+    token-custom-model-data: 9015
+
+colors:
+  red:
+    display-name: "Red Finish"
+    token-material: PAPER
+    token-custom-model-data: 9014
+    hex: "#B02E26"
+  blue:
+    display-name: "Blue Finish"
+    token-material: PAPER
+    token-custom-model-data: 9014
+    hex: "#3C44AA"
+  green:
+    display-name: "Green Finish"
+    token-material: PAPER
+    token-custom-model-data: 9014
+    hex: "#5E7C16"
+  white:
+    display-name: "White Finish"
+    token-material: PAPER
+    token-custom-model-data: 9014
+    hex: "#F9FFFE"
+  black:
+    display-name: "Black Finish"
+    token-material: PAPER
+    token-custom-model-data: 9014
+    hex: "#1D1D21"
+
+skins:
+  m4a1:
+    gold-reserve:
+      display-name: "M4A1 Aurum Reserve"
+      name-suffix: "Aurum Reserve"
+      suffix-gradient: ["#A96F00", "#FFD76B", "#FFF2B0"]
+    royal-masquerade:
+      display-name: "M4A1 Royal Masquerade"
+      name-suffix: "Royal Masquerade"
+      suffix-gradient: ["#A96F00", "#7B2FF7", "#FFFFFF"]
+      sound-fire: "weapons.m4a1.royal.fire"
+      sound-hit: "weapons.m4a1.royal.fire"
+      sound-headshot: "weapons.m4a1.royal.fire"
+      sound-reload: "weapons.m4a1.royal.reload"
+  ak_47:
+    gold-reserve:
+      display-name: "AK-47 Aurum Reserve"
+      name-suffix: "Aurum Reserve"
+      suffix-gradient: ["#A96F00", "#FFD76B", "#FFF2B0"]
+    sugarline-bakery:
+      display-name: "AK-47 Sugarline Bakery"
+      name-suffix: "Sugarline Bakery"
+      suffix-gradient: ["#FF35B8", "#FF8BD8", "#FFFFFF"]
+      sound-fire: "weapons.ak47.sugarline.fire"
+      sound-hit: "weapons.ak47.sugarline.hit"
+      sound-headshot: "weapons.ak47.sugarline.headshot"
+      sound-reload: "weapons.ak47.sugarline.reload"
+  ppk:
+    gold-reserve:
+      display-name: "PPK Aurum Reserve"
+      name-suffix: "Aurum Reserve"
+      suffix-gradient: ["#A96F00", "#FFD76B", "#FFF2B0"]
+    sugarline-bakery:
+      display-name: "PPK Sugarline Bakery"
+      name-suffix: "Sugarline Bakery"
+      suffix-gradient: ["#FF35B8", "#FF8BD8", "#FFFFFF"]
+      sound-fire: "weapons.ak47.sugarline.fire"
+      sound-hit: "weapons.ak47.sugarline.hit"
+      sound-headshot: "weapons.ak47.sugarline.headshot"
+      sound-reload: "weapons.ak47.sugarline.reload"
+  mp5:
+    gold-reserve:
+      display-name: "MP5 Aurum Reserve"
+      name-suffix: "Aurum Reserve"
+      suffix-gradient: ["#A96F00", "#FFD76B", "#FFF2B0"]
+    sugarline-bakery:
+      display-name: "MP5 Sugarline Bakery"
+      name-suffix: "Sugarline Bakery"
+      suffix-gradient: ["#FF35B8", "#FF8BD8", "#FFFFFF"]
+      sound-fire: "weapons.ak47.sugarline.fire"
+      sound-hit: "weapons.ak47.sugarline.hit"
+      sound-headshot: "weapons.ak47.sugarline.headshot"
+      sound-reload: "weapons.ak47.sugarline.reload"
+  remington_870:
+    gold-reserve:
+      display-name: "Remington 870 Aurum Reserve"
+      name-suffix: "Aurum Reserve"
+      suffix-gradient: ["#A96F00", "#FFD76B", "#FFF2B0"]
+    sugarline-bakery:
+      display-name: "Remington 870 Sugarline Bakery"
+      name-suffix: "Sugarline Bakery"
+      suffix-gradient: ["#FF35B8", "#FF8BD8", "#FFFFFF"]
+      sound-fire: "weapons.ak47.sugarline.fire"
+      sound-hit: "weapons.ak47.sugarline.hit"
+      sound-headshot: "weapons.ak47.sugarline.headshot"
+      sound-reload: "weapons.ak47.sugarline.reload"

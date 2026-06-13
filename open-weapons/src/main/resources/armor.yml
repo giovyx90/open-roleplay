@@ -1,0 +1,58 @@
+armors:
+  vest_light:
+    display-name: "Light Bulletproof Vest"
+    custom-model-data: 12010
+    color-rgb: "#191950"
+    slowness-level: -1
+    damage-reduction: 0.25
+    nij-level: "IIIA"
+    max-durability: 50
+    has-plate: false
+
+  vest_heavy:
+    display-name: "Heavy Bulletproof Vest"
+    custom-model-data: 12011
+    color-rgb: "#282828"
+    slowness-level: 0
+    damage-reduction: 0.45
+    nij-level: "IV"
+    max-durability: 100
+    has-plate: false
+
+  vest_heavy_plated:
+    display-name: "Heavy Plated Bulletproof Vest"
+    custom-model-data: 12012
+    color-rgb: "#3C3C1E"
+    slowness-level: 1
+    damage-reduction: 0.45
+    nij-level: "IV+"
+    max-durability: 125
+    has-plate: true
+
+helmets:
+  ballistic_helmet:
+    display-name: "Ballistic Helmet"
+    custom-model-data: 12020
+    color-rgb: "#323C32"
+    damage-reduction: 0.15
+    negates-headshot: true
+    prevents-melee-stun: false
+    max-durability: 30
+
+  riot_helmet:
+    display-name: "Riot Helmet"
+    custom-model-data: 12021
+    color-rgb: "#1E1E1E"
+    damage-reduction: 0.0
+    negates-headshot: false
+    prevents-melee-stun: true
+    max-durability: 0
+
+  sf_helmet:
+    display-name: "Special Forces Helmet"
+    custom-model-data: 12022
+    color-rgb: "#3C372D"
+    damage-reduction: 0.25
+    negates-headshot: true
+    prevents-melee-stun: false
+    max-durability: 50

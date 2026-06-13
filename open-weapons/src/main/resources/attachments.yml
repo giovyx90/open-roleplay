@@ -1,0 +1,170 @@
+holographic_sight:
+  display-name: "Holographic Sight"
+  material: SPYGLASS
+  custom-model-data: 10001
+  slot: optic
+  compatible:
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 0.95
+  spread-multiplier: 0.85
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 1
+  install-time-ticks: 160
+  illegal: false
+
+scope_3x:
+  display-name: "3x Scope"
+  material: SPYGLASS
+  custom-model-data: 10002
+  slot: optic
+  compatible:
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 1.0
+  spread-multiplier: 0.75
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 3
+  install-time-ticks: 220
+  illegal: false
+
+scope_10x:
+  display-name: "10x Scope"
+  material: SPYGLASS
+  custom-model-data: 10008
+  slot: optic
+  compatible:
+    - SNIPER
+  compatible-weapons:
+    - barrett_mrad
+  recoil-multiplier: 1.0
+  spread-multiplier: 0.70
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 0.85
+  reload-time-multiplier: 1.0
+  zoom-bonus: 10
+  install-time-ticks: 260
+  illegal: false
+
+vertical_grip:
+  display-name: "Vertical Grip"
+  material: STICK
+  custom-model-data: 10003
+  slot: underbarrel
+  compatible:
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 0.80
+  spread-multiplier: 0.95
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 0
+  install-time-ticks: 180
+  illegal: false
+
+extended_magazine:
+  display-name: "Extended Magazine"
+  material: IRON_INGOT
+  custom-model-data: 10004
+  slot: magazine
+  compatible:
+    - PISTOL
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 1.0
+  spread-multiplier: 1.0
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 0.95
+  reload-time-multiplier: 1.12
+  zoom-bonus: 0
+  install-time-ticks: 180
+  illegal: false
+
+suppressor:
+  display-name: "Suppressor"
+  material: IRON_INGOT
+  custom-model-data: 10005
+  slot: barrel
+  compatible:
+    - PISTOL
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 1.0
+  spread-multiplier: 1.0
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 0.30
+  max-distance-multiplier: 0.90
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 0
+  install-time-ticks: 220
+  illegal: true
+
+light_trigger:
+  display-name: "Light Trigger"
+  material: TRIPWIRE_HOOK
+  custom-model-data: 10006
+  slot: internal
+  compatible:
+    - PISTOL
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 1.0
+  spread-multiplier: 1.08
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 0
+  install-time-ticks: 220
+  illegal: true
+
+full_auto_converter:
+  display-name: "Full Auto Converter"
+  material: REDSTONE
+  custom-model-data: 10007
+  slot: internal
+  compatible:
+    - PISTOL
+    - SMG
+    - ASSAULT_RIFLE
+    - SEMI_AUTO_RIFLE
+  recoil-multiplier: 1.12
+  spread-multiplier: 1.10
+  ads-spread-multiplier: 1.0
+  hipfire-spread-multiplier: 1.0
+  sound-multiplier: 1.0
+  max-distance-multiplier: 1.0
+  mobility-multiplier: 1.0
+  reload-time-multiplier: 1.0
+  zoom-bonus: 0
+  install-time-ticks: 260
+  illegal: true

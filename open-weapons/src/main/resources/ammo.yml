@@ -1,0 +1,59 @@
+9mm:
+  display-name: 9mm Ammo
+  material: IRON_NUGGET
+  custom-model-data: 48
+  max-stack: 64
+  penetration-class: handgun
+  armor-durability-damage: 1
+  flesh-damage-multiplier: 1.0
+  shield-durability-damage: 1
+46mm:
+  display-name: 4.6x30mm Ammo
+  material: IRON_NUGGET
+  custom-model-data: 49
+  max-stack: 64
+  penetration-class: pdw
+  armor-durability-damage: 1
+  flesh-damage-multiplier: 0.95
+  shield-durability-damage: 1
+50ae:
+  display-name: .50 AE Ammo
+  material: IRON_NUGGET
+  custom-model-data: 52
+  max-stack: 32
+  penetration-class: handgun_heavy
+  armor-durability-damage: 3
+  flesh-damage-multiplier: 1.2
+  shield-durability-damage: 5
+556nato:
+  display-name: 5.56 Ammo
+  material: IRON_NUGGET
+  custom-model-data: 47
+  max-stack: 64
+  penetration-class: rifle
+  armor-durability-damage: 2
+  flesh-damage-multiplier: 1.0
+  shield-durability-damage: 3
+762nato:
+  display-name: 7.62 Ammo
+  material: IRON_NUGGET
+  custom-model-data: 53
+  max-stack: 32
+  penetration-class: rifle_heavy
+  armor-durability-damage: 3
+  flesh-damage-multiplier: 1.12
+  shield-durability-damage: 5
+12gauge:
+  display-name: 12 Gauge Shells
+  material: IRON_NUGGET
+  custom-model-data: 51
+  max-stack: 32
+  penetration-class: shotgun
+  armor-durability-damage: 2
+  flesh-damage-multiplier: 1.0
+  shield-durability-damage: 3
+magazines:
+  display-name: Universal Magazines
+  material: IRON_NUGGET
+  custom-model-data: 54
+  max-stack: 64

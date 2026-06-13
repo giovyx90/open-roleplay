@@ -1,0 +1,10 @@
+# OpenWeapons English messages
+# Canonical config/PDC naming uses snake_case English keys (e.g. restraint_type, ballistic_shield, wanted_level).
+
+uncuff:
+  ultimatum_timer: "⏱ Ultimatum... {seconds}s"
+
+items:
+  handcuffs_name: "Handcuffs"
+  rope_name: "Rope"
+  bolt_cutters_name: "Bolt Cutters"
