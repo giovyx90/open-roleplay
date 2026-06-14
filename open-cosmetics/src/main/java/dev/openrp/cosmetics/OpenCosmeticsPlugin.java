@@ -27,6 +27,7 @@ public class OpenCosmeticsPlugin extends JavaPlugin implements OpenCosmeticsApi 
     private WeaponCosmeticWorkbenchGUI workbenchGUI;
     private WeaponCosmeticEditorGUI editorGUI;
     private WeaponCosmeticStationManager stationManager;
+    private OpenCoreModuleRegistration openCoreRegistration;
     private final java.util.Set<UUID> automaticSkinFireSuppression = ConcurrentHashMap.newKeySet();
 
     @Override
@@ -57,6 +58,8 @@ public class OpenCosmeticsPlugin extends JavaPlugin implements OpenCosmeticsApi 
         }
 
         Bukkit.getServicesManager().register(OpenCosmeticsApi.class, this, this, ServicePriority.Normal);
+        this.openCoreRegistration = new OpenCoreModuleRegistration(this, "cosmetics");
+        this.openCoreRegistration.register();
         if (getWeaponBridge() == null) {
             getLogger().warning("[OpenCosmetics] Nessun bridge armi registrato: GUI e token restano disponibili, ma non possono modificare armi finche' Open Weapons non si collega.");
         }
@@ -65,6 +68,10 @@ public class OpenCosmeticsPlugin extends JavaPlugin implements OpenCosmeticsApi 
 
     @Override
     public void onDisable() {
+        if (openCoreRegistration != null) {
+            openCoreRegistration.unregister();
+            openCoreRegistration = null;
+        }
         HandlerList.unregisterAll(this);
         Bukkit.getServicesManager().unregister(OpenCosmeticsApi.class, this);
         automaticSkinFireSuppression.clear();

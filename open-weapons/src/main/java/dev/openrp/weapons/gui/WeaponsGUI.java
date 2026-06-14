@@ -1,6 +1,6 @@
 package dev.openrp.weapons.gui;
 
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.model.AmmoDefinition;
 import dev.openrp.weapons.model.ArmorDefinition;
 import dev.openrp.weapons.grenades.GrenadeDefinition;

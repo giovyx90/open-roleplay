@@ -1,0 +1,76 @@
+name: OpenWeapons
+main: dev.openrp.weapons.OpenWeaponsPlugin
+version: ${project.version}
+api-version: '1.21'
+authors:
+  - Open Roleplay
+description: Armi, accessori, utility e sistemi crime per Open Roleplay.
+softdepend:
+  - OpenCore
+  - OpenCosmetics
+  - Nexo
+  - WorldGuard
+  - packetevents
+commands:
+  oggetti:
+    description: Catalogo oggetti e armi OpenWeapons.
+    usage: /oggetti
+    aliases:
+      - armi
+  configarmi:
+    description: Configura armi e protezioni.
+    usage: /configarmi
+  bancoarmi:
+    description: Banco accessori arma.
+    usage: /bancoarmi
+  libera:
+    description: Minaccia chi ha immobilizzato un giocatore per farlo liberare.
+    usage: /libera <giocatore>
+  rapina:
+    description: Avvia una rapina roleplay.
+    usage: /rapina <giocatore>
+  perquisisci:
+    description: Perquisisce un giocatore vicino.
+    usage: /perquisisci <giocatore>
+permissions:
+  openrp.weapons.admin:
+    description: Amministrazione completa di OpenWeapons.
+    default: op
+    children:
+      openrp.weapons.view: true
+      openrp.weapons.give: true
+      openrp.weapons.debug: true
+      openrp.weapons.config: true
+  openrp.weapons.view:
+    description: Permette di aprire il catalogo OpenWeapons.
+    default: op
+  openrp.weapons.give:
+    description: Permette di dare oggetti dal catalogo.
+    default: op
+  openrp.weapons.debug:
+    description: Permette strumenti debug e reload.
+    default: op
+  openrp.weapons.config:
+    description: Permette di modificare configurazioni armi.
+    default: op
+  openrp.weapons.uncuff:
+    description: Permette di usare /libera.
+    default: true
+  openrp.weapons.workbench:
+    description: Permette di usare /bancoarmi.
+    default: op
+  openrp.rob.use:
+    description: Permette di rapinare giocatori.
+    default: true
+  openrp.frisk.use:
+    description: Permette di perquisire giocatori.
+    default: true
+  openrp.frisk.arrestable:
+    description: Segna come Arrestabile chi rifiuta una perquisizione.
+    default: op
+  openrp.robbery.admin:
+    description: Bypassa limiti rapina.
+    default: op
+  openrp.utility.admin:
+    description: Gestisce gli strumenti RP OpenWeapons.
+    default: op

@@ -13,7 +13,7 @@ public class RobberySession {
    private TextDisplay textDisplay;
    private BukkitTask task;
    private BukkitTask distanceTask;
-   private boolean markedKillable = false;
+   private boolean markedAbbattibile = false;
 
    public RobberySession(UUID robberUuid, UUID victimUuid, long startTime, Location startLocation) {
       this.robberUuid = robberUuid;
@@ -62,11 +62,11 @@ public class RobberySession {
       this.distanceTask = distanceTask;
    }
 
-   public boolean isMarkedKillable() {
-      return this.markedKillable;
+   public boolean isMarkedAbbattibile() {
+      return this.markedAbbattibile;
    }
 
-   public void setMarkedKillable(boolean markedKillable) {
-      this.markedKillable = markedKillable;
+   public void setMarkedAbbattibile(boolean markedAbbattibile) {
+      this.markedAbbattibile = markedAbbattibile;
    }
 }

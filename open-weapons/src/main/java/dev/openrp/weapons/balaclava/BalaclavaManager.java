@@ -1,6 +1,6 @@
 package dev.openrp.weapons.balaclava;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -22,9 +22,9 @@ public class BalaclavaManager {
 
     private final Set<UUID> maskedPlayers = ConcurrentHashMap.newKeySet();
     private final NamespacedKey balaclavaKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
 
-    public BalaclavaManager(CorePlugin core) {
+    public BalaclavaManager(JavaPlugin core) {
         this.core = core;
         this.balaclavaKey = new NamespacedKey(core, "balaclava");
     }

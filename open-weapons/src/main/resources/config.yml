@@ -1,0 +1,26 @@
+weapons:
+  anti-powergame:
+    sneak-shoot-lock-millis: 400
+  audio:
+    fire-volume: 1.0
+    custom-fire-sounds: false
+  bullets:
+    glass-breaking:
+      enabled: true
+      max-penetrations: 2
+      materials:
+        - GLASS
+        - GLASS_PANE
+        - TINTED_GLASS
+  utility:
+    handcuff-duration-seconds: 5
+    restraint-duration-seconds: 3
+    status-tag-y-offset: 2.9
+
+hud:
+  overlay:
+    enabled: true
+
+riotShield:
+  maxBulletHits: 5
+  blockBullets: true

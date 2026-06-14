@@ -1,6 +1,6 @@
 package dev.openrp.weapons.commands;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.NamespacedKey;
@@ -15,10 +15,10 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.persistence.PersistentDataType;
 
 public final class DamageDummyListener implements Listener {
-   private final CorePlugin core;
+   private final JavaPlugin core;
    private final NamespacedKey dummyKey;
 
-   public DamageDummyListener(CorePlugin core) {
+   public DamageDummyListener(JavaPlugin core) {
       this.core = core;
       this.dummyKey = new NamespacedKey(core, "weapon_damage_dummy");
    }

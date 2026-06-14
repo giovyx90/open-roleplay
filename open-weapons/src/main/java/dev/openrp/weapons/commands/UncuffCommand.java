@@ -26,8 +26,8 @@ import java.util.UUID;
 
 public class UncuffCommand implements CommandExecutor, Listener {
     private final WeaponsModule module;
-    private final Map<UUID, BukkitTask> activeAttempts = new HashMap<>(); // FDO UUID -> Task
-    private final Map<UUID, org.bukkit.entity.TextDisplay> killableTags = new HashMap<>();
+    private final Map<UUID, BukkitTask> activeAttempts = new HashMap<>();
+    private final Map<UUID, org.bukkit.entity.TextDisplay> abbattibileTags = new HashMap<>();
 
     public UncuffCommand(WeaponsModule module) {
         this.module = module;
@@ -48,7 +48,7 @@ public class UncuffCommand implements CommandExecutor, Listener {
         }
 
         if (args.length != 1) {
-            player.sendMessage(Component.text("Uso: /uncuff <giocatore_ammanettato>", NamedTextColor.RED));
+            player.sendMessage(Component.text("Uso: /libera <giocatore_immobilizzato>", NamedTextColor.RED));
             return true;
         }
 
@@ -67,29 +67,29 @@ public class UncuffCommand implements CommandExecutor, Listener {
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(item);
 
         if (weapon == null || weapon.getCategory() == WeaponCategory.MELEE) {
-            player.sendMessage(Component.text("Devi impugnare un'arma da fuoco per minacciare l'agente.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Devi impugnare un'arma da fuoco per minacciare chi lo ha immobilizzato.", NamedTextColor.RED));
             return true;
         }
 
         UUID officerId = module.getHandcuffManager().getOfficerWhoCuffed(target);
         if (officerId == null) {
-            player.sendMessage(Component.text("L'agente che li ha ammanettati non e' piu' online.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Chi lo ha immobilizzato non e' piu' online.", NamedTextColor.RED));
             return true;
         }
 
         Player officer = Bukkit.getPlayer(officerId);
         if (officer == null || !officer.isOnline()) {
-            player.sendMessage(Component.text("L'agente che li ha ammanettati non e' piu' online.", NamedTextColor.RED));
+            player.sendMessage(Component.text("Chi lo ha immobilizzato non e' piu' online.", NamedTextColor.RED));
             return true;
         }
 
         if (player.getLocation().distance(officer.getLocation()) > 15) {
-            player.sendMessage(Component.text("Sei troppo lontano dall'agente per minacciarlo!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Sei troppo lontano da chi lo ha immobilizzato per minacciarlo!", NamedTextColor.RED));
             return true;
         }
 
         if (activeAttempts.containsKey(officer.getUniqueId())) {
-            player.sendMessage(Component.text("L'agente e' gia' sotto minaccia!", NamedTextColor.RED));
+            player.sendMessage(Component.text("Questo giocatore e' gia' sotto minaccia!", NamedTextColor.RED));
             return true;
         }
 
@@ -98,8 +98,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
     }
 
     private void startIntimidation(Player sender, Player officer, Player victim) {
-        sender.sendMessage(Component.text("Hai ordinato all'agente di liberare " + victim.getName() + "!", NamedTextColor.YELLOW));
-        officer.sendMessage(Component.text("Sei sotto minaccia armata! Hai 15 secondi per liberare " + victim.getName() + " o diventerai UCCIDIBILE!", NamedTextColor.RED, TextDecoration.BOLD));
+        sender.sendMessage(Component.text("Hai ordinato di liberare " + victim.getName() + "!", NamedTextColor.YELLOW));
+        officer.sendMessage(Component.text("Sei sotto minaccia armata! Hai 15 secondi per liberare " + victim.getName() + " o diventerai Abbattibile!", NamedTextColor.RED, TextDecoration.BOLD));
 
         // "UNCUFF ME!" above the handcuffed criminal (victim)
         Component uncuffTag = Component.text("⚠ UNCUFF ME! ⚠", NamedTextColor.RED, TextDecoration.BOLD);
@@ -128,8 +128,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
                 }
 
                 if (!module.getHandcuffManager().isHandcuffed(victim)) {
-            officer.sendMessage(Component.text("Li hai liberati e ora sei al sicuro.", NamedTextColor.GREEN));
-                    sender.sendMessage(Component.text("L'agente ha obbedito.", NamedTextColor.GREEN));
+                    officer.sendMessage(Component.text("Lo hai liberato e ora sei al sicuro.", NamedTextColor.GREEN));
+                    sender.sendMessage(Component.text("Ha obbedito e ha liberato " + victim.getName() + ".", NamedTextColor.GREEN));
                     cleanup();
                     return;
                 }
@@ -195,40 +195,40 @@ public class UncuffCommand implements CommandExecutor, Listener {
         BukkitTask task = activeAttempts.remove(officer.getUniqueId());
         if (task != null) task.cancel();
 
-        officer.sendMessage(Component.text("Tempo scaduto! Ora sei UCCIDIBILE per 5 minuti.", NamedTextColor.RED, TextDecoration.BOLD));
+        officer.sendMessage(Component.text("Tempo scaduto! Ora sei Abbattibile per 5 minuti.", NamedTextColor.RED, TextDecoration.BOLD));
         officer.getWorld().playSound(officer.getLocation(), Sound.ENTITY_WITHER_SPAWN, 0.5f, 1.0f);
 
-        applyKillableTag(officer);
+        applyAbbattibileTag(officer);
     }
 
-    private void applyKillableTag(Player officer) {
-        final int KILLABLE_SECONDS = 300; // 5 minutes
-        final int KILLABLE_TICKS = KILLABLE_SECONDS * 20;
+    private void applyAbbattibileTag(Player officer) {
+        final int abbattibileSeconds = 300; // 5 minutes
+        final int abbattibileTicks = abbattibileSeconds * 20;
 
         double tagOffset = module.getUtilitySettings().statusTagYOffset();
         org.bukkit.entity.TextDisplay td = StatusTextDisplays.spawn(officer,
-                Component.text("☠ KILLABLE - 5:00 ☠", NamedTextColor.DARK_RED, TextDecoration.BOLD), tagOffset);
+                Component.text("☠ Abbattibile - 5:00 ☠", NamedTextColor.DARK_RED, TextDecoration.BOLD), tagOffset);
         
-        killableTags.put(officer.getUniqueId(), td);
+        abbattibileTags.put(officer.getUniqueId(), td);
 
         new BukkitRunnable() {
             int ticks = 0;
             @Override
             public void run() {
-                if (ticks >= KILLABLE_TICKS || !officer.isOnline()) {
+                if (ticks >= abbattibileTicks || !officer.isOnline()) {
                     if (td.isValid()) td.remove();
-                    killableTags.remove(officer.getUniqueId());
+                    abbattibileTags.remove(officer.getUniqueId());
                     if (officer.isOnline()) {
-                        officer.sendMessage(Component.text("Non sei piu' uccidibile.", NamedTextColor.GREEN));
+                        officer.sendMessage(Component.text("Non sei piu' Abbattibile.", NamedTextColor.GREEN));
                     }
                     this.cancel();
                     return;
                 }
                 if (!officer.isDead() && td.isValid()) {
-                    int secondsLeft = (KILLABLE_TICKS - ticks) / 20;
+                    int secondsLeft = (abbattibileTicks - ticks) / 20;
                     int mins = secondsLeft / 60;
                     int secs = secondsLeft % 60;
-                    td.text(Component.text("☠ KILLABLE - " + mins + ":" + String.format("%02d", secs) + " ☠", NamedTextColor.DARK_RED, TextDecoration.BOLD));
+                    td.text(Component.text("☠ Abbattibile - " + mins + ":" + String.format("%02d", secs) + " ☠", NamedTextColor.DARK_RED, TextDecoration.BOLD));
                     StatusTextDisplays.follow(td, officer, tagOffset);
                 }
                 ticks++;
@@ -237,13 +237,8 @@ public class UncuffCommand implements CommandExecutor, Listener {
     }
 
     private void restoreName(Player player) {
-        it.meridian.cityhall.module.CityHallModule cityHall = module.getCore().getModuleManager().getModule(it.meridian.cityhall.module.CityHallModule.class);
-        if (cityHall != null && cityHall.getNameTagHandler() != null) {
-            cityHall.getNameTagHandler().refreshPlayer(player);
-        } else {
-            player.setCustomNameVisible(false);
-            refreshEntityForOthers(player);
-        }
+        module.getIdentityBridge().refreshPlayer(player);
+        refreshEntityForOthers(player);
     }
 
     private void refreshEntityForOthers(Player player) {

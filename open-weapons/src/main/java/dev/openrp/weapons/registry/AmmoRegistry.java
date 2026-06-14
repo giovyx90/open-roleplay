@@ -1,6 +1,6 @@
 package dev.openrp.weapons.registry;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.AmmoDefinition;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -23,9 +23,9 @@ import java.util.Map;
 public class AmmoRegistry {
     private final Map<String, AmmoDefinition> ammoTypes = new HashMap<>();
     private final NamespacedKey ammoKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
 
-    public AmmoRegistry(CorePlugin core) {
+    public AmmoRegistry(JavaPlugin core) {
         this.core = core;
         this.ammoKey = new NamespacedKey(core, "ammo_id");
     }

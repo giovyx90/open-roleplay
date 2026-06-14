@@ -1,6 +1,6 @@
 package dev.openrp.weapons.commands;
 
-import it.meridian.core.permissions.NextPermissions;
+import dev.openrp.weapons.util.OpenPermissions;
 import dev.openrp.weapons.gui.ItemsGUI;
 import dev.openrp.weapons.module.WeaponsModule;
 import java.io.File;
@@ -47,36 +47,36 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
       if (args.length == 0) {
          if (sender instanceof Player player) {
             if (!canViewCatalog(player)) {
-               player.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.VIEW + " per sfogliare il catalogo oggetti.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.VIEW + " per sfogliare il catalogo oggetti.", NamedTextColor.RED));
                return true;
             }
             this.gui.open(player);
          } else {
-            sender.sendMessage("Uso: /items <search|list|give|reload>");
+            sender.sendMessage("Uso: /oggetti <cerca|lista|dai|ricarica|bersaglio>");
          }
          return true;
       }
 
       switch (args[0].toLowerCase(Locale.ROOT)) {
-         case "reload" -> {
+         case "ricarica" -> {
             if (!canReload(sender)) {
-               sender.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.DEBUG + " o " + NextPermissions.Staff.RELOAD + " per ricaricare gli oggetti arma.", NamedTextColor.RED));
+               sender.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.DEBUG + " o " + OpenPermissions.Staff.RELOAD + " per ricaricare gli oggetti arma.", NamedTextColor.RED));
                return true;
             }
             this.reloadItems(sender);
             return true;
          }
-         case "search" -> {
+         case "cerca" -> {
 	            if (!(sender instanceof Player player)) {
 	               sender.sendMessage("Solo i giocatori possono aprire la GUI di ricerca oggetti.");
 	               return true;
 	            }
             if (!canViewCatalog(player)) {
-               player.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.VIEW + " per cercare nel catalogo oggetti.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.VIEW + " per cercare nel catalogo oggetti.", NamedTextColor.RED));
                return true;
             }
             if (args.length < 2) {
-               player.sendMessage(Component.text("Uso: /items search <query> [pagina]", NamedTextColor.RED));
+               player.sendMessage(Component.text("Uso: /oggetti cerca <query> [pagina]", NamedTextColor.RED));
                return true;
             }
             boolean hasPage = args.length > 2 && this.isPositiveInteger(args[args.length - 1]);
@@ -86,13 +86,13 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
             this.gui.openSearch(player, query, page);
             return true;
          }
-         case "list" -> {
+         case "lista" -> {
 	            if (!(sender instanceof Player player)) {
 	               sender.sendMessage("Solo i giocatori possono aprire la lista oggetti.");
 	               return true;
 	            }
             if (!canViewCatalog(player)) {
-               player.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.VIEW + " per elencare il catalogo oggetti.", NamedTextColor.RED));
+               player.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.VIEW + " per elencare il catalogo oggetti.", NamedTextColor.RED));
                return true;
             }
             String category = args.length >= 2 ? args[1] : "all";
@@ -100,23 +100,23 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
             this.gui.openCatalogList(player, category, page);
             return true;
          }
-         case "give" -> {
+         case "dai" -> {
             this.handleGive(sender, args);
             return true;
          }
-         case "dummy" -> {
+         case "bersaglio" -> {
             this.handleDummy(sender, args);
             return true;
          }
 	         default -> {
 	            if (sender instanceof Player player) {
                   if (!canViewCatalog(player)) {
-                     player.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.VIEW + " per sfogliare il catalogo oggetti.", NamedTextColor.RED));
+                     player.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.VIEW + " per sfogliare il catalogo oggetti.", NamedTextColor.RED));
                      return true;
                   }
 	               this.gui.open(player);
             } else {
-               sender.sendMessage("Uso: /items <search|list|give|reload>");
+               sender.sendMessage("Uso: /oggetti <cerca|lista|dai|ricarica|bersaglio>");
             }
             return true;
          }
@@ -128,8 +128,8 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
          sender.sendMessage("Solo i giocatori possono generare bersagli di test danno armi.");
          return;
       }
-      if (!NextPermissions.hasAny(player, NextPermissions.Weapons.DEBUG, NextPermissions.Weapons.ADMIN, NextPermissions.Test.DEBUG)) {
-         player.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.DEBUG + " o " + NextPermissions.Test.DEBUG + " per generare un bersaglio test danno.", NamedTextColor.RED));
+      if (!OpenPermissions.hasAny(player, OpenPermissions.Weapons.DEBUG, OpenPermissions.Weapons.ADMIN, OpenPermissions.Test.DEBUG)) {
+         player.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.DEBUG + " o " + OpenPermissions.Test.DEBUG + " per generare un bersaglio test danno.", NamedTextColor.RED));
          return;
       }
       double health = 100.0D;
@@ -144,7 +144,7 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
          }
          DummyPreset parsedPreset = findDummyPreset(part);
          if (parsedPreset == null) {
-            player.sendMessage(Component.text("Uso: /items dummy [vita] [preset]", NamedTextColor.RED));
+            player.sendMessage(Component.text("Uso: /oggetti bersaglio [vita] [preset]", NamedTextColor.RED));
             player.sendMessage(Component.text("Preset: " + String.join(", ", dummyPresetIds()), NamedTextColor.YELLOW));
             return;
          }
@@ -202,9 +202,7 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
       this.module.getWeaponRegistry().load(new File(this.module.getCore().getDataFolder(), "weapons.yml"));
       this.module.getAmmoRegistry().load(new File(this.module.getCore().getDataFolder(), "ammo.yml"));
       this.module.getAttachmentRegistry().load(new File(this.module.getCore().getDataFolder(), "attachments.yml"));
-      if (this.module.getOpenCosmeticsApi() != null) {
-         this.module.getOpenCosmeticsApi().reload();
-      }
+      this.module.reloadOpenCosmetics();
       if (this.module.getArmorManager() != null) {
          this.module.getArmorManager().load(new File(this.module.getCore().getDataFolder(), "armor.yml"));
       }
@@ -217,11 +215,11 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
 
    private void handleGive(CommandSender sender, String[] args) {
       if (!canGiveItems(sender)) {
-         sender.sendMessage(Component.text("Ti serve " + NextPermissions.Weapons.GIVE + " o " + NextPermissions.Test.ITEMS + " per dare oggetti dal catalogo.", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Ti serve " + OpenPermissions.Weapons.GIVE + " o " + OpenPermissions.Test.ITEMS + " per dare oggetti dal catalogo.", NamedTextColor.RED));
          return;
       }
       if (args.length < 2) {
-         sender.sendMessage(Component.text("Uso: /items give <id> [quantita'] [giocatore]", NamedTextColor.RED));
+         sender.sendMessage(Component.text("Uso: /oggetti dai <id> [quantita'] [giocatore]", NamedTextColor.RED));
          return;
       }
 
@@ -235,7 +233,7 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
       } else if (sender instanceof Player player) {
          target = player;
       } else {
-         sender.sendMessage("Uso da console: /items give <id> <quantita'> <giocatore>");
+         sender.sendMessage("Uso da console: /oggetti dai <id> <quantita'> <giocatore>");
          return;
       }
 
@@ -247,7 +245,7 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
          if (this.gui.giveCatalogItem(actor, target, entry, actualAmount, "ItemsCommand")) {
             sender.sendMessage(Component.text("Dato " + actualAmount + " x " + entry.displayName() + " a " + target.getName() + ".", NamedTextColor.GREEN));
          }
-      }, () -> sender.sendMessage(Component.text("ID oggetto sconosciuto o ambiguo. Usa /items search <query>.", NamedTextColor.RED)));
+      }, () -> sender.sendMessage(Component.text("ID oggetto sconosciuto o ambiguo. Usa /oggetti cerca <query>.", NamedTextColor.RED)));
    }
 
    private int parsePage(String raw, int fallback) {
@@ -270,24 +268,24 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
       if (args.length == 1) {
          List<String> options = new ArrayList<>();
-         if (canViewCatalog(sender)) options.addAll(List.of("search", "list"));
-         if (canGiveItems(sender)) options.add("give");
-         if (canReload(sender)) options.add("reload");
-         if (NextPermissions.hasAny(sender, NextPermissions.Weapons.DEBUG, NextPermissions.Weapons.ADMIN, NextPermissions.Test.DEBUG)) options.add("dummy");
+         if (canViewCatalog(sender)) options.addAll(List.of("cerca", "lista"));
+         if (canGiveItems(sender)) options.add("dai");
+         if (canReload(sender)) options.add("ricarica");
+         if (OpenPermissions.hasAny(sender, OpenPermissions.Weapons.DEBUG, OpenPermissions.Weapons.ADMIN, OpenPermissions.Test.DEBUG)) options.add("bersaglio");
          return this.filter(options, args[0]);
       }
-      if (args[0].equalsIgnoreCase("dummy")
-            && NextPermissions.hasAny(sender, NextPermissions.Weapons.DEBUG, NextPermissions.Weapons.ADMIN, NextPermissions.Test.DEBUG)) {
+      if (args[0].equalsIgnoreCase("bersaglio")
+            && OpenPermissions.hasAny(sender, OpenPermissions.Weapons.DEBUG, OpenPermissions.Weapons.ADMIN, OpenPermissions.Test.DEBUG)) {
          if (args.length == 2 || args.length == 3) {
             List<String> options = new ArrayList<>(dummyPresetIds());
             options.addAll(List.of("100", "200", "500"));
             return this.filter(options, args[args.length - 1]);
          }
       }
-      if (args.length == 2 && args[0].equalsIgnoreCase("list") && canViewCatalog(sender)) {
+      if (args.length == 2 && args[0].equalsIgnoreCase("lista") && canViewCatalog(sender)) {
          return this.filter(this.gui.getCatalogCategories(), args[1]);
       }
-      if (args.length == 2 && args[0].equalsIgnoreCase("give") && sender instanceof Player player && canGiveItems(sender)) {
+      if (args.length == 2 && args[0].equalsIgnoreCase("dai") && sender instanceof Player player && canGiveItems(sender)) {
          List<String> ids = new ArrayList<>();
          this.gui.collectCatalog(player).forEach(entry -> {
             ids.add(entry.fullId());
@@ -295,23 +293,23 @@ public class ItemsCommand implements CommandExecutor, TabCompleter {
          });
          return this.filter(ids.stream().distinct().sorted().toList(), args[1]);
       }
-      if (args.length == 4 && args[0].equalsIgnoreCase("give")) {
+      if (args.length == 4 && args[0].equalsIgnoreCase("dai")) {
          return null;
       }
       return List.of();
    }
 
    private boolean canViewCatalog(CommandSender sender) {
-      return NextPermissions.hasAny(sender, NextPermissions.Weapons.VIEW, NextPermissions.Weapons.GIVE,
-            NextPermissions.Weapons.ADMIN, NextPermissions.Test.ITEMS);
+      return OpenPermissions.hasAny(sender, OpenPermissions.Weapons.VIEW, OpenPermissions.Weapons.GIVE,
+            OpenPermissions.Weapons.ADMIN, OpenPermissions.Test.ITEMS);
    }
 
    private boolean canGiveItems(CommandSender sender) {
-      return NextPermissions.hasAny(sender, NextPermissions.Weapons.GIVE, NextPermissions.Weapons.ADMIN, NextPermissions.Test.ITEMS);
+      return OpenPermissions.hasAny(sender, OpenPermissions.Weapons.GIVE, OpenPermissions.Weapons.ADMIN, OpenPermissions.Test.ITEMS);
    }
 
    private boolean canReload(CommandSender sender) {
-      return NextPermissions.hasAny(sender, NextPermissions.Weapons.DEBUG, NextPermissions.Weapons.ADMIN, NextPermissions.Staff.RELOAD);
+      return OpenPermissions.hasAny(sender, OpenPermissions.Weapons.DEBUG, OpenPermissions.Weapons.ADMIN, OpenPermissions.Staff.RELOAD);
    }
 
    private List<String> filter(List<String> values, String prefix) {

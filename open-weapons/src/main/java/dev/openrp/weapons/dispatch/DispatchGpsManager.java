@@ -1,6 +1,6 @@
 package dev.openrp.weapons.dispatch;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,10 +19,10 @@ public class DispatchGpsManager {
    private static final long DEFAULT_DURATION_TICKS = 2400L;
    private static final double DEFAULT_ARRIVAL_DISTANCE = 6.0;
    private static final String[] GPS_DIRECTIONS = new String[]{"Ahead", "Ahead left", "Left", "Behind left", "Behind", "Behind right", "Right", "Ahead right"};
-   private final CorePlugin core;
+   private final JavaPlugin core;
    private final Map<UUID, DispatchGpsManager.GpsSession> activeGps = new ConcurrentHashMap<>();
 
-   public DispatchGpsManager(CorePlugin core) {
+   public DispatchGpsManager(JavaPlugin core) {
       this.core = core;
    }
 

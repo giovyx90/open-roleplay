@@ -37,13 +37,6 @@
         }
       },
       {
-        "threshold": 40,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/scanner"
-        }
-      },
-      {
         "threshold": 41,
         "model": {
           "type": "minecraft:model",
@@ -55,20 +48,6 @@
         "model": {
           "type": "minecraft:model",
           "model": "custom/tools/crime/telecomando_allarme"
-        }
-      },
-      {
-        "threshold": 91,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/radiolina"
-        }
-      },
-      {
-        "threshold": 92,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/paletta_fdo"
         }
       },
       {

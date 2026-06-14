@@ -3,6 +3,8 @@ package dev.openrp.weapons.cosmetics;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dev.openrp.cosmetics.WeaponCosmeticManager;
+import dev.openrp.cosmetics.WeaponVisualVariantResolver;
 import dev.openrp.weapons.model.WeaponCategory;
 import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.model.WeaponVisualState;
@@ -399,10 +401,10 @@ public class WeaponVisualVariantResolverTest {
             Assert.assertTrue(config.getBoolean("weapons.ppk.skin"));
             Assert.assertTrue(config.getBoolean("weapons.ppk.color"));
             Assert.assertFalse(config.getBoolean("weapons.ppk.led"));
-            Assert.assertEquals("PPK Aurum Reserve", config.getString("skins.ppk.gold-reserve.display-name"));
-            Assert.assertEquals("Aurum Reserve", config.getString("skins.ppk.gold-reserve.name-suffix"));
-            Assert.assertEquals("PPK Sugarline Bakery", config.getString("skins.ppk.sugarline-bakery.display-name"));
-            Assert.assertEquals("Sugarline Bakery", config.getString("skins.ppk.sugarline-bakery.name-suffix"));
+            Assert.assertEquals("PPK Riserva Aurum", config.getString("skins.ppk.gold-reserve.display-name"));
+            Assert.assertEquals("Riserva Aurum", config.getString("skins.ppk.gold-reserve.name-suffix"));
+            Assert.assertEquals("PPK Pasticceria Sugarline", config.getString("skins.ppk.sugarline-bakery.display-name"));
+            Assert.assertEquals("Pasticceria Sugarline", config.getString("skins.ppk.sugarline-bakery.name-suffix"));
             Assert.assertEquals("weapons.ak47.sugarline.fire",
                     config.getString("skins.ppk.sugarline-bakery.sound-fire"));
             Assert.assertEquals("weapons.ak47.sugarline.hit",
@@ -425,11 +427,11 @@ public class WeaponVisualVariantResolverTest {
             Assert.assertTrue(config.getBoolean("weapons.m4a1.skin"));
             Assert.assertTrue(config.getBoolean("weapons.m4a1.color"));
             Assert.assertTrue(config.getBoolean("weapons.m4a1.led"));
-            Assert.assertEquals("M4A1 Aurum Reserve",
+            Assert.assertEquals("M4A1 Riserva Aurum",
                     config.getString("skins.m4a1.gold-reserve.display-name"));
-            Assert.assertEquals("M4A1 Royal Masquerade",
+            Assert.assertEquals("M4A1 Mascherata Reale",
                     config.getString("skins.m4a1.royal-masquerade.display-name"));
-            Assert.assertEquals("Royal Masquerade",
+            Assert.assertEquals("Mascherata Reale",
                     config.getString("skins.m4a1.royal-masquerade.name-suffix"));
             Assert.assertEquals("weapons.m4a1.royal.fire",
                     config.getString("skins.m4a1.royal-masquerade.sound-fire"));
@@ -454,10 +456,10 @@ public class WeaponVisualVariantResolverTest {
             Assert.assertTrue(config.getBoolean("weapons.mp5.skin"));
             Assert.assertTrue(config.getBoolean("weapons.mp5.color"));
             Assert.assertFalse(config.getBoolean("weapons.mp5.led"));
-            Assert.assertEquals("MP5 Aurum Reserve", config.getString("skins.mp5.gold-reserve.display-name"));
-            Assert.assertEquals("Aurum Reserve", config.getString("skins.mp5.gold-reserve.name-suffix"));
-            Assert.assertEquals("MP5 Sugarline Bakery", config.getString("skins.mp5.sugarline-bakery.display-name"));
-            Assert.assertEquals("Sugarline Bakery", config.getString("skins.mp5.sugarline-bakery.name-suffix"));
+            Assert.assertEquals("MP5 Riserva Aurum", config.getString("skins.mp5.gold-reserve.display-name"));
+            Assert.assertEquals("Riserva Aurum", config.getString("skins.mp5.gold-reserve.name-suffix"));
+            Assert.assertEquals("MP5 Pasticceria Sugarline", config.getString("skins.mp5.sugarline-bakery.display-name"));
+            Assert.assertEquals("Pasticceria Sugarline", config.getString("skins.mp5.sugarline-bakery.name-suffix"));
             Assert.assertEquals("weapons.ak47.sugarline.fire",
                     config.getString("skins.mp5.sugarline-bakery.sound-fire"));
             Assert.assertEquals("weapons.ak47.sugarline.hit",
@@ -480,13 +482,13 @@ public class WeaponVisualVariantResolverTest {
             Assert.assertTrue(config.getBoolean("weapons.remington_870.skin"));
             Assert.assertTrue(config.getBoolean("weapons.remington_870.color"));
             Assert.assertFalse(config.getBoolean("weapons.remington_870.led"));
-            Assert.assertEquals("Remington 870 Aurum Reserve",
+            Assert.assertEquals("Remington 870 Riserva Aurum",
                     config.getString("skins.remington_870.gold-reserve.display-name"));
-            Assert.assertEquals("Aurum Reserve",
+            Assert.assertEquals("Riserva Aurum",
                     config.getString("skins.remington_870.gold-reserve.name-suffix"));
-            Assert.assertEquals("Remington 870 Sugarline Bakery",
+            Assert.assertEquals("Remington 870 Pasticceria Sugarline",
                     config.getString("skins.remington_870.sugarline-bakery.display-name"));
-            Assert.assertEquals("Sugarline Bakery",
+            Assert.assertEquals("Pasticceria Sugarline",
                     config.getString("skins.remington_870.sugarline-bakery.name-suffix"));
             Assert.assertEquals("weapons.ak47.sugarline.fire",
                     config.getString("skins.remington_870.sugarline-bakery.sound-fire"));

@@ -26,7 +26,7 @@ public class RobCommand implements CommandExecutor {
          }
 
          if (args.length == 0) {
-            robber.sendMessage(Component.text("Uso: /rob <giocatore>", NamedTextColor.RED));
+            robber.sendMessage(Component.text("Uso: /rapina <giocatore>", NamedTextColor.RED));
             return true;
          }
 
@@ -60,7 +60,7 @@ public class RobCommand implements CommandExecutor {
                      robber.sendMessage(Component.text("Stai rapinando " + victim.getName() + ". Hai 5 minuti.", NamedTextColor.GREEN));
                      victim.sendMessage(
                         Component.text(
-                           "Sei sotto rapina! Fai cio' che dice il criminale o diventerai uccidibile. Se ti disconnetti, il tuo inventario verra' dato al rapinatore.",
+                           "Sei sotto rapina! Fai cio' che dice il criminale o diventerai Abbattibile. Se ti disconnetti, il tuo inventario verra' dato al rapinatore.",
                            NamedTextColor.RED
                         )
                      );

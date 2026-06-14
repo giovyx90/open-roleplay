@@ -1,11 +1,11 @@
 package dev.openrp.weapons.robbery;
 
-import it.meridian.core.staffboard.StaffBoardMetadata;
-import it.meridian.core.staffboard.model.StaffBoardCategory;
-import it.meridian.core.staffboard.model.StaffBoardLogEvent;
-import it.meridian.core.staffboard.model.StaffBoardSensitivity;
-import it.meridian.core.staffboard.model.StaffBoardSeverity;
-import it.meridian.core.permissions.NextPermissions;
+import dev.openrp.weapons.bridge.staff.StaffBoardMetadata;
+import dev.openrp.weapons.bridge.staff.StaffBoardCategory;
+import dev.openrp.weapons.bridge.staff.StaffBoardLogEvent;
+import dev.openrp.weapons.bridge.staff.StaffBoardSensitivity;
+import dev.openrp.weapons.bridge.staff.StaffBoardSeverity;
+import dev.openrp.weapons.util.OpenPermissions;
 import dev.openrp.weapons.module.WeaponsModule;
 import dev.openrp.weapons.utility.StatusTextDisplays;
 import java.time.LocalDate;
@@ -25,11 +25,11 @@ public class RobberyManager {
    private final Map<UUID, RobberySession> activeRobberies = new HashMap<>();
    private final Map<UUID, Map<LocalDate, Integer>> dailyRobberies = new HashMap<>();
    private final Map<UUID, UUID> pendingSlogs = new HashMap<>();
-   private final Map<UUID, TextDisplay> killableTags = new HashMap<>();
+   private final Map<UUID, TextDisplay> abbattibileTags = new HashMap<>();
    private static final int MAX_DAILY_ROBBERIES = 2;
    private static final int ROBBERY_DURATION_TICKS = 6000;
    private static final double FLEE_DISTANCE = 10.0;
-   private static final int KILLABLE_SECONDS = 300;
+   private static final int ABBATTIBILE_SECONDS = 300;
 
    public RobberyManager(WeaponsModule module) {
       this.module = module;
@@ -55,11 +55,11 @@ public class RobberyManager {
    }
 
    private boolean canBypassDailyLimit(Player player) {
-      return NextPermissions.hasAny(player,
-            NextPermissions.Robbery.ADMIN,
-            NextPermissions.Weapons.ADMIN,
-            NextPermissions.Staff.ADMIN,
-            NextPermissions.Test.DEBUG);
+      return OpenPermissions.hasAny(player,
+            OpenPermissions.Robbery.ADMIN,
+            OpenPermissions.Weapons.ADMIN,
+            OpenPermissions.Staff.ADMIN,
+            OpenPermissions.Test.DEBUG);
    }
 
    public boolean isBeingRobbed(UUID victimUuid) {
@@ -103,10 +103,10 @@ public class RobberyManager {
                this.cancel();
             } else if (!victim.isOnline() || !robber.isOnline()) {
                this.cancel();
-            } else if (session.isMarkedKillable()) {
+            } else if (session.isMarkedAbbattibile()) {
                this.cancel();
             } else if (!victim.getWorld().equals(session.getStartLocation().getWorld())) {
-               RobberyManager.this.applyFleeKillable(victim, robber, session);
+               RobberyManager.this.applyFleeAbbattibile(victim, robber, session);
                this.cancel();
             } else if (!robber.getWorld().equals(session.getStartLocation().getWorld())) {
                RobberyManager.this.endRobbery(victim.getUniqueId());
@@ -118,7 +118,7 @@ public class RobberyManager {
                double rDist = robber.getLocation().distance(session.getStartLocation());
                StatusTextDisplays.follow(display, victim, tagOffset);
                if (vDist > 10.0) {
-                  RobberyManager.this.applyFleeKillable(victim, robber, session);
+                  RobberyManager.this.applyFleeAbbattibile(victim, robber, session);
                   this.cancel();
                } else if (rDist > 10.0) {
                   RobberyManager.this.endRobbery(victim.getUniqueId());
@@ -135,33 +135,33 @@ public class RobberyManager {
               StaffBoardSeverity.WARNING);
    }
 
-   private void applyFleeKillable(final Player victim, Player robber, RobberySession session) {
-      session.setMarkedKillable(true);
+   private void applyFleeAbbattibile(final Player victim, Player robber, RobberySession session) {
+      session.setMarkedAbbattibile(true);
       this.endRobbery(victim.getUniqueId());
       emitRobberyEvent("crime.robbery.failed", robber, victim, session, "La vittima e' fuggita dalla rapina.",
               StaffBoardSeverity.WARNING);
-      robber.sendMessage(Component.text(victim.getName() + " e' fuggito dalla rapina! Ora e' UCCIDIBILE per 5 minuti.", NamedTextColor.GREEN));
+      robber.sendMessage(Component.text(victim.getName() + " e' fuggito dalla rapina! Ora e' Abbattibile per 5 minuti.", NamedTextColor.GREEN));
       victim.sendMessage(
-         Component.text("Sei fuggito dalla rapina! Ora sei UCCIDIBILE per 5 minuti.", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
+         Component.text("Sei fuggito dalla rapina! Ora sei Abbattibile per 5 minuti.", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       double tagOffset = module.getUtilitySettings().statusTagYOffset();
       final TextDisplay td = StatusTextDisplays.spawn(victim,
-            Component.text("☠ KILLABLE - 5:00 ☠", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD}),
+            Component.text("☠ Abbattibile - 5:00 ☠", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD}),
             tagOffset);
-      this.killableTags.put(victim.getUniqueId(), td);
-      int KILLABLE_TICKS = 6000;
+      this.abbattibileTags.put(victim.getUniqueId(), td);
+      int abbattibileTicks = ABBATTIBILE_SECONDS * 20;
       (new BukkitRunnable() {
             int ticks = 0;
 
             public void run() {
-               if (this.ticks < 6000 && victim.isOnline()) {
+               if (this.ticks < abbattibileTicks && victim.isOnline()) {
                   if (!victim.isDead() && td.isValid()) {
-                     int secondsLeft = (6000 - this.ticks) / 20;
+                     int secondsLeft = (abbattibileTicks - this.ticks) / 20;
                      int mins = secondsLeft / 60;
                      int secs = secondsLeft % 60;
                      td.text(
                         Component.text(
-                           "☠ KILLABLE - " + mins + ":" + String.format("%02d", secs) + " ☠",
+                           "☠ Abbattibile - " + mins + ":" + String.format("%02d", secs) + " ☠",
                            NamedTextColor.DARK_RED,
                            new TextDecoration[]{TextDecoration.BOLD}
                         )
@@ -175,9 +175,9 @@ public class RobberyManager {
                      td.remove();
                   }
 
-                  RobberyManager.this.killableTags.remove(victim.getUniqueId());
+                  RobberyManager.this.abbattibileTags.remove(victim.getUniqueId());
                   if (victim.isOnline()) {
-                     victim.sendMessage(Component.text("Non sei piu' uccidibile.", NamedTextColor.GREEN));
+                     victim.sendMessage(Component.text("Non sei piu' Abbattibile.", NamedTextColor.GREEN));
                   }
 
                   this.cancel();
@@ -233,7 +233,7 @@ public class RobberyManager {
          .put("source_system", "OpenWeapons")
          .putLocation(session.getStartLocation());
 
-      this.module.getCore().getStaffBoardPublisher().emit(StaffBoardLogEvent.builder(eventType, "OpenWeapons")
+      this.module.getStaffLogBridge().emit(StaffBoardLogEvent.builder(eventType, "OpenWeapons")
          .category(StaffBoardCategory.CRIME)
          .severity(severity)
          .sensitivity(StaffBoardSensitivity.SENSITIVE)

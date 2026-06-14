@@ -1,7 +1,7 @@
 package dev.openrp.weapons.c4;
 
-import it.meridian.core.gui.NexoUI;
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.util.OpenGuiItems;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.grenades.GrenadeDefinition;
 import dev.openrp.weapons.module.WeaponsModule;
 import dev.openrp.weapons.utility.UtilityItemType;
@@ -72,7 +72,7 @@ public class C4Manager implements Listener {
          } else {
             Location placement = this.resolvePlacement(clickedBlock, blockFace);
             C4Manager.TimerHolder holder = new C4Manager.TimerHolder(definition, hand, placement);
-            Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("c4_timer_gui", "C4 Timer"));
+            Inventory inventory = Bukkit.createInventory(holder, 27, OpenGuiItems.getGlyphTitle("c4_timer_gui", "C4 Timer"));
             holder.inventory = inventory;
             this.fill(inventory);
 
@@ -82,7 +82,7 @@ public class C4Manager implements Listener {
 
             inventory.setItem(
                22,
-               NexoUI.getCancelButton(
+               OpenGuiItems.getCancelButton(
                   Component.text("Annulla", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
                )
             );
@@ -276,7 +276,7 @@ public class C4Manager implements Listener {
    private void openDefuseGui(Player player, C4Charge charge) {
       int correctWire = this.random.nextInt(WIRES.length);
       C4Manager.DefuseHolder holder = new C4Manager.DefuseHolder(charge.getId(), correctWire);
-      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("c4_defuse_gui", "C4 Defuse"));
+      Inventory inventory = Bukkit.createInventory(holder, 27, OpenGuiItems.getGlyphTitle("c4_defuse_gui", "C4 Defuse"));
       holder.inventory = inventory;
       this.fill(inventory);
       inventory.setItem(
@@ -372,7 +372,7 @@ public class C4Manager implements Listener {
    }
 
    private void fill(Inventory inventory) {
-      ItemStack filler = NexoUI.getFiller();
+      ItemStack filler = OpenGuiItems.getFiller();
 
       for (int i = 0; i < inventory.getSize(); i++) {
          inventory.setItem(i, filler);

@@ -1,6 +1,6 @@
 package dev.openrp.weapons.shield;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.AmmoDefinition;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import org.bukkit.util.Vector;
 public class ShieldManager {
    private final NamespacedKey shieldKey;
    private final NamespacedKey shieldDurabilityKey;
-   private final CorePlugin core;
+   private final JavaPlugin core;
    private final Map<UUID, Long> shieldCooldowns = new ConcurrentHashMap<>();
    public static final String RIOT_SHIELD_ID = "riot_shield";
    public static final String BALLISTIC_SHIELD_ID = "ballistic_shield";
@@ -34,7 +34,7 @@ public class ShieldManager {
    private static final double BALLISTIC_SHIELD_BREAK_KNOCKBACK = 0.75;
    private static final double BALLISTIC_SHIELD_BREAK_LIFT = 0.18;
 
-   public ShieldManager(CorePlugin core) {
+   public ShieldManager(JavaPlugin core) {
       this.core = core;
       this.shieldKey = new NamespacedKey(core, "shield_id");
       this.shieldDurabilityKey = new NamespacedKey(core, "shield_durability");

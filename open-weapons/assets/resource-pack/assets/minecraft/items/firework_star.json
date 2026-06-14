@@ -9,57 +9,6 @@
     },
     "entries": [
       {
-        "threshold": 60,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/sacco_bottino",
-          "tints": [
-            {
-              "type": "constant",
-              "value": -1
-            },
-            {
-              "type": "firework",
-              "default": -7697782
-            }
-          ]
-        }
-      },
-      {
-        "threshold": 193,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/paracadute",
-          "tints": [
-            {
-              "type": "constant",
-              "value": -1
-            },
-            {
-              "type": "firework",
-              "default": -7697782
-            }
-          ]
-        }
-      },
-      {
-        "threshold": 194,
-        "model": {
-          "type": "minecraft:model",
-          "model": "custom/tools/crime/paracadute_aperto",
-          "tints": [
-            {
-              "type": "constant",
-              "value": -1
-            },
-            {
-              "type": "firework",
-              "default": -7697782
-            }
-          ]
-        }
-      },
-      {
         "threshold": 292,
         "model": {
           "type": "minecraft:model",

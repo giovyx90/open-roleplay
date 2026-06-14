@@ -1,5 +1,5 @@
 # Messaggi italiani di OpenWeapons
-# Le chiavi tecniche di config/PDC restano in snake_case inglese (es. restraint_type, ballistic_shield, wanted_level).
+# Le chiavi tecniche di config/PDC restano in snake_case inglese (es. restraint_type, ballistic_shield).
 
 uncuff:
   ultimatum_timer: "⏱ Ultimatum... {seconds}s"

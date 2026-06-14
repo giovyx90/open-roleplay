@@ -1,15 +1,15 @@
 package dev.openrp.weapons.gui;
 
-import it.meridian.core.food.FoodModule;
-import it.meridian.core.food.model.FoodRecipe;
-import it.meridian.core.food.model.FoodWorkstation;
-import it.meridian.core.gui.NexoUI;
-import it.meridian.core.staffboard.StaffBoardMetadata;
-import it.meridian.core.staffboard.model.StaffBoardCategory;
-import it.meridian.core.staffboard.model.StaffBoardLogEvent;
-import it.meridian.core.staffboard.model.StaffBoardSensitivity;
-import it.meridian.core.staffboard.model.StaffBoardSeverity;
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.bridge.food.FoodModule;
+import dev.openrp.weapons.bridge.food.FoodRecipe;
+import dev.openrp.weapons.bridge.food.FoodWorkstation;
+import dev.openrp.weapons.util.OpenGuiItems;
+import dev.openrp.weapons.bridge.staff.StaffBoardMetadata;
+import dev.openrp.weapons.bridge.staff.StaffBoardCategory;
+import dev.openrp.weapons.bridge.staff.StaffBoardLogEvent;
+import dev.openrp.weapons.bridge.staff.StaffBoardSensitivity;
+import dev.openrp.weapons.bridge.staff.StaffBoardSeverity;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.attachments.AttachmentDefinition;
 import dev.openrp.weapons.grenades.GrenadeDefinition;
 import dev.openrp.weapons.model.AmmoDefinition;
@@ -73,20 +73,26 @@ public class ItemsGUI implements Listener {
    private final Map<UUID, String> activeSearchQueries = new HashMap<>();
    private final Map<UUID, String> activeListCategories = new HashMap<>();
    private final Set<String> warnedNexoItemBuildFailures = new HashSet<>();
+   private final NamespacedKey menuCategoryKey;
 
    public ItemsGUI(WeaponsModule module) {
       this.module = module;
+      this.menuCategoryKey = new NamespacedKey(module.getCore(), "items_gui_category");
    }
 
    public List<String> getCatalogCategories() {
-      return List.of("all", "firearms", "melee", "ammo", "magazines", "equipment", "utilities", "furniture", "food", "drinks", "attachments");
+      return List.of("all", "firearms", "melee", "ammo", "magazines", "attachments", "equipment", "utilities");
    }
 
    public List<CatalogEntry> collectCatalog(Player player) {
       List<CatalogEntry> entries = new ArrayList<>();
 
       for (WeaponDefinition weapon : this.module.getWeaponRegistry().getAll()) {
-         String category = weapon.getCategory() == WeaponCategory.MELEE ? "melee" : "firearms";
+         String category = switch (weapon.getCategory()) {
+            case MELEE -> "melee";
+            case TASER -> "utilities";
+            default -> "firearms";
+         };
          entries.add(this.catalogEntry(category, weapon.getId(), weapon.getDisplayName(), this.module.getWeaponRegistry().createItemStack(weapon.getId())));
       }
 
@@ -114,35 +120,20 @@ public class ItemsGUI implements Listener {
       }
       entries.add(this.catalogEntry("equipment", "riot_shield", "Scudo antisommossa", this.module.getShieldManager().createRiotShield()));
       entries.add(this.catalogEntry("equipment", "ballistic_shield", "Scudo balistico", this.module.getShieldManager().createBallisticShield()));
-      entries.add(this.catalogEntry("equipment", "balaclava", "Passamontagna", this.module.getBalaclavaManager().createBalaclava()));
       for (GrenadeDefinition grenade : this.module.getGrenadeManager().getAll()) {
-         entries.add(this.catalogEntry("equipment", grenade.getId(), grenade.getDisplayName(), this.module.getGrenadeManager().createItemStack(grenade.getId())));
+         String category = this.module.getC4Manager().isC4(grenade) ? "utilities" : "equipment";
+         entries.add(this.catalogEntry(category, grenade.getId(), grenade.getDisplayName(), this.module.getGrenadeManager().createItemStack(grenade.getId())));
       }
 
+      entries.add(this.catalogEntry("utilities", "balaclava", "Passamontagna", this.module.getBalaclavaManager().createBalaclava()));
       entries.add(this.catalogEntry("utilities", "handcuffs", "Manette", this.module.getHandcuffManager().createHandcuffs()));
       entries.add(this.catalogEntry("utilities", "bolt_cutters", "Tronchesi", this.module.getHandcuffManager().createBoltCutters()));
-      entries.add(this.catalogEntry("utilities", "mobile_phone", "Telefono cellulare", this.module.getMobilePhoneManager().createMobilePhone()));
-      entries.add(this.catalogEntry("utilities", "law_radio", "Radio forze dell'ordine", this.module.getLawRadioManager().createLawRadio()));
-      for (UtilityItemType type : UtilityItemType.values()) {
+      for (UtilityItemType type : UtilityItemType.openWeaponsCatalogTypes()) {
          entries.add(this.catalogEntry("utilities", type.getId(), type.getDisplayName(), this.module.getUtilityItemManager().createItem(type)));
       }
 
       for (AttachmentDefinition attachment : this.module.getAttachmentRegistry().getAll()) {
          entries.add(this.catalogEntry("attachments", attachment.getId(), attachment.getDisplayName(), this.module.getAttachmentRegistry().createItemStack(attachment.getId())));
-      }
-
-      for (FurnitureEntry entry : this.collectFurnitureEntries()) {
-         entries.add(this.furnitureCatalogEntry(entry, null));
-      }
-
-      FoodModule foodModule = this.getFoodModule();
-      if (foodModule != null) {
-         foodModule.config().recipes().values().stream()
-            .sorted(Comparator.comparing(FoodRecipe::displayName, String.CASE_INSENSITIVE_ORDER))
-            .forEach(recipe -> {
-               String category = this.isDrinkRecipe(foodModule, recipe) ? "drinks" : "food";
-               entries.add(this.catalogEntry(category, recipe.id(), recipe.displayName(), this.createRecipeAdminItem(foodModule, player, recipe)));
-            });
       }
 
       entries.sort(Comparator.comparing(CatalogEntry::category).thenComparing(CatalogEntry::displayName, String.CASE_INSENSITIVE_ORDER));
@@ -215,87 +206,90 @@ public class ItemsGUI implements Listener {
          inv.setItem(i, filler);
       }
 
-      inv.setItem(
-         10,
-         new ItemBuilder(Material.CROSSBOW)
-            .name(Component.text("Armi da fuoco", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(
-               new Component[]{Component.text("Pistole, SMG, fucili, sniper, shotgun, taser", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)}
-            )
-            .build()
-      );
-      inv.setItem(
-         11,
-         new ItemBuilder(Material.IRON_SWORD)
-            .name(Component.text("Corpo a corpo", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Coltelli, mazze e armi corpo a corpo", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         12,
-         new ItemBuilder(Material.ARROW)
-            .name(Component.text("Munizioni", NamedTextColor.YELLOW, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Tutti i tipi di munizioni", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         13,
-         new ItemBuilder(Material.OAK_STAIRS)
-            .name(Component.text("Arredi", NamedTextColor.LIGHT_PURPLE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Arredi cafe e cucina", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         14,
-         new ItemBuilder(Material.IRON_CHESTPLATE)
-            .name(Component.text("Equipaggiamento", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Armature, caschi, scudi, passamontagna, granate", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         15,
-         new ItemBuilder(Material.IRON_NUGGET)
-            .name(Component.text("Caricatori", NamedTextColor.WHITE, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Caricatori pieni per armi da fuoco", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         16,
-         new ItemBuilder(Material.STICK)
-            .name(Component.text("Utility", NamedTextColor.GREEN, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(
-               new Component[]{
-                  Component.text("Manette, tronchesi, telefono, radio forze dell'ordine", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
-               }
-            )
-            .build()
-      );
-      inv.setItem(
-         17,
-         new ItemBuilder(Material.SPYGLASS)
-            .name(Component.text("Accessori", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Ottiche, canne e impugnature", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         21,
-         new ItemBuilder(Material.BREAD)
-            .name(Component.text("Cibo", NamedTextColor.GOLD, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Cibi preparati dal sistema cucina", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
-      inv.setItem(
-         22,
-         new ItemBuilder(Material.POTION)
-            .name(Component.text("Bevande", NamedTextColor.AQUA, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
-            .lore(new Component[]{Component.text("Bevande e prodotti alcolici", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
-            .build()
-      );
+      Map<String, Integer> categoryCounts = this.countCatalogCategories(player);
+      int[] slots = new int[]{10, 11, 12, 13, 14, 15, 16, 22};
+      int slotIndex = 0;
+      for (CategoryButton button : this.mainCategoryButtons()) {
+         int count = categoryCounts.getOrDefault(button.category(), 0);
+         if (count <= 0 || slotIndex >= slots.length) {
+            continue;
+         }
+         inv.setItem(slots[slotIndex++], this.categoryButton(button, count));
+      }
+
+      if (slotIndex == 0) {
+         inv.setItem(
+            13,
+            new ItemBuilder(Material.BARRIER)
+               .name(Component.text("Catalogo vuoto", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false))
+               .lore(new Component[]{Component.text("Controlla weapons.yml, ammo.yml e grenades.yml.", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)})
+               .build()
+         );
+      }
       player.openInventory(inv);
    }
 
+   private Map<String, Integer> countCatalogCategories(Player player) {
+      Map<String, Integer> counts = new HashMap<>();
+      for (CatalogEntry entry : this.collectCatalog(player)) {
+         counts.merge(entry.category(), 1, Integer::sum);
+      }
+      return counts;
+   }
+
+   private List<CategoryButton> mainCategoryButtons() {
+      return List.of(
+         new CategoryButton("firearms", Material.CROSSBOW, "Armi da fuoco", "Pistole, SMG, fucili, shotgun e sniper.", NamedTextColor.GOLD),
+         new CategoryButton("melee", Material.IRON_SWORD, "Corpo a corpo", "Coltelli, manganelli e strumenti da mischia.", NamedTextColor.RED),
+         new CategoryButton("ammo", Material.ARROW, "Munizioni", "Munizioni pronte per riempire caricatori e shotgun.", NamedTextColor.YELLOW),
+         new CategoryButton("magazines", Material.IRON_NUGGET, "Caricatori", "Caricatori pieni per le armi compatibili.", NamedTextColor.WHITE),
+         new CategoryButton("attachments", Material.SPYGLASS, "Accessori armi", "Ottiche, canne, impugnature e modifiche.", NamedTextColor.AQUA),
+         new CategoryButton("equipment", Material.IRON_CHESTPLATE, "Protezioni", "Armature, caschi, scudi e granate non C4.", NamedTextColor.BLUE),
+         new CategoryButton("utilities", Material.SHEARS, "Strumenti RP", "Passamontagna, C4, manette, tronchesi, taser, corda e forbici.", NamedTextColor.GREEN)
+      );
+   }
+
+   private ItemStack categoryButton(CategoryButton button, int count) {
+      ItemStack item = new ItemBuilder(button.material())
+         .name(Component.text(button.label(), button.color(), new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false))
+         .lore(
+            new Component[]{
+               Component.text(button.description(), NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+               Component.text(count + " oggetti", NamedTextColor.DARK_GRAY).decoration(TextDecoration.ITALIC, false)
+            }
+         )
+         .build();
+      ItemMeta meta = item.getItemMeta();
+      if (meta != null) {
+         meta.getPersistentDataContainer().set(this.menuCategoryKey, PersistentDataType.STRING, button.category());
+         item.setItemMeta(meta);
+      }
+      return item;
+   }
+
+   private Optional<String> readMenuCategory(ItemStack item) {
+      if (item == null || !item.hasItemMeta()) {
+         return Optional.empty();
+      }
+      String category = item.getItemMeta().getPersistentDataContainer().get(this.menuCategoryKey, PersistentDataType.STRING);
+      return category == null || category.isBlank() ? Optional.empty() : Optional.of(category);
+   }
+
+   private void openCategory(Player player, String category) {
+      switch (category) {
+         case "firearms" -> this.openFirearms(player);
+         case "melee" -> this.openMelee(player);
+         case "ammo" -> this.openAmmo(player);
+         case "magazines" -> this.openMagazines(player);
+         case "attachments" -> this.openAttachments(player);
+         case "equipment" -> this.openEquipment(player);
+         case "utilities" -> this.openUtilities(player);
+         default -> this.open(player);
+      }
+   }
+
    private void openFirearms(Player player) {
-      List<WeaponDefinition> firearms = this.module.getWeaponRegistry().getAll().stream().filter(w -> w.getCategory() != WeaponCategory.MELEE).toList();
+      List<WeaponDefinition> firearms = this.module.getWeaponRegistry().getAll().stream().filter(w -> w.getCategory() != WeaponCategory.MELEE && w.getCategory() != WeaponCategory.TASER).toList();
       int size = this.clampSize(firearms.size() + 1);
       Inventory inv = Bukkit.createInventory(
          null, size, Component.text("Catalogo Admin - Armi da fuoco", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
@@ -396,8 +390,7 @@ public class ItemsGUI implements Listener {
          + 1
          + this.module.getHelmetManager().getAll().size()
          + 2
-         + 1
-         + this.module.getGrenadeManager().getAll().size();
+         + (int)this.module.getGrenadeManager().getAll().stream().filter(grenade -> !this.module.getC4Manager().isC4(grenade)).count();
       int size = this.clampSize(count + 1);
       Inventory inv = Bukkit.createInventory(
          null, size, Component.text("Catalogo Admin - Equipaggiamento", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
@@ -432,11 +425,10 @@ public class ItemsGUI implements Listener {
          inv.setItem(slot++, this.module.getShieldManager().createBallisticShield());
       }
 
-      if (slot < size - 1) {
-         inv.setItem(slot++, this.module.getBalaclavaManager().createBalaclava());
-      }
-
       for (GrenadeDefinition grenade : this.module.getGrenadeManager().getAll()) {
+         if (this.module.getC4Manager().isC4(grenade)) {
+            continue;
+         }
          if (slot >= size - 1) {
             break;
          }
@@ -450,27 +442,42 @@ public class ItemsGUI implements Listener {
    }
 
    private void openUtilities(Player player) {
-      int size = 54;
+      List<ItemStack> utilities = this.collectOpenUtilityItems();
+      int size = this.clampSize(utilities.size() + 1);
       Inventory inv = Bukkit.createInventory(
          null, size, Component.text("Catalogo Admin - Utility", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
-      inv.setItem(slot++, this.module.getHandcuffManager().createHandcuffs());
-      inv.setItem(slot++, this.module.getHandcuffManager().createBoltCutters());
-      inv.setItem(slot++, this.module.getMobilePhoneManager().createMobilePhone());
-      inv.setItem(slot++, this.module.getLawRadioManager().createLawRadio());
-
-      for (UtilityItemType type : UtilityItemType.values()) {
+      for (ItemStack item : utilities) {
          if (slot >= size - 1) {
             break;
          }
-
-         inv.setItem(slot++, this.module.getUtilityItemManager().createItem(type));
+         inv.setItem(slot++, item);
       }
 
       this.fillRemaining(inv, slot, size);
       inv.setItem(size - 1, this.backButton());
       player.openInventory(inv);
+   }
+
+   private List<ItemStack> collectOpenUtilityItems() {
+      List<ItemStack> items = new ArrayList<>();
+      items.add(this.module.getBalaclavaManager().createBalaclava());
+      GrenadeDefinition c4 = this.module.getGrenadeManager().getGrenade("c4_charge");
+      if (c4 != null) {
+         items.add(this.module.getGrenadeManager().createItemStack(c4.getId()));
+      }
+      items.add(this.module.getUtilityItemManager().createItem(UtilityItemType.C4_REMOTE));
+      items.add(this.module.getHandcuffManager().createHandcuffs());
+      items.add(this.module.getHandcuffManager().createBoltCutters());
+      this.module.getWeaponRegistry().getByCategory(WeaponCategory.TASER)
+         .forEach(taser -> items.add(this.module.getWeaponRegistry().createItemStack(taser.getId())));
+      for (UtilityItemType type : UtilityItemType.openWeaponsCatalogTypes()) {
+         if (type != UtilityItemType.C4_REMOTE) {
+            items.add(this.module.getUtilityItemManager().createItem(type));
+         }
+      }
+      return items.stream().filter(item -> item != null && item.getType() != Material.AIR).toList();
    }
 
    private void openAttachments(Player player) {
@@ -531,11 +538,11 @@ public class ItemsGUI implements Listener {
 
       this.fillRemaining(inv, slot, 54);
       if (page > 1) {
-         inv.setItem(45, NexoUI.getPrevPageButton());
+         inv.setItem(45, OpenGuiItems.getPrevPageButton());
       }
 
       if (page < totalPages) {
-         inv.setItem(53, NexoUI.getNextPageButton());
+         inv.setItem(53, OpenGuiItems.getNextPageButton());
       }
 
       inv.setItem(49, this.backButton());
@@ -596,11 +603,11 @@ public class ItemsGUI implements Listener {
 
       this.fillRemaining(inv, slot, 54);
       if (page > 1) {
-         inv.setItem(45, NexoUI.getPrevPageButton());
+         inv.setItem(45, OpenGuiItems.getPrevPageButton());
       }
 
       if (page < totalPages) {
-         inv.setItem(53, NexoUI.getNextPageButton());
+         inv.setItem(53, OpenGuiItems.getNextPageButton());
       }
 
       inv.setItem(49, this.backButton());
@@ -640,10 +647,10 @@ public class ItemsGUI implements Listener {
 
       this.fillRemaining(inv, slot, 54);
       if (page > 1) {
-         inv.setItem(45, NexoUI.getPrevPageButton());
+         inv.setItem(45, OpenGuiItems.getPrevPageButton());
       }
       if (page < totalPages) {
-         inv.setItem(53, NexoUI.getNextPageButton());
+         inv.setItem(53, OpenGuiItems.getNextPageButton());
       }
       inv.setItem(49, this.backButton());
       player.openInventory(inv);
@@ -678,42 +685,12 @@ public class ItemsGUI implements Listener {
                ItemStack clicked = event.getCurrentItem();
                if (clicked != null && clicked.getType() != Material.AIR && clicked.getType() != Material.GRAY_STAINED_GLASS_PANE) {
                   if (title.equals(MAIN_TITLE)) {
-                     switch (clicked.getType()) {
-                        case CROSSBOW:
-                           this.openFirearms(player);
-                           break;
-                        case IRON_SWORD:
-                           this.openMelee(player);
-                           break;
-                        case ARROW:
-                           this.openAmmo(player);
-                           break;
-                        case OAK_STAIRS:
-                           this.openFurniture(player, 1);
-                           break;
-                        case IRON_CHESTPLATE:
-                           this.openEquipment(player);
-                           break;
-                        case IRON_NUGGET:
-                           this.openMagazines(player);
-                           break;
-                        case STICK:
-                           this.openUtilities(player);
-                           break;
-                        case SPYGLASS:
-                           this.openAttachments(player);
-                           break;
-                        case BREAD:
-                           this.openFood(player, 1);
-                           break;
-                        case POTION:
-                           this.openDrinks(player, 1);
-                     }
+                     this.readMenuCategory(clicked).ifPresent(category -> this.openCategory(player, category));
                   } else if (clicked.getType() == Material.SPECTRAL_ARROW) {
                      this.open(player);
                   } else {
                      if (this.isPagedAdminCategory(title)) {
-                        if (clicked.isSimilar(NexoUI.getNextPageButton())) {
+                        if (clicked.isSimilar(OpenGuiItems.getNextPageButton())) {
                            try {
                               this.openPageByTitle(player, title, this.extractCurrentPage(title) + 1);
                            } catch (Exception var8) {
@@ -722,7 +699,7 @@ public class ItemsGUI implements Listener {
                            return;
                         }
 
-                        if (clicked.isSimilar(NexoUI.getPrevPageButton())) {
+                        if (clicked.isSimilar(OpenGuiItems.getPrevPageButton())) {
                            try {
                               this.openPageByTitle(player, title, this.extractCurrentPage(title) - 1);
                            } catch (Exception var9) {
@@ -764,7 +741,7 @@ public class ItemsGUI implements Listener {
          .put("source_system", "ItemsGUI")
          .putLocation(player.getLocation());
 
-      this.module.getCore().getStaffBoardPublisher().emit(StaffBoardLogEvent.builder("combat.weapon_obtained", "OpenWeapons")
+      this.module.getStaffLogBridge().emit(StaffBoardLogEvent.builder("combat.weapon_obtained", "OpenWeapons")
          .category(StaffBoardCategory.COMBAT)
          .severity(StaffBoardSeverity.WARNING)
          .sensitivity(StaffBoardSensitivity.SENSITIVE)
@@ -788,8 +765,6 @@ public class ItemsGUI implements Listener {
          || this.module.getMagazineManager().isMagazine(item)
          || this.module.getHandcuffManager().isHandcuffItem(item)
          || this.module.getHandcuffManager().isBoltCutterItem(item)
-         || this.module.getMobilePhoneManager().isMobilePhone(item)
-         || this.module.getLawRadioManager().isLawRadio(item)
          || this.module.getUtilityItemManager().isUtilityItem(item)
          || this.isFoodItem(item);
    }
@@ -803,7 +778,7 @@ public class ItemsGUI implements Listener {
       if (item == null || item.getType() == Material.AIR || item.getType() == Material.GRAY_STAINED_GLASS_PANE) {
          return false;
       }
-      if (item.isSimilar(this.backButton()) || item.isSimilar(NexoUI.getPrevPageButton()) || item.isSimilar(NexoUI.getNextPageButton())) {
+      if (item.isSimilar(this.backButton()) || item.isSimilar(OpenGuiItems.getPrevPageButton()) || item.isSimilar(OpenGuiItems.getNextPageButton())) {
          return false;
       }
       return this.isKnownItem(item)
@@ -1135,10 +1110,7 @@ public class ItemsGUI implements Listener {
    }
 
    private FoodModule getFoodModule() {
-      if (this.module.getCore().getModuleManager() == null) {
-         return null;
-      }
-      return this.module.getCore().getModuleManager().getModule(FoodModule.class);
+      return null;
    }
 
    private Optional<ItemStack> createNexoItem(String nexoId) {
@@ -1521,6 +1493,9 @@ public class ItemsGUI implements Listener {
    }
 
    private record FurnitureEntry(String id, String label, Material material, Integer customModelData) {
+   }
+
+   private record CategoryButton(String category, Material material, String label, String description, NamedTextColor color) {
    }
 
    public record CatalogEntry(String category, String id, String fullId, String displayName, ItemStack item, String nexoId) {

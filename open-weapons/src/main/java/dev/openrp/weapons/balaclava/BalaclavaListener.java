@@ -1,7 +1,5 @@
 package dev.openrp.weapons.balaclava;
 
-import it.meridian.cityhall.module.CityHallModule;
-import it.meridian.core.CorePlugin;
 import dev.openrp.weapons.module.WeaponsModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -80,14 +78,10 @@ public class BalaclavaListener implements Listener {
         if (isMaskedNow != wasMasked) {
             manager.setMasked(player.getUniqueId(), isMaskedNow);
             
-            // Trigger NameTag update if CityHall is loaded
-            CityHallModule cityHall = module.getCore().getModuleManager().getModule(CityHallModule.class);
-            if (cityHall != null && cityHall.getNameTagHandler() != null) {
-                if (isMaskedNow) {
-                    cityHall.getNameTagHandler().applyAnonymous(player);
-                } else {
-                    cityHall.getNameTagHandler().refreshPlayer(player);
-                }
+            if (isMaskedNow) {
+                module.getIdentityBridge().applyAnonymous(player);
+            } else {
+                module.getIdentityBridge().refreshPlayer(player);
             }
         }
     }

@@ -5,9 +5,9 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import it.meridian.core.gui.NexoUI;
-import it.meridian.core.permissions.NextPermissions;
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.util.OpenGuiItems;
+import dev.openrp.weapons.util.OpenPermissions;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.c4.C4Charge;
 import dev.openrp.weapons.handcuffs.RestraintType;
 import dev.openrp.weapons.module.WeaponsModule;
@@ -490,7 +490,7 @@ public class UtilityItemListener implements Listener {
          List<C4Charge> charges = this.module.getC4Manager().getVisibleCharges(player);
          int size = Math.max(27, Math.min(54, (charges.size() + 8) / 9 * 9));
          UtilityItemListener.C4ListHolder holder = new UtilityItemListener.C4ListHolder();
-         Inventory inventory = Bukkit.createInventory(holder, size, NexoUI.getGlyphTitle("c4_remote_gui", "Telecomando C4"));
+         Inventory inventory = Bukkit.createInventory(holder, size, OpenGuiItems.getGlyphTitle("c4_remote_gui", "Telecomando C4"));
          holder.inventory = inventory;
          this.fill(inventory);
          int slot = 0;
@@ -525,7 +525,7 @@ public class UtilityItemListener implements Listener {
          this.openC4Remote(player);
       } else {
          UtilityItemListener.C4DetailHolder holder = new UtilityItemListener.C4DetailHolder(chargeId);
-         Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("c4_remote_detail_gui", "Controllo C4"));
+         Inventory inventory = Bukkit.createInventory(holder, 27, OpenGuiItems.getGlyphTitle("c4_remote_detail_gui", "Controllo C4"));
          holder.inventory = inventory;
          this.fill(inventory);
 
@@ -552,7 +552,7 @@ public class UtilityItemListener implements Listener {
          );
          inventory.setItem(
             26,
-            NexoUI.getCancelButton(
+            OpenGuiItems.getCancelButton(
                Component.text("Indietro", NamedTextColor.RED, new TextDecoration[]{TextDecoration.BOLD}).decoration(TextDecoration.ITALIC, false)
             )
          );
@@ -632,7 +632,7 @@ public class UtilityItemListener implements Listener {
    private void openTrackerGui(Player player) {
       this.removeInvalidTrackers(player.getUniqueId());
       UtilityItemListener.TrackerHolder holder = new UtilityItemListener.TrackerHolder();
-      Inventory inventory = Bukkit.createInventory(holder, 27, NexoUI.getGlyphTitle("gps_tracker_gui", "Tracker GPS"));
+      Inventory inventory = Bukkit.createInventory(holder, 27, OpenGuiItems.getGlyphTitle("gps_tracker_gui", "Tracker GPS"));
       holder.inventory = inventory;
       this.fill(inventory);
       int slot = 0;
@@ -1813,7 +1813,7 @@ public class UtilityItemListener implements Listener {
    }
 
    private void fill(Inventory inventory) {
-      ItemStack filler = NexoUI.getFiller();
+      ItemStack filler = OpenGuiItems.getFiller();
 
       for (int i = 0; i < inventory.getSize(); i++) {
          inventory.setItem(i, filler);
@@ -1883,10 +1883,11 @@ public class UtilityItemListener implements Listener {
    }
 
    private boolean canManageUtilityObjects(Player player) {
-      return NextPermissions.hasAny(player,
-            NextPermissions.Utility.ADMIN,
-            NextPermissions.Build.TOOLS,
-            NextPermissions.Police.ADMIN);
+      return OpenPermissions.hasAny(player,
+            OpenPermissions.Utility.ADMIN,
+            OpenPermissions.Build.TOOLS,
+            OpenPermissions.Weapons.ADMIN,
+            OpenPermissions.Staff.ADMIN);
    }
 
    private void scanMetalItems(Player scanner, Player target) {

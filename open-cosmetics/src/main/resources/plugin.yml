@@ -6,6 +6,7 @@ authors:
   - Open Roleplay
 description: Cosmetici armi per Open Roleplay.
 softdepend:
+  - OpenCore
   - OpenWeapons
 commands:
   opencosmetics:

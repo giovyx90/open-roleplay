@@ -22,27 +22,32 @@ usati insieme ma leggibili e modificabili anche uno alla volta.
 
 | Modulo | Stato | Descrizione |
 | --- | --- | --- |
-| `open-core-api` | Fondamenta iniziale | Contratti pubblici condivisi: lifecycle moduli, database opzionale, HUD, messaggi, permessi e utility item. |
-| `open-core-paper` | Fondamenta iniziale | Plugin Paper `OpenCore`: servizio Bukkit, comando `/opencore`, DB SQLite/MySQL opzionale, resource pack ed esperienza opzionali. |
-| `open-access` | Estrazione iniziale | Controllo accessi per WorldGuard, profili, trust, casse, porte, blocchi interattivi e storage SQLite/MySQL. |
-| `open-weapons` | Snapshot iniziale | Sistema armi, munizioni, accessori, armature, granate, C4, manette, radio, taser e utility item. |
-| `open-cosmetics` | Estrazione iniziale | Cosmetici arma: LED, colori, skin, gettoni, GUI/editor e stazioni cosmetiche. |
+| `open-core-api` | Sperimentale, compilabile | Contratti pubblici condivisi: lifecycle moduli, registrazione moduli, database opzionale, HUD, messaggi, permessi e utility item. |
+| `open-core-paper` | Sperimentale, avviabile | Plugin Paper `OpenCore`: servizio Bukkit, comando `/opencore`, DB SQLite/MySQL opzionale, resource pack ed esperienza opzionali. |
+| `open-access` | Standalone iniziale | Plugin Paper per WorldGuard, profili, trust, casse, porte, blocchi interattivi e storage SQLite/MySQL. Se trova OpenCore si registra in `/opencore status`. |
+| `open-cosmetics` | Standalone iniziale | Plugin Paper per cosmetici arma: LED, colori, skin, gettoni, GUI/editor e stazioni cosmetiche. Se trova OpenCore si registra in `/opencore status`. |
+| `open-weapons` | Standalone iniziale, compilabile | Plugin Paper per armi, munizioni, accessori, armature, granate, C4, manette, taser, utility RP, rapine e perquisizioni. Usa bridge open/no-op per servizi opzionali non ancora pubblicati. |
 
 ## Stato della pubblicazione
 
-Questo e' uno snapshot estratto e ripulito dal progetto privato originale. Il
-core pubblico non e' una copia diretta del vecchio core privato: contiene solo
-l'infrastruttura riutilizzabile. Le feature grandi o molto legate al gameplay
+Open Roleplay e' pubblicato come base aperta e modulare. Ogni modulo deve
+restare comprensibile, compilabile e adattabile da altri server, senza richiedere
+servizi proprietari per avviarsi. Le feature grandi o molto legate al gameplay
 devono diventare moduli autonomi quando hanno confini chiari.
+
+Stato attuale:
+
+- `OpenCore`: sperimentale, avviabile, espone `OpenRoleplayCore` e la registrazione moduli pubblica.
+- `OpenAccess`: plugin standalone iniziale, compatibile con OpenCore quando presente.
+- `OpenCosmetics`: plugin standalone iniziale, compatibile con OpenCore quando presente.
+- `OpenWeapons`: plugin standalone iniziale e compilabile; armi, utility, rapine e perquisizioni funzionano come base pubblica, mentre le integrazioni opzionali degradano tramite bridge minimali quando il relativo modulo non e' presente.
 
 La priorita' dei prossimi passaggi e':
 
-1. sostituire le integrazioni interne residue con adapter opzionali;
-2. rendere `open-weapons` compilabile e avviabile come plugin Paper
-   indipendente;
-3. valutare estrazioni dedicate per sistemi grandi come food, hospital,
+1. trasformare i bridge minimali in API open dedicate quando i moduli esistono;
+2. valutare estrazioni dedicate per sistemi grandi come food, hospital,
    staffboard e interaction;
-4. mantenere i sotto-pack pubblicabili in `open-weapons/assets/resource-pack/`
+3. mantenere i sotto-pack pubblicabili in `open-weapons/assets/resource-pack/`
    e `open-cosmetics/assets/resource-pack/`.
 
 ## Resource pack
@@ -65,9 +70,8 @@ phase Maven `package`, cosi' un build di release produce sempre anche i pack.
 
 Il codice e' distribuito con licenza Apache License 2.0. Vedi `LICENSE`.
 
-La licenza del codice non concede diritti su marchi, loghi, nomi server,
-resource pack privati o asset non inclusi esplicitamente in questa repository.
-Vedi `TRADEMARKS.md`.
+La licenza del codice non concede diritti su marchi, loghi, nomi server o asset
+non inclusi esplicitamente in questa repository. Vedi `TRADEMARKS.md`.
 
 ## Requisiti previsti
 
@@ -75,6 +79,20 @@ Vedi `TRADEMARKS.md`.
 - Maven 3.9+
 - Paper API 1.21.x
 - Dipendenze opzionali previste: Nexo, WorldGuard, PacketEvents, AnvilGUI
+
+## Build
+
+Build completa locale e CI:
+
+```bash
+mvn -B -ntp package
+```
+
+Build mirata OpenWeapons con dipendenze di reactor:
+
+```bash
+mvn -B -ntp -pl open-weapons -am package
+```
 
 ## Struttura
 
@@ -101,7 +119,8 @@ open-roleplay/
 
 ## Note per sviluppatori
 
-Il modulo contiene ancora feature roleplay avanzate legate a sistemi esterni
-come banca, identita', polizia, staff log e GUI custom. Durante il decoupling
-questi punti dovranno diventare integrazioni opzionali e degradare in modo
-pulito quando il servizio esterno non e' presente.
+`open-weapons` espone una base pubblica per armi, munizioni, accessori,
+protezioni, utility RP, rapine e perquisizioni. Le integrazioni opzionali con
+altri moduli Open Roleplay devono passare da bridge difensivi: se il modulo non
+e' installato, la feature deve degradare in modo chiaro senza bloccare
+l'avvio del plugin.

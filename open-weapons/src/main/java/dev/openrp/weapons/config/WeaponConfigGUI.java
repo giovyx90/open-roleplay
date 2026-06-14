@@ -1,6 +1,6 @@
 package dev.openrp.weapons.config;
 
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.module.WeaponsModule;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +71,7 @@ public class WeaponConfigGUI implements Listener {
                     .name(Component.text(weaponId, NamedTextColor.RED))
                     .lore(
                             Component.text("Clic sinistro: modifica campi", NamedTextColor.GRAY),
-                            Component.text("Comando: /weaponconfig set " + weaponId + " <path> <value>", NamedTextColor.DARK_GRAY))
+                            Component.text("Comando: /configarmi imposta " + weaponId + " <percorso> <valore>", NamedTextColor.DARK_GRAY))
                     .build());
         }
         setNavigation(inv, page, weapons.size(), true, "Torna al menu");
@@ -93,8 +93,8 @@ public class WeaponConfigGUI implements Listener {
                     .lore(
                             Component.text(entry.type().label(), NamedTextColor.GRAY),
                             Component.text("Clic sinistro: modifica campi", NamedTextColor.GREEN),
-                            Component.text("Command: /weaponconfig " + entry.type().commandName()
-                                    + " set " + entry.id() + " <path> <value>", NamedTextColor.DARK_GRAY))
+                            Component.text("Comando: /configarmi " + entry.type().commandName()
+                                    + " imposta " + entry.id() + " <percorso> <valore>", NamedTextColor.DARK_GRAY))
                     .build());
         }
         setNavigation(inv, page, entries.size(), true, "Torna al menu");
@@ -358,9 +358,9 @@ public class WeaponConfigGUI implements Listener {
     }
 
     public enum ConfigType {
-        WEAPON("weapon", "Arma", "Config", Material.CROSSBOW, NamedTextColor.RED),
-        ARMOR("armor", "Giubbotto antiproiettile", "Armatura", Material.LEATHER_CHESTPLATE, NamedTextColor.AQUA),
-        HELMET("helmet", "Casco", "Casco", Material.LEATHER_HELMET, NamedTextColor.BLUE);
+        WEAPON("arma", "Arma", "Config", Material.CROSSBOW, NamedTextColor.RED),
+        ARMOR("armatura", "Giubbotto antiproiettile", "Armatura", Material.LEATHER_CHESTPLATE, NamedTextColor.AQUA),
+        HELMET("casco", "Casco", "Casco", Material.LEATHER_HELMET, NamedTextColor.BLUE);
 
         private final String commandName;
         private final String label;

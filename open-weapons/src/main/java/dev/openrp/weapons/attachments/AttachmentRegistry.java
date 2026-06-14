@@ -1,6 +1,6 @@
 package dev.openrp.weapons.attachments;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.WeaponCategory;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 public class AttachmentRegistry {
     private final Map<String, AttachmentDefinition> attachments = new LinkedHashMap<>();
     private final NamespacedKey attachmentKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
 
-    public AttachmentRegistry(CorePlugin core) {
+    public AttachmentRegistry(JavaPlugin core) {
         this.core = core;
         this.attachmentKey = new NamespacedKey(core, "attachment_id");
     }

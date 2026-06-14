@@ -1,6 +1,6 @@
 package dev.openrp.weapons.commands;
 
-import it.meridian.core.permissions.NextPermissions;
+import dev.openrp.weapons.util.OpenPermissions;
 import dev.openrp.weapons.gui.WeaponsGUI;
 import dev.openrp.weapons.module.WeaponsModule;
 import net.kyori.adventure.text.Component;
@@ -27,10 +27,10 @@ public class WeaponsCommand implements CommandExecutor {
         }
 
         if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
-            if (!NextPermissions.hasAny(player,
-                    NextPermissions.Weapons.DEBUG,
-                    NextPermissions.Weapons.ADMIN,
-                    NextPermissions.Staff.RELOAD)) {
+            if (!OpenPermissions.hasAny(player,
+                    OpenPermissions.Weapons.DEBUG,
+                    OpenPermissions.Weapons.ADMIN,
+                    OpenPermissions.Staff.RELOAD)) {
                 player.sendMessage(Component.text("Ti serve openrp.weapons.debug o openrp.staff.reload per ricaricare le armi.", NamedTextColor.RED));
                 return true;
             }
@@ -40,11 +40,11 @@ public class WeaponsCommand implements CommandExecutor {
             return true;
         }
 
-        if (!NextPermissions.hasAny(player,
-                NextPermissions.Weapons.VIEW,
-                NextPermissions.Weapons.GIVE,
-                NextPermissions.Weapons.ADMIN,
-                NextPermissions.Test.ITEMS)) {
+        if (!OpenPermissions.hasAny(player,
+                OpenPermissions.Weapons.VIEW,
+                OpenPermissions.Weapons.GIVE,
+                OpenPermissions.Weapons.ADMIN,
+                OpenPermissions.Test.ITEMS)) {
             player.sendMessage(Component.text("Ti serve openrp.weapons.view per aprire questo catalogo.", NamedTextColor.RED));
             return true;
         }

@@ -1,6 +1,5 @@
 package dev.openrp.weapons.robbery;
 
-import it.meridian.core.lootbox.LootboxServiceRegistry;
 import dev.openrp.weapons.module.WeaponsModule;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -27,9 +26,8 @@ public class RobListener implements Listener {
          rm.endRobbery(player.getUniqueId());
          Player robber = this.module.getCore().getServer().getPlayer(session.getRobberUuid());
          String robberName = robber != null ? robber.getName() : session.getRobberUuid().toString();
-         boolean created = LootboxServiceRegistry.get()
-            .map(service -> service.createRobberyQuitLootbox(player, session.getRobberUuid(), robberName, player.getLocation()))
-            .orElse(false);
+         boolean created = this.module.getLootboxBridge()
+            .createRobberyQuitLootbox(player, session.getRobberUuid(), robberName, player.getLocation());
          if (!created) {
             this.module.getCore().getLogger().warning("[Robbery] NEXTLootbox non disponibile - impossibile creare la lootbox di revisione per " + player.getName());
             return;

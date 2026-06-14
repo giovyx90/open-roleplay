@@ -1,6 +1,6 @@
 package dev.openrp.weapons.grenades;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -29,9 +29,9 @@ public class GrenadeManager {
 
     private final Map<String, GrenadeDefinition> grenades = new HashMap<>();
     private final NamespacedKey grenadeKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
 
-    public GrenadeManager(CorePlugin core) {
+    public GrenadeManager(JavaPlugin core) {
         this.core = core;
         this.grenadeKey = new NamespacedKey(core, "grenade_id");
     }

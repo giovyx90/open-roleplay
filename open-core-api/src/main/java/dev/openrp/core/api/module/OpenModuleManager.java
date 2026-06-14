@@ -4,6 +4,10 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface OpenModuleManager {
+    void register(OpenModule module);
+
+    void unregister(String id);
+
     Map<String, OpenModule> registeredModules();
 
     OpenModuleState state(String id);

@@ -1,6 +1,6 @@
 package dev.openrp.weapons.registry;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.FireMode;
 import dev.openrp.weapons.model.WeaponCategory;
 import dev.openrp.weapons.model.WeaponDefinition;
@@ -46,10 +46,10 @@ public class WeaponRegistry {
     private final Map<String, WeaponDefinition> weapons = new HashMap<>();
     private final NamespacedKey weaponKey;
     private final NamespacedKey weaponInstanceKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
     private WeaponDisplayNameDecorator displayNameDecorator = (item, weapon, baseName) -> baseName;
 
-    public WeaponRegistry(CorePlugin core) {
+    public WeaponRegistry(JavaPlugin core) {
         this.core = core;
         this.weaponKey = new NamespacedKey(core, "weapon_id");
         this.weaponInstanceKey = new NamespacedKey(core, "weapon_instance_id");

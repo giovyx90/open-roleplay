@@ -6,11 +6,11 @@ import dev.openrp.weapons.model.WeaponCategory;
 import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.module.WeaponsModule;
 import dev.openrp.weapons.shield.ShieldManager;
-import it.meridian.core.staffboard.StaffBoardMetadata;
-import it.meridian.core.staffboard.model.StaffBoardCategory;
-import it.meridian.core.staffboard.model.StaffBoardLogEvent;
-import it.meridian.core.staffboard.model.StaffBoardSensitivity;
-import it.meridian.core.staffboard.model.StaffBoardSeverity;
+import dev.openrp.weapons.bridge.staff.StaffBoardMetadata;
+import dev.openrp.weapons.bridge.staff.StaffBoardCategory;
+import dev.openrp.weapons.bridge.staff.StaffBoardLogEvent;
+import dev.openrp.weapons.bridge.staff.StaffBoardSensitivity;
+import dev.openrp.weapons.bridge.staff.StaffBoardSeverity;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -179,10 +179,10 @@ public class MeleeListener implements Listener {
             hitBuilder.target(targetPlayer)
                     .message(attacker.getName() + " ha colpito " + targetPlayer.getName() + " con " + weapon.getDisplayName() + ".");
         }
-        module.getCore().getStaffBoardPublisher().emit(hitBuilder.metadataJson(metadata.toJson()).build());
+        module.getStaffLogBridge().emit(hitBuilder.metadataJson(metadata.toJson()).build());
 
         if (target instanceof Player targetPlayer) {
-            module.getCore().getStaffBoardPublisher().emit(StaffBoardLogEvent.builder("combat.player.damaged", "OpenWeapons")
+            module.getStaffLogBridge().emit(StaffBoardLogEvent.builder("combat.player.damaged", "OpenWeapons")
                     .category(StaffBoardCategory.COMBAT)
                     .severity(StaffBoardSeverity.NOTICE)
                     .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)

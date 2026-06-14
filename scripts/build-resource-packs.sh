@@ -31,7 +31,12 @@ for pack_dir in "$ROOT_DIR"/*/assets/resource-pack; do
 
   (
     cd "$pack_dir"
-    zip -qr "$tmp_zip" pack.mcmeta assets \
+    zip_entries=(pack.mcmeta assets)
+    if [ -f pack.png ]; then
+      zip_entries+=(pack.png)
+    fi
+
+    zip -qr "$tmp_zip" "${zip_entries[@]}" \
       -x "*/.DS_Store" \
       -x "__MACOSX/*"
   )

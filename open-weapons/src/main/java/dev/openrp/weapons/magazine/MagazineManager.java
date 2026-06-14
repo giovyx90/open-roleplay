@@ -1,6 +1,6 @@
 package dev.openrp.weapons.magazine;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.WeaponDefinition;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +22,7 @@ public class MagazineManager {
    private final NamespacedKey capacityKey;
    private final NamespacedKey uniqueIdKey;
 
-   public MagazineManager(CorePlugin core) {
+   public MagazineManager(JavaPlugin core) {
       this.weaponIdKey = new NamespacedKey(core, "magazine_weapon_id");
       this.ammoTypeKey = new NamespacedKey(core, "magazine_ammo_type");
       this.ammoCountKey = new NamespacedKey(core, "magazine_ammo_count");
@@ -60,7 +60,7 @@ public class MagazineManager {
       if (meta != null) {
          int clampedAmmo = Math.max(0, Math.min(ammoCount, weapon.getMagazineSize()));
          meta.displayName(
-            Component.text(weapon.getDisplayName() + " Caricatore", NamedTextColor.GRAY)
+            Component.text("Caricatore " + weapon.getDisplayName(), NamedTextColor.GRAY)
                .decoration(TextDecoration.BOLD, false)
                .decoration(TextDecoration.ITALIC, false)
          );
@@ -103,6 +103,10 @@ public class MagazineManager {
          ((TextComponent)Component.text("Munizioni: ", NamedTextColor.GRAY).append(Component.text(ammoCount + " / " + capacity, NamedTextColor.YELLOW)))
             .decoration(TextDecoration.ITALIC, false),
          ((TextComponent)Component.text("Calibro: ", NamedTextColor.GRAY).append(Component.text(weapon.getAmmoType(), NamedTextColor.WHITE)))
+            .decoration(TextDecoration.ITALIC, false),
+         Component.text("Clic destro: riempi con munizioni compatibili.", NamedTextColor.DARK_GRAY)
+            .decoration(TextDecoration.ITALIC, false),
+         Component.text("Con arma in mano: clic destro per inserirlo.", NamedTextColor.DARK_GRAY)
             .decoration(TextDecoration.ITALIC, false)
       );
    }

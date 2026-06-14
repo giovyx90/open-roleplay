@@ -35,7 +35,9 @@ public class FriskListener implements Listener {
       for (Entity passenger : player.getPassengers()) {
          if (passenger instanceof TextDisplay display) {
             String text = PlainTextComponentSerializer.plainText().serialize(display.text());
-            if (text.contains("ARRESTABLE") || text.contains("KILLABLE")) {
+            String normalized = text.toUpperCase(java.util.Locale.ROOT);
+            if (normalized.contains("ARRESTABILE")
+               || normalized.contains("ABBATTIBILE")) {
                display.remove();
             }
          }

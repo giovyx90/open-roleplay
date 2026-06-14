@@ -1,9 +1,13 @@
 package dev.openrp.weapons.module;
 
-import it.meridian.core.CorePlugin;
-import it.meridian.core.module.NextModule;
-import dev.openrp.cosmetics.api.OpenCosmeticsApi;
-import dev.openrp.cosmetics.api.OpenCosmeticsWeaponBridge;
+import org.bukkit.plugin.java.JavaPlugin;
+import dev.openrp.weapons.bridge.OpenBankBridge;
+import dev.openrp.weapons.bridge.OpenCompanyBridge;
+import dev.openrp.weapons.bridge.OpenCoreBridge;
+import dev.openrp.weapons.bridge.OpenHospitalBridge;
+import dev.openrp.weapons.bridge.OpenIdentityBridge;
+import dev.openrp.weapons.bridge.OpenLootboxBridge;
+import dev.openrp.weapons.bridge.staff.OpenStaffLogBridge;
 import dev.openrp.weapons.api.WeaponCombatDecision;
 import dev.openrp.weapons.api.WeaponCombatPolicy;
 import dev.openrp.weapons.api.WeaponImpactContext;
@@ -18,12 +22,6 @@ import dev.openrp.weapons.armor.ArmorListener;
 import dev.openrp.weapons.armor.ArmorManager;
 import dev.openrp.weapons.armor.HelmetManager;
 import dev.openrp.weapons.actions.QuickActionListener;
-import dev.openrp.weapons.arrest.ArrestAdminCommand;
-import dev.openrp.weapons.arrest.ArrestCommand;
-import dev.openrp.weapons.arrest.ArrestGUI;
-import dev.openrp.weapons.arrest.ArrestListener;
-import dev.openrp.weapons.arrest.ArrestManager;
-import dev.openrp.weapons.arrest.BailCommand;
 import dev.openrp.weapons.balaclava.BalaclavaListener;
 import dev.openrp.weapons.balaclava.BalaclavaManager;
 import dev.openrp.weapons.commands.UncuffCommand;
@@ -39,12 +37,6 @@ import dev.openrp.weapons.grenades.GrenadeListener;
 import dev.openrp.weapons.grenades.GrenadeManager;
 import dev.openrp.weapons.gui.ItemsGUI;
 import dev.openrp.weapons.gui.WeaponsGUI;
-import dev.openrp.weapons.phone.MobilePhoneManager;
-import dev.openrp.weapons.phone.PhoneGUI;
-import dev.openrp.weapons.phone.PhoneListener;
-import dev.openrp.weapons.phone.SosCommand;
-import dev.openrp.weapons.phone.SosGUI;
-import dev.openrp.weapons.phone.SosManager;
 import dev.openrp.weapons.handcuffs.HandcuffListener;
 import dev.openrp.weapons.handcuffs.HandcuffManager;
 import dev.openrp.weapons.listeners.GunListener;
@@ -58,7 +50,6 @@ import dev.openrp.weapons.frisk.FriskListener;
 import dev.openrp.weapons.robbery.RobCommand;
 import dev.openrp.weapons.robbery.RobListener;
 import dev.openrp.weapons.robbery.RobberyManager;
-import dev.openrp.weapons.radio.LawRadioManager;
 import dev.openrp.weapons.registry.AmmoRegistry;
 import dev.openrp.weapons.registry.WeaponRegistry;
 import dev.openrp.weapons.shield.ShieldListener;
@@ -68,17 +59,12 @@ import dev.openrp.weapons.util.JumpRestrictionManager;
 import dev.openrp.weapons.utility.UtilityItemListener;
 import dev.openrp.weapons.utility.UtilityItemManager;
 import dev.openrp.weapons.utility.UtilitySettings;
-import dev.openrp.weapons.wanted.WantedCommand;
-import dev.openrp.weapons.wanted.WantedGUI;
-import dev.openrp.weapons.wanted.WantedManager;
-import it.meridian.azienda.module.AziendaModule;
-import it.meridian.azienda.model.Company;
-import it.meridian.police.module.PoliceModule;
 
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
@@ -88,19 +74,33 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.ServicePriority;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class WeaponsModule implements NextModule {
-    private CorePlugin core;
+public class WeaponsModule {
+    private static final String OPEN_COSMETICS_API_CLASS = "dev.openrp.cosmetics.api.OpenCosmeticsApi";
+    private static final String OPEN_COSMETICS_WEAPON_BRIDGE_CLASS = "dev.openrp.cosmetics.api.OpenCosmeticsWeaponBridge";
+    public static final String COSMETIC_SOUND_FIRE = "fire";
+    public static final String COSMETIC_SOUND_HIT = "hit";
+    public static final String COSMETIC_SOUND_HEADSHOT = "headshot";
+    public static final String COSMETIC_SOUND_RELOAD = "reload";
+    public static final String COSMETIC_SOUND_AUTOMATIC = "automatic";
+    public static final String COSMETIC_NONE = "none";
+
+    private final JavaPlugin core;
+    private final OpenStaffLogBridge staffLogBridge;
+    private final OpenIdentityBridge identityBridge = new OpenIdentityBridge();
+    private final OpenCompanyBridge companyBridge = new OpenCompanyBridge();
+    private final OpenHospitalBridge hospitalBridge = new OpenHospitalBridge();
+    private final OpenLootboxBridge lootboxBridge = new OpenLootboxBridge();
+    private final OpenBankBridge bankBridge = new OpenBankBridge();
+    private OpenCoreBridge openCore;
     private WeaponRegistry weaponRegistry;
     private AmmoRegistry ammoRegistry;
     private AttachmentRegistry attachmentRegistry;
@@ -115,39 +115,38 @@ public class WeaponsModule implements NextModule {
     private C4Manager c4Manager;
     private HandcuffManager handcuffManager;
     private CombatStunManager combatStunManager;
-    private ArrestManager arrestManager;
     private RobberyManager robberyManager;
-    private ArrestGUI arrestGUI;
     private GunListener gunListener;
-    private MobilePhoneManager mobilePhoneManager;
-    private PhoneGUI phoneGUI;
-    private SosGUI sosGUI;
-    private SosManager sosManager;
     private DispatchGpsManager dispatchGpsManager;
-    private LawRadioManager lawRadioManager;
-    private WantedManager wantedManager;
-    private WantedGUI wantedGUI;
     private ShieldManager shieldManager;
     private UtilityItemManager utilityItemManager;
     private UtilityItemListener utilityItemListener;
     private UtilitySettings utilitySettings;
     private WeaponAnimationSuppressor weaponAnimationSuppressor;
-    private OpenCosmeticsWeaponBridge cosmeticsBridge;
+    private Object cosmeticsBridge;
+    private Class<?> cosmeticsBridgeServiceClass;
     private WeaponConfigEditor weaponConfigEditor;
     private WeaponConfigGUI weaponConfigGUI;
     private YamlConfiguration messagesConfig;
     private final List<Listener> listeners = new ArrayList<>();
     private final List<WeaponCombatPolicy> combatPolicies = new CopyOnWriteArrayList<>();
 
-    @Override
-    public String getName() {
+    public WeaponsModule(JavaPlugin core) {
+        this.core = java.util.Objects.requireNonNull(core, "core");
+        this.staffLogBridge = new OpenStaffLogBridge(core);
+    }
+
+    public String id() {
         return "weapons";
     }
 
-    @Override
-    public void onEnable(CorePlugin core) {
-        this.core = core;
+    public String getName() {
+        return id();
+    }
 
+    public void onEnable(OpenCoreBridge openCore) {
+        this.openCore = openCore == null ? OpenCoreBridge.unavailable(core.getLogger()) : openCore;
+        JavaPlugin core = this.core;
         // Ensure config files exist
         File weaponsFile = new File(core.getDataFolder(), "weapons.yml");
         if (!weaponsFile.exists()) {
@@ -185,8 +184,7 @@ public class WeaponsModule implements NextModule {
         this.attachmentAuditLogger = new AttachmentAuditLogger(this);
         registerCosmeticsBridge();
         this.weaponRegistry.setDisplayNameDecorator((item, weapon, baseName) -> {
-            OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-            return cosmetics == null ? baseName : cosmetics.decorateWeaponDisplayName(item, baseName);
+            return decorateWeaponDisplayName(item, baseName);
         });
 
         this.magazineManager = new MagazineManager(core);
@@ -220,15 +218,8 @@ public class WeaponsModule implements NextModule {
         this.handcuffManager = new HandcuffManager(core);
         this.utilityItemManager = new UtilityItemManager(core, utilitySettings);
 
-        // Initialize Mobile Phone
+        // Initialize utility GPS used by trackers.
         this.dispatchGpsManager = new DispatchGpsManager(core);
-        this.mobilePhoneManager = new MobilePhoneManager(core);
-        this.sosManager = new SosManager(this);
-        this.sosGUI = new SosGUI(this);
-        this.phoneGUI = new PhoneGUI(this);
-        this.lawRadioManager = new LawRadioManager(this);
-        this.wantedManager = new WantedManager(this);
-        this.wantedGUI = new WantedGUI(this);
 
         this.combatStunManager = new CombatStunManager();
 
@@ -248,12 +239,6 @@ public class WeaponsModule implements NextModule {
         registerListener(new ShieldListener(this));
         registerListener(new GrenadeListener(this));
         registerListener(c4Manager);
-        registerListener(new PhoneListener(this));
-        registerListener(phoneGUI);
-        registerListener(sosGUI);
-        registerListener(sosManager);
-        registerListener(lawRadioManager);
-        registerListener(wantedGUI);
         this.utilityItemListener = new UtilityItemListener(this);
         registerListener(utilityItemListener);
         
@@ -274,66 +259,30 @@ public class WeaponsModule implements NextModule {
         DamageDummyListener damageDummyListener = new DamageDummyListener(core);
         registerListener(damageDummyListener);
         ItemsCommand itemsCommand = new ItemsCommand(this, itemsGui, damageDummyListener);
-        core.getCommand("items").setExecutor(itemsCommand);
-        core.getCommand("items").setTabCompleter(itemsCommand);
-        // /weapons is registered as an alias of /items in plugin.yml
+        core.getCommand("oggetti").setExecutor(itemsCommand);
+        core.getCommand("oggetti").setTabCompleter(itemsCommand);
+        // /armi is registered as an alias of /oggetti in plugin.yml
 
-        if (core.getCommand("weaponconfig") != null) {
+        if (core.getCommand("configarmi") != null) {
             WeaponConfigCommand weaponConfigCommand = new WeaponConfigCommand(this, weaponConfigEditor, weaponConfigGUI);
-            core.getCommand("weaponconfig").setExecutor(weaponConfigCommand);
-            core.getCommand("weaponconfig").setTabCompleter(weaponConfigCommand);
+            core.getCommand("configarmi").setExecutor(weaponConfigCommand);
+            core.getCommand("configarmi").setTabCompleter(weaponConfigCommand);
         } else {
-            core.getLogger().warning("[OpenWeapons] /weaponconfig manca in plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /configarmi manca in plugin.yml.");
         }
 
-        if (core.getCommand("weaponbench") != null) {
-            core.getCommand("weaponbench").setExecutor(new AttachmentWorkbenchCommand(this));
+        if (core.getCommand("bancoarmi") != null) {
+            core.getCommand("bancoarmi").setExecutor(new AttachmentWorkbenchCommand(this));
         } else {
-            core.getLogger().warning("[OpenWeapons] /weaponbench manca in plugin.yml.");
+            core.getLogger().warning("[OpenWeapons] /bancoarmi manca in plugin.yml.");
         }
 
         UncuffCommand uncuffCommand = new UncuffCommand(this);
-        core.getCommand("uncuff").setExecutor(uncuffCommand);
+        core.getCommand("libera").setExecutor(uncuffCommand);
         registerListener(uncuffCommand);
         
-        core.getCommand("rob").setExecutor(new RobCommand(this));
-        core.getCommand("frisk").setExecutor(new FriskCommand(this));
-
-        // Arrest System
-        this.arrestManager = new ArrestManager(this);
-        this.arrestGUI = new ArrestGUI(this);
-        registerListener(arrestGUI);
-        registerListener(new ArrestListener(this));
-
-        ArrestCommand arrestCommand = new ArrestCommand(this);
-        core.getCommand("arrest").setExecutor(arrestCommand);
-        core.getCommand("arrest").setTabCompleter(arrestCommand);
-
-        core.getCommand("bail").setExecutor(new BailCommand(this));
-
-        ArrestAdminCommand arrestAdminCmd = new ArrestAdminCommand(this);
-        core.getCommand("arrests").setExecutor(arrestAdminCmd);
-        core.getCommand("arrests").setTabCompleter(arrestAdminCmd);
-
-        WantedCommand wantedCommand = new WantedCommand(this);
-        if (core.getCommand("wanted") != null) {
-            core.getCommand("wanted").setExecutor(wantedCommand);
-            core.getCommand("wanted").setTabCompleter(wantedCommand);
-        } else {
-            core.getLogger().warning("[OpenWeapons] /wanted manca in plugin.yml.");
-        }
-
-        if (core.getCommand("sos") != null) {
-            core.getCommand("sos").setExecutor(new SosCommand(this));
-        } else {
-            core.getLogger().warning("[OpenWeapons] /sos manca in plugin.yml.");
-        }
-
-        if (core.getCommand("lawradio") != null) {
-            core.getCommand("lawradio").setExecutor(lawRadioManager);
-        } else {
-            core.getLogger().warning("[OpenWeapons] /lawradio manca in plugin.yml.");
-        }
+        core.getCommand("rapina").setExecutor(new RobCommand(this));
+        core.getCommand("perquisisci").setExecutor(new FriskCommand(this));
 
         syncOnlineJumpRestrictions();
 
@@ -427,12 +376,55 @@ public class WeaponsModule implements NextModule {
     }
 
     private void registerCosmeticsBridge() {
-        if (cosmeticsBridge != null) {
-            Bukkit.getServicesManager().unregister(OpenCosmeticsWeaponBridge.class, cosmeticsBridge);
+        unregisterCosmeticsBridge();
+        Class<?> bridgeClass = loadOptionalClass(OPEN_COSMETICS_WEAPON_BRIDGE_CLASS);
+        if (bridgeClass == null) {
+            core.getLogger().info("[OpenWeapons] OpenCosmetics non trovato: cosmetici arma disabilitati.");
+            return;
         }
-        this.cosmeticsBridge = new OpenWeaponsCosmeticsBridge();
-        Bukkit.getServicesManager().register(OpenCosmeticsWeaponBridge.class, cosmeticsBridge, core, ServicePriority.Normal);
-        core.getLogger().info("[OpenWeapons] Bridge Open Cosmetics registrato.");
+
+        this.cosmeticsBridgeServiceClass = bridgeClass;
+        this.cosmeticsBridge = Proxy.newProxyInstance(
+                bridgeClass.getClassLoader(),
+                new Class<?>[]{bridgeClass},
+                (proxy, method, args) -> switch (method.getName()) {
+                    case "getWeaponId" -> {
+                        ItemStack item = args != null && args.length > 0 && args[0] instanceof ItemStack stack ? stack : null;
+                        WeaponDefinition weapon = getWeaponDefinition(item);
+                        yield weapon == null ? null : weapon.getId();
+                    }
+                    case "isWeapon" -> {
+                        ItemStack item = args != null && args.length > 0 && args[0] instanceof ItemStack stack ? stack : null;
+                        yield getWeaponDefinition(item) != null;
+                    }
+                    case "refreshWeaponVisual" -> {
+                        if (args != null && args.length > 0 && args[0] instanceof ItemStack item) {
+                            WeaponsModule.this.refreshWeaponVisual(item);
+                        }
+                        yield null;
+                    }
+                    case "toString" -> "OpenWeaponsCosmeticsBridge";
+                    case "hashCode" -> System.identityHashCode(proxy);
+                    case "equals" -> proxy == (args == null || args.length == 0 ? null : args[0]);
+                    default -> null;
+                });
+
+        registerService(bridgeClass, cosmeticsBridge);
+        core.getLogger().info("[OpenWeapons] Bridge OpenCosmetics registrato.");
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private void registerService(Class<?> serviceClass, Object provider) {
+        Bukkit.getServicesManager().register((Class) serviceClass, provider, core, ServicePriority.Normal);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private void unregisterCosmeticsBridge() {
+        if (cosmeticsBridge != null && cosmeticsBridgeServiceClass != null) {
+            Bukkit.getServicesManager().unregister((Class) cosmeticsBridgeServiceClass, cosmeticsBridge);
+        }
+        cosmeticsBridge = null;
+        cosmeticsBridgeServiceClass = null;
     }
 
     private boolean mergeMissingConfigValue(ConfigurationSection currentParent, ConfigurationSection defaultParent, String key) {
@@ -454,13 +446,9 @@ public class WeaponsModule implements NextModule {
         return changed;
     }
 
-    @Override
     public void onDisable() {
         if (gunListener != null) {
             gunListener.cleanup();
-        }
-        if (sosManager != null) {
-            sosManager.cleanup();
         }
         if (dispatchGpsManager != null) {
             dispatchGpsManager.cleanup();
@@ -468,28 +456,51 @@ public class WeaponsModule implements NextModule {
         if (c4Manager != null) {
             c4Manager.cleanup();
         }
-        if (lawRadioManager != null) {
-            lawRadioManager.cleanup();
-        }
         if (utilityItemListener != null) {
             utilityItemListener.cleanup();
         }
         if (weaponAnimationSuppressor != null) {
             weaponAnimationSuppressor.disablePacketHook();
         }
-        if (cosmeticsBridge != null) {
-            Bukkit.getServicesManager().unregister(OpenCosmeticsWeaponBridge.class, cosmeticsBridge);
-            cosmeticsBridge = null;
-        }
+        unregisterCosmeticsBridge();
         Bukkit.getOnlinePlayers().forEach(JumpRestrictionManager::clearAll);
         for (Listener listener : listeners) {
             HandlerList.unregisterAll(listener);
         }
         listeners.clear();
+        openCore = OpenCoreBridge.unavailable(core.getLogger());
     }
 
-    public CorePlugin getCore() {
+    public JavaPlugin getCore() {
         return core;
+    }
+
+    public OpenCoreBridge getOpenCoreBridge() {
+        return openCore == null ? OpenCoreBridge.unavailable(core.getLogger()) : openCore;
+    }
+
+    public OpenStaffLogBridge getStaffLogBridge() {
+        return staffLogBridge;
+    }
+
+    public OpenIdentityBridge getIdentityBridge() {
+        return identityBridge;
+    }
+
+    public OpenCompanyBridge getCompanyBridge() {
+        return companyBridge;
+    }
+
+    public OpenHospitalBridge getHospitalBridge() {
+        return hospitalBridge;
+    }
+
+    public OpenLootboxBridge getLootboxBridge() {
+        return lootboxBridge;
+    }
+
+    public OpenBankBridge getBankBridge() {
+        return bankBridge;
     }
 
     public WeaponRegistry getWeaponRegistry() {
@@ -516,21 +527,15 @@ public class WeaponsModule implements NextModule {
         return attachmentWorkbenchGUI;
     }
 
-    public OpenCosmeticsApi getOpenCosmeticsApi() {
-        var registration = Bukkit.getServicesManager().getRegistration(OpenCosmeticsApi.class);
-        return registration == null ? null : registration.getProvider();
-    }
-
     public void setAutomaticSkinFireSuppressed(UUID playerId, boolean suppressed) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        if (cosmetics != null) {
-            cosmetics.setAutomaticSkinFireSuppressed(playerId, suppressed);
-        }
+        invokeOpenCosmetics("setAutomaticSkinFireSuppressed",
+                new Class<?>[]{UUID.class, boolean.class}, playerId, suppressed);
     }
 
     public boolean isAutomaticSkinFireSuppressed(UUID playerId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics != null && cosmetics.isAutomaticSkinFireSuppressed(playerId);
+        Object result = invokeOpenCosmetics("isAutomaticSkinFireSuppressed",
+                new Class<?>[]{UUID.class}, playerId);
+        return result instanceof Boolean value && value;
     }
 
     public MagazineManager getMagazineManager() {
@@ -659,91 +664,190 @@ public class WeaponsModule implements NextModule {
         }
     }
 
-    private final class OpenWeaponsCosmeticsBridge implements OpenCosmeticsWeaponBridge {
-        @Override
-        public String getWeaponId(ItemStack item) {
-            WeaponDefinition weapon = getWeaponDefinition(item);
-            return weapon == null ? null : weapon.getId();
-        }
+    public boolean hasOpenCosmeticsApi() {
+        return getOpenCosmeticsApiProvider() != null;
+    }
 
-        @Override
-        public boolean isWeapon(ItemStack item) {
-            return getWeaponDefinition(item) != null;
-        }
+    public void reloadOpenCosmetics() {
+        invokeOpenCosmetics("reload", new Class<?>[0]);
+    }
 
-        @Override
-        public void refreshWeaponVisual(ItemStack item) {
-            WeaponsModule.this.refreshWeaponVisual(item);
+    public String getWeaponSkinSound(ItemStack weaponItem, String soundKey) {
+        Object result = invokeOpenCosmetics("getWeaponSkinSound",
+                new Class<?>[]{ItemStack.class, String.class}, weaponItem, soundKey);
+        return result instanceof String value && !value.isBlank() ? value : null;
+    }
+
+    public Component decorateWeaponDisplayName(ItemStack weaponItem, Component baseName) {
+        Object result = invokeOpenCosmetics("decorateWeaponDisplayName",
+                new Class<?>[]{ItemStack.class, Component.class}, weaponItem, baseName);
+        return result instanceof Component component ? component : baseName;
+    }
+
+    public List<String> visualVariantCandidates(ItemStack weaponItem, boolean optic, boolean hasMagazine, boolean grip) {
+        Object result = invokeOpenCosmetics("visualVariantCandidates",
+                new Class<?>[]{ItemStack.class, boolean.class, boolean.class, boolean.class},
+                weaponItem, optic, hasMagazine, grip);
+        return stringList(result);
+    }
+
+    public Integer getWeaponColorRgb(ItemStack weaponItem) {
+        Object result = invokeOpenCosmetics("getWeaponColorRgb",
+                new Class<?>[]{ItemStack.class}, weaponItem);
+        return result instanceof Integer value ? value : null;
+    }
+
+    public boolean applyCosmeticVisualData(ItemStack item, ItemMeta meta, int customModelData) {
+        Object cosmetics = getOpenCosmeticsApiProvider();
+        if (cosmetics == null) {
+            return false;
         }
+        Integer rgb = getWeaponColorRgb(item);
+        if (!invokeOpenCosmetics(cosmetics, "applyVisualCustomModelData",
+                new Class<?>[]{ItemMeta.class, int.class, Integer.class}, meta, customModelData, rgb)) {
+            return false;
+        }
+        item.setItemMeta(meta);
+        invokeOpenCosmetics(cosmetics, "applyVisualDataComponents",
+                new Class<?>[]{ItemStack.class, int.class, Integer.class}, item, customModelData, rgb);
+        return true;
     }
 
     public boolean supportsWeaponCosmetics(String weaponId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics != null && cosmetics.supportsWeapon(weaponId);
+        Object result = invokeOpenCosmetics("supportsWeapon", new Class<?>[]{String.class}, weaponId);
+        return result instanceof Boolean value && value;
     }
 
     public boolean supportsWeaponCosmeticType(String weaponId, String type) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics != null && cosmetics.supportsWeaponCosmeticType(weaponId, type);
+        Object result = invokeOpenCosmetics("supportsWeaponCosmeticType",
+                new Class<?>[]{String.class, String.class}, weaponId, type);
+        return result instanceof Boolean value && value;
     }
 
     public List<String> getWeaponCosmeticSkinIds(String weaponId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? List.of() : cosmetics.getSkinIds(weaponId);
+        return stringList(invokeOpenCosmetics("getSkinIds", new Class<?>[]{String.class}, weaponId));
     }
 
     public List<String> getWeaponCosmeticLedIds() {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? List.of() : cosmetics.getLedIds();
+        return stringList(invokeOpenCosmetics("getLedIds", new Class<?>[0]));
     }
 
     public List<String> getWeaponCosmeticColorIds() {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? List.of() : cosmetics.getColorIds();
+        return stringList(invokeOpenCosmetics("getColorIds", new Class<?>[0]));
     }
 
     public String getWeaponCosmeticSkinDisplayName(String weaponId, String skinId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? skinId : cosmetics.getSkinDisplayName(weaponId, skinId);
+        Object result = invokeOpenCosmetics("getSkinDisplayName",
+                new Class<?>[]{String.class, String.class}, weaponId, skinId);
+        return result instanceof String value ? value : skinId;
     }
 
     public String getWeaponCosmeticLedDisplayName(String ledId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? ledId : cosmetics.getLedDisplayName(ledId);
+        Object result = invokeOpenCosmetics("getLedDisplayName", new Class<?>[]{String.class}, ledId);
+        return result instanceof String value ? value : ledId;
     }
 
     public String getWeaponCosmeticColorDisplayName(String colorId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? colorId : cosmetics.getColorDisplayName(colorId);
+        Object result = invokeOpenCosmetics("getColorDisplayName", new Class<?>[]{String.class}, colorId);
+        return result instanceof String value ? value : colorId;
     }
 
     public String getWeaponCosmeticColorHex(String colorId) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? OpenCosmeticsApi.NONE : cosmetics.getColorHex(colorId);
+        Object result = invokeOpenCosmetics("getColorHex", new Class<?>[]{String.class}, colorId);
+        return result instanceof String value ? value : COSMETIC_NONE;
     }
 
     public ItemStack createWeaponCosmeticToken(String type, String id, int amount) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics == null ? null : cosmetics.createToken(type, id, amount);
+        Object result = invokeOpenCosmetics("createToken",
+                new Class<?>[]{String.class, String.class, int.class}, type, id, amount);
+        return result instanceof ItemStack item ? item : null;
     }
 
     public boolean applyWeaponCosmeticSelection(ItemStack weaponItem, String skinId, String ledId, String color) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        return cosmetics != null && cosmetics.applySelection(weaponItem, skinId, ledId, color);
+        Object result = invokeOpenCosmetics("applySelection",
+                new Class<?>[]{ItemStack.class, String.class, String.class, String.class},
+                weaponItem, skinId, ledId, color);
+        return result instanceof Boolean value && value;
     }
 
     public void openWeaponCosmeticWorkbench(Player player) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        if (player != null && cosmetics != null) {
-            cosmetics.openWorkbench(player);
+        if (player != null) {
+            invokeOpenCosmetics("openWorkbench", new Class<?>[]{Player.class}, player);
         }
     }
 
     public void openWeaponCosmeticEditor(Player player) {
-        OpenCosmeticsApi cosmetics = getOpenCosmeticsApi();
-        if (player != null && cosmetics != null) {
-            cosmetics.openEditor(player);
+        if (player != null) {
+            invokeOpenCosmetics("openEditor", new Class<?>[]{Player.class}, player);
         }
+    }
+
+    private Object getOpenCosmeticsApiProvider() {
+        Class<?> apiClass = loadOptionalClass(OPEN_COSMETICS_API_CLASS);
+        if (apiClass == null) {
+            return null;
+        }
+        try {
+            return getServiceProvider(apiClass);
+        } catch (RuntimeException error) {
+            return null;
+        }
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private Object getServiceProvider(Class<?> serviceClass) {
+        var registration = Bukkit.getServicesManager().getRegistration((Class) serviceClass);
+        return registration == null ? null : registration.getProvider();
+    }
+
+    private Object invokeOpenCosmetics(String methodName, Class<?>[] parameterTypes, Object... args) {
+        Object cosmetics = getOpenCosmeticsApiProvider();
+        if (cosmetics == null) {
+            return null;
+        }
+        try {
+            return cosmetics.getClass().getMethod(methodName, parameterTypes).invoke(cosmetics, args);
+        } catch (ReflectiveOperationException | RuntimeException | LinkageError error) {
+            return null;
+        }
+    }
+
+    private boolean invokeOpenCosmetics(Object cosmetics, String methodName, Class<?>[] parameterTypes, Object... args) {
+        if (cosmetics == null) {
+            return false;
+        }
+        try {
+            cosmetics.getClass().getMethod(methodName, parameterTypes).invoke(cosmetics, args);
+            return true;
+        } catch (ReflectiveOperationException | RuntimeException | LinkageError error) {
+            return false;
+        }
+    }
+
+    private Class<?> loadOptionalClass(String className) {
+        try {
+            return Class.forName(className, false, getClass().getClassLoader());
+        } catch (ClassNotFoundException | LinkageError ignored) {
+            var plugin = Bukkit.getPluginManager().getPlugin("OpenCosmetics");
+            if (plugin == null) {
+                return null;
+            }
+            try {
+                return Class.forName(className, false, plugin.getClass().getClassLoader());
+            } catch (ClassNotFoundException | LinkageError ignoredAgain) {
+                return null;
+            }
+        }
+    }
+
+    private List<String> stringList(Object result) {
+        if (!(result instanceof List<?> list)) {
+            return List.of();
+        }
+        return list.stream()
+                .filter(String.class::isInstance)
+                .map(String.class::cast)
+                .toList();
     }
 
     public BalaclavaManager getBalaclavaManager() {
@@ -790,44 +894,12 @@ public class WeaponsModule implements NextModule {
         return combatStunManager;
     }
 
-    public ArrestManager getArrestManager() {
-        return arrestManager;
-    }
-
-    public ArrestGUI getArrestGUI() {
-        return arrestGUI;
-    }
-
     public RobberyManager getRobberyManager() {
         return robberyManager;
     }
 
-    public MobilePhoneManager getMobilePhoneManager() {
-        return mobilePhoneManager;
-    }
-
-    public PhoneGUI getPhoneGUI() {
-        return phoneGUI;
-    }
-
-    public SosGUI getSosGUI() {
-        return sosGUI;
-    }
-
-    public SosManager getSosManager() {
-        return sosManager;
-    }
-
     public DispatchGpsManager getDispatchGpsManager() {
         return dispatchGpsManager;
-    }
-
-    public LawRadioManager getLawRadioManager() {
-        return lawRadioManager;
-    }
-
-    public WantedManager getWantedManager() {
-        return wantedManager;
     }
 
 
@@ -836,73 +908,12 @@ public class WeaponsModule implements NextModule {
         return messagesConfig.getString(path, fallback);
     }
 
-    public WantedGUI getWantedGUI() {
-        return wantedGUI;
-    }
-
-    public boolean isLEO(UUID uuid) {
-        PoliceModule police = core.getModuleManager().getModule(PoliceModule.class);
-        if (police != null && police.getService() != null && police.getService().isLawAuthority(uuid)) {
-            return true;
-        }
-        return isCompanyEmployeeOfType(uuid, "LAW_ENFORCEMENT");
-    }
-
     public boolean isCompanyEmployeeOfType(UUID uuid, String... companyTypes) {
-        AziendaModule azienda = core.getModuleManager().getModule(AziendaModule.class);
-        if (azienda == null) return false;
-
-        Set<String> normalizedTypes = normalizeTypes(companyTypes);
-        try {
-            for (Company company : azienda.getCompanyDAO().getAllCompanies().get()) {
-                String companyType = company.getType();
-                if (companyType != null
-                        && normalizedTypes.contains(companyType.toUpperCase(Locale.ROOT))
-                        && company.hasEmployee(uuid)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        return companyBridge.isCompanyEmployeeOfType(uuid, companyTypes);
     }
 
     public List<org.bukkit.entity.Player> getOnlineCompanyEmployees(String... companyTypes) {
-        List<org.bukkit.entity.Player> players = new ArrayList<>();
-        AziendaModule azienda = core.getModuleManager().getModule(AziendaModule.class);
-        if (azienda == null) return players;
-
-        Set<String> normalizedTypes = normalizeTypes(companyTypes);
-        Set<UUID> employeeUuids = new HashSet<>();
-        try {
-            for (Company company : azienda.getCompanyDAO().getAllCompanies().get()) {
-                String companyType = company.getType();
-                if (companyType == null || !normalizedTypes.contains(companyType.toUpperCase(Locale.ROOT))) {
-                    continue;
-                }
-                company.getEmployees().forEach(employee -> employeeUuids.add(employee.getPlayerUuid()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return players;
-        }
-
-        for (org.bukkit.entity.Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
-            if (employeeUuids.contains(player.getUniqueId())) {
-                players.add(player);
-            }
-        }
-        return players;
-    }
-
-    private Set<String> normalizeTypes(String... companyTypes) {
-        Set<String> normalized = new HashSet<>();
-        Arrays.stream(companyTypes)
-                .filter(type -> type != null && !type.isBlank())
-                .map(type -> type.toUpperCase(Locale.ROOT))
-                .forEach(normalized::add);
-        return normalized;
+        return companyBridge.onlineCompanyEmployees(companyTypes);
     }
 
     private void syncOnlineJumpRestrictions() {

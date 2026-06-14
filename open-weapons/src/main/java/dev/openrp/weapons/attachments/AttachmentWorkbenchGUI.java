@@ -1,6 +1,6 @@
 package dev.openrp.weapons.attachments;
 
-import it.meridian.core.utils.ItemBuilder;
+import dev.openrp.weapons.util.ItemBuilder;
 import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.module.WeaponsModule;
 import net.kyori.adventure.text.Component;

@@ -1,0 +1,46 @@
+grenades:
+  stun_grenade:
+    display-name: "Granata stordente"
+    type: FLASHBANG
+    material: FIREWORK_STAR
+    custom-model-data: 271
+    fuse-time: 60
+    radius: 5.0
+    damage: 0.0
+    effect-duration: 100
+  smoke_grenade:
+    display-name: "Granata fumogena"
+    type: SMOKE
+    material: FIREWORK_STAR
+    custom-model-data: 272
+    fuse-time: 60
+    radius: 6.0
+    damage: 0.0
+    effect-duration: 160
+  fragmentation_grenade:
+    display-name: "Granata a frammentazione"
+    type: FRAG
+    material: FIREWORK_STAR
+    custom-model-data: 273
+    fuse-time: 60
+    radius: 5.5
+    damage: 10.0
+    effect-duration: 0
+  impact_grenade:
+    display-name: "Granata a impatto"
+    type: IMPACT
+    material: FIREWORK_STAR
+    custom-model-data: 274
+    fuse-time: 1
+    radius: 4.5
+    damage: 8.0
+    effect-duration: 0
+  c4_charge:
+    display-name: "C4"
+    type: FRAG
+    material: TNT
+    custom-model-data: 0
+    fuse-time: 100
+    radius: 5.0
+    damage: 12.0
+    effect-duration: 0

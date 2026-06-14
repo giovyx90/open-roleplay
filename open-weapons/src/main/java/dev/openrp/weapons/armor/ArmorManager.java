@@ -1,6 +1,6 @@
 package dev.openrp.weapons.armor;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.AmmoDefinition;
 import dev.openrp.weapons.model.ArmorDefinition;
 import net.kyori.adventure.text.Component;
@@ -38,10 +38,10 @@ public class ArmorManager {
     private final NamespacedKey armorKey;
     private final NamespacedKey durabilityKey;
     private final NamespacedKey ceramicPlateKey;
-    private final CorePlugin core;
+    private final JavaPlugin core;
     private final Set<UUID> armorHandledDamageEvents = ConcurrentHashMap.newKeySet();
 
-    public ArmorManager(CorePlugin core) {
+    public ArmorManager(JavaPlugin core) {
         this.core = core;
         this.armorKey = new NamespacedKey(core, "armor_id");
         this.durabilityKey = new NamespacedKey(core, "armor_durability");

@@ -1755,3 +1755,27 @@ ghost_rifle:
   falloff-min-multiplier: 0.65
   automatic: false
   magazine-model-data: 31
+taser:
+  display-name: Taser
+  category: TASER
+  material: BLAZE_ROD
+  custom-model-data: 0
+  damage: 1.0
+  headshot-multiplier: 1.0
+  fire-rate-ticks: 1
+  reload-time-ticks: 1
+  magazine-size: 1
+  max-distance: 15
+  ammo-type: taser_charge
+  sound-shoot: entity.bee.sting
+  sound-reload: block.note_block.pling
+  recoil: 0.0
+  hipfire-spread-deg: 0.0
+  ads-spread-deg: 0.0
+  moving-spread-multiplier: 1.0
+  sneak-spread-multiplier: 1.0
+  jump-spread-multiplier: 1.0
+  falloff-start-distance: 15
+  falloff-end-distance: 15
+  falloff-min-multiplier: 1.0
+  automatic: false

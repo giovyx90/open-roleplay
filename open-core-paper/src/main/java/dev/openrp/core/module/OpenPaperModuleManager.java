@@ -19,19 +19,49 @@ public final class OpenPaperModuleManager implements OpenModuleManager {
     private final Map<String, OpenModule> registeredModules = new LinkedHashMap<>();
     private final Map<String, OpenModuleState> moduleStates = new LinkedHashMap<>();
     private final Map<String, String> lastErrors = new LinkedHashMap<>();
+    private boolean loadedOnce;
 
     public OpenPaperModuleManager(OpenCorePlugin plugin) {
         this.plugin = plugin;
     }
 
+    @Override
     public void register(OpenModule module) {
         if (module == null || module.id() == null || module.id().isBlank()) {
             throw new IllegalArgumentException("Modulo Open Roleplay non valido.");
         }
         String id = normalize(module.id());
+        OpenModule previous = registeredModules.get(id);
+        if (previous != null && previous != module && state(id) == OpenModuleState.ENABLED) {
+            disableModule(id, previous);
+        }
         registeredModules.put(id, module);
         moduleStates.put(id, OpenModuleState.DISCOVERED);
         lastErrors.remove(id);
+        if (loadedOnce) {
+            if (isEnabledByConfig(id)) {
+                enableModule(id, module);
+            } else {
+                moduleStates.put(id, OpenModuleState.DISABLED_BY_CONFIG);
+            }
+        }
+    }
+
+    @Override
+    public void unregister(String id) {
+        String key = normalize(id);
+        OpenModuleState currentState = state(key);
+        OpenModule module = registeredModules.remove(key);
+        if (module == null) {
+            moduleStates.remove(key);
+            lastErrors.remove(key);
+            return;
+        }
+        if (currentState == OpenModuleState.ENABLED) {
+            disableModule(key, module);
+        }
+        moduleStates.remove(key);
+        lastErrors.remove(key);
     }
 
     public void loadAll() {
@@ -50,6 +80,7 @@ public final class OpenPaperModuleManager implements OpenModuleManager {
                 lastErrors.remove(id);
             }
         }
+        loadedOnce = true;
         plugin.getLogger().info("[OpenCore] " + enabled + "/" + registeredModules.size() + " modulo/i caricati.");
     }
 

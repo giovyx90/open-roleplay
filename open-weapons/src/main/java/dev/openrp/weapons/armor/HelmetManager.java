@@ -1,6 +1,6 @@
 package dev.openrp.weapons.armor;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.model.HelmetDefinition;
 import java.io.File;
 import java.util.ArrayList;
@@ -26,9 +26,9 @@ public class HelmetManager {
    private final Map<String, HelmetDefinition> helmets = new LinkedHashMap<>();
    private final NamespacedKey helmetKey;
    private final NamespacedKey helmetDurabilityKey;
-   private final CorePlugin core;
+   private final JavaPlugin core;
 
-   public HelmetManager(CorePlugin core) {
+   public HelmetManager(JavaPlugin core) {
       this.core = core;
       this.helmetKey = new NamespacedKey(core, "helmet_id");
       this.helmetDurabilityKey = new NamespacedKey(core, "helmet_durability");

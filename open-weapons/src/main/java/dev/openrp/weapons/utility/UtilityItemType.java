@@ -62,6 +62,10 @@ public enum UtilityItemType {
       return this.lore;
    }
 
+   public static List<UtilityItemType> openWeaponsCatalogTypes() {
+      return List.of(C4_REMOTE, ROPE, SCISSORS);
+   }
+
    public static UtilityItemType fromId(String id) {
       if (id == null) {
          return null;

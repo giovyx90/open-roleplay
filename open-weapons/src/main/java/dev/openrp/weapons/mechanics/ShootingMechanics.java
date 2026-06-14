@@ -1,11 +1,10 @@
 package dev.openrp.weapons.mechanics;
 
+import dev.openrp.weapons.OpenWeaponsPlugin;
 import dev.openrp.weapons.armor.ArmorManager;
 import dev.openrp.weapons.armor.HelmetManager;
 import dev.openrp.weapons.attachments.AttachmentManager;
-import dev.openrp.cosmetics.api.OpenCosmeticsApi;
-import it.meridian.core.hospital.GunshotSeverity;
-import it.meridian.core.hospital.HospitalModule;
+import dev.openrp.weapons.bridge.OpenHospitalBridge.GunshotSeverity;
 import dev.openrp.weapons.api.WeaponCombatDecision;
 import dev.openrp.weapons.model.AmmoDefinition;
 import dev.openrp.weapons.model.ArmorDefinition;
@@ -14,12 +13,12 @@ import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.module.WeaponsModule;
 import dev.openrp.weapons.shield.ShieldManager;
 import dev.openrp.weapons.util.JumpRestrictionManager;
-import it.meridian.core.staffboard.StaffBoardMetadata;
-import it.meridian.core.staffboard.StaffBoardModuleRegistry;
-import it.meridian.core.staffboard.model.StaffBoardCategory;
-import it.meridian.core.staffboard.model.StaffBoardLogEvent;
-import it.meridian.core.staffboard.model.StaffBoardSensitivity;
-import it.meridian.core.staffboard.model.StaffBoardSeverity;
+import dev.openrp.weapons.bridge.staff.StaffBoardMetadata;
+import dev.openrp.weapons.bridge.staff.OpenStaffLogBridge;
+import dev.openrp.weapons.bridge.staff.StaffBoardCategory;
+import dev.openrp.weapons.bridge.staff.StaffBoardLogEvent;
+import dev.openrp.weapons.bridge.staff.StaffBoardSensitivity;
+import dev.openrp.weapons.bridge.staff.StaffBoardSeverity;
 import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -445,10 +444,10 @@ public class ShootingMechanics {
         float soundVolume = (float) Math.max(0.0D, configuredVolume * attachmentSoundMultiplier);
         boolean suppressAutomaticSkinFire = module != null
                 && module.isAutomaticSkinFireSuppressed(shooter.getUniqueId())
-                && getWeaponSkinSound(module, weaponItem, OpenCosmeticsApi.SOUND_AUTOMATIC) != null;
+                && getWeaponSkinSound(module, weaponItem, WeaponsModule.COSMETIC_SOUND_AUTOMATIC) != null;
         String skinSound = suppressAutomaticSkinFire
                 ? null
-                : getWeaponSkinSound(module, weaponItem, OpenCosmeticsApi.SOUND_FIRE);
+                : getWeaponSkinSound(module, weaponItem, WeaponsModule.COSMETIC_SOUND_FIRE);
         if (skinSound != null) {
             shooter.getWorld().playSound(eyeLoc, skinSound, SoundCategory.PLAYERS, soundVolume, 1.0f);
             return;
@@ -485,7 +484,7 @@ public class ShootingMechanics {
     }
 
     private static void playHitFeedback(Player shooter, ItemStack weaponItem, WeaponsModule module, boolean headshot) {
-        String soundKey = headshot ? OpenCosmeticsApi.SOUND_HEADSHOT : OpenCosmeticsApi.SOUND_HIT;
+        String soundKey = headshot ? WeaponsModule.COSMETIC_SOUND_HEADSHOT : WeaponsModule.COSMETIC_SOUND_HIT;
         String skinSound = getWeaponSkinSound(module, weaponItem, soundKey);
         if (skinSound != null) {
             shooter.getWorld().playSound(shooter.getLocation(), skinSound, SoundCategory.PLAYERS, 1.0f, 1.0f);
@@ -495,8 +494,7 @@ public class ShootingMechanics {
     }
 
     private static String getWeaponSkinSound(WeaponsModule module, ItemStack weaponItem, String soundKey) {
-        OpenCosmeticsApi cosmetics = module == null ? null : module.getOpenCosmeticsApi();
-        return cosmetics == null ? null : cosmetics.getWeaponSkinSound(weaponItem, soundKey);
+        return module == null ? null : module.getWeaponSkinSound(weaponItem, soundKey);
     }
 
     private static String customFireSound(WeaponDefinition weapon) {
@@ -662,10 +660,10 @@ public class ShootingMechanics {
 
     private static WeaponsModule getModule() {
         JavaPlugin plugin = JavaPlugin.getProvidingPlugin(ShootingMechanics.class);
-        if (!(plugin instanceof it.meridian.core.CorePlugin corePlugin)) {
+        if (!(plugin instanceof OpenWeaponsPlugin openWeaponsPlugin)) {
             return null;
         }
-        return corePlugin.getModuleManager().getModule(WeaponsModule.class);
+        return openWeaponsPlugin.getWeaponsModule();
     }
 
     private static int incrementRiotShieldHits(ItemStack shieldItem, int maxHits, JavaPlugin plugin) {
@@ -728,15 +726,10 @@ public class ShootingMechanics {
             return;
         }
         WeaponsModule module = getModule();
-        if (module == null || module.getCore() == null || module.getCore().getModuleManager() == null) {
+        if (module == null) {
             return;
         }
-
-        HospitalModule hospital = module.getCore().getModuleManager().getModule(HospitalModule.class);
-        if (hospital == null || hospital.getGunshotService() == null) {
-            return;
-        }
-        hospital.getGunshotService().applyAutomatic(target, severityForHospital(headshot, antiMaterial, damage));
+        module.getHospitalBridge().applyGunshot(target, severityForHospital(headshot, antiMaterial, damage));
     }
 
     private static GunshotSeverity severityForHospital(boolean headshot, boolean antiMaterial, double damage) {
@@ -763,7 +756,7 @@ public class ShootingMechanics {
                 .put("pellet_count", weapon.getPelletCount())
                 .putLocation(shooter.getLocation());
 
-        StaffBoardModuleRegistry.emit(StaffBoardLogEvent.builder("combat.weapon.shot", "OpenWeapons")
+        OpenStaffLogBridge.emit(StaffBoardLogEvent.builder("combat.weapon.shot", "OpenWeapons")
                 .category(StaffBoardCategory.COMBAT)
                 .severity(StaffBoardSeverity.NOTICE)
                 .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)
@@ -808,10 +801,10 @@ public class ShootingMechanics {
                     .message(shooter.getName() + (bodyshot ? " ha colpito al corpo " : " ha colpito alla testa ")
                             + targetPlayer.getName() + " con " + weapon.getDisplayName() + ".");
         }
-        StaffBoardModuleRegistry.emit(hitBuilder.metadataJson(metadata.toJson()).build());
+        OpenStaffLogBridge.emit(hitBuilder.metadataJson(metadata.toJson()).build());
 
         if (target instanceof Player targetPlayer) {
-            StaffBoardModuleRegistry.emit(StaffBoardLogEvent.builder("combat.player.damaged", "OpenWeapons")
+            OpenStaffLogBridge.emit(StaffBoardLogEvent.builder("combat.player.damaged", "OpenWeapons")
                     .category(StaffBoardCategory.COMBAT)
                     .severity(headshot ? StaffBoardSeverity.WARNING : StaffBoardSeverity.NOTICE)
                     .sensitivity(StaffBoardSensitivity.DEPARTMENT_ONLY)

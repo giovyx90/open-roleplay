@@ -1,6 +1,6 @@
 package dev.openrp.weapons.handcuffs;
 
-import it.meridian.core.CorePlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import dev.openrp.weapons.util.JumpRestrictionManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -24,7 +24,7 @@ public class HandcuffManager {
     private static final int BOUND_ROPE_MODEL_DATA = 41;
     private static final int BOLT_CUTTER_MODEL_DATA = 19;
 
-    private final CorePlugin core;
+    private final JavaPlugin core;
     // Map of Victim -> Officer who cuffed them
     private final Map<UUID, UUID> handcuffedPlayers = new HashMap<>();
     private final NamespacedKey handcuffKey;
@@ -35,7 +35,7 @@ public class HandcuffManager {
     private final NamespacedKey restraintTypeKey;
     private final NamespacedKey legacyRestraintTypeKey;
 
-    public HandcuffManager(CorePlugin core) {
+    public HandcuffManager(JavaPlugin core) {
         this.core = core;
         this.handcuffKey = new NamespacedKey(core, "handcuff_item");
         this.boundHandcuffKey = new NamespacedKey(core, "bound_handcuffs_item");

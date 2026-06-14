@@ -1,6 +1,5 @@
 package dev.openrp.weapons.attachments;
 
-import dev.openrp.cosmetics.api.OpenCosmeticsApi;
 import dev.openrp.weapons.model.WeaponDefinition;
 import dev.openrp.weapons.model.WeaponVisualState;
 import dev.openrp.weapons.module.WeaponsModule;
@@ -220,12 +219,7 @@ public class AttachmentManager {
         if (customModelData <= 0) {
             return;
         }
-        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
-        if (cosmetics != null) {
-            Integer rgb = cosmetics.getWeaponColorRgb(weaponItem);
-            cosmetics.applyVisualCustomModelData(meta, customModelData, rgb);
-            weaponItem.setItemMeta(meta);
-            cosmetics.applyVisualDataComponents(weaponItem, customModelData, rgb);
+        if (module.applyCosmeticVisualData(weaponItem, meta, customModelData)) {
             return;
         } else {
             meta.setCustomModelData(customModelData);
@@ -256,7 +250,6 @@ public class AttachmentManager {
     private List<String> getVisualVariantCandidates(ItemStack item, boolean hasMagazine) {
         boolean optic = getAttachment(item, AttachmentSlot.OPTIC) != null;
         boolean grip = getAttachment(item, AttachmentSlot.UNDERBARREL) != null;
-        OpenCosmeticsApi cosmetics = module.getOpenCosmeticsApi();
-        return cosmetics == null ? List.of() : cosmetics.visualVariantCandidates(item, optic, hasMagazine, grip);
+        return module.visualVariantCandidates(item, optic, hasMagazine, grip);
     }
 }

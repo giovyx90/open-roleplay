@@ -21,6 +21,7 @@ import java.util.Set;
 public class OpenAccessPlugin extends JavaPlugin {
     private AccessService service;
     private AccessStorage storage;
+    private OpenCoreModuleRegistration openCoreRegistration;
     private final List<Listener> listeners = new ArrayList<>();
 
     @Override
@@ -56,6 +57,8 @@ public class OpenAccessPlugin extends JavaPlugin {
                 getConfig().getStringList("access.additional-interactive-materials"));
         registerListener(new AccessListener(service, configuredMaterials));
         registerListener(new AccessGuiListener());
+        this.openCoreRegistration = new OpenCoreModuleRegistration(this, "access");
+        this.openCoreRegistration.register();
 
         service.initialize().whenComplete((ignored, error) -> getServer().getScheduler().runTask(this, () -> {
             if (error != null) {
@@ -69,6 +72,10 @@ public class OpenAccessPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (openCoreRegistration != null) {
+            openCoreRegistration.unregister();
+            openCoreRegistration = null;
+        }
         if (service != null) {
             getServer().getServicesManager().unregister(OpenAccessApi.class, service);
         }

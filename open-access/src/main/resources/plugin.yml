@@ -7,6 +7,8 @@ authors:
 description: Controllo accessi per regioni, casse, porte e blocchi interattivi.
 depend:
   - WorldGuard
+softdepend:
+  - OpenCore
 commands:
   openaccess:
     description: Gestisce profili accesso, regioni e blocchi protetti.

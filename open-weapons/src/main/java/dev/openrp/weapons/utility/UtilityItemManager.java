@@ -1,7 +1,7 @@
 package dev.openrp.weapons.utility;
 
-import it.meridian.core.CorePlugin;
-import it.meridian.core.utils.ItemBuilder;
+import org.bukkit.plugin.java.JavaPlugin;
+import dev.openrp.weapons.util.ItemBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import net.kyori.adventure.text.Component;
@@ -29,7 +29,7 @@ public class UtilityItemManager {
    private final NamespacedKey gagUsesKey;
    private final NamespacedKey blindfoldUsesKey;
 
-   public UtilityItemManager(CorePlugin core, UtilitySettings settings) {
+   public UtilityItemManager(JavaPlugin core, UtilitySettings settings) {
       this.settings = settings == null ? UtilitySettings.defaults() : settings;
       this.utilityKey = new NamespacedKey(core, "utility_item");
       this.duffelContentsKey = new NamespacedKey(core, "duffel_contents");
