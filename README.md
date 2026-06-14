@@ -15,29 +15,33 @@ Open, perché è trasparente.
 Roleplay, perché è la modalità che da tempo amiamo.
 
 Open Roleplay e' una suite open source per esperienze Minecraft roleplay su
-Paper. Questa repository contiene i primi moduli pubblici: **Open Weapons** e
-**Open Cosmetics**.
+Paper. Questa repository contiene moduli Paper separati, pensati per essere
+usati insieme ma leggibili e modificabili anche uno alla volta.
 
 ## Moduli
 
 | Modulo | Stato | Descrizione |
 | --- | --- | --- |
+| `open-core-api` | Fondamenta iniziale | Contratti pubblici condivisi: lifecycle moduli, database opzionale, HUD, messaggi, permessi e utility item. |
+| `open-core-paper` | Fondamenta iniziale | Plugin Paper `OpenCore`: servizio Bukkit, comando `/opencore`, DB SQLite/MySQL opzionale, resource pack ed esperienza opzionali. |
+| `open-access` | Estrazione iniziale | Controllo accessi per WorldGuard, profili, trust, casse, porte, blocchi interattivi e storage SQLite/MySQL. |
 | `open-weapons` | Snapshot iniziale | Sistema armi, munizioni, accessori, armature, granate, C4, manette, radio, taser e utility item. |
 | `open-cosmetics` | Estrazione iniziale | Cosmetici arma: LED, colori, skin, gettoni, GUI/editor e stazioni cosmetiche. |
 
 ## Stato della pubblicazione
 
-Questo e' il primo snapshot estratto dal progetto privato originale. Il codice
-del modulo e' gia' stato spostato nel namespace pubblico `dev.openrp.weapons`,
-ma alcune classi fanno ancora riferimento ad API interne del vecchio core
-roleplay.
+Questo e' uno snapshot estratto e ripulito dal progetto privato originale. Il
+core pubblico non e' una copia diretta del vecchio core privato: contiene solo
+l'infrastruttura riutilizzabile. Le feature grandi o molto legate al gameplay
+devono diventare moduli autonomi quando hanno confini chiari.
 
 La priorita' dei prossimi passaggi e':
 
-1. estrarre una piccola API pubblica `openrp-core-api`;
-2. sostituire le integrazioni interne con adapter opzionali;
-3. rendere `open-weapons` compilabile e avviabile come plugin Paper
+1. sostituire le integrazioni interne residue con adapter opzionali;
+2. rendere `open-weapons` compilabile e avviabile come plugin Paper
    indipendente;
+3. valutare estrazioni dedicate per sistemi grandi come food, hospital,
+   staffboard e interaction;
 4. mantenere i sotto-pack pubblicabili in `open-weapons/assets/resource-pack/`
    e `open-cosmetics/assets/resource-pack/`.
 
@@ -76,6 +80,14 @@ Vedi `TRADEMARKS.md`.
 
 ```text
 open-roleplay/
+  open-core-api/
+    src/main/java/dev/openrp/core/api/
+  open-core-paper/
+    src/main/java/dev/openrp/core/
+    src/main/resources/
+  open-access/
+    src/main/java/dev/openrp/access/
+    src/main/resources/
   open-cosmetics/
     assets/resource-pack/
     src/main/java/dev/openrp/cosmetics/

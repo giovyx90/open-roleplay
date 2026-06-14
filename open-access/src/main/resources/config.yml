@@ -1,0 +1,21 @@
+storage:
+  type: sqlite
+  sqlite:
+    file: open_access.db
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    database: open_access
+    username: open_access
+    password: ""
+    pool:
+      max-size: 10
+      minimum-idle: 1
+      connection-timeout-millis: 30000
+
+access:
+  additional-interactive-materials:
+    - NOTE_BLOCK
+    - BARRIER
+    - LIGHT
+    - STRUCTURE_VOID

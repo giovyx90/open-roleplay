@@ -1,0 +1,52 @@
+name: OpenAccess
+main: dev.openrp.OpenAccessPlugin
+version: ${project.version}
+api-version: '1.21'
+authors:
+  - Open Roleplay
+description: Controllo accessi per regioni, casse, porte e blocchi interattivi.
+depend:
+  - WorldGuard
+commands:
+  openaccess:
+    description: Gestisce profili accesso, regioni e blocchi protetti.
+    usage: /openaccess
+    aliases:
+      - access
+      - oa
+permissions:
+  openrp.access.admin:
+    description: Amministrazione completa di Open Access.
+    default: op
+    children:
+      openrp.access.region.manage: true
+      openrp.access.reload: true
+      openrp.access.debug: true
+      openrp.access.bypass: true
+  openrp.access.region.manage:
+    description: Permette di collegare e scollegare regioni WorldGuard.
+    default: op
+  openrp.access.reload:
+    description: Permette di ricaricare la cache accessi.
+    default: op
+  openrp.access.debug:
+    description: Permette di usare i comandi debug.
+    default: op
+  openrp.access.bypass:
+    description: Bypassa i controlli accesso.
+    default: op
+  next.access.admin:
+    description: Alias compatibile per amministrazione completa.
+    default: op
+  next.access.region.manage:
+    description: Alias compatibile per gestire regioni.
+    default: op
+  next.access.reload:
+    description: Alias compatibile per ricaricare la cache.
+    default: op
+  next.access.debug:
+    description: Alias compatibile per debug.
+    default: op
+  next.access.bypass:
+    description: Alias compatibile per bypass.
+    default: op

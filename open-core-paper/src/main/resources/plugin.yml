@@ -1,0 +1,26 @@
+name: OpenCore
+main: dev.openrp.core.OpenCorePlugin
+version: ${project.version}
+api-version: '1.21'
+authors:
+  - Open Roleplay
+description: Core open source per moduli Paper Open Roleplay.
+commands:
+  opencore:
+    description: Stato e reload dei moduli Open Roleplay.
+    usage: /opencore [status|reload] [module]
+    aliases:
+      - ocore
+permissions:
+  openrp.core.admin:
+    description: Amministrazione completa di Open Core.
+    default: op
+    children:
+      openrp.core.reload: true
+      openrp.core.debug: true
+  openrp.core.reload:
+    description: Permette di ricaricare Open Core e i moduli registrati.
+    default: op
+  openrp.core.debug:
+    description: Permette di leggere lo stato dei moduli.
+    default: op

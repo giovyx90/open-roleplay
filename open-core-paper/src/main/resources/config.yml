@@ -1,0 +1,29 @@
+database:
+  enabled: false
+  type: sqlite
+  sqlite:
+    file: open_core.db
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    database: open_roleplay
+    username: open_roleplay
+    password: ""
+    pool:
+      max-size: 10
+      minimum-idle: 1
+      connection-timeout-millis: 30000
+
+modules: {}
+
+experience-control:
+  enabled: false
+
+resource-pack:
+  enabled: false
+  url: ""
+  sha1: ""
+  id: ""
+  required: true
+  prompt: "Open Roleplay richiede il resource pack del server."
+  delay-ticks: 20
