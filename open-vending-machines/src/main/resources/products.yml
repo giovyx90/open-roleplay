@@ -1,0 +1,52 @@
+# ============================================================================
+#  Sellable products catalog.
+#  Each entry describes the item handed to the buyer plus default economics.
+#  "price" and "max-stock" are defaults; a machine may override them per slot.
+#  "custom-model-data" is optional, for resource-pack driven items.
+# ============================================================================
+
+chips:
+  display-name: "<gold>Potato Chips</gold>"
+  material: BAKED_POTATO
+  amount: 1
+  price: 3.0
+  max-stock: 32
+  lore:
+    - "<gray>A crunchy roadside snack.</gray>"
+
+chocolate:
+  display-name: "<dark_purple>Chocolate Bar</dark_purple>"
+  material: COCOA_BEANS
+  amount: 1
+  price: 2.5
+  max-stock: 32
+
+water:
+  display-name: "<aqua>Bottled Water</aqua>"
+  material: POTION
+  amount: 1
+  price: 1.5
+  max-stock: 48
+
+soda:
+  display-name: "<red>Soda Can</red>"
+  material: HONEY_BOTTLE
+  amount: 1
+  price: 2.0
+  max-stock: 48
+
+energy-drink:
+  display-name: "<green>Energy Drink</green>"
+  material: DRAGON_BREATH
+  amount: 1
+  price: 4.5
+  max-stock: 24
+
+newspaper:
+  display-name: "<white>Daily Newspaper</white>"
+  material: PAPER
+  amount: 1
+  price: 1.0
+  max-stock: 16
+  lore:
+    - "<gray>Today's headlines.</gray>"

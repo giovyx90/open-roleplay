@@ -1,0 +1,24 @@
+# ============================================================================
+#  Vending machine types / models.
+#  "icon" is the block players place and right-click, and the GUI header icon.
+#  "slots" caps how many distinct products the machine can stock.
+#  "default-products" pre-fills the product slots (ids from products.yml).
+# ============================================================================
+
+snack-machine:
+  display-name: "<yellow>Snack Machine</yellow>"
+  icon: DROPPER
+  slots: 6
+  default-products: [chips, chocolate, water, soda]
+
+drink-cooler:
+  display-name: "<aqua>Drink Cooler</aqua>"
+  icon: BLAST_FURNACE
+  slots: 9
+  default-products: [water, soda, energy-drink]
+
+newspaper-stand:
+  display-name: "<gold>Newspaper Stand</gold>"
+  icon: LECTERN
+  slots: 3
+  default-products: [newspaper]

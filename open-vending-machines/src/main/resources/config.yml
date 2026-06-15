@@ -1,0 +1,105 @@
+# ============================================================================
+#  Open Vending Machines - main configuration
+#  ---------------------------------------------------------------------------
+#  This plugin is ADAPTER-FIRST: it ships with working defaults for every
+#  external system (economy, inventory, businesses, permissions, storage,
+#  notifications, logging) but hardcodes none of them. Swap any adapter from
+#  your own plugin via the public API - see the README "Developer guide".
+# ============================================================================
+
+branding:
+  product-name: "Open Vending Machines"
+  message-prefix: "<gold>[Vending]</gold> "
+  credit-line: "Open Vending Machines by Open Roleplay Workshop"
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+# ---------------------------------------------------------------------------
+# Which bundled adapter implementation to activate on startup. Each value maps
+# to a default that other plugins can replace at runtime through the API.
+# ---------------------------------------------------------------------------
+adapters:
+  economy: default        # default (in-memory demo wallet) | vault (only if Vault is installed)
+  inventory: bukkit       # bukkit (real player inventories)
+  business: config        # config (reads the "businesses" section below)
+  permission: bukkit      # bukkit (Bukkit permission nodes)
+  storage: yaml           # yaml | memory
+  notification: chat       # chat
+  logging: file           # file | console | none
+
+economy:
+  # Logical accounts handed to the EconomyAdapter. Adapters decide what they mean
+  # (cash on hand, bank balance, a custom account type, ...).
+  payment-account: cash    # account a buyer is charged from
+  withdraw-account: bank   # account staff cash-outs are paid into by default
+  currency-symbol: "$"
+  # Starting balance handed to a player the first time the in-memory "default" economy
+  # adapter sees them. Ignored by real economy adapters (e.g. Vault).
+  demo-starting-balance: 1000.0
+
+purchase:
+  max-interaction-distance: 6.0
+  cooldown-millis: 750            # anti-spam window per player between purchases
+  require-line-of-sight: false
+  fail-if-inventory-full: true    # refuse the sale instead of dropping items on the floor
+
+restock:
+  # player_inventory  -> consume real items from the staff member's inventory
+  # business_warehouse -> pull items from the company warehouse via the adapters
+  # free               -> management UI just sets the stock number (admin/demo friendly)
+  mode: player_inventory
+  max-per-action: 64
+  allow-price-editing: true
+
+cash:
+  deposit-to-company-account: true  # send withdrawals to the owning company's account
+  log-withdrawals: true
+
+machines:
+  default-company-limit: 5          # cap for companies without their own limit; -1 = unlimited
+  random-breakdown-chance: 0.0      # 0.0-1.0 chance a sale randomly jams the machine (realism)
+  # true  -> new machines start stocked to capacity (demo friendly, sells immediately)
+  # false -> new machines start empty and must be restocked (more realistic)
+  seed-full-on-create: true
+  # true  -> /ovm create turns the block you are looking at into the type's "icon"
+  #          block, and /ovm remove restores it to air. THIS is how the "texture" is
+  #          chosen: a resource pack can retexture that block/blockstate.
+  # false -> the machine just attaches to whatever block is already there (use this
+  #          with furniture you placed yourself - see interaction.furniture-entities).
+  place-icon-block: true
+
+interaction:
+  # Also open a machine when right-clicking a FURNITURE ENTITY sitting on the machine's
+  # block: ItemsAdder / Oraxen / Nexo furniture, or even a vanilla item frame / armor
+  # stand. This lets a machine "be" a custom 3D model. Pair it with place-icon-block:false.
+  furniture-entities: false
+
+storage:
+  file: machines-data.yml           # used by the "yaml" storage adapter
+
+logging:
+  file: transactions.log            # used by the "file" logging adapter
+
+debug: false
+
+# ---------------------------------------------------------------------------
+# Demo company directory consumed by the bundled "config" BusinessAdapter.
+# Replace the whole adapter to source companies from your own company plugin;
+# nothing about companies is hardcoded in the core.
+# ---------------------------------------------------------------------------
+businesses:
+  enabled: true
+  companies:
+    redspot-foods:
+      display-name: "RedSpot Foods"
+      machine-limit: 3
+      account: "redspot-foods"      # account id handed to the EconomyAdapter on cash-out
+      members:
+        # "<player-uuid>": <role>
+        "00000000-0000-0000-0000-000000000000": owner
+      roles:
+        owner: [use, restock, withdraw, edit_price, manage]
+        manager: [use, restock, withdraw]
+        clerk: [use, restock]

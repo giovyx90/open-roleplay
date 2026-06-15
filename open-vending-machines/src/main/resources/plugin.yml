@@ -1,0 +1,56 @@
+name: OpenVendingMachines
+version: '${project.version}'
+main: dev.openrp.vending.OpenVendingMachinesPlugin
+api-version: '1.21'
+description: Adapter-first, integration-friendly vending machine module for Paper roleplay servers.
+authors: [Open Roleplay Workshop]
+# Vault is an OPTIONAL soft dependency. The core works without it; the bundled Vault economy
+# adapter is wired reflectively and only activates when Vault is present and enabled in config.
+softdepend: [Vault]
+
+commands:
+  openvending:
+    description: Open Vending Machines administration and player command
+    usage: /openvending <help|create|remove|list|info|restock|withdraw|reload|giveitem>
+    aliases: [ovm, vending]
+    permission: openvending.use
+
+permissions:
+  openvending.*:
+    description: Grants every Open Vending Machines permission.
+    default: op
+    children:
+      openvending.admin: true
+      openvending.create: true
+      openvending.remove: true
+      openvending.use: true
+      openvending.restock: true
+      openvending.withdraw: true
+      openvending.reload: true
+  openvending.admin:
+    description: Full administrative control over every vending machine, bypassing company checks.
+    default: op
+    children:
+      openvending.create: true
+      openvending.remove: true
+      openvending.restock: true
+      openvending.withdraw: true
+      openvending.reload: true
+  openvending.create:
+    description: Allows placing new vending machines.
+    default: op
+  openvending.remove:
+    description: Allows removing vending machines.
+    default: op
+  openvending.use:
+    description: Allows buying from vending machines.
+    default: true
+  openvending.restock:
+    description: Allows restocking machines the player is authorized for.
+    default: true
+  openvending.withdraw:
+    description: Allows withdrawing the internal cash box of authorized machines.
+    default: true
+  openvending.reload:
+    description: Allows reloading Open Vending Machines configuration.
+    default: op

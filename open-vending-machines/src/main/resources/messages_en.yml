@@ -1,0 +1,99 @@
+general:
+  player_only: "Only players can use that."
+  no_permission: "You do not have permission to do that."
+  reload_done: "Open Vending Machines configuration reloaded."
+  unknown_subcommand: "Unknown subcommand. Try /ovm help."
+  number_invalid: "'{value}' is not a valid number."
+  operation_failed: "The operation could not be completed."
+
+command:
+  header: "Open Vending Machines commands:"
+  help:
+    help: "/ovm help - show this help"
+    create: "/ovm create <type> [company] - place a machine where you are looking"
+    remove: "/ovm remove - remove the machine you are looking at"
+    list: "/ovm list - list nearby machines"
+    info: "/ovm info - inspect the machine you are looking at"
+    restock: "/ovm restock - open the restock interface"
+    withdraw: "/ovm withdraw - cash out the machine's box"
+    reload: "/ovm reload - reload configuration"
+    giveitem: "/ovm giveitem <productId> [amount] - give yourself a product item"
+
+machine:
+  look_at_block: "Look at the block where the machine should stand."
+  created: "Placed a '{type}' vending machine (id {id})."
+  removed: "Removed vending machine {id}."
+  not_found: "You are not looking at a vending machine."
+  unknown_type: "Unknown machine type '{type}'."
+  unknown_company: "Unknown company '{company}'."
+  protected: "Remove this machine with /ovm remove instead of breaking it."
+  occupied: "There is already a vending machine here."
+  limit_reached: "Company '{company}' has reached its machine limit ({limit})."
+  list_header: "Vending machines near you:"
+  list_entry: "- {id} ({type}) at {x},{y},{z} state {state}"
+  list_empty: "No vending machines found nearby."
+  info_header: "Machine {id}"
+  info_type: "Type: {type}"
+  info_owner: "Owner: {owner}"
+  info_state: "State: {state}"
+  info_cash: "Cash box: {symbol}{cash}"
+  info_products: "Products:"
+  info_product_line: "- {product}: {stock}/{capacity} @ {symbol}{price}"
+  state_changed: "Machine {id} is now {state}."
+
+purchase:
+  success: "Bought {amount}x {product} for {symbol}{price}."
+  fail_stock: "{product} is out of stock."
+  fail_funds: "You cannot afford {symbol}{price}."
+  fail_distance: "You are too far from the machine."
+  fail_state: "This machine is {state} and cannot sell right now."
+  fail_cooldown: "Please wait a moment before buying again."
+  fail_inventory_full: "Your inventory is full."
+  fail_denied: "The purchase was denied: {reason}"
+  fail_unknown_product: "That product is no longer available."
+  fail_generic: "The purchase could not be completed."
+
+restock:
+  success: "Restocked {amount}x {product}. New stock: {stock}/{capacity}."
+  denied: "You are not authorized to restock this machine."
+  no_items: "You do not have {amount}x {product} to load."
+  full: "{product} is already at full capacity."
+  free_mode: "Stock set to {stock}/{capacity} for {product}."
+  unknown_product: "Unknown product '{product}'."
+
+withdraw:
+  success: "Withdrew {symbol}{amount} from machine {id}."
+  denied: "You are not authorized to withdraw from this machine."
+  empty: "The cash box is empty."
+  to_company: "Deposited {symbol}{amount} into {company}'s account."
+
+price:
+  updated: "Price of {product} set to {symbol}{price}."
+  denied: "You are not authorized to change prices."
+  disabled: "Price editing is disabled in the configuration."
+
+state:
+  active: "active"
+  empty: "empty"
+  broken: "out of order"
+  disabled: "disabled"
+
+gui:
+  purchase_title: "Vending - {type}"
+  manage_title: "Manage - {type}"
+  buy_lore_price: "<gray>Price: <gold>{symbol}{price}</gold></gray>"
+  buy_lore_stock: "<gray>Stock: <yellow>{stock}/{capacity}</yellow></gray>"
+  buy_lore_click: "<green>Click to buy one</green>"
+  out_of_stock: "<red>Out of stock</red>"
+  restock_button: "<aqua>Restock</aqua>"
+  withdraw_button: "<gold>Withdraw cash</gold>"
+  info_button: "<yellow>Machine info</yellow>"
+  manage_button: "<aqua>Manage machine</aqua>"
+  back_button: "<yellow>Back</yellow>"
+  withdraw_lore: "<gray>Cash box: <gold>{symbol}{cash}</gold></gray>"
+  manage_lore_restock: "<green>Left: restock 1  |  Shift: restock {max}</green>"
+  manage_lore_price: "<gold>Right: price +1  |  Shift-Right: price -1</gold>"
+
+giveitem:
+  given: "Gave you {amount}x {product}."
+  unknown: "Unknown product '{product}'."

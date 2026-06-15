@@ -1,0 +1,99 @@
+general:
+  player_only: "Solo i giocatori possono usare questo comando."
+  no_permission: "Non hai il permesso di farlo."
+  reload_done: "Configurazione di Open Vending Machines ricaricata."
+  unknown_subcommand: "Sottocomando sconosciuto. Prova /ovm help."
+  number_invalid: "'{value}' non e' un numero valido."
+  operation_failed: "L'operazione non e' stata completata."
+
+command:
+  header: "Comandi di Open Vending Machines:"
+  help:
+    help: "/ovm help - mostra questo aiuto"
+    create: "/ovm create <tipo> [azienda] - piazza una macchinetta dove stai guardando"
+    remove: "/ovm remove - rimuove la macchinetta che stai guardando"
+    list: "/ovm list - elenca le macchinette vicine"
+    info: "/ovm info - ispeziona la macchinetta che stai guardando"
+    restock: "/ovm restock - apre l'interfaccia di rifornimento"
+    withdraw: "/ovm withdraw - preleva la cassa della macchinetta"
+    reload: "/ovm reload - ricarica la configurazione"
+    giveitem: "/ovm giveitem <productId> [quantita] - ti da' un item prodotto"
+
+machine:
+  look_at_block: "Guarda il blocco dove deve stare la macchinetta."
+  created: "Piazzata una macchinetta '{type}' (id {id})."
+  removed: "Macchinetta {id} rimossa."
+  not_found: "Non stai guardando una macchinetta."
+  unknown_type: "Tipo di macchinetta sconosciuto '{type}'."
+  unknown_company: "Azienda sconosciuta '{company}'."
+  protected: "Rimuovi questa macchinetta con /ovm remove invece di romperla."
+  occupied: "C'e' gia' una macchinetta qui."
+  limit_reached: "L'azienda '{company}' ha raggiunto il limite di macchinette ({limit})."
+  list_header: "Macchinette vicino a te:"
+  list_entry: "- {id} ({type}) a {x},{y},{z} stato {state}"
+  list_empty: "Nessuna macchinetta trovata nelle vicinanze."
+  info_header: "Macchinetta {id}"
+  info_type: "Tipo: {type}"
+  info_owner: "Proprietario: {owner}"
+  info_state: "Stato: {state}"
+  info_cash: "Cassa: {symbol}{cash}"
+  info_products: "Prodotti:"
+  info_product_line: "- {product}: {stock}/{capacity} @ {symbol}{price}"
+  state_changed: "La macchinetta {id} ora e' {state}."
+
+purchase:
+  success: "Comprato {amount}x {product} per {symbol}{price}."
+  fail_stock: "{product} e' esaurito."
+  fail_funds: "Non puoi permetterti {symbol}{price}."
+  fail_distance: "Sei troppo lontano dalla macchinetta."
+  fail_state: "Questa macchinetta e' {state} e non puo' vendere ora."
+  fail_cooldown: "Aspetta un attimo prima di comprare di nuovo."
+  fail_inventory_full: "Il tuo inventario e' pieno."
+  fail_denied: "Acquisto negato: {reason}"
+  fail_unknown_product: "Quel prodotto non e' piu' disponibile."
+  fail_generic: "L'acquisto non e' stato completato."
+
+restock:
+  success: "Rifornito {amount}x {product}. Nuovo stock: {stock}/{capacity}."
+  denied: "Non sei autorizzato a rifornire questa macchinetta."
+  no_items: "Non hai {amount}x {product} da caricare."
+  full: "{product} e' gia' al massimo della capacita'."
+  free_mode: "Stock impostato a {stock}/{capacity} per {product}."
+  unknown_product: "Prodotto sconosciuto '{product}'."
+
+withdraw:
+  success: "Prelevato {symbol}{amount} dalla macchinetta {id}."
+  denied: "Non sei autorizzato a prelevare da questa macchinetta."
+  empty: "La cassa e' vuota."
+  to_company: "Versato {symbol}{amount} sul conto di {company}."
+
+price:
+  updated: "Prezzo di {product} impostato a {symbol}{price}."
+  denied: "Non sei autorizzato a modificare i prezzi."
+  disabled: "La modifica dei prezzi e' disabilitata nella configurazione."
+
+state:
+  active: "attiva"
+  empty: "vuota"
+  broken: "guasta"
+  disabled: "disabilitata"
+
+gui:
+  purchase_title: "Distributore - {type}"
+  manage_title: "Gestione - {type}"
+  buy_lore_price: "<gray>Prezzo: <gold>{symbol}{price}</gold></gray>"
+  buy_lore_stock: "<gray>Stock: <yellow>{stock}/{capacity}</yellow></gray>"
+  buy_lore_click: "<green>Clicca per comprarne uno</green>"
+  out_of_stock: "<red>Esaurito</red>"
+  restock_button: "<aqua>Rifornisci</aqua>"
+  withdraw_button: "<gold>Preleva contanti</gold>"
+  info_button: "<yellow>Info macchinetta</yellow>"
+  manage_button: "<aqua>Gestisci macchinetta</aqua>"
+  back_button: "<yellow>Indietro</yellow>"
+  withdraw_lore: "<gray>Cassa: <gold>{symbol}{cash}</gold></gray>"
+  manage_lore_restock: "<green>Sinistro: rifornisci 1  |  Shift: rifornisci {max}</green>"
+  manage_lore_price: "<gold>Destro: prezzo +1  |  Shift-Destro: prezzo -1</gold>"
+
+giveitem:
+  given: "Ti ho dato {amount}x {product}."
+  unknown: "Prodotto sconosciuto '{product}'."

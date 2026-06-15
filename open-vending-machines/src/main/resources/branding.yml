@@ -1,0 +1,5 @@
+# Optional cosmetic overrides. The same keys live under "branding" in config.yml;
+# this file is kept for parity with other Open Roleplay modules and is not required.
+product-name: "Open Vending Machines"
+message-prefix: "<gold>[Vending]</gold> "
+credit-line: "Open Vending Machines by Open Roleplay Workshop"
