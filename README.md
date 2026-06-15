@@ -27,6 +27,7 @@ usati insieme ma leggibili e modificabili anche uno alla volta.
 | `open-access` | Standalone iniziale | Plugin Paper per WorldGuard, profili, trust, casse, porte, blocchi interattivi e storage SQLite/MySQL. Se trova OpenCore si registra in `/opencore status`. |
 | `open-cosmetics` | Standalone iniziale | Plugin Paper per cosmetici arma: LED, colori, skin, gettoni, GUI/editor e stazioni cosmetiche. Se trova OpenCore si registra in `/opencore status`. |
 | `open-weapons` | Standalone iniziale, compilabile | Plugin Paper per armi, munizioni, accessori, armature, granate, C4, manette, taser, utility RP, rapine e perquisizioni. Usa bridge open/no-op per servizi opzionali non ancora pubblicati. |
+| `open-vending-machines` | Standalone iniziale, compilabile | Plugin Paper adapter-first per distributori automatici roleplay: prodotti, stock, prezzi, casse, aziende opzionali e integrazioni economy/inventory sostituibili. |
 
 ## Stato della pubblicazione
 
@@ -41,6 +42,7 @@ Stato attuale:
 - `OpenAccess`: plugin standalone iniziale, compatibile con OpenCore quando presente.
 - `OpenCosmetics`: plugin standalone iniziale, compatibile con OpenCore quando presente.
 - `OpenWeapons`: plugin standalone iniziale e compilabile; armi, utility, rapine e perquisizioni funzionano come base pubblica, mentre le integrazioni opzionali degradano tramite bridge minimali quando il relativo modulo non e' presente.
+- `OpenVendingMachines`: plugin standalone iniziale e compilabile; distributori automatici configurabili con adapter sostituibili per economy, inventario, aziende, storage, notifiche e audit.
 
 La priorita' dei prossimi passaggi e':
 
@@ -115,6 +117,10 @@ open-roleplay/
     src/main/java/dev/openrp/weapons/
     src/main/resources/
     src/test/java/dev/openrp/weapons/
+  open-vending-machines/
+    src/main/java/dev/openrp/vending/
+    src/main/resources/
+    src/test/java/dev/openrp/vending/
 ```
 
 ## Note per sviluppatori
