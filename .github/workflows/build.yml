@@ -13,4 +13,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+          cache: maven
       - run: mvn -B -ntp package
+      - run: scripts/prepare-release-assets.sh release-assets
+      - uses: actions/upload-artifact@v4
+        with:
+          name: open-roleplay-release-assets
+          path: release-assets/

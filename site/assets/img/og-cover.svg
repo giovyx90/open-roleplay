@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Open Roleplay">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f9f5"/>
+      <stop offset="1" stop-color="#e6f3ea"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="0.5" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0 H0 V48" fill="none" stroke="#0d2a1c" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1080" cy="90" r="280" fill="#22c55e" opacity="0.16"/>
+  <circle cx="120" cy="560" r="240" fill="#0d9488" opacity="0.12"/>
+
+  <g transform="translate(96 232)">
+    <rect x="0" y="0" width="96" height="96" rx="24" fill="url(#g)"/>
+    <g fill="none" stroke="#04130a" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+      <path d="M37 29 L23 48 L37 67"/>
+      <path d="M59 29 L73 48 L59 67"/>
+    </g>
+    <path d="M48 38.8 L57.2 48 L48 57.2 L38.8 48 Z" fill="#04130a" opacity="0.92"/>
+  </g>
+
+  <text x="220" y="290" font-family="Space Grotesk, Arial, sans-serif" font-size="76" font-weight="700" fill="#0b1a11" letter-spacing="-2">Open <tspan fill="#16a34a">Roleplay</tspan></text>
+  <text x="222" y="350" font-family="Inter, Arial, sans-serif" font-size="33" fill="#3f5247">La suite open source di moduli Paper per server</text>
+  <text x="222" y="392" font-family="Inter, Arial, sans-serif" font-size="33" fill="#3f5247">Minecraft roleplay. Gratuita, modulare, adapter-first.</text>
+
+  <g font-family="JetBrains Mono, monospace" font-size="24" fill="#16a34a" font-weight="600">
+    <rect x="222" y="436" width="184" height="46" rx="23" fill="#16a34a" opacity="0.10"/>
+    <text x="246" y="466">Apache 2.0</text>
+    <rect x="422" y="436" width="178" height="46" rx="23" fill="#16a34a" opacity="0.10"/>
+    <text x="446" y="466">Paper 1.21.x</text>
+    <rect x="616" y="436" width="158" height="46" rx="23" fill="#16a34a" opacity="0.10"/>
+    <text x="640" y="466">6 moduli</text>
+  </g>
+
+  <text x="222" y="556" font-family="Inter, Arial, sans-serif" font-size="26" fill="#66786d">openroleplay.it</text>
+</svg>

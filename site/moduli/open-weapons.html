@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Weapons — Armi, combat e sistemi RP · Open Roleplay</title>
+  <meta name="description" content="Open Weapons: armi da fuoco e melee, munizioni, accessori, armature, granate, C4, taser, manette, rapine, perquisizioni, wanted e radio delle forze dell'ordine per server Minecraft roleplay su Paper." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-weapons.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open Weapons — Armi, combat e sistemi RP · Open Roleplay" />
+  <meta property="og:description" content="Armi, munizioni, accessori, armature e sistemi roleplay collegati al combat: rapine, perquisizioni, arresti, wanted e radio FdO." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-weapons.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-weapons.jar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Scarica
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-weapons.jar" target="_blank" rel="noopener">Scarica il JAR</a>
+  </div>
+
+  <main>
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open Weapons</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="2.4"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open Weapons</h1>
+          <span class="badge badge--amber">Snapshot in decoupling</span>
+        </div>
+        <p class="lead">Il sistema armi e tutto il gameplay roleplay collegato al combat: armi da fuoco e melee, munizioni, accessori, armature e protezioni, fino a manette, arresti, perquisizioni, rapine, wanted e radio delle forze dell'ordine.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-weapons.jar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Scarica il JAR
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-weapons" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Sorgente
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://github.com/giovyx90/open-roleplay/wiki/Open-Weapons" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Wiki
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Namespace</span><b>dev.openrp.weapons</b></div>
+          <div class="m"><span>Comando</span><b>/items · /weapons</b></div>
+          <div class="m"><span>Dipendenze</span><b>Paper 1.21.x</b></div>
+          <div class="m"><span>Opzionali</span><b>Nexo · PacketEvents · AnvilGUI</b></div>
+          <div class="m"><span>Bridge</span><b>Open Cosmetics</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AREE FUNZIONALI ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Aree funzionali</h2>
+        <p class="lede reveal" data-d="1">Open Weapons non è solo "armi": è l'intero strato di combat roleplay, pensato come base pubblica che altri moduli possono estendere.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4"/></svg></span><div><b>Armi da fuoco e melee</b><small>Pistole, SMG, fucili, sniper, armi bianche e ghost weapons.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="7" x2="14" y2="7"/></svg></span><div><b>Munizioni e caricatori</b><small>Calibri con penetrazione, danno e durabilità su armor e scudi.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><div><b>Accessori e banco armi</b><small>Ottiche, grip, soppressori, convertitori e installazione al weapon bench.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><b>Armature e caschi</b><small>Livello NIJ, riduzione danno, negazione headshot e prevenzione stun.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Granate, C4, taser e scudi</b><small>Utility tattiche complete per scenari di azione e ordine pubblico.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Manette, arresti e cauzioni</b><small>Flusso completo di fermo, arresto, bail e gestione detenuti.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></span><div><b>Perquisizioni e rapine</b><small>Frisk e rob lato server, con regole e feedback chiari.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span><div><b>Wanted, radio FdO e SOS</b><small>Livelli di ricercato, canale radio per le forze dell'ordine e telefono/SOS.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.3L18 9l-4.2 1.7L12 15l-1.8-4.3L6 9z"/></svg></span><div><b>Bridge Open Cosmetics</b><small>LED, colori e skin applicati senza duplicare la logica delle armi.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== ARSENALE ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Arsenale iniziale</h2>
+        <p class="lede reveal" data-d="1">Tutto è guidato da config: <code>weapons.yml</code>, <code>ammo.yml</code>, <code>attachments.yml</code> e <code>armor.yml</code>. Questi sono i contenuti inclusi di default, pronti da modificare.</p>
+
+        <h3 style="margin:10px 0 14px;font-size:1.05rem;">Armi</h3>
+        <div class="tags reveal" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip">ppk</span><span class="chip">beretta_92fs</span><span class="chip">glock_19</span><span class="chip">desert_eagle</span><span class="chip">ar_15</span><span class="chip">m4a1</span><span class="chip">hk416</span><span class="chip">famas</span><span class="chip">ak_47</span><span class="chip">fn_scar_h</span><span class="chip">mp5</span><span class="chip">mp7</span><span class="chip">sig_mcx_semiauto</span><span class="chip">sig_mcx_assault</span><span class="chip">remington_870</span><span class="chip">barrett_mrad</span><span class="chip">awp</span><span class="chip">manganello</span><span class="chip">tirapugni</span><span class="chip">knife</span><span class="chip">ariete</span><span class="chip">piede_di_porco</span><span class="chip">ghost_pistol</span><span class="chip">ghost_shotgun</span><span class="chip">ghost_smg</span><span class="chip">ghost_rifle</span>
+        </div>
+
+        <h3 style="margin:30px 0 6px;font-size:1.05rem;">Munizioni e caricatori</h3>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Calibro</th><th>Ogni voce può definire</th></tr></thead>
+            <tbody>
+              <tr><td><code>9mm</code>, <code>46mm</code>, <code>50ae</code>, <code>556nato</code>, <code>762nato</code>, <code>12gauge</code>, <code>magazines</code></td><td>Nome display, materiale, custom model data, stack massimo, classe di penetrazione, danno durabilità armor, moltiplicatore danno flesh e danno durabilità scudo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin:30px 0 6px;font-size:1.05rem;">Accessori</h3>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Accessorio</th><th>Slot</th></tr></thead>
+            <tbody>
+              <tr><td><code>holographic_sight</code>, <code>scope_3x</code>, <code>scope_10x</code></td><td><code>optic</code></td></tr>
+              <tr><td><code>vertical_grip</code></td><td><code>underbarrel</code></td></tr>
+              <tr><td><code>extended_magazine</code></td><td><code>magazine</code></td></tr>
+              <tr><td><code>suppressor</code></td><td><code>barrel</code></td></tr>
+              <tr><td><code>light_trigger</code>, <code>full_auto_converter</code></td><td><code>internal</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="lede reveal" style="margin-top:8px;">Ogni accessorio definisce categorie e armi compatibili, moltiplicatori di recoil, spread, ADS, hipfire, suono, distanza e mobilità, bonus zoom, tempo di installazione ed eventuale illegalità.</p>
+
+        <h3 style="margin:30px 0 14px;font-size:1.05rem;">Armature e caschi</h3>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><b>vest_light · vest_heavy · vest_heavy_plated</b><small>Riduzione danno, livello NIJ, durabilità, colore e penalità di movimento.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a8 8 0 0 1 16 0"/><path d="M2 14h20v3H2z"/></svg></span><div><b>ballistic_helmet · riot_helmet · sf_helmet</b><small>Riduzione danno, negazione headshot e prevenzione dello stun da melee.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== COMANDI ========================= -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Comandi</h2>
+        <p class="lede reveal" data-d="1">Nello snapshot attuale i comandi vengono registrati tramite il core storico; verranno consolidati in un <code>plugin.yml</code> proprio quando Open Weapons diventerà un plugin Paper autonomo.</p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Comando</th><th>Funzione</th></tr></thead>
+            <tbody>
+              <tr><td><code>/items</code></td><td>Apre il catalogo / dà gli item arma.</td></tr>
+              <tr><td><code>/weapons</code></td><td>Alias di <code>/items</code>.</td></tr>
+              <tr><td><code>/weaponconfig</code></td><td>Gestione della configurazione armi.</td></tr>
+              <tr><td><code>/weaponbench</code></td><td>Apre il banco armi per installare accessori.</td></tr>
+              <tr><td><code>/rob</code></td><td>Avvia una rapina su un bersaglio.</td></tr>
+              <tr><td><code>/frisk</code></td><td>Perquisisce un giocatore.</td></tr>
+              <tr><td><code>/arrest</code> · <code>/uncuff</code></td><td>Arresto e rilascio di un detenuto.</td></tr>
+              <tr><td><code>/bail</code> · <code>/arrests</code></td><td>Cauzione e gestione degli arresti.</td></tr>
+              <tr><td><code>/wanted</code></td><td>Gestione del livello di ricercato.</td></tr>
+              <tr><td><code>/lawradio</code></td><td>Canale radio delle forze dell'ordine.</td></tr>
+              <tr><td><code>/sos</code></td><td>Richiesta di soccorso / telefono.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONFIGURAZIONE ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Configurazione</h2>
+        <p class="lede reveal" data-d="1">I file di config pubblici vivono nel sorgente sotto <code>open-weapons/src/main/resources/</code> e vengono generati nella cartella dati del plugin al primo avvio.</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li><code>weapons.yml</code> — definizioni delle armi e varianti visuali</li>
+          <li><code>ammo.yml</code> — munizioni e caricatori</li>
+          <li><code>attachments.yml</code> — accessori e slot</li>
+          <li><code>armor.yml</code> — armature e caschi</li>
+          <li><code>messages_it.yml</code> — messaggi in italiano</li>
+        </ul>
+
+        <h3 style="margin:26px 0 8px;font-size:1.05rem;">Cosa definisce <code>weapons.yml</code></h3>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Categoria arma e materiale base</li>
+          <li>Custom model data e stati visuali (idle, aiming, reload)</li>
+          <li>Varianti visuali: caricatore, grip, ottica e combinazioni</li>
+          <li>Varianti colore e skin</li>
+          <li>Danno e moltiplicatore headshot</li>
+          <li>Fire rate, reload time e automatico</li>
+          <li>Dimensione caricatore e tipo munizione</li>
+          <li>Distanza massima e falloff del danno</li>
+          <li>Recoil e spread (hipfire, ADS, movimento, sneak, jump)</li>
+          <li>Suoni e model data del caricatore</li>
+        </ul>
+
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>config · esempio concettuale weapons.yml</span><button class="copy-btn" data-copy="#ow-yaml"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="ow-yaml">m4a1:
+  category: assault_rifles
+  ammo: 556nato
+  damage: 7.0
+  headshot-multiplier: 1.8
+  fire-rate: 100        # colpi/min
+  reload-time: 2.4      # secondi
+  magazine-size: 30
+  automatic: true
+  max-distance: 90.0</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BRIDGE & API ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Bridge e API combat</h2>
+        <p class="lede reveal" data-d="1">Due superfici di integrazione: un <em>bridge</em> verso Open Cosmetics e una API di <em>policy combat</em> per regole server-specific.</p>
+
+        <h3 style="margin:6px 0 4px;font-size:1.05rem;">Bridge con Open Cosmetics</h3>
+        <p class="lede reveal">Open Weapons registra un <code>OpenCosmeticsWeaponBridge</code> via Bukkit Services, così Open Cosmetics può applicare LED, colori e skin senza conoscere il registry interno delle armi: verifica se un item è un'arma, ne legge l'id e ne chiede il refresh visuale.</p>
+
+        <h3 style="margin:22px 0 4px;font-size:1.05rem;">API di policy combat</h3>
+        <p class="lede reveal">Una policy può negare l'uso dell'arma, il bersaglio o l'impatto, oppure semplicemente ascoltare gli eventi di sparo e hit — perfetta per safezone, eventi, training, regole per fazioni e protezioni temporanee.</p>
+        <div class="code reveal">
+          <div class="code__head"><span>java · WeaponCombatPolicy</span><button class="copy-btn" data-copy="#ow-api"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="ow-api">// Modello esposto dal modulo
+WeaponCombatPolicy     // la tua regola
+WeaponCombatDecision   // allow / deny
+WeaponUseContext       // chi spara, con cosa
+WeaponTargetContext    // bersaglio e condizioni
+WeaponImpactContext    // impatto e danno
+
+// Esempio: niente uso armi in safezone
+policy = (use) -> isSafezone(use.shooter().getLocation())
+        ? WeaponCombatDecision.deny()
+        : WeaponCombatDecision.allow();</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESOURCE PACK ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Resource pack</h2>
+        <p class="lede reveal" data-d="1">Gli asset arma in formato aperto stanno in <code>open-weapons/assets/resource-pack/</code>. La build Maven genera lo zip Minecraft-ready durante <code>package</code>.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>bash · genera il resource pack</span><button class="copy-btn" data-copy="#ow-pack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="ow-pack">bash scripts/build-resource-packs.sh
+# output: target/resource-packs/open-weapons-resource-pack.zip</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ROADMAP ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Roadmap del modulo</h2>
+        <p class="lede reveal" data-d="1">Open Weapons è uno snapshot pubblico in <em>decoupling</em>: il codice è già nel namespace <code>dev.openrp.weapons</code>, ma alcune classi dipendono ancora dal vecchio core roleplay. I prossimi passi:</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Creare <code>OpenWeaponsPlugin extends JavaPlugin</code></li>
+          <li>Spostare i comandi in <code>plugin.yml</code> / <code>paper-plugin.yml</code></li>
+          <li>Rimuovere i riferimenti al vecchio core</li>
+          <li>Introdurre una API pubblica minima o adapter opzionali</li>
+          <li>Rendere opzionali aziende, polizia e staff log</li>
+          <li>Aggiungere test su registry, model data e combat policy</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-cosmetics.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.3L18 9l-4.2 1.7L12 15l-1.8-4.3L6 9z"/></svg></div><div><h4>Open Cosmetics</h4><div class="id">open-cosmetics</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-access.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h4>Open Access</h4><div class="id">open-access</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-vending.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="8" y="17" width="8" height="2.5" rx="0.6"/></svg></div><div><h4>Open Vending Machines</h4><div class="id">open-vending-machines</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

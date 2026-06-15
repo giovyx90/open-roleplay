@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Cosmetics — Cosmetici arma: LED, colori e skin · Open Roleplay</title>
+  <meta name="description" content="Open Cosmetics: cosmetici per le armi senza duplicare il combat. LED, colori custom, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni cosmetiche per server Minecraft roleplay su Paper." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-cosmetics.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open Cosmetics — Cosmetici arma: LED, colori e skin · Open Roleplay" />
+  <meta property="og:description" content="Cosmetici per le armi: LED, colori custom, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni cosmetiche nel mondo." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-cosmetics.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-cosmetics.jar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Scarica
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-cosmetics.jar" target="_blank" rel="noopener">Scarica il JAR</a>
+  </div>
+
+  <main>
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open Cosmetics</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.3L18 9l-4.2 1.7L12 15l-1.8-4.3L6 9z"/><path d="M18.5 14l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open Cosmetics</h1>
+          <span class="badge">Standalone</span>
+        </div>
+        <p class="lead">Il modulo Paper dedicato ai cosmetici arma: gestisce personalizzazioni visuali e sonore — LED, colori, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni nel mondo — senza duplicare la logica del combat.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-cosmetics.jar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Scarica il JAR
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-cosmetics" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Sorgente
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://github.com/giovyx90/open-roleplay/wiki/Open-Cosmetics" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Wiki
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Namespace</span><b>dev.openrp.cosmetics</b></div>
+          <div class="m"><span>Comando</span><b>/opencosmetics · /weaponcosmetic</b></div>
+          <div class="m"><span>Dipendenze</span><b>nessuna obbligatoria</b></div>
+          <div class="m"><span>Soft-depend</span><b>Open Weapons</b></div>
+          <div class="m"><span>API</span><b>OpenCosmeticsApi</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COSA FA ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Cosa fa</h2>
+        <p class="lede reveal" data-d="1">Open Cosmetics si abilita anche senza Open Weapons: GUI, config e token restano disponibili, ma non può applicare cosmetici alle armi finché un modulo armi non registra il bridge.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><div><b>LED</b><small>Effetti luminosi applicati all'arma come cosmetico.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.1 0-.8.7-1.5 1.5-1.5H16a4 4 0 0 0 4-4c0-4.4-3.6-9.8-8-9.8z"/></svg></span><div><b>Colori custom</b><small>Finiture in formato <code>#RRGGBB</code>, anche da comando.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></span><div><b>Skin arma</b><small>Modelli alternativi per le armi supportate.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg></span><div><b>Gettoni consumabili</b><small>Token usa-e-applica per LED e colori.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><div><b>Editor e banco cosmetico</b><small>Interfacce per comporre e applicare cosmetici.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10a7 7 0 0 1 14 0c0 5.6-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></span><div><b>Stazioni cosmetiche</b><small>Postazioni piazzabili nel mondo per i cosmetici.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></span><div><b>Decorazione nome item</b><small>Display name e suffissi con gradienti sull'arma.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><div><b>Suoni personalizzati</b><small>Audio dedicati per skin: fire, hit, headshot e reload.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== COMANDI ========================= -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Comandi</h2>
+        <p class="lede reveal" data-d="1">Tutti i comandi sono accessibili anche tramite l'alias <code>/weaponcosmetic</code>.</p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Comando</th><th>Funzione</th></tr></thead>
+            <tbody>
+              <tr><td><code>/opencosmetics editor</code></td><td>Apre l'editor.</td></tr>
+              <tr><td><code>/opencosmetics gui [giocatore]</code></td><td>Apre la GUI.</td></tr>
+              <tr><td><code>/opencosmetics token &lt;led|color&gt; &lt;id&gt; [quantità] [giocatore]</code></td><td>Crea / dà gettoni.</td></tr>
+              <tr><td><code>/opencosmetics station &lt;create|remove|list&gt; [id]</code></td><td>Gestisce le stazioni.</td></tr>
+              <tr><td><code>/opencosmetics color &lt;#RRGGBB|none&gt;</code></td><td>Applica un colore.</td></tr>
+              <tr><td><code>/opencosmetics skin &lt;skin-id|none&gt; [giocatore]</code></td><td>Applica una skin.</td></tr>
+              <tr><td><code>/opencosmetics skins [weapon-id]</code></td><td>Elenca le skin.</td></tr>
+              <tr><td><code>/opencosmetics clear &lt;led|color|skin|all&gt;</code></td><td>Rimuove cosmetici.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== PERMESSI ========================= -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Permessi</h2>
+        <p class="lede reveal" data-d="1">Sono accettati anche gli alias compatibili <code>openrp.weapons.cosmetic.use</code> e <code>openrp.weapons.cosmetic.admin</code>.</p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Permesso</th><th>Descrizione</th><th>Default</th></tr></thead>
+            <tbody>
+              <tr><td><code>openrp.cosmetics.use</code></td><td>Usa editor / stazioni / cosmetici base.</td><td><span class="chip">true</span></td></tr>
+              <tr><td><code>openrp.cosmetics.admin</code></td><td>Crea token, stazioni e applica skin da comando.</td><td><span class="chip">op</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTENUTI INIZIALI ==================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Contenuti iniziali</h2>
+        <p class="lede reveal" data-d="1">Set di cosmetici incluso di default, pronto da estendere. Tutto è guidato da config.</p>
+
+        <h3 style="margin:10px 0 8px;font-size:1.05rem;">Armi supportate</h3>
+        <div class="tags reveal" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip">m4a1</span><span class="chip">ak_47</span><span class="chip">ppk</span><span class="chip">mp5</span><span class="chip">remington_870</span>
+        </div>
+
+        <h3 style="margin:26px 0 8px;font-size:1.05rem;">LED</h3>
+        <div class="tags reveal" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip">usa</span><span class="chip">italy</span><span class="chip">france</span><span class="chip">anime</span><span class="chip">pacman</span>
+        </div>
+
+        <h3 style="margin:26px 0 8px;font-size:1.05rem;">Colori</h3>
+        <div class="tags reveal" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip">red</span><span class="chip">blue</span><span class="chip">green</span><span class="chip">white</span><span class="chip">black</span>
+        </div>
+        <p class="lede reveal" style="margin-top:8px;">Oltre ai colori predefiniti è possibile applicare qualsiasi <code>#RRGGBB</code> da comando.</p>
+
+        <h3 style="margin:26px 0 8px;font-size:1.05rem;">Skin</h3>
+        <div class="tags reveal" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="chip">gold-reserve</span><span class="chip">sugarline-bakery</span><span class="chip">royal-masquerade (m4a1)</span>
+        </div>
+        <p class="lede reveal" style="margin-top:8px;">Le skin possono definire: <code>display-name</code>, <code>name-suffix</code>, <code>suffix-gradient</code>, <code>sound-fire</code>, <code>sound-hit</code>, <code>sound-headshot</code> e <code>sound-reload</code>.</p>
+      </div>
+    </section>
+
+    <!-- ===================== CONFIGURAZIONE ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Configurazione</h2>
+        <p class="lede reveal" data-d="1">La configurazione vive nel file <code>plugins/OpenCosmetics/weapon_cosmetics.yml</code>, organizzato nelle sezioni <code>weapons</code>, <code>leds</code>, <code>colors</code> e <code>skins</code>.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>config · weapon_cosmetics.yml</span><button class="copy-btn" data-copy="#oc-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="oc-1">leds:
+  italy:
+    display-name: "LED Italia"
+    token-material: PAPER
+    token-custom-model-data: 9011
+colors:
+  red:
+    display-name: "Finitura rossa"
+    hex: "#B02E26"
+skins:
+  m4a1:
+    royal-masquerade:
+      display-name: "M4A1 Riserva Aurum"
+      suffix-gradient: ["#A96F00", "#FFD76B"]
+      sound-fire: "weapons.m4a1.skin.fire"</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== BRIDGE OPEN WEAPONS =================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Bridge con Open Weapons</h2>
+        <p class="lede reveal" data-d="1">Open Cosmetics pubblica <code>OpenCosmeticsApi</code>; Open Weapons implementa e registra <code>OpenCosmeticsWeaponBridge</code> via Bukkit Services. Il bridge permette di:</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Riconoscere se un item è un'arma</li>
+          <li>Ottenere l'id arma</li>
+          <li>Chiedere il refresh del model data</li>
+          <li>Mantenere coerenti skin / LED / colore / ottica / grip / caricatore</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RESOURCE PACK ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Resource pack</h2>
+        <p class="lede reveal" data-d="1">Gli asset cosmetici in formato aperto stanno in <code>open-cosmetics/assets/resource-pack/</code>. La build genera lo zip Minecraft-ready in <code>target/resource-packs/open-cosmetics-resource-pack.zip</code>.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>bash · genera il resource pack</span><button class="copy-btn" data-copy="#oc-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="oc-2">bash scripts/build-resource-packs.sh
+# output: target/resource-packs/open-cosmetics-resource-pack.zip</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-weapons.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="2.4"/></svg></div><div><h4>Open Weapons</h4><div class="id">open-weapons</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-access.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h4>Open Access</h4><div class="id">open-access</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-vending.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="8" y="17" width="8" height="2.5" rx="0.6"/></svg></div><div><h4>Open Vending Machines</h4><div class="id">open-vending-machines</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

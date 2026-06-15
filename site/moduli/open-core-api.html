@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Core API — Contratti pubblici condivisi · Open Roleplay</title>
+  <meta name="description" content="Open Core API: i contratti pubblici minimi condivisi dai plugin Open Roleplay — lifecycle dei moduli, accesso opzionale al database, messaggi, permessi, stato HUD e utility item. Una libreria provided, senza logica di gameplay." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-core-api.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open Core API — Contratti pubblici condivisi · Open Roleplay" />
+  <meta property="og:description" content="I tipi pubblici stabili condivisi dai moduli Open Roleplay: lifecycle, database opzionale, messaggi, permessi, stato HUD e utility item. Una libreria provided, niente gameplay." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-core-api.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-core-api.jar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Scarica
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-core-api.jar" target="_blank" rel="noopener">Scarica il JAR</a>
+  </div>
+
+  <main>
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open Core API</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><line x1="13.5" y1="4" x2="10.5" y2="20"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open Core API</h1>
+          <span class="badge">Contratti</span>
+        </div>
+        <p class="lead">I tipi pubblici stabili condivisi dai moduli: lifecycle, accesso opzionale al database, messaggi, permessi, stato HUD e utility item. Niente logica di gameplay.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-core-api" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Sorgente
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/blob/main/open-core-api/README.md" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            README
+          </a>
+          <a class="btn btn-outline btn-lg" href="../index.html#moduli">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            Tutti i moduli
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Namespace</span><b>dev.openrp.core.api</b></div>
+          <div class="m"><span>Tipo</span><b>Libreria (provided)</b></div>
+          <div class="m"><span>Plugin</span><b>No</b></div>
+          <div class="m"><span>Gameplay</span><b>Nessuno</b></div>
+          <div class="m"><span>Usata da</span><b>Tutti i moduli</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COSA OFFRE ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Cosa offre</h2>
+        <p class="lede reveal" data-d="1">Open Core API non contiene logica di gameplay: è solo l'insieme dei contratti che i moduli Open Roleplay condividono per parlare la stessa lingua.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/><polyline points="21 4 21 9 16 9"/></svg></span><div><b>Lifecycle dei moduli</b><small>Registrazione, stato e reload di ogni modulo in modo uniforme.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span><div><b>Accesso opzionale al database</b><small>Contratto verso il database condiviso, sempre opzionale.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><b>Messaggi comuni</b><small>Tipi condivisi per feedback e messaggistica coerente.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Permessi comuni</b><small>Contratti di permesso riusabili tra i moduli.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><div><b>Stato temporaneo HUD</b><small>Servizio per lo stato HUD effimero condiviso tra i moduli.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span><div><b>Utility base per item Bukkit</b><small>Builder di item per costruire <code>ItemStack</code> in modo consistente.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TIPI PUBBLICI ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Tipi pubblici</h2>
+        <p class="lede reveal" data-d="1">L'API espone un piccolo set di tipi stabili. Ogni tipo ha un ruolo preciso e nessuna dipendenza dal gameplay dei singoli moduli.</p>
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>Tipo</th><th>Ruolo</th></tr></thead>
+            <tbody>
+              <tr><td><code>OpenRoleplayCore</code></td><td>Punto d'ingresso del core, recuperato via Bukkit Services.</td></tr>
+              <tr><td><code>OpenModule</code>, <code>OpenModuleManager</code>, <code>OpenModuleReloadResult</code>, <code>OpenModuleState</code></td><td>Lifecycle e registrazione dei moduli.</td></tr>
+              <tr><td><code>OpenDatabase</code></td><td>Accesso opzionale al database condiviso.</td></tr>
+              <tr><td><code>OpenHudService</code></td><td>Stato HUD temporaneo.</td></tr>
+              <tr><td><code>OpenMessages</code></td><td>Messaggi comuni.</td></tr>
+              <tr><td><code>OpenPermissions</code></td><td>Permessi comuni.</td></tr>
+              <tr><td><code>OpenItemBuilder</code></td><td>Utility base per item Bukkit.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== USO NEI MODULI ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Uso nei moduli</h2>
+        <p class="lede reveal" data-d="1">Un modulo dichiara Open Core API come dipendenza <code>provided</code> e recupera il servizio del core tramite il Bukkit Services Manager.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>java · recupero del core via Bukkit Services</span><button class="copy-btn" data-copy="#oapi-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="oapi-1">RegisteredServiceProvider&lt;OpenRoleplayCore&gt; provider =
+        Bukkit.getServicesManager().getRegistration(OpenRoleplayCore.class);</code></pre>
+        </div>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>I moduli devono restare difensivi: Open Core può non essere installato.</li>
+          <li>Anche quando il core è presente, il database può essere disabilitato.</li>
+          <li>Controlla sempre che il <code>provider</code> non sia <code>null</code> prima di usarlo.</li>
+          <li>Tratta l'accesso al database come opzionale, mai garantito.</li>
+        </ul>
+        <p class="lede reveal" data-d="1">I contratti di questa libreria sono implementati da <a href="open-core.html">Open Core</a>, il plugin che fornisce il core condiviso a tutti i moduli.</p>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-core.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1l2.1-2.1M17 7l2.1-2.1"/></svg></div><div><h4>Open Core</h4><div class="id">open-core</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-access.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h4>Open Access</h4><div class="id">open-access</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-weapons.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="2.4"/></svg></div><div><h4>Open Weapons</h4><div class="id">open-weapons</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
