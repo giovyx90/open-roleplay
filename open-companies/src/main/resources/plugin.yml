@@ -1,0 +1,76 @@
+name: OpenCompanies
+version: '${project.version}'
+main: dev.openrp.companies.OpenCompaniesPlugin
+api-version: '1.21'
+description: Adapter-first companies, chamber of commerce and company assets for Paper roleplay servers.
+authors: [Open Roleplay Workshop]
+# Every entry below is an OPTIONAL soft dependency. The core works without any of them:
+# - OpenCore           -> module lifecycle integration (reflective, optional)
+# - Vault              -> example economy adapter (reflective, optional)
+# - LuckPerms          -> permission/identity routing (handled through the Bukkit permission layer)
+# - WorldGuard         -> region-aware headquarters (optional RegionAdapter, defaults to no-op)
+# - OpenVendingMachines-> registers a company BusinessAdapter so machines can belong to companies
+softdepend: [OpenCore, Vault, LuckPerms, WorldGuard, OpenVendingMachines]
+
+commands:
+  company:
+    description: Open Companies player and administration command.
+    usage: /company <help|create|apply|list|info|members|invite|fire|role|leave|licenses|assets|admin>
+    aliases: [opencompanies, ocompanies, companies]
+    permission: opencompanies.use
+
+permissions:
+  opencompanies.*:
+    description: Grants every Open Companies permission.
+    default: op
+    children:
+      opencompanies.admin: true
+      opencompanies.use: true
+      opencompanies.create: true
+      opencompanies.apply: true
+      opencompanies.manage: true
+      opencompanies.invite: true
+      opencompanies.fire: true
+      opencompanies.role: true
+      opencompanies.assets: true
+      opencompanies.reload: true
+  opencompanies.admin:
+    description: Full administrative control over every company, bypassing role checks.
+    default: op
+    children:
+      opencompanies.create.admin: true
+      opencompanies.delete: true
+      opencompanies.reload: true
+  opencompanies.create.admin:
+    description: Allows creating a company on behalf of another player (ADMIN_ONLY / staff flow).
+    default: op
+  opencompanies.delete:
+    description: Allows deleting any company.
+    default: op
+  opencompanies.use:
+    description: Allows using the /company command and read-only actions.
+    default: true
+  opencompanies.create:
+    description: Allows founding a company directly (only effective in PLAYER_DIRECT mode).
+    default: true
+  opencompanies.apply:
+    description: Allows submitting a company application (only effective in PLAYER_APPLICATION mode).
+    default: true
+  opencompanies.manage:
+    description: Allows managing a company the player is authorized in (identity, finance, ...).
+    default: true
+  opencompanies.invite:
+    description: Allows inviting members into an authorized company.
+    default: true
+  opencompanies.fire:
+    description: Allows removing members from an authorized company.
+    default: true
+  opencompanies.role:
+    description: Allows changing member roles in an authorized company.
+    default: true
+  opencompanies.assets:
+    description: Allows registering and using company assets.
+    default: true
+  opencompanies.reload:
+    description: Allows reloading Open Companies configuration.
+    default: op

@@ -1,0 +1,173 @@
+general:
+  player_only: "Only players can use this command."
+  no_permission: "You do not have permission to do that."
+  reload_done: "Open Companies configuration reloaded."
+  unknown_subcommand: "Unknown subcommand. Try /company help."
+  player_not_found: "Player '{player}' not found."
+  cancelled: "Operation cancelled."
+
+command:
+  header: "Open Companies commands:"
+  help:
+    help: "/company help - show this help"
+    create: "/company create <name> <type> - found a company"
+    apply: "/company apply <name> <type> [description] - submit a company application"
+    list: "/company list - list companies"
+    info: "/company info [company] - show a company's details"
+    members: "/company members - list your company's members"
+    invite: "/company invite <player> <role> | accept | deny"
+    fire: "/company fire <player> - remove a member"
+    role: "/company role <player> <role> - change a member's role"
+    leave: "/company leave - leave your company"
+    licenses: "/company licenses - show your company's licenses"
+    assets: "/company assets - list your company's assets"
+    admin: "/company admin - staff commands"
+  admin:
+    header: "Open Companies staff commands:"
+    help:
+      create: "/company admin create <owner> <name> <type>"
+      delete: "/company admin delete <company>"
+      setstatus: "/company admin setstatus <company> <ACTIVE|SUSPENDED|DISSOLVED>"
+      setowner: "/company admin setowner <company> <player>"
+      license: "/company admin license <grant|revoke> <company> <license>"
+      sethq: "/company admin sethq <company> - set HQ to your position"
+      applications: "/company admin applications - list pending applications"
+      approve: "/company admin approve <id>"
+      deny: "/company admin deny <id> [reason]"
+      reload: "/company admin reload"
+
+validation:
+  ok: "Ok."
+  name_required: "You must provide a company name."
+  name_too_short: "That name is too short (minimum {min} characters)."
+  name_too_long: "That name is too long (maximum {max} characters)."
+  name_invalid_chars: "That name contains characters that are not allowed."
+  name_reserved: "The name '{name}' is reserved."
+  type_required: "You must provide a company type."
+  type_not_allowed: "Company type not allowed: '{type}'."
+
+creation:
+  player_disabled: "Free company creation is disabled (mode {mode})."
+  cooldown: "Wait {seconds} seconds before creating another company."
+  limit_reached: "You already own the maximum number of companies ({limit})."
+  name_taken: "A company called '{name}' already exists."
+  cannot_afford: "You cannot afford the creation cost ({cost})."
+  cancelled: "Creation cancelled."
+
+company:
+  created: "Company '{name}' created (id {id})."
+  deleted: "Company '{name}' (id {id}) deleted."
+  not_found: "Company '{company}' not found."
+  none: "You are not part of any company."
+  not_active: "The company is not active (status {status})."
+  full: "The company has reached its member limit ({limit})."
+
+member:
+  no_permission: "Your role does not allow that."
+  not_found: "Member not found in this company."
+  cannot_remove_owner: "You cannot remove the company owner."
+  cannot_fire_higher: "You cannot fire a member of equal or higher rank."
+  left: "{player} left {company}."
+  fired: "{player} was fired from {company}."
+
+role:
+  changed: "{player}'s role set to {role}."
+  unchanged: "That member already holds the role {role}."
+  unknown: "Unknown role '{role}'."
+  cannot_assign_ceo: "You cannot assign the CEO role; use ownership transfer."
+  cannot_change_owner: "You cannot change the owner's role."
+  insufficient_rank: "Your rank is not high enough to assign that role."
+  ceo: "CEO"
+  director: "Director"
+  vice_director: "Vice Director"
+  manager: "Manager"
+  employee: "Employee"
+  training: "Trainee"
+
+invite:
+  sent: "Invitation sent for company {company} as {role}."
+  received: "<yellow>You have been invited to <white>{company}</white> as <white>{role}</white>. Use /company invite accept.</yellow>"
+  accepted: "You joined {company} as {role}."
+  denied: "Invitation denied."
+  none: "You have no pending invitation."
+  company_gone: "The company from the invitation no longer exists."
+  already_member: "You are already a member of that company."
+  role_too_high: "You cannot invite someone at a role equal to or above your own."
+
+owner:
+  changed: "New owner of {company}: {player}."
+  unchanged: "That player is already the owner."
+
+application:
+  disabled: "Company applications are disabled (mode {mode})."
+  submitted: "Application submitted (id {id}) for '{name}'. Wait for staff approval."
+  approved: "Application approved: '{name}' assigned to {player}."
+  denied: "Application '{name}' denied."
+  not_found: "Application not found."
+  not_pending: "That application has already been handled."
+  already_pending: "You already have a pending application."
+  name_taken: "A company or application named '{name}' already exists."
+  list_empty: "No pending applications."
+  list_header: "Pending applications ({count}):"
+  list_entry: "<gray>- <white>{id}</white> {name} (<aqua>{type}</aqua>) by <yellow>{player}</yellow></gray>"
+
+license:
+  granted: "License {license} granted to {company}."
+  revoked: "License {license} revoked from {company}."
+  not_held: "The company does not hold the {license} license."
+  unknown: "Unknown license '{license}'."
+
+status:
+  changed: "{company}'s status changed to {status}."
+  unchanged: "The company is already {status}."
+  unknown: "Unknown status '{status}'."
+  active: "active"
+  suspended: "suspended"
+  dissolved: "dissolved"
+
+license_status:
+  none: "none"
+  pending: "pending"
+  granted: "active"
+  suspended: "suspended"
+  revoked: "revoked"
+
+hq:
+  set: "{company}'s headquarters set to your position."
+  region_denied: "You cannot set the headquarters in this area."
+
+asset:
+  registered: "Asset {type} registered (id {id})."
+  removed: "Asset {type} (id {id}) removed."
+  not_found: "Asset not found."
+  occupied: "There is already an asset at this position."
+  unknown_type: "Unknown asset type."
+  bad_position: "Invalid asset position."
+
+list:
+  empty: "No companies registered."
+  header: "Companies ({count}):"
+  entry: "<gray>- <white>{id}</white> ({name}) type <aqua>{type}</aqua>, {members} members, {status}</gray>"
+
+info:
+  header: "Company {name}"
+  id: "<gray>Id: <white>{id}</white></gray>"
+  type: "<gray>Type: <white>{type}</white></gray>"
+  owner: "<gray>Owner: <white>{owner}</white></gray>"
+  status: "<gray>Status: <white>{status}</white></gray>"
+  members: "<gray>Members: <white>{members}/{max}</white></gray>"
+  licenses: "<gray>Licenses: <white>{licenses}</white></gray>"
+  hq: "<gray>HQ: <white>{world} {x},{y},{z}</white></gray>"
+
+members:
+  header: "Members of {name}:"
+  entry: "<gray>- <white>{player}</white> ({role})</gray>"
+
+licenses:
+  header: "Licenses of {name}:"
+  entry: "<gray>- {license}: <white>{status}</white></gray>"
+
+assets:
+  empty: "Your company has no assets."
+  header: "Assets of {name} ({count}):"
+  entry: "<gray>- <white>{id}</white> {type} @ {world} {x},{y},{z}</gray>"

@@ -34,6 +34,7 @@ copy_module_jar "open-access" "open-access.jar"
 copy_module_jar "open-cosmetics" "open-cosmetics.jar"
 copy_module_jar "open-weapons" "open-weapons.jar"
 copy_module_jar "open-vending-machines" "open-vending-machines.jar"
+copy_module_jar "open-companies" "open-companies.jar"
 
 if compgen -G "$ROOT_DIR/target/resource-packs/*.zip" > /dev/null; then
   cp "$ROOT_DIR"/target/resource-packs/*.zip "$OUT_DIR"/

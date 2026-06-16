@@ -14,6 +14,7 @@ site/
 │   ├── open-access.html
 │   ├── open-cosmetics.html
 │   ├── open-vending.html
+│   ├── open-companies.html
 │   ├── open-core.html
 │   └── open-core-api.html
 ├── assets/
@@ -58,6 +59,7 @@ open-weapons.jar
 open-access.jar
 open-cosmetics.jar
 open-vending-machines.jar
+open-companies.jar
 open-core-paper.jar
 open-core-api.jar
 open-weapons-resource-pack.zip

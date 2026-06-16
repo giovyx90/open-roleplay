@@ -28,6 +28,7 @@
         <module>open-cosmetics</module>
         <module>open-weapons</module>
         <module>open-vending-machines</module>
+        <module>open-companies</module>
     </modules>
 
     <properties>

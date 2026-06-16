@@ -28,6 +28,7 @@ usati insieme ma leggibili e modificabili anche uno alla volta.
 | `open-cosmetics` | Standalone iniziale | Plugin Paper per cosmetici arma: LED, colori, skin, gettoni, GUI/editor e stazioni cosmetiche. Se trova OpenCore si registra in `/opencore status`. |
 | `open-weapons` | Standalone iniziale, compilabile | Plugin Paper per armi, munizioni, accessori, armature, granate, C4, manette, taser, utility RP, rapine e perquisizioni. Usa bridge open/no-op per servizi opzionali non ancora pubblicati. |
 | `open-vending-machines` | Standalone iniziale, compilabile | Plugin Paper adapter-first per distributori automatici roleplay: prodotti, stock, prezzi, casse, aziende opzionali e integrazioni economy/inventory sostituibili. |
+| `open-companies` | Standalone iniziale, compilabile | Plugin Paper adapter-first per aziende roleplay: ruoli, membri, inviti, camera di commercio (stato, licenze, sede), asset aziendali e API pubblica. Modalita' creazione PLAYER_DIRECT/PLAYER_APPLICATION/ADMIN_ONLY, con integrazione opzionale verso OpenVendingMachines. |
 
 ## Stato della pubblicazione
 
@@ -43,6 +44,7 @@ Stato attuale:
 - `OpenCosmetics`: plugin standalone iniziale, compatibile con OpenCore quando presente.
 - `OpenWeapons`: plugin standalone iniziale e compilabile; armi, utility, rapine e perquisizioni funzionano come base pubblica, mentre le integrazioni opzionali degradano tramite bridge minimali quando il relativo modulo non e' presente.
 - `OpenVendingMachines`: plugin standalone iniziale e compilabile; distributori automatici configurabili con adapter sostituibili per economy, inventario, aziende, storage, notifiche e audit.
+- `OpenCompanies`: plugin standalone iniziale e compilabile; aziende con ruoli/capability, inviti, camera di commercio (stato, licenze, sede) e asset aziendali, con adapter sostituibili per storage, economy, permessi, regioni, identita', notifiche e audit. Espone `OpenCompaniesApi` e si integra opzionalmente con OpenVendingMachines.
 
 La priorita' dei prossimi passaggi e':
 

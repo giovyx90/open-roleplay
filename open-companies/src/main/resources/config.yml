@@ -1,0 +1,93 @@
+# ============================================================================
+#  Open Companies - main configuration
+#  ---------------------------------------------------------------------------
+#  ADAPTER-FIRST: the plugin ships with working defaults for every external
+#  system (storage, economy, permissions, regions, identity, notifications,
+#  logging) but hardcodes none of them. Swap any adapter from your own plugin
+#  through the public API (OpenCompaniesApi#adapters) - see the README.
+# ============================================================================
+
+branding:
+  product-name: "Open Companies"
+  message-prefix: "<gold>[Companies]</gold> "
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+# ---------------------------------------------------------------------------
+# Which bundled adapter implementation to activate on startup. Each value maps
+# to a default that other plugins can replace at runtime through the API.
+# ---------------------------------------------------------------------------
+adapters:
+  economy: default        # default (in-memory demo wallet) | vault (only if Vault is installed)
+  storage: yaml           # yaml | memory
+  permission: bukkit      # bukkit (Bukkit permission nodes; also reflects LuckPerms)
+  region: noop            # noop (headquarters are plain saved locations)
+  identity: noop          # noop (no tab/chat prefix is imposed)
+  notification: chat      # chat
+  logging: file           # file | console | none
+
+economy:
+  # Logical account the creation fee is charged from. The adapter decides what it means.
+  account: cash
+  currency-symbol: "$"
+  # Starting balance handed to a player the first time the in-memory "default" economy adapter
+  # sees them. Ignored by real economy adapters (e.g. Vault).
+  demo-starting-balance: 1000.0
+
+storage:
+  file: companies-data.yml    # used by the "yaml" storage adapter
+
+logging:
+  file: companies-audit.log   # used by the "file" logging adapter
+
+# ---------------------------------------------------------------------------
+# How companies are created. The SAME code supports all three modes; you only
+# change this value, no code changes needed.
+#   PLAYER_DIRECT      -> players found companies freely with /company create
+#   PLAYER_APPLICATION -> players /company apply, staff approve/deny
+#   ADMIN_ONLY         -> only staff create, via /company admin create
+# ---------------------------------------------------------------------------
+companies:
+  creation:
+    mode: PLAYER_DIRECT
+    max-owned-per-player: 1        # companies a single player may own; -1 = unlimited
+    max-members-per-company: 30
+    creation-cost: 0.0             # charged through the economy adapter on /company create
+    cooldown-seconds: 60           # anti-spam window between a player's company creations
+    allowed-types:
+      - food
+      - retail
+      - media
+      - transport
+      - real_estate
+      - healthcare
+      - security
+      - manufacturing
+      - generic
+    name:
+      min-length: 3
+      max-length: 32
+      allowed-regex: "^[A-Za-z0-9 _-]+$"
+      reserved:
+        - admin
+        - staff
+        - police
+        - government
+        - chamber
+
+# ---------------------------------------------------------------------------
+# Optional integration with Open Vending Machines. When that plugin is present
+# Open Companies registers a BusinessAdapter so machines can belong to companies
+# and respect company roles. Harmless when Open Vending Machines is absent.
+# ---------------------------------------------------------------------------
+integration:
+  vending:
+    enabled: true
+    # false -> any Employee+ may restock; true -> restock requires Manager+
+    restock-requires-manager: false
+    # machines a company may own through the vending integration; -1 = unlimited
+    default-machine-limit: -1
+
+debug: false

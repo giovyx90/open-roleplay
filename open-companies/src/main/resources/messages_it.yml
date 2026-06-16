@@ -1,0 +1,173 @@
+general:
+  player_only: "Solo i giocatori possono usare questo comando."
+  no_permission: "Non hai il permesso di farlo."
+  reload_done: "Configurazione di Open Companies ricaricata."
+  unknown_subcommand: "Sottocomando sconosciuto. Prova /company help."
+  player_not_found: "Giocatore '{player}' non trovato."
+  cancelled: "Operazione annullata."
+
+command:
+  header: "Comandi di Open Companies:"
+  help:
+    help: "/company help - mostra questo aiuto"
+    create: "/company create <nome> <tipo> - fonda un'azienda"
+    apply: "/company apply <nome> <tipo> [descrizione] - invia una richiesta di apertura"
+    list: "/company list - elenca le aziende"
+    info: "/company info [azienda] - mostra i dettagli di un'azienda"
+    members: "/company members - elenca i membri della tua azienda"
+    invite: "/company invite <player> <ruolo> | accept | deny"
+    fire: "/company fire <player> - licenzia un membro"
+    role: "/company role <player> <ruolo> - cambia il ruolo di un membro"
+    leave: "/company leave - lascia la tua azienda"
+    licenses: "/company licenses - mostra le licenze della tua azienda"
+    assets: "/company assets - elenca gli asset della tua azienda"
+    admin: "/company admin - comandi di staff"
+  admin:
+    header: "Comandi staff di Open Companies:"
+    help:
+      create: "/company admin create <owner> <nome> <tipo>"
+      delete: "/company admin delete <azienda>"
+      setstatus: "/company admin setstatus <azienda> <ACTIVE|SUSPENDED|DISSOLVED>"
+      setowner: "/company admin setowner <azienda> <player>"
+      license: "/company admin license <grant|revoke> <azienda> <licenza>"
+      sethq: "/company admin sethq <azienda> - imposta la sede sulla tua posizione"
+      applications: "/company admin applications - elenca le richieste in sospeso"
+      approve: "/company admin approve <id>"
+      deny: "/company admin deny <id> [motivo]"
+      reload: "/company admin reload"
+
+validation:
+  ok: "Ok."
+  name_required: "Devi indicare un nome per l'azienda."
+  name_too_short: "Il nome e' troppo corto (minimo {min} caratteri)."
+  name_too_long: "Il nome e' troppo lungo (massimo {max} caratteri)."
+  name_invalid_chars: "Il nome contiene caratteri non consentiti."
+  name_reserved: "Il nome '{name}' e' riservato."
+  type_required: "Devi indicare un tipo di azienda."
+  type_not_allowed: "Tipo di azienda non consentito: '{type}'."
+
+creation:
+  player_disabled: "La creazione libera di aziende e' disabilitata (modalita' {mode})."
+  cooldown: "Aspetta {seconds} secondi prima di creare un'altra azienda."
+  limit_reached: "Hai gia' raggiunto il numero massimo di aziende ({limit})."
+  name_taken: "Esiste gia' un'azienda chiamata '{name}'."
+  cannot_afford: "Non puoi permetterti il costo di creazione ({cost})."
+  cancelled: "Creazione annullata."
+
+company:
+  created: "Azienda '{name}' creata (id {id})."
+  deleted: "Azienda '{name}' (id {id}) eliminata."
+  not_found: "Azienda '{company}' non trovata."
+  none: "Non fai parte di nessuna azienda."
+  not_active: "L'azienda non e' attiva (stato {status})."
+  full: "L'azienda ha raggiunto il limite di membri ({limit})."
+
+member:
+  no_permission: "Il tuo ruolo non ti consente di farlo."
+  not_found: "Membro non trovato in questa azienda."
+  cannot_remove_owner: "Non puoi rimuovere il proprietario dell'azienda."
+  cannot_fire_higher: "Non puoi licenziare un membro di pari grado o superiore."
+  left: "{player} ha lasciato {company}."
+  fired: "{player} e' stato licenziato da {company}."
+
+role:
+  changed: "Ruolo di {player} impostato a {role}."
+  unchanged: "Il membro ha gia' il ruolo {role}."
+  unknown: "Ruolo sconosciuto '{role}'."
+  cannot_assign_ceo: "Non puoi assegnare il ruolo CEO; usa il trasferimento di proprieta'."
+  cannot_change_owner: "Non puoi cambiare il ruolo del proprietario."
+  insufficient_rank: "Non hai grado sufficiente per assegnare questo ruolo."
+  ceo: "Amministratore Delegato"
+  director: "Direttore"
+  vice_director: "Vice Direttore"
+  manager: "Manager"
+  employee: "Dipendente"
+  training: "Tirocinante"
+
+invite:
+  sent: "Invito inviato per l'azienda {company} come {role}."
+  received: "<yellow>Sei stato invitato in <white>{company}</white> come <white>{role}</white>. Usa /company invite accept.</yellow>"
+  accepted: "Sei entrato in {company} come {role}."
+  denied: "Invito rifiutato."
+  none: "Non hai inviti in sospeso."
+  company_gone: "L'azienda dell'invito non esiste piu'."
+  already_member: "Sei gia' membro di quell'azienda."
+  role_too_high: "Non puoi invitare qualcuno a un ruolo pari o superiore al tuo."
+
+owner:
+  changed: "Nuovo proprietario di {company}: {player}."
+  unchanged: "Quel giocatore e' gia' il proprietario."
+
+application:
+  disabled: "Le richieste di apertura sono disabilitate (modalita' {mode})."
+  submitted: "Richiesta inviata (id {id}) per '{name}'. Attendi l'approvazione dello staff."
+  approved: "Richiesta approvata: '{name}' assegnata a {player}."
+  denied: "Richiesta '{name}' rifiutata."
+  not_found: "Richiesta non trovata."
+  not_pending: "Quella richiesta e' gia' stata gestita."
+  already_pending: "Hai gia' una richiesta in sospeso."
+  name_taken: "Esiste gia' un'azienda o richiesta con il nome '{name}'."
+  list_empty: "Nessuna richiesta in sospeso."
+  list_header: "Richieste in sospeso ({count}):"
+  list_entry: "<gray>- <white>{id}</white> {name} (<aqua>{type}</aqua>) di <yellow>{player}</yellow></gray>"
+
+license:
+  granted: "Licenza {license} concessa a {company}."
+  revoked: "Licenza {license} revocata a {company}."
+  not_held: "L'azienda non possiede la licenza {license}."
+  unknown: "Licenza sconosciuta '{license}'."
+
+status:
+  changed: "Stato di {company} cambiato in {status}."
+  unchanged: "L'azienda e' gia' nello stato {status}."
+  unknown: "Stato sconosciuto '{status}'."
+  active: "attiva"
+  suspended: "sospesa"
+  dissolved: "sciolta"
+
+license_status:
+  none: "nessuna"
+  pending: "in attesa"
+  granted: "attiva"
+  suspended: "sospesa"
+  revoked: "revocata"
+
+hq:
+  set: "Sede di {company} impostata sulla tua posizione."
+  region_denied: "Non puoi impostare la sede in questa area."
+
+asset:
+  registered: "Asset {type} registrato (id {id})."
+  removed: "Asset {type} (id {id}) rimosso."
+  not_found: "Asset non trovato."
+  occupied: "C'e' gia' un asset in questa posizione."
+  unknown_type: "Tipo di asset sconosciuto."
+  bad_position: "Posizione dell'asset non valida."
+
+list:
+  empty: "Nessuna azienda registrata."
+  header: "Aziende ({count}):"
+  entry: "<gray>- <white>{id}</white> ({name}) tipo <aqua>{type}</aqua>, {members} membri, {status}</gray>"
+
+info:
+  header: "Azienda {name}"
+  id: "<gray>Id: <white>{id}</white></gray>"
+  type: "<gray>Tipo: <white>{type}</white></gray>"
+  owner: "<gray>Proprietario: <white>{owner}</white></gray>"
+  status: "<gray>Stato: <white>{status}</white></gray>"
+  members: "<gray>Membri: <white>{members}/{max}</white></gray>"
+  licenses: "<gray>Licenze: <white>{licenses}</white></gray>"
+  hq: "<gray>Sede: <white>{world} {x},{y},{z}</white></gray>"
+
+members:
+  header: "Membri di {name}:"
+  entry: "<gray>- <white>{player}</white> ({role})</gray>"
+
+licenses:
+  header: "Licenze di {name}:"
+  entry: "<gray>- {license}: <white>{status}</white></gray>"
+
+assets:
+  empty: "La tua azienda non ha asset."
+  header: "Asset di {name} ({count}):"
+  entry: "<gray>- <white>{id}</white> {type} @ {world} {x},{y},{z}</gray>"
