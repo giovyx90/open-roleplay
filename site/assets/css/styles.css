@@ -178,9 +178,21 @@ h1, h2, h3, h4 { font-family: var(--font-disp); line-height: 1.12; font-weight: 
   max-width: 100%; white-space: normal;
 }
 .badge--amber { background: rgba(245, 158, 11, .12); color: #b45309; border-color: rgba(245, 158, 11, .35); }
-.badge--blue  { background: rgba(56, 132, 255, .12); color: #2563eb; border-color: rgba(56, 132, 255, .35); }
+.badge--blue  { background: rgba(56, 132, 255, .12); color: #1d4ed8; border-color: rgba(56, 132, 255, .35); }
 [data-theme="dark"] .badge--amber { color: #fbbf24; }
 [data-theme="dark"] .badge--blue  { color: #7eb0ff; }
+
+/* ------------------------------------------------------------------ */
+/* Skip link (accessibility): hidden until focused                     */
+/* ------------------------------------------------------------------ */
+.skip-link {
+  position: absolute; left: 8px; top: -48px; z-index: 200;
+  padding: 10px 16px; border-radius: 10px;
+  background: var(--accent, #16a34a); color: #04130a;
+  font-weight: 600; text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 8px; outline: 2px solid #04130a; outline-offset: 2px; }
 
 /* ------------------------------------------------------------------ */
 /* 5. Navbar                                                           */

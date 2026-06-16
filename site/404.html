@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" data-theme="light">
 <head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 — Pagina non trovata · Open Roleplay</title>
@@ -17,9 +21,11 @@
     .nf p { color: var(--text-soft); font-size: 1.1rem; margin: 14px 0 30px; }
     .nf .hero-cta { justify-content: center; }
   </style>
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body>
-  <main class="nf">
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+  <main class="nf" id="main">
     <div class="bg-grid"></div>
     <div class="bg-glow bg-glow--a"></div>
     <div class="bg-glow bg-glow--b"></div>

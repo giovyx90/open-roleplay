@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" data-theme="light">
 <head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Roleplay — Moduli Paper open source per Minecraft RP</title>
@@ -13,16 +17,35 @@
   <meta property="og:title" content="Open Roleplay — Moduli Paper open source per Minecraft RP" />
   <meta property="og:description" content="La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare, adapter-first." />
   <meta property="og:url" content="https://openroleplay.it/" />
-  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.svg" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Open Roleplay" />
+  <meta name="twitter:image" content="https://openroleplay.it/assets/img/og-cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260616-changelog" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260616-a11y" />
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Open Roleplay",
+    "url": "https://openroleplay.it/",
+    "description": "Suite open source di moduli Paper per server Minecraft roleplay.",
+    "inLanguage": "it",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "isAccessibleForFree": true,
+    "codeRepository": "https://github.com/giovyx90/open-roleplay"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
 
   <!-- ============================ NAV ============================ -->
   <header class="nav">
@@ -71,7 +94,7 @@
     <a class="btn btn-primary" href="#download">Scarica i moduli</a>
   </div>
 
-  <main>
+  <main id="main">
     <!-- ============================ HERO ============================ -->
     <section class="hero">
       <div class="bg-grid"></div>
@@ -524,6 +547,6 @@ mvn -B -ntp clean package</code></pre>
     </div>
   </footer>
 
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js?v=20260616-a11y" defer></script>
 </body>
 </html>

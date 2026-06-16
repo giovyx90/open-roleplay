@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" data-theme="light">
 <head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Cosmetics — Cosmetici arma: LED, colori e skin · Open Roleplay</title>
@@ -11,15 +15,44 @@
   <meta property="og:title" content="Open Cosmetics — Cosmetici arma: LED, colori e skin · Open Roleplay" />
   <meta property="og:description" content="Cosmetici per le armi: LED, colori custom, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni cosmetiche nel mondo." />
   <meta property="og:url" content="https://openroleplay.it/moduli/open-cosmetics.html" />
-  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.svg" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Open Roleplay" />
+  <meta name="twitter:image" content="https://openroleplay.it/assets/img/og-cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260616-changelog" />
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260616-a11y" />
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Cosmetics",
+    "description": "Open Cosmetics: cosmetici per le armi senza duplicare il combat. LED, colori custom, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni cosmetiche per server Minecraft roleplay su Paper.",
+    "url": "https://openroleplay.it/moduli/open-cosmetics.html",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Java / Paper 1.21.x",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "isAccessibleForFree": true,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Open Roleplay",
+      "url": "https://openroleplay.it/"
+    }
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
 
   <!-- ============================ NAV ============================ -->
   <header class="nav">
@@ -34,6 +67,7 @@
         <a href="../index.html#architettura">Architettura</a>
         <a href="../index.html#installazione">Installazione</a>
         <a href="../index.html#download">Download</a>
+        <a href="../index.html#changelog">Changelog</a>
       </nav>
       <div class="nav-actions">
         <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
@@ -59,11 +93,12 @@
     <a href="../index.html#architettura">Architettura</a>
     <a href="../index.html#installazione">Installazione</a>
     <a href="../index.html#download">Download</a>
+    <a href="../index.html#changelog">Changelog</a>
     <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
     <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-cosmetics.jar" target="_blank" rel="noopener">Scarica il JAR</a>
   </div>
 
-  <main>
+  <main id="main">
     <!-- ========================= MOD HERO ========================= -->
     <section class="mod-hero">
       <div class="bg-grid"></div>
@@ -324,6 +359,6 @@ skins:
     </div>
   </footer>
 
-  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/main.js?v=20260616-a11y" defer></script>
 </body>
 </html>
