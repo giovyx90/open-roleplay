@@ -3,9 +3,11 @@ package dev.openrp.companies.command;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +18,7 @@ import dev.openrp.companies.core.CompanyResult;
 import dev.openrp.companies.model.Company;
 import dev.openrp.companies.model.CompanyApplication;
 import dev.openrp.companies.model.CompanyAsset;
+import dev.openrp.companies.model.CompanyAssetType;
 import dev.openrp.companies.model.CompanyLicenseStatus;
 import dev.openrp.companies.model.CompanyLicenseType;
 import dev.openrp.companies.model.CompanyMember;
@@ -28,7 +31,8 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
     private static final List<String> SUBCOMMANDS = List.of("help", "create", "apply", "list", "info",
             "members", "invite", "fire", "role", "leave", "licenses", "assets", "reload", "admin");
     private static final List<String> ADMIN_SUBCOMMANDS = List.of("create", "delete", "setstatus", "setowner",
-            "license", "sethq", "applications", "approve", "deny", "reload");
+            "license", "sethq", "givecash", "givecard", "applications", "approve", "deny", "reload");
+    private static final List<String> ASSET_ACTIONS = List.of("register", "remove");
     private static final List<String> PLAYER_HELP_KEYS = List.of("help", "create", "apply", "list", "info",
             "members", "invite", "fire", "role", "leave", "licenses", "assets");
 
@@ -58,7 +62,7 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
             case "role" -> role(sender, args);
             case "leave" -> leave(sender);
             case "licenses" -> licenses(sender);
-            case "assets" -> assets(sender);
+            case "assets" -> assets(sender, args);
             case "reload" -> reload(sender);
             case "admin" -> admin(sender, args);
             default -> plugin.messages().warning(sender, "general.unknown_subcommand");
@@ -281,10 +285,18 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
         }
     }
 
-    private void assets(CommandSender sender) {
+    private void assets(CommandSender sender, String[] args) {
         Company company = primaryCompany(sender);
         if (company == null) {
             plugin.messages().warning(sender, "company.none");
+            return;
+        }
+        if (args.length >= 2 && args[1].equalsIgnoreCase("register")) {
+            assetRegister(sender, company, args);
+            return;
+        }
+        if (args.length >= 2 && args[1].equalsIgnoreCase("remove")) {
+            assetRemove(sender, company);
             return;
         }
         List<CompanyAsset> list = plugin.assets().assetsOf(company.id());
@@ -300,6 +312,50 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     "world", asset.position().world(),
                     "x", asset.position().x(), "y", asset.position().y(), "z", asset.position().z());
         }
+    }
+
+    /** {@code /company assets register <type>} - binds the block the player is looking at to a new asset. */
+    private void assetRegister(CommandSender sender, Company company, String[] args) {
+        Player player = requirePlayer(sender);
+        if (player == null) {
+            return;
+        }
+        if (args.length < 3) {
+            plugin.messages().info(sender, "command.help.assets_register");
+            return;
+        }
+        CompanyAssetType type = CompanyAssetType.fromString(args[2]);
+        if (type == null) {
+            plugin.messages().warning(sender, "asset.unknown_type");
+            return;
+        }
+        Block block = player.getTargetBlockExact(6);
+        if (block == null) {
+            plugin.messages().warning(sender, "asset.bad_position");
+            return;
+        }
+        send(sender, plugin.assets().registerAsset(company.id(), player.getUniqueId(), type,
+                block.getWorld().getName(), block.getX(), block.getY(), block.getZ()));
+    }
+
+    /** {@code /company assets remove} - removes the asset on the block the player is looking at. */
+    private void assetRemove(CommandSender sender, Company company) {
+        Player player = requirePlayer(sender);
+        if (player == null) {
+            return;
+        }
+        Block block = player.getTargetBlockExact(6);
+        if (block == null) {
+            plugin.messages().warning(sender, "asset.bad_position");
+            return;
+        }
+        Optional<CompanyAsset> asset = plugin.assets().assetAt(
+                block.getWorld().getName(), block.getX(), block.getY(), block.getZ());
+        if (asset.isEmpty()) {
+            plugin.messages().warning(sender, "asset.not_found");
+            return;
+        }
+        send(sender, plugin.assets().removeAsset(asset.get().id(), player.getUniqueId()));
     }
 
     private void reload(CommandSender sender) {
@@ -327,6 +383,8 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
             case "setowner" -> adminSetOwner(sender, args);
             case "license" -> adminLicense(sender, args);
             case "sethq" -> adminSetHq(sender, args);
+            case "givecash" -> adminGiveCash(sender, args);
+            case "givecard" -> adminGiveCard(sender, args);
             case "applications" -> adminApplications(sender);
             case "approve" -> adminApprove(sender, args);
             case "deny" -> adminDeny(sender, args);
@@ -454,6 +512,48 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                 location.getWorld() == null ? "world" : location.getWorld().getName(),
                 location.getX(), location.getY(), location.getZ(),
                 location.getYaw(), location.getPitch()));
+    }
+
+    /** {@code /company admin givecash <player> <amount>} - hands physical banknotes to an online player. */
+    private void adminGiveCash(CommandSender sender, String[] args) {
+        if (!adminPermitted(sender, "opencompanies.admin")) {
+            return;
+        }
+        if (args.length < 4) {
+            plugin.messages().info(sender, "command.admin.help.givecash");
+            return;
+        }
+        Player target = plugin.getServer().getPlayerExact(args[2]);
+        if (target == null) {
+            plugin.messages().warning(sender, "general.player_not_found", "player", args[2]);
+            return;
+        }
+        long amount = parseLong(args[3]);
+        if (amount <= 0) {
+            plugin.messages().warning(sender, "treasury.invalid_amount");
+            return;
+        }
+        plugin.banknotes().give(target, amount);
+        plugin.messages().success(sender, "admin.cash_given",
+                "amount", plugin.settings().currencySymbol() + amount, "player", target.getName());
+    }
+
+    /** {@code /company admin givecard <player>} - issues a payment card to an online player. */
+    private void adminGiveCard(CommandSender sender, String[] args) {
+        if (!adminPermitted(sender, "opencompanies.admin")) {
+            return;
+        }
+        if (args.length < 3) {
+            plugin.messages().info(sender, "command.admin.help.givecard");
+            return;
+        }
+        Player target = plugin.getServer().getPlayerExact(args[2]);
+        if (target == null) {
+            plugin.messages().warning(sender, "general.player_not_found", "player", args[2]);
+            return;
+        }
+        plugin.banking().issueCard(target);
+        plugin.messages().success(sender, "admin.card_given", "player", target.getName());
     }
 
     private void adminApplications(CommandSender sender) {
@@ -590,6 +690,14 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
         return String.join(" ", java.util.Arrays.copyOfRange(args, from, to)).trim();
     }
 
+    private static long parseLong(String value) {
+        try {
+            return Long.parseLong(value.trim());
+        } catch (NumberFormatException ignored) {
+            return -1L;
+        }
+    }
+
     private static <E extends Enum<E>> E parseEnum(Class<E> type, String value) {
         if (value == null) {
             return null;
@@ -644,6 +752,14 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     return CommandSuggestions.filter(companyIds(), args[1]);
                 }
             }
+            case "assets" -> {
+                if (args.length == 2) {
+                    return CommandSuggestions.filter(ASSET_ACTIONS, args[1]);
+                }
+                if (args.length == 3 && args[1].equalsIgnoreCase("register")) {
+                    return CommandSuggestions.filter(assetTypeNames(), args[2]);
+                }
+            }
             case "admin" -> {
                 return adminTabComplete(args);
             }
@@ -671,7 +787,7 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     return CommandSuggestions.filter(onlinePlayerNames(), args[3]);
                 }
             }
-            case "create" -> {
+            case "create", "givecash", "givecard" -> {
                 if (args.length == 3) {
                     return CommandSuggestions.filter(onlinePlayerNames(), args[2]);
                 }
@@ -727,6 +843,11 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
             }
         }
         return names;
+    }
+
+    private static List<String> assetTypeNames() {
+        return java.util.Arrays.stream(dev.openrp.companies.model.CompanyAssetType.values())
+                .map(dev.openrp.companies.model.CompanyAssetType::key).toList();
     }
 
     private static List<String> licenseNames() {

@@ -21,6 +21,7 @@ command:
     leave: "/company leave - lascia la tua azienda"
     licenses: "/company licenses - mostra le licenze della tua azienda"
     assets: "/company assets - elenca gli asset della tua azienda"
+    assets_register: "/company assets register <tipo> - registra il blocco che stai guardando"
     admin: "/company admin - comandi di staff"
   admin:
     header: "Comandi staff di Open Companies:"
@@ -31,6 +32,8 @@ command:
       setowner: "/company admin setowner <azienda> <player>"
       license: "/company admin license <grant|revoke> <azienda> <licenza>"
       sethq: "/company admin sethq <azienda> - imposta la sede sulla tua posizione"
+      givecash: "/company admin givecash <player> <importo> - consegna banconote"
+      givecard: "/company admin givecard <player> - emette una carta di pagamento"
       applications: "/company admin applications - elenca le richieste in sospeso"
       approve: "/company admin approve <id>"
       deny: "/company admin deny <id> [motivo]"
@@ -171,3 +174,62 @@ assets:
   empty: "La tua azienda non ha asset."
   header: "Asset di {name} ({count}):"
   entry: "<gray>- <white>{id}</white> {type} @ {world} {x},{y},{z}</gray>"
+
+treasury:
+  invalid_amount: "Importo non valido."
+  invalid_target: "Destinatario non valido."
+  insufficient_funds: "La cassa aziendale ha solo {balance} (servono {amount})."
+  payer_insufficient: "Non hai abbastanza denaro sulla carta."
+  transfer_failed: "Bonifico non riuscito; non e' stato addebitato nulla."
+  deposited: "Versati {amount} in {company}."
+  withdrawn: "Prelevati {amount} da {company}."
+  collected: "Incassati {amount} per {company}."
+  transferred: "Trasferiti {amount} da {company}."
+
+bank:
+  invalid_amount: "Importo non valido."
+  not_enough_cash: "Non hai abbastanza contante con te."
+  deposit_failed: "Versamento non riuscito; il contante ti e' stato restituito."
+  insufficient: "Il tuo conto non ha {amount}."
+  deposited: "Versati {amount} sul tuo conto."
+  withdrawn: "Prelevati {amount} in contanti."
+  card_issued: "Ti e' stata emessa una carta di pagamento."
+
+pos:
+  charge_set: "Importo di {amount} impostato. Il cliente puo' pagare."
+  no_charge: "Non c'e' ancora nulla da pagare qui."
+  pay_title: "Paga"
+  no_card: "Ti serve la carta di pagamento per pagare con carta."
+  no_cash: "Non hai abbastanza contante."
+  paid: "Pagati {amount}."
+
+terminal:
+  title: "Terminale aziendale"
+  pick_member: "Pagare quale membro?"
+  no_permission: "Non sei autorizzato a gestire le finanze aziendali."
+
+ledger:
+  title: "Movimenti"
+
+atm:
+  title: "Banca"
+
+recurring:
+  title: "Stipendi ricorrenti"
+  set: "Stipendio ricorrente impostato a {amount}."
+  cleared: "Stipendio ricorrente rimosso."
+  received: "Hai ricevuto uno stipendio ricorrente di {amount}."
+
+txtype:
+  sale_card: "Vendita con carta"
+  sale_cash: "Vendita in contanti"
+  salary: "Stipendio"
+  transfer_out: "Trasferimento in uscita"
+  transfer_in: "Trasferimento in entrata"
+  treasury_deposit: "Versamento contante"
+  treasury_withdraw: "Prelievo contante"
+  fee: "Commissione"
+
+admin:
+  cash_given: "Consegnati {amount} in contanti a {player}."
+  card_given: "Carta di pagamento emessa a {player}."

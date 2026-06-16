@@ -21,6 +21,7 @@ command:
     leave: "/company leave - leave your company"
     licenses: "/company licenses - show your company's licenses"
     assets: "/company assets - list your company's assets"
+    assets_register: "/company assets register <type> - bind the block you're looking at"
     admin: "/company admin - staff commands"
   admin:
     header: "Open Companies staff commands:"
@@ -31,6 +32,8 @@ command:
       setowner: "/company admin setowner <company> <player>"
       license: "/company admin license <grant|revoke> <company> <license>"
       sethq: "/company admin sethq <company> - set HQ to your position"
+      givecash: "/company admin givecash <player> <amount> - hand out banknotes"
+      givecard: "/company admin givecard <player> - issue a payment card"
       applications: "/company admin applications - list pending applications"
       approve: "/company admin approve <id>"
       deny: "/company admin deny <id> [reason]"
@@ -171,3 +174,62 @@ assets:
   empty: "Your company has no assets."
   header: "Assets of {name} ({count}):"
   entry: "<gray>- <white>{id}</white> {type} @ {world} {x},{y},{z}</gray>"
+
+treasury:
+  invalid_amount: "That amount is not valid."
+  invalid_target: "Invalid recipient."
+  insufficient_funds: "The company treasury has only {balance} (needs {amount})."
+  payer_insufficient: "You do not have enough money on your card."
+  transfer_failed: "The transfer could not be completed; nothing was charged."
+  deposited: "Deposited {amount} into {company}."
+  withdrawn: "Withdrew {amount} from {company}."
+  collected: "Collected {amount} for {company}."
+  transferred: "Transferred {amount} from {company}."
+
+bank:
+  invalid_amount: "That amount is not valid."
+  not_enough_cash: "You are not carrying enough cash."
+  deposit_failed: "The deposit could not be completed; your cash was returned."
+  insufficient: "Your bank account does not have {amount}."
+  deposited: "Deposited {amount} into your account."
+  withdrawn: "Withdrew {amount} in cash."
+  card_issued: "A payment card has been issued to you."
+
+pos:
+  charge_set: "Charge of {amount} set. The customer can now pay."
+  no_charge: "There is nothing to pay here yet."
+  pay_title: "Pay"
+  no_card: "You need your payment card to pay by card."
+  no_cash: "You do not have enough cash."
+  paid: "Paid {amount}."
+
+terminal:
+  title: "Company terminal"
+  pick_member: "Pay which member?"
+  no_permission: "You are not allowed to operate the company finances."
+
+ledger:
+  title: "Ledger"
+
+atm:
+  title: "Bank"
+
+recurring:
+  title: "Recurring salaries"
+  set: "Recurring salary set to {amount}."
+  cleared: "Recurring salary removed."
+  received: "You received a recurring salary of {amount}."
+
+txtype:
+  sale_card: "Card sale"
+  sale_cash: "Cash sale"
+  salary: "Salary"
+  transfer_out: "Transfer out"
+  transfer_in: "Transfer in"
+  treasury_deposit: "Cash deposit"
+  treasury_withdraw: "Cash withdrawal"
+  fee: "Fee"
+
+admin:
+  cash_given: "Gave {amount} in cash to {player}."
+  card_given: "Issued a payment card to {player}."

@@ -5,6 +5,8 @@ import java.util.UUID;
 import dev.openrp.companies.model.Company;
 import dev.openrp.companies.model.CompanyApplication;
 import dev.openrp.companies.model.CompanyAsset;
+import dev.openrp.companies.model.CompanyTransaction;
+import dev.openrp.companies.model.RecurringPayment;
 
 /**
  * Persistence backend for companies, assets and applications.
@@ -45,6 +47,28 @@ public interface StorageAdapter {
     void saveApplication(CompanyApplication application);
 
     void deleteApplication(UUID applicationId);
+
+    // --- transactions (treasury ledger) ------------------------------------------------------
+
+    /** Loads every persisted ledger line across all companies. Called once on enable. */
+    Collection<CompanyTransaction> loadTransactions();
+
+    /** Appends one ledger line. The ledger is append-only; lines are never updated in place. */
+    void appendTransaction(CompanyTransaction transaction);
+
+    /** Removes every ledger line of a company; called when the company is deleted. */
+    void deleteTransactionsOf(String companyId);
+
+    // --- recurring payments ------------------------------------------------------------------
+
+    /** Loads every configured recurring salary across all companies. Called once on enable. */
+    Collection<RecurringPayment> loadRecurringPayments();
+
+    /** Creates or updates one recurring salary (keyed by company + member). */
+    void saveRecurringPayment(RecurringPayment payment);
+
+    /** Removes a recurring salary for a company/member pairing. */
+    void deleteRecurringPayment(String companyId, UUID memberUuid);
 
     // --- lifecycle ---------------------------------------------------------------------------
 

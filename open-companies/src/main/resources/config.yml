@@ -36,6 +36,28 @@ economy:
   # sees them. Ignored by real economy adapters (e.g. Vault).
   demo-starting-balance: 1000.0
 
+# ---------------------------------------------------------------------------
+# Diegetic economy. There are NO money commands: every movement happens by
+# interacting with a physical asset (POS/register, company terminal, ATM) and
+# typing the amount on the on-screen keypad. These settings tune the money.
+# ---------------------------------------------------------------------------
+finance:
+  # Economy-adapter account a payment card draws on (a player's personal bank account).
+  bank-account: bank
+  currency:
+    # Physical banknote denominations used to issue cash and make change. Sorted descending internally.
+    denominations: [1, 5, 10, 20, 50, 100, 500]
+    # Material used for the banknote item (give it CustomModelData via your resource pack per value).
+    banknote-material: PAPER
+  payroll:
+    recurring-interval-seconds: 86400   # default cadence of a recurring salary set by a director
+    tick-seconds: 300                   # how often the payroll task checks for due payments
+  keypad:
+    max-amount: 1000000                 # cap a player can enter on a device keypad
+  fees:                                 # all 0 by default; hooks for future realism
+    transfer: 0.0
+    atm-withdraw: 0.0
+
 storage:
   file: companies-data.yml    # used by the "yaml" storage adapter
 

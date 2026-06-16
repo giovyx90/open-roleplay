@@ -15,6 +15,8 @@ import org.junit.rules.TemporaryFolder;
 import dev.openrp.companies.model.Company;
 import dev.openrp.companies.model.CompanyMember;
 import dev.openrp.companies.model.CompanyRole;
+import dev.openrp.companies.model.CompanyTransaction;
+import dev.openrp.companies.model.TransactionType;
 
 public class YamlStorageAdapterTest {
 
@@ -76,6 +78,30 @@ public class YamlStorageAdapterTest {
         // Backup held the first (acme-only) snapshot; recovery must not silently return empty.
         assertFalse(recovered.loadCompanies().isEmpty());
         assertTrue(recovered.loadCompanies().stream().anyMatch(c -> c.id().equals("acme")));
+    }
+
+    @Test
+    public void transactionsRoundTripAndDeleteByCompany() {
+        File file = new File(folder.getRoot(), "companies-data.yml");
+        YamlStorageAdapter adapter = open(file);
+        UUID actor = UUID.randomUUID();
+        adapter.appendTransaction(new CompanyTransaction(UUID.randomUUID(), "acme", 100L,
+                TransactionType.SALE_CARD, 42.5, actor, actor.toString(), "card sale"));
+        adapter.appendTransaction(new CompanyTransaction(UUID.randomUUID(), "globex", 200L,
+                TransactionType.SALARY, 10.0, null, null, ""));
+
+        YamlStorageAdapter reopened = open(file);
+        assertEquals(2, reopened.loadTransactions().size());
+        CompanyTransaction acme = reopened.loadTransactions().stream()
+                .filter(tx -> tx.companyId().equals("acme")).findFirst().orElseThrow();
+        assertEquals(TransactionType.SALE_CARD, acme.type());
+        assertEquals(42.5, acme.amount(), 1e-9);
+        assertEquals(actor, acme.actor());
+
+        reopened.deleteTransactionsOf("acme");
+        YamlStorageAdapter afterDelete = open(file);
+        assertEquals(1, afterDelete.loadTransactions().size());
+        assertEquals("globex", afterDelete.loadTransactions().iterator().next().companyId());
     }
 
     @Test

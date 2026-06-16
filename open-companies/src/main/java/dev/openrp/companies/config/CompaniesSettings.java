@@ -31,6 +31,15 @@ public final class CompaniesSettings {
     private String currencySymbol = "$";
     private double demoStartingBalance = 1000.0;
 
+    private String bankAccount = "bank";
+    private List<Integer> denominations = List.of(1, 5, 10, 20, 50, 100, 500);
+    private String banknoteMaterial = "PAPER";
+    private long payrollIntervalSeconds = 86_400L;
+    private long payrollTickSeconds = 300L;
+    private double keypadMaxAmount = 1_000_000.0;
+    private double transferFee = 0.0;
+    private double atmWithdrawFee = 0.0;
+
     private boolean vendingIntegrationEnabled = true;
     private boolean vendingRestockRequiresManager = false;
     private int vendingDefaultMachineLimit = -1;
@@ -53,6 +62,15 @@ public final class CompaniesSettings {
         this.economyAccount = config.getString("economy.account", "cash");
         this.currencySymbol = config.getString("economy.currency-symbol", "$");
         this.demoStartingBalance = config.getDouble("economy.demo-starting-balance", 1000.0);
+
+        this.bankAccount = config.getString("finance.bank-account", "bank");
+        this.denominations = sanitizeDenominations(config.getIntegerList("finance.currency.denominations"));
+        this.banknoteMaterial = config.getString("finance.currency.banknote-material", "PAPER");
+        this.payrollIntervalSeconds = Math.max(1L, config.getLong("finance.payroll.recurring-interval-seconds", 86_400L));
+        this.payrollTickSeconds = Math.max(1L, config.getLong("finance.payroll.tick-seconds", 300L));
+        this.keypadMaxAmount = Math.max(1.0, config.getDouble("finance.keypad.max-amount", 1_000_000.0));
+        this.transferFee = Math.max(0.0, config.getDouble("finance.fees.transfer", 0.0));
+        this.atmWithdrawFee = Math.max(0.0, config.getDouble("finance.fees.atm-withdraw", 0.0));
 
         this.vendingIntegrationEnabled = config.getBoolean("integration.vending.enabled", true);
         this.vendingRestockRequiresManager = config.getBoolean("integration.vending.restock-requires-manager", false);
@@ -121,6 +139,40 @@ public final class CompaniesSettings {
         return demoStartingBalance;
     }
 
+    /** Economy-adapter account key for a player's personal bank account (the one a payment card draws on). */
+    public String bankAccount() {
+        return bankAccount;
+    }
+
+    /** Banknote denominations, descending, for cash issuing/change. Never empty. */
+    public List<Integer> denominations() {
+        return denominations;
+    }
+
+    public String banknoteMaterial() {
+        return banknoteMaterial;
+    }
+
+    public long payrollIntervalSeconds() {
+        return payrollIntervalSeconds;
+    }
+
+    public long payrollTickSeconds() {
+        return payrollTickSeconds;
+    }
+
+    public double keypadMaxAmount() {
+        return keypadMaxAmount;
+    }
+
+    public double transferFee() {
+        return transferFee;
+    }
+
+    public double atmWithdrawFee() {
+        return atmWithdrawFee;
+    }
+
     public boolean vendingIntegrationEnabled() {
         return vendingIntegrationEnabled;
     }
@@ -146,6 +198,16 @@ public final class CompaniesSettings {
                 .map(value -> value.trim().toLowerCase(Locale.ROOT))
                 .distinct()
                 .toList();
+    }
+
+    /** Keeps only positive denominations, de-duplicated and sorted descending; falls back to a sane set. */
+    private static List<Integer> sanitizeDenominations(List<Integer> values) {
+        List<Integer> cleaned = values == null ? List.of() : values.stream()
+                .filter(value -> value != null && value > 0)
+                .distinct()
+                .sorted((a, b) -> Integer.compare(b, a))
+                .toList();
+        return cleaned.isEmpty() ? List.of(500, 100, 50, 20, 10, 5, 1) : cleaned;
     }
 
     private static Pattern compile(String regex) {

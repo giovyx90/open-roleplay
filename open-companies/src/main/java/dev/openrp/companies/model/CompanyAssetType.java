@@ -24,7 +24,12 @@ public enum CompanyAssetType {
     SAFE(CompanyRole.MANAGER, CompanyRole.DIRECTOR),
     BADGE_READER(CompanyRole.EMPLOYEE, CompanyRole.MANAGER),
     RECEPTION_KIOSK(CompanyRole.TRAINING, CompanyRole.MANAGER),
-    PRODUCT_DISPLAY(CompanyRole.EMPLOYEE, CompanyRole.MANAGER);
+    PRODUCT_DISPLAY(CompanyRole.EMPLOYEE, CompanyRole.MANAGER),
+    /**
+     * Public bank terminal owned by a bank company. Personal banking (cash in/out, card issuing) is
+     * open to anyone interacting with it; only a director of the owning company may register/move it.
+     */
+    ATM(CompanyRole.TRAINING, CompanyRole.DIRECTOR);
 
     private final CompanyRole defaultUseRole;
     private final CompanyRole defaultManageRole;

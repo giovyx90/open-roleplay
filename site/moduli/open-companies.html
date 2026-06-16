@@ -8,12 +8,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Companies — Aziende, licenze e asset RP · Open Roleplay</title>
-  <meta name="description" content="Open Companies: aziende roleplay adapter-first per Paper. Ruoli, membri, inviti, camera di commercio, licenze, sede, asset aziendali e API pubblica con integrazione opzionale per Open Vending Machines." />
+  <meta name="description" content="Open Companies: aziende roleplay adapter-first per Paper. Ruoli, camera di commercio, licenze, asset fisici, tesoreria aziendale, ledger, cash, carte e API pubblica." />
   <meta name="theme-color" content="#16a34a" />
   <link rel="canonical" href="https://openroleplay.it/moduli/open-companies.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Open Companies — Aziende, licenze e asset RP · Open Roleplay" />
-  <meta property="og:description" content="Aziende roleplay, camera di commercio, ruoli, licenze, sede e asset aziendali. Adapter-first: economy, storage, permessi, regioni, identità, notifiche e audit sono sostituibili." />
+  <meta property="og:description" content="Aziende roleplay con camera di commercio, asset fisici, treasury, ledger, cash, carte e stipendi ricorrenti. Adapter-first e soft dependency." />
   <meta property="og:url" content="https://openroleplay.it/moduli/open-companies.html" />
   <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
   <meta property="og:image:width" content="1200" />
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Open Companies",
-    "description": "Open Companies: aziende roleplay adapter-first per Paper. Ruoli, membri, inviti, camera di commercio, licenze, sede, asset aziendali e API pubblica con integrazione opzionale per Open Vending Machines.",
+    "description": "Open Companies: aziende roleplay adapter-first per Paper. Ruoli, camera di commercio, licenze, asset fisici, tesoreria aziendale, ledger, cash, carte e API pubblica.",
     "url": "https://openroleplay.it/moduli/open-companies.html",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Java / Paper 1.21.x",
@@ -117,7 +117,7 @@
           <h1>Open Companies</h1>
           <span class="badge badge--blue">Compilabile</span>
         </div>
-        <p class="lead">Il Company Core per server roleplay: identità aziendale, ruoli, membri, inviti, camera di commercio, licenze, sede e asset fisici. Funziona subito con default YAML e lascia economy, permessi, regioni, identità e storage ai tuoi adapter.</p>
+        <p class="lead">Il Company Core per server roleplay: identità aziendale, ruoli, membri, camera di commercio, licenze, sede, asset fisici, tesoreria, ledger, contanti e carte. Funziona subito con default YAML e lascia economy, permessi, regioni, identità e storage ai tuoi adapter.</p>
 
         <div class="hero-cta">
           <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-companies.jar" target="_blank" rel="noopener">
@@ -153,8 +153,8 @@
           <table>
             <thead><tr><th>Adapter</th><th>Responsabilità</th><th>Default incluso</th></tr></thead>
             <tbody>
-              <tr><td><code>StorageAdapter</code></td><td>Persiste aziende, asset e richieste</td><td>YAML o memoria</td></tr>
-              <tr><td><code>EconomyAdapter</code></td><td>Costo creazione e tesoreria aziendale</td><td>Wallet demo in memoria</td></tr>
+              <tr><td><code>StorageAdapter</code></td><td>Persiste aziende, asset, richieste, ledger e paghe ricorrenti</td><td>YAML o memoria</td></tr>
+              <tr><td><code>EconomyAdapter</code></td><td>Conti personali, costo creazione e tesoreria aziendale</td><td>Wallet demo in memoria</td></tr>
               <tr><td><code>PermissionAdapter</code></td><td>Controlli permessi</td><td>Permission node Bukkit</td></tr>
               <tr><td><code>RegionAdapter</code></td><td>Validazione sede e coordinate controllate</td><td>No-op</td></tr>
               <tr><td><code>IdentityAdapter</code></td><td>Prefissi, tab e identità aziendale</td><td>No-op</td></tr>
@@ -164,6 +164,19 @@
           </table>
         </div>
         <p class="lede reveal">Vault, LuckPerms, WorldGuard e Open Vending Machines restano soft dependency: se non ci sono, il modulo si avvia comunque.</p>
+      </div>
+    </section>
+
+    <!-- ===================== TESORERIA ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Tesoreria, cash e carte</h2>
+        <p class="lede reveal" data-d="1">La finanza aziendale passa da servizi server-side: ogni movimento è lockato per azienda, scritto nel ledger e notificato con un evento Bukkit.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></span><div><b>Treasury ledger</b><small>Depositi, prelievi, vendite, bonifici e stipendi finiscono in righe append-only con causale, attore, target e nota.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3"/></svg></span><div><b>Banking personale</b><small>Banconote fisiche, conto bancario personale e carte pagamento convivono: ATM e POS chiamano le API, non comandi money.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg></span><div><b>Payroll ricorrente</b><small>I direttori possono impostare paghe periodiche dai terminali; il task paga quando sono dovute e salta i cicli non finanziati.</small></div></div>
+        </div>
       </div>
     </section>
 
@@ -202,7 +215,7 @@
           <li>Stati azienda: <code>ACTIVE</code>, <code>SUSPENDED</code>, <code>DISSOLVED</code></li>
           <li>Licenze: food, security, transport, banking, media, real estate, healthcare e altro</li>
           <li>Sede: <code>/company admin sethq</code>, validabile via <code>RegionAdapter</code></li>
-          <li>Asset: terminali, POS, casseforti, badge reader, display, storage e chioschi</li>
+          <li>Asset: terminali, POS, casseforti, ATM, badge reader, display, storage e chioschi</li>
         </ul>
       </div>
     </section>
@@ -222,7 +235,10 @@
               <tr><td><code>/company members</code></td><td>Mostra i membri della tua azienda</td><td><code>opencompanies.use</code></td></tr>
               <tr><td><code>/company invite</code> / <code>fire</code> / <code>role</code></td><td>Gestisce persone e ruoli</td><td><code>opencompanies.invite</code> / <code>opencompanies.fire</code> / <code>opencompanies.role</code></td></tr>
               <tr><td><code>/company licenses</code></td><td>Mostra le licenze aziendali</td><td><code>opencompanies.use</code></td></tr>
-              <tr><td><code>/company assets</code></td><td>Registra e consulta asset</td><td><code>opencompanies.assets</code></td></tr>
+              <tr><td><code>/company assets</code></td><td>Consulta asset aziendali</td><td><code>opencompanies.assets</code></td></tr>
+              <tr><td><code>/company assets register &lt;tipo&gt;</code> / <code>remove</code></td><td>Registra o rimuove il blocco che stai guardando</td><td><code>opencompanies.assets</code></td></tr>
+              <tr><td><code>/company admin givecash &lt;player&gt; &lt;amount&gt;</code></td><td>Consegna banconote fisiche a un player online</td><td><code>opencompanies.admin</code></td></tr>
+              <tr><td><code>/company admin givecard &lt;player&gt;</code></td><td>Emette una carta pagamento personale</td><td><code>opencompanies.admin</code></td></tr>
               <tr><td><code>/company admin ...</code></td><td>Creazione staff, status, owner, licenze, sede, richieste e reload</td><td><code>opencompanies.admin</code></td></tr>
             </tbody>
           </table>
@@ -246,12 +262,16 @@ boolean canFire = api.companies()
     .hasCapability(playerUuid, "red-spot-foods", CompanyCapability.FIRE);
 
 api.chamber().grantLicense("red-spot-foods", CompanyLicenseType.FOOD_SERVICE);
-api.assets().registerAsset("red-spot-foods", staffUuid, CompanyAssetType.POS, "world", 10, 64, -3);</code></pre>
+api.assets().registerAsset("red-spot-foods", staffUuid, CompanyAssetType.POS, "world", 10, 64, -3);
+api.treasury().collectFromPlayer("red-spot-foods", customer, 12.50, TransactionType.SALE_CARD, staffUuid, "cassa POS");
+api.banking().issueCard(player);</code></pre>
         </div>
         <ul class="bullets reveal cols-2" data-d="1">
           <li><code>CompanyService</code> — aziende, membri, inviti, ruoli e ownership</li>
           <li><code>ChamberService</code> — richieste, licenze, status e sede</li>
           <li><code>CompanyAssetService</code> — asset fisici e controlli uso/gestione</li>
+          <li><code>TreasuryService</code> — saldo, movimenti atomici, ledger e pagamenti verso player</li>
+          <li><code>BankingService</code> — contanti fisici, deposito/prelievo e carte pagamento</li>
           <li><code>AdapterRegistry</code> — sostituzione runtime di economy, storage e sistemi esterni</li>
         </ul>
       </div>
@@ -287,7 +307,8 @@ api.assets().registerAsset("red-spot-foods", staffUuid, CompanyAssetType.POS, "w
           <li>Ogni mutazione valida permesso, ruolo, stato azienda, limiti, nome, player e cooldown</li>
           <li>Le operazioni sensibili girano sotto lock per <code>companyId</code></li>
           <li>Il costo creazione viene rimborsato se la creazione fallisce o un evento la annulla</li>
-          <li>Eventi Bukkit disponibili: creazione, cancellazione, inviti, ruoli, status, licenze e sede</li>
+          <li>Il ledger della treasury è append-only e recuperabile via API</li>
+          <li>Eventi Bukkit disponibili: creazione, cancellazione, inviti, ruoli, status, licenze, sede e transazioni</li>
         </ul>
       </div>
     </section>

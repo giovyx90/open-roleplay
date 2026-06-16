@@ -23,6 +23,9 @@ import dev.openrp.companies.model.CompanyLicenseType;
 import dev.openrp.companies.model.CompanyMember;
 import dev.openrp.companies.model.CompanyRole;
 import dev.openrp.companies.model.CompanyStatus;
+import dev.openrp.companies.model.CompanyTransaction;
+import dev.openrp.companies.model.RecurringPayment;
+import dev.openrp.companies.model.TransactionType;
 
 /**
  * Default storage adapter persisting companies, assets and applications to a single YAML file. The
@@ -38,6 +41,8 @@ public final class YamlStorageAdapter implements StorageAdapter {
     private static final String COMPANIES = "companies";
     private static final String ASSETS = "assets";
     private static final String APPLICATIONS = "applications";
+    private static final String TRANSACTIONS = "transactions";
+    private static final String RECURRING = "recurring";
 
     private final File file;
     private final File tempFile;
@@ -203,6 +208,100 @@ public final class YamlStorageAdapter implements StorageAdapter {
     @Override
     public void deleteApplication(UUID applicationId) {
         yaml.set(APPLICATIONS + "." + applicationId, null);
+        persist();
+    }
+
+    // --- transactions (treasury ledger) ------------------------------------------------------
+
+    @Override
+    public Collection<CompanyTransaction> loadTransactions() {
+        List<CompanyTransaction> result = new ArrayList<>();
+        ConfigurationSection root = yaml.getConfigurationSection(TRANSACTIONS);
+        if (root == null) {
+            return result;
+        }
+        for (String key : root.getKeys(false)) {
+            ConfigurationSection section = root.getConfigurationSection(key);
+            if (section == null) {
+                continue;
+            }
+            try {
+                result.add(readTransaction(UUID.fromString(key), section));
+            } catch (RuntimeException exception) {
+                logger.warning("[OpenCompanies] Skipping malformed transaction '" + key + "': " + exception.getMessage());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void appendTransaction(CompanyTransaction transaction) {
+        writeTransaction(transaction);
+        persist();
+    }
+
+    @Override
+    public void deleteTransactionsOf(String companyId) {
+        ConfigurationSection root = yaml.getConfigurationSection(TRANSACTIONS);
+        if (root == null) {
+            return;
+        }
+        boolean changed = false;
+        for (String key : root.getKeys(false)) {
+            ConfigurationSection section = root.getConfigurationSection(key);
+            if (section != null && companyId.equals(section.getString("company"))) {
+                yaml.set(TRANSACTIONS + "." + key, null);
+                changed = true;
+            }
+        }
+        if (changed) {
+            persist();
+        }
+    }
+
+    // --- recurring payments ------------------------------------------------------------------
+
+    @Override
+    public Collection<RecurringPayment> loadRecurringPayments() {
+        List<RecurringPayment> result = new ArrayList<>();
+        ConfigurationSection root = yaml.getConfigurationSection(RECURRING);
+        if (root == null) {
+            return result;
+        }
+        for (String key : root.getKeys(false)) {
+            ConfigurationSection section = root.getConfigurationSection(key);
+            if (section == null) {
+                continue;
+            }
+            try {
+                result.add(new RecurringPayment(
+                        section.getString("company", ""),
+                        UUID.fromString(section.getString("member", new UUID(0, 0).toString())),
+                        section.getDouble("amount"),
+                        section.getLong("interval-seconds"),
+                        section.getLong("next-due-at")));
+            } catch (RuntimeException exception) {
+                logger.warning("[OpenCompanies] Skipping malformed recurring payment '" + key + "': " + exception.getMessage());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void saveRecurringPayment(RecurringPayment payment) {
+        String base = RECURRING + "." + payment.key();
+        yaml.set(base, null);
+        yaml.set(base + ".company", payment.companyId());
+        yaml.set(base + ".member", payment.memberUuid().toString());
+        yaml.set(base + ".amount", payment.amount());
+        yaml.set(base + ".interval-seconds", payment.intervalSeconds());
+        yaml.set(base + ".next-due-at", payment.nextDueAt());
+        persist();
+    }
+
+    @Override
+    public void deleteRecurringPayment(String companyId, UUID memberUuid) {
+        yaml.set(RECURRING + "." + RecurringPayment.key(companyId, memberUuid), null);
         persist();
     }
 
@@ -389,6 +488,35 @@ public final class YamlStorageAdapter implements StorageAdapter {
         yaml.set(base + ".created-at", application.createdAt());
         yaml.set(base + ".status", application.status().name());
         yaml.set(base + ".resolution", application.resolution());
+    }
+
+    private CompanyTransaction readTransaction(UUID id, ConfigurationSection section) {
+        TransactionType type = TransactionType.fromString(section.getString("type"));
+        if (type == null) {
+            throw new IllegalArgumentException("unknown transaction type '" + section.getString("type") + "'");
+        }
+        String actor = section.getString("actor");
+        return new CompanyTransaction(
+                id,
+                section.getString("company", ""),
+                section.getLong("timestamp"),
+                type,
+                section.getDouble("amount"),
+                actor == null || actor.isBlank() ? null : UUID.fromString(actor),
+                section.getString("counterparty"),
+                section.getString("note", ""));
+    }
+
+    private void writeTransaction(CompanyTransaction transaction) {
+        String base = TRANSACTIONS + "." + transaction.id();
+        yaml.set(base, null);
+        yaml.set(base + ".company", transaction.companyId());
+        yaml.set(base + ".timestamp", transaction.timestamp());
+        yaml.set(base + ".type", transaction.type().name());
+        yaml.set(base + ".amount", transaction.amount());
+        yaml.set(base + ".actor", transaction.actor() == null ? null : transaction.actor().toString());
+        yaml.set(base + ".counterparty", transaction.counterparty());
+        yaml.set(base + ".note", transaction.note());
     }
 
     /**

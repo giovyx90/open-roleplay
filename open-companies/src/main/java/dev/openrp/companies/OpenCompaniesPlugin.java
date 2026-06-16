@@ -25,9 +25,11 @@ import dev.openrp.companies.adapter.defaults.YamlStorageAdapter;
 import dev.openrp.companies.adapter.vault.VaultEconomyAdapter;
 import dev.openrp.companies.api.ChamberService;
 import dev.openrp.companies.api.CompanyAssetService;
+import dev.openrp.companies.api.BankingService;
 import dev.openrp.companies.api.CompanyService;
 import dev.openrp.companies.api.OpenCompaniesApi;
 import dev.openrp.companies.api.OpenCompaniesApiProvider;
+import dev.openrp.companies.api.TreasuryService;
 import dev.openrp.companies.command.OpenCompaniesCommand;
 import dev.openrp.companies.config.CompaniesSettings;
 import dev.openrp.companies.core.AssetManager;
@@ -36,7 +38,14 @@ import dev.openrp.companies.core.CompanyManager;
 import dev.openrp.companies.core.CompanyValidator;
 import dev.openrp.companies.core.DefaultChamberService;
 import dev.openrp.companies.core.DefaultCompanyAssetService;
+import dev.openrp.companies.core.DefaultBankingService;
 import dev.openrp.companies.core.DefaultCompanyService;
+import dev.openrp.companies.core.DefaultTreasuryService;
+import dev.openrp.companies.core.LedgerManager;
+import dev.openrp.companies.core.PayrollService;
+import dev.openrp.companies.core.RecurringManager;
+import dev.openrp.companies.item.Banknotes;
+import dev.openrp.companies.item.PaymentCards;
 import dev.openrp.companies.integration.OpenCoreModuleRegistration;
 import dev.openrp.companies.integration.vending.OpenCompaniesBusinessAdapter;
 import dev.openrp.companies.message.CompaniesMessages;
@@ -63,10 +72,18 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
     private CompanyLocks locks;
     private CompanyManager companyManager;
     private AssetManager assetManager;
+    private LedgerManager ledgerManager;
+    private RecurringManager recurringManager;
+    private PayrollService payrollService;
 
     private CompanyService companyService;
     private ChamberService chamberService;
     private CompanyAssetService assetService;
+    private TreasuryService treasuryService;
+    private BankingService bankingService;
+    private Banknotes banknotes;
+    private PaymentCards paymentCards;
+    private dev.openrp.companies.gui.CompanyMenus menus;
     private OpenCompaniesApiProvider apiProvider;
 
     private OpenCoreModuleRegistration openCoreRegistration;
@@ -94,15 +111,28 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
         this.companyManager.loadAll();
         this.assetManager = new AssetManager(companyManager, adapters);
         this.assetManager.loadAll();
+        this.ledgerManager = new LedgerManager(adapters);
+        this.ledgerManager.loadAll();
+        this.recurringManager = new RecurringManager(adapters);
+        this.recurringManager.loadAll();
+
+        this.banknotes = new Banknotes(this);
+        this.paymentCards = new PaymentCards(this);
 
         this.companyService = new DefaultCompanyService(this);
         this.chamberService = new DefaultChamberService(this);
         this.assetService = new DefaultCompanyAssetService(this);
+        this.treasuryService = new DefaultTreasuryService(this);
+        this.bankingService = new DefaultBankingService(this);
+        this.payrollService = new PayrollService(this);
+        this.menus = new dev.openrp.companies.gui.CompanyMenus(this);
 
         this.apiProvider = new OpenCompaniesApiProvider(this);
         getServer().getServicesManager().register(OpenCompaniesApi.class, apiProvider, this, ServicePriority.Normal);
 
         registerCommands();
+        registerListeners();
+        payrollService.start();
         setupIntegrations();
 
         getLogger().info("[OpenCompanies] Enabled. Loaded " + companyManager.all().size() + " company(ies), "
@@ -111,6 +141,9 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (payrollService != null) {
+            payrollService.stop();
+        }
         if (vendingIntegrationActive && getServer().getPluginManager().getPlugin("OpenVendingMachines") != null) {
             try {
                 OpenCompaniesBusinessAdapter.unregister(this);
@@ -141,6 +174,8 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
         messages.reload();
         companyManager.loadAll();
         assetManager.loadAll();
+        ledgerManager.loadAll();
+        recurringManager.loadAll();
     }
 
     private void setupAdapters() {
@@ -220,6 +255,12 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
         setExecutor("company", new OpenCompaniesCommand(this));
     }
 
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new dev.openrp.companies.gui.MenuListener(), this);
+        getServer().getPluginManager().registerEvents(
+                new dev.openrp.companies.listener.AssetInteractionListener(this), this);
+    }
+
     private void setExecutor(String name, CommandExecutor executor) {
         PluginCommand command = getCommand(name);
         if (command == null) {
@@ -266,6 +307,14 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
         return assetManager;
     }
 
+    public LedgerManager ledger() {
+        return ledgerManager;
+    }
+
+    public RecurringManager recurring() {
+        return recurringManager;
+    }
+
     public CompanyService companies() {
         return companyService;
     }
@@ -276,6 +325,26 @@ public final class OpenCompaniesPlugin extends JavaPlugin {
 
     public CompanyAssetService assets() {
         return assetService;
+    }
+
+    public TreasuryService treasury() {
+        return treasuryService;
+    }
+
+    public BankingService banking() {
+        return bankingService;
+    }
+
+    public Banknotes banknotes() {
+        return banknotes;
+    }
+
+    public PaymentCards cards() {
+        return paymentCards;
+    }
+
+    public dev.openrp.companies.gui.CompanyMenus menus() {
+        return menus;
     }
 
     public OpenCompaniesApi api() {

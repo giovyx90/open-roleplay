@@ -27,6 +27,12 @@ public interface OpenCompaniesApi {
     /** Physical company assets. */
     CompanyAssetService assets();
 
+    /** Company treasury: balances, deposits/withdrawals, transfers and the ledger. */
+    TreasuryService treasury();
+
+    /** Personal banking: cash &harr; bank account and payment-card issuing. */
+    BankingService banking();
+
     /** The live adapter set - swap any adapter here to integrate your own systems. */
     AdapterRegistry adapters();
 }

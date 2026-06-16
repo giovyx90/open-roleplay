@@ -28,6 +28,16 @@ public final class OpenCompaniesApiProvider implements OpenCompaniesApi {
     }
 
     @Override
+    public TreasuryService treasury() {
+        return plugin.treasury();
+    }
+
+    @Override
+    public BankingService banking() {
+        return plugin.banking();
+    }
+
+    @Override
     public AdapterRegistry adapters() {
         return plugin.adapters();
     }

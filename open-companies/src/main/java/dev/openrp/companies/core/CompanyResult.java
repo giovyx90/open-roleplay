@@ -4,6 +4,7 @@ import java.util.Optional;
 import dev.openrp.companies.model.Company;
 import dev.openrp.companies.model.CompanyApplication;
 import dev.openrp.companies.model.CompanyMember;
+import dev.openrp.companies.model.CompanyTransaction;
 
 /**
  * Outcome of a service operation. Carries a success flag, a message key (resolved by the message
@@ -70,5 +71,9 @@ public final class CompanyResult {
 
     public Optional<CompanyApplication> application() {
         return payload instanceof CompanyApplication application ? Optional.of(application) : Optional.empty();
+    }
+
+    public Optional<CompanyTransaction> transaction() {
+        return payload instanceof CompanyTransaction transaction ? Optional.of(transaction) : Optional.empty();
     }
 }
