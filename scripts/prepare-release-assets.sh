@@ -42,7 +42,13 @@ fi
 
 (
   cd "$OUT_DIR"
-  sha256sum * > SHA256SUMS.txt
+  # Checksum only the release artifacts, in a stable order, so SHA256SUMS.txt is deterministic and
+  # never accidentally hashes itself or a stray file. nullglob avoids a literal *.zip when no
+  # resource packs were built.
+  shopt -s nullglob
+  assets=( *.jar *.zip )
+  shopt -u nullglob
+  sha256sum "${assets[@]}" | sort -k2 > SHA256SUMS.txt
 )
 
 echo "Asset release pronti in: $OUT_DIR"

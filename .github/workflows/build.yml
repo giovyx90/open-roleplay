@@ -2,7 +2,11 @@ name: Build
 
 on:
   push:
+    branches: [main]
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -14,7 +18,8 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - run: mvn -B -ntp package
+      # verify runs the unit tests (CONTRIBUTING tells contributors to do the same).
+      - run: mvn -B -ntp verify
       - run: scripts/prepare-release-assets.sh release-assets
       - uses: actions/upload-artifact@v4
         with:

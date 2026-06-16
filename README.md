@@ -123,6 +123,10 @@ open-roleplay/
     src/main/java/dev/openrp/vending/
     src/main/resources/
     src/test/java/dev/openrp/vending/
+  open-companies/
+    src/main/java/dev/openrp/companies/
+    src/main/resources/
+    src/test/java/dev/openrp/companies/
 ```
 
 ## Note per sviluppatori
