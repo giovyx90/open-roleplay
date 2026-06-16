@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260615-mobile" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260616-changelog" />
 </head>
 <body>
 
@@ -36,6 +36,7 @@
         <a href="#moduli">Moduli</a>
         <a href="#filosofia">Filosofia</a>
         <a href="#architettura">Architettura</a>
+        <a href="#changelog">Changelog</a>
         <a href="#installazione">Installazione</a>
         <a href="#download">Download</a>
       </nav>
@@ -63,6 +64,7 @@
     <a href="#moduli">Moduli</a>
     <a href="#filosofia">Filosofia</a>
     <a href="#architettura">Architettura</a>
+    <a href="#changelog">Changelog</a>
     <a href="#installazione">Installazione</a>
     <a href="#download">Download</a>
     <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
@@ -292,6 +294,58 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
       </div>
     </section>
 
+    <!-- ========================= CHANGELOG ========================= -->
+    <section class="section section--tight" id="changelog">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow reveal">Changelog</span>
+          <h2 class="section-title reveal" data-d="1">Ultime novità dal ramo cool-turing-ul73ba</h2>
+          <p class="section-sub reveal" data-d="2">Le modifiche più recenti ora sono tracciate direttamente nel sito, incluse le migliorie mobile pubblicate con il commit <code>6988ee7</code>.</p>
+        </div>
+
+        <div class="changelog-list">
+          <article class="changelog-entry reveal">
+            <div class="changelog-date">
+              <span>16 giu</span>
+              <b>2026</b>
+            </div>
+            <div class="changelog-body">
+              <div class="module-card__head">
+                <div>
+                  <h3>Changelog pubblico in homepage</h3>
+                  <div class="id">site: expose recent changes</div>
+                </div>
+                <span class="badge">Sito</span>
+              </div>
+              <p>La home include una nuova sezione changelog, linkata da nav, menu mobile e footer, così le novità del progetto restano visibili senza passare da GitHub.</p>
+            </div>
+          </article>
+
+          <article class="changelog-entry reveal" data-d="1">
+            <div class="changelog-date">
+              <span>15 giu</span>
+              <b>2026</b>
+            </div>
+            <div class="changelog-body">
+              <div class="module-card__head">
+                <div>
+                  <h3>Esperienza mobile rifinita</h3>
+                  <div class="id">fix: improve mobile responsiveness</div>
+                </div>
+                <span class="badge badge--blue">Sito</span>
+              </div>
+              <p>Layout e navigazione sono stati ripuliti per schermi stretti: header più compatto, menu mobile scrollabile, call to action a larghezza piena e griglie che non forzano overflow laterali.</p>
+              <ul class="changelog-points">
+                <li>Hero, statistiche, moduli, download e pagine dettaglio si adattano meglio sotto i 720px.</li>
+                <li>Badge, titoli lunghi, ID dei moduli e blocchi codice gestiscono il wrapping senza uscire dai contenitori.</li>
+                <li>Le card dei moduli e i pulsanti mantengono dimensioni leggibili anche su viewport molto piccoli.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ======================= INSTALLAZIONE ======================= -->
     <section class="section" id="installazione">
       <div class="container">
@@ -412,6 +466,7 @@ mvn -B -ntp clean package</code></pre>
             <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
             <li><a href="#installazione">Installazione</a></li>
             <li><a href="#architettura">Architettura</a></li>
+            <li><a href="#changelog">Changelog</a></li>
           </ul>
         </div>
         <div>

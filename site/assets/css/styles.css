@@ -363,7 +363,37 @@ h1, h2, h3, h4 { font-family: var(--font-disp); line-height: 1.12; font-weight: 
 .feature p { color: var(--text-soft); font-size: .93rem; margin-top: 9px; }
 
 /* ------------------------------------------------------------------ */
-/* 11. Architecture diagram                                            */
+/* 11. Changelog                                                       */
+/* ------------------------------------------------------------------ */
+.changelog-list { display: grid; gap: 16px; }
+.changelog-entry {
+  display: grid; grid-template-columns: 118px 1fr; gap: 18px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 24px; box-shadow: var(--shadow-sm);
+}
+.changelog-date {
+  align-self: start; display: grid; gap: 2px; padding: 14px;
+  border: 1px solid var(--accent-line); border-radius: 14px;
+  background: var(--accent-soft); color: var(--accent);
+}
+.changelog-date span { font-family: var(--font-mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
+.changelog-date b { font-family: var(--font-disp); font-size: 1.35rem; line-height: 1; }
+.changelog-body { min-width: 0; }
+.changelog-body h3 { font-size: 1.22rem; overflow-wrap: anywhere; }
+.changelog-body .id {
+  font-family: var(--font-mono); font-size: .76rem; color: var(--text-mut);
+  margin-top: 3px; overflow-wrap: anywhere;
+}
+.changelog-body p { color: var(--text-soft); font-size: .96rem; margin-top: 13px; }
+.changelog-points { display: grid; gap: 9px; margin-top: 15px; }
+.changelog-points li { position: relative; padding-left: 24px; color: var(--text-soft); font-size: .92rem; }
+.changelog-points li::before {
+  content: ""; position: absolute; left: 3px; top: .58em; width: 7px; height: 7px;
+  border-radius: 2px; background: var(--grad); transform: rotate(45deg);
+}
+
+/* ------------------------------------------------------------------ */
+/* 12. Architecture diagram                                            */
 /* ------------------------------------------------------------------ */
 .arch { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
 .arch-diagram { display: grid; gap: 14px; }
@@ -376,7 +406,7 @@ h1, h2, h3, h4 { font-family: var(--font-disp); line-height: 1.12; font-weight: 
 .arch-node small { display: block; font-weight: 400; color: var(--text-mut); font-size: .76rem; }
 
 /* ------------------------------------------------------------------ */
-/* 12. Code blocks (content) + tables + steps                          */
+/* 13. Code blocks (content) + tables + steps                          */
 /* ------------------------------------------------------------------ */
 .code {
   position: relative; background: var(--surface); border: 1px solid var(--border-2);
@@ -427,7 +457,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
 .cols-2 li { break-inside: avoid; }
 
 /* ------------------------------------------------------------------ */
-/* 13. Download cards                                                  */
+/* 14. Download cards                                                  */
 /* ------------------------------------------------------------------ */
 .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
 .dl-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 14px; transition: border-color .2s, transform .2s; }
@@ -449,7 +479,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
 .cta-banner .btn-outline:hover { background: rgba(4,19,10,.08); color: #04130a; border-color: rgba(4,19,10,.45); }
 
 /* ------------------------------------------------------------------ */
-/* 14. Module page specifics                                           */
+/* 15. Module page specifics                                           */
 /* ------------------------------------------------------------------ */
 .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--text-mut); margin-bottom: 22px; }
 .breadcrumb a:hover { color: var(--accent); }
@@ -481,7 +511,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
 .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 
 /* ------------------------------------------------------------------ */
-/* 15. Footer                                                          */
+/* 16. Footer                                                          */
 /* ------------------------------------------------------------------ */
 .footer { border-top: 1px solid var(--border); background: var(--bg-2); padding: 56px 0 30px; margin-top: 40px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 36px; }
@@ -496,7 +526,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
 .footer-bottom .lic { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ------------------------------------------------------------------ */
-/* 16. Reveal animation                                                */
+/* 17. Reveal animation                                                */
 /* ------------------------------------------------------------------ */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
@@ -512,7 +542,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
 }
 
 /* ------------------------------------------------------------------ */
-/* 17. Responsive                                                      */
+/* 18. Responsive                                                      */
 /* ------------------------------------------------------------------ */
 @media (max-width: 980px) {
   .hero-grid { grid-template-columns: 1fr; gap: 44px; }
@@ -520,6 +550,10 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
   .modules-grid, .features { grid-template-columns: repeat(2, 1fr); }
   .manifesto, .arch { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav-burger { display: inline-flex; }
 }
 @media (max-width: 720px) {
   :root { --nav-h: 60px; }
@@ -553,6 +587,8 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
   .code-window code, .code code { font-size: .78rem; }
   .module-card__head { flex-wrap: wrap; }
   .module-card__foot { flex-wrap: wrap; }
+  .changelog-entry { grid-template-columns: 1fr; }
+  .changelog-date { width: fit-content; grid-template-columns: auto auto; align-items: baseline; gap: 8px; }
   .dl-grid { grid-template-columns: 1fr; }
   .dl-card .actions .btn { flex: 1 1 160px; }
   .mod-hero .hero-cta .btn { flex: 1 1 190px; }
@@ -601,6 +637,8 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
   .stat { padding: 17px 10px; }
   .modules-grid, .features { grid-template-columns: 1fr; }
   .module-card, .feature, .dl-card { padding: 20px; border-radius: 16px; }
+  .changelog-entry { padding: 20px; border-radius: 16px; }
+  .changelog-date { padding: 12px 13px; border-radius: 12px; }
   .module-card__foot { gap: 10px 16px; }
   .pill-grid, .related-grid, .mod-meta { grid-template-columns: 1fr; }
   .pill-item { padding: 14px 15px; }
