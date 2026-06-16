@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
 import java.util.UUID;
-import java.util.concurrent.locks.ReentrantLock;
 import org.junit.Test;
 
 public class MachineLocksTest {
@@ -23,11 +22,11 @@ public class MachineLocksTest {
     }
 
     @Test
-    public void removeDropsTheLock() {
+    public void lockIsRetainedForTheSessionToKeepSerialization() {
+        // Locks are intentionally never evicted: a stable instance per id is what keeps a delete and a
+        // concurrent same-id operation serialized rather than racing on two instances.
         MachineLocks locks = new MachineLocks();
         UUID id = UUID.randomUUID();
-        ReentrantLock first = locks.get(id);
-        locks.remove(id);
-        assertNotSame(first, locks.get(id));
+        assertSame(locks.get(id), locks.get(id));
     }
 }

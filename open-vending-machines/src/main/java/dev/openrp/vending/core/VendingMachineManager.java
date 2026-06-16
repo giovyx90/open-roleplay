@@ -149,7 +149,8 @@ public final class VendingMachineManager {
         } finally {
             lock.unlock();
         }
-        plugin.locks().remove(machine.id());
+        // The machine's lock is intentionally retained (see MachineLocks): evicting it could let a
+        // concurrent operation on the same id acquire a different lock instance and race the delete.
         return true;
     }
 
