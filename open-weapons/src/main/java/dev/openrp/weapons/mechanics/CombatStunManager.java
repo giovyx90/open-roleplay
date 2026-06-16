@@ -24,6 +24,14 @@ public class CombatStunManager {
         return true;
     }
 
+    public void clearStun(UUID playerId) {
+        stunnedPlayers.remove(playerId);
+    }
+
+    public void clear() {
+        stunnedPlayers.clear();
+    }
+
     public long getRemainingStunTimeSeconds(UUID playerId) {
         Long stunUntil = stunnedPlayers.get(playerId);
         if (stunUntil == null) return 0;

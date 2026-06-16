@@ -208,6 +208,53 @@ public class RobberyManager {
       return this.activeRobberies.get(victimUuid);
    }
 
+   /**
+    * Ends every active robbery in which {@code robberUuid} is the robber. Mirrors the victim-side
+    * cleanup so a robber quitting or dying does not leak the session, its status display and tasks.
+    */
+   public void endRobberiesByRobber(UUID robberUuid) {
+      java.util.List<UUID> victims = new java.util.ArrayList<>();
+      for (RobberySession session : this.activeRobberies.values()) {
+         if (session.getRobberUuid().equals(robberUuid)) {
+            victims.add(session.getVictimUuid());
+         }
+      }
+      for (UUID victim : victims) {
+         endRobbery(victim);
+      }
+   }
+
+   /**
+    * Drops day-count entries for any date other than today, and forgets players left with no
+    * remaining counts, so {@link #dailyRobberies} cannot grow without bound over a long uptime.
+    * Today's counts are preserved so the daily limit can't be reset by reconnecting.
+    */
+   public void pruneDailyRobberies() {
+      LocalDate today = LocalDate.now();
+      this.dailyRobberies.values().forEach(history -> history.keySet().removeIf(date -> !date.equals(today)));
+      this.dailyRobberies.values().removeIf(Map::isEmpty);
+   }
+
+   /**
+    * Cleans up all robbery state and removes every status display entity from the world. Intended to
+    * be called on plugin disable; the scheduler cancels the backing tasks, but the spawned
+    * {@link TextDisplay} entities are persistent and must be removed explicitly.
+    */
+   public void cleanup() {
+      for (UUID victim : new java.util.ArrayList<>(this.activeRobberies.keySet())) {
+         endRobbery(victim);
+      }
+      for (TextDisplay tag : this.abbattibileTags.values()) {
+         if (tag != null && tag.isValid()) {
+            tag.remove();
+         }
+      }
+      this.abbattibileTags.clear();
+      this.activeRobberies.clear();
+      this.pendingSlogs.clear();
+      this.dailyRobberies.clear();
+   }
+
    public void markPendingSlog(UUID victimUuid, UUID robberUuid) {
       this.pendingSlogs.put(victimUuid, robberUuid);
    }

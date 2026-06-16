@@ -1,5 +1,6 @@
 package dev.openrp.weapons.listeners;
 
+import dev.openrp.weapons.api.WeaponCombatDecision;
 import dev.openrp.weapons.armor.HelmetManager;
 import dev.openrp.weapons.model.HelmetDefinition;
 import dev.openrp.weapons.model.WeaponCategory;
@@ -59,6 +60,19 @@ public class MeleeListener implements Listener {
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(item);
 
         if (weapon != null && weapon.getCategory() == WeaponCategory.MELEE) {
+            // Gate melee through the combat policy (safezones, friendly-fire, faction rules) just
+            // like ranged weapons do, so a melee strike can't bypass protected regions.
+            if (event.getEntity() instanceof LivingEntity policyTarget) {
+                WeaponCombatDecision decision = module.evaluateWeaponTarget(player, weapon, item, policyTarget);
+                if (decision.isDenied()) {
+                    event.setCancelled(true);
+                    if (decision.feedback() != null) {
+                        player.sendActionBar(Component.text(decision.feedback(), NamedTextColor.RED));
+                    }
+                    return;
+                }
+            }
+
             event.setDamage(weapon.getDamage());
 
             // Remove knockback for all melee weapons

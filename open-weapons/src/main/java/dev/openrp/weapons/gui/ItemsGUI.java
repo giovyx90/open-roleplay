@@ -50,6 +50,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -199,7 +200,7 @@ public class ItemsGUI implements Listener {
    }
 
    public void open(Player player) {
-      Inventory inv = Bukkit.createInventory(null, 36, Component.text(MAIN_TITLE, NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD}));
+      Inventory inv = Bukkit.createInventory(new ItemsGuiHolder(), 36, Component.text(MAIN_TITLE, NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD}));
       ItemStack filler = ItemBuilder.filler();
 
       for (int i = 0; i < 36; i++) {
@@ -292,7 +293,7 @@ public class ItemsGUI implements Listener {
       List<WeaponDefinition> firearms = this.module.getWeaponRegistry().getAll().stream().filter(w -> w.getCategory() != WeaponCategory.MELEE && w.getCategory() != WeaponCategory.TASER).toList();
       int size = this.clampSize(firearms.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Armi da fuoco", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Armi da fuoco", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -313,7 +314,7 @@ public class ItemsGUI implements Listener {
       List<WeaponDefinition> meleeWeapons = this.module.getWeaponRegistry().getByCategory(WeaponCategory.MELEE);
       int size = this.clampSize(meleeWeapons.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Corpo a corpo", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Corpo a corpo", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -334,7 +335,7 @@ public class ItemsGUI implements Listener {
       List<AmmoDefinition> ammoList = this.module.getAmmoRegistry().getAll();
       int size = this.clampSize(ammoList.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Munizioni", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Munizioni", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -360,7 +361,7 @@ public class ItemsGUI implements Listener {
          .toList();
       int size = this.clampSize(firearms.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Caricatori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Caricatori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -393,7 +394,7 @@ public class ItemsGUI implements Listener {
          + (int)this.module.getGrenadeManager().getAll().stream().filter(grenade -> !this.module.getC4Manager().isC4(grenade)).count();
       int size = this.clampSize(count + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Equipaggiamento", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Equipaggiamento", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -445,7 +446,7 @@ public class ItemsGUI implements Listener {
       List<ItemStack> utilities = this.collectOpenUtilityItems();
       int size = this.clampSize(utilities.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Utility", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Utility", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
       for (ItemStack item : utilities) {
@@ -484,7 +485,7 @@ public class ItemsGUI implements Listener {
       List<AttachmentDefinition> attachments = this.module.getAttachmentRegistry().getAll();
       int size = this.clampSize(attachments.size() + 1);
       Inventory inv = Bukkit.createInventory(
-         null, size, Component.text("Catalogo Admin - Accessori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
+         new ItemsGuiHolder(), size, Component.text("Catalogo Admin - Accessori", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
       int slot = 0;
 
@@ -524,7 +525,7 @@ public class ItemsGUI implements Listener {
       }
 
       Inventory inv = Bukkit.createInventory(
-         null,
+         new ItemsGuiHolder(),
          54,
          Component.text("Items Admin — Furniture (" + page + "/" + totalPages + ")", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
@@ -589,7 +590,7 @@ public class ItemsGUI implements Listener {
       }
 
       Inventory inv = Bukkit.createInventory(
-         null,
+         new ItemsGuiHolder(),
          54,
          Component.text(baseTitle + " (" + page + "/" + totalPages + ")", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
@@ -623,7 +624,7 @@ public class ItemsGUI implements Listener {
       page = Math.max(1, Math.min(page, totalPages));
 
       Inventory inv = Bukkit.createInventory(
-         null,
+         new ItemsGuiHolder(),
          54,
          Component.text(baseTitle + " (" + page + "/" + totalPages + ")", NamedTextColor.DARK_RED, new TextDecoration[]{TextDecoration.BOLD})
       );
@@ -677,6 +678,11 @@ public class ItemsGUI implements Listener {
 
    @EventHandler
    public void onClick(InventoryClickEvent event) {
+      // Identify our menus by holder, not by title: a player-named inventory can spoof the title but
+      // not the holder, so this is what guarantees we only act on inventories we actually opened.
+      if (!(event.getView().getTopInventory().getHolder() instanceof ItemsGuiHolder)) {
+         return;
+      }
       if (event.getWhoClicked() instanceof Player player) {
          String title = this.getPlainTitle(event);
          if (title != null) {
@@ -1541,5 +1547,17 @@ public class ItemsGUI implements Listener {
    private String getPlainTitle(InventoryClickEvent event) {
       Component titleComponent = event.getView().title();
       return PlainTextComponentSerializer.plainText().serialize(titleComponent);
+   }
+
+   /**
+    * Marker holder attached to every inventory this GUI opens. Its presence is the unspoofable signal
+    * that an inventory belongs to the admin catalog; sub-menu routing still keys off the title, but
+    * only ever for inventories carrying this holder.
+    */
+   private static final class ItemsGuiHolder implements InventoryHolder {
+      @Override
+      public Inventory getInventory() {
+         return null;
+      }
    }
 }

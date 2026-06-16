@@ -37,6 +37,11 @@ public class RobListener implements Listener {
             robber.sendMessage(Component.text(player.getName() + " e' uscito dal gioco durante la rapina! La sua lootbox e' in attesa di revisione staff.", NamedTextColor.GREEN));
          }
       }
+
+      // The robber leaving must also tear the session down, otherwise the victim's display and the
+      // duration/distance tasks leak until the victim themselves disconnects.
+      rm.endRobberiesByRobber(player.getUniqueId());
+      rm.pruneDailyRobberies();
    }
 
    @EventHandler
@@ -63,5 +68,7 @@ public class RobListener implements Listener {
       if (rm.isBeingRobbed(player.getUniqueId())) {
          rm.endRobbery(player.getUniqueId());
       }
+      // A robber dying ends the robbery just as their disconnect does.
+      rm.endRobberiesByRobber(player.getUniqueId());
    }
 }

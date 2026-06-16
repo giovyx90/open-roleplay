@@ -117,6 +117,7 @@ public class WeaponsModule {
     private CombatStunManager combatStunManager;
     private RobberyManager robberyManager;
     private GunListener gunListener;
+    private GrenadeListener grenadeListener;
     private DispatchGpsManager dispatchGpsManager;
     private ShieldManager shieldManager;
     private UtilityItemManager utilityItemManager;
@@ -213,6 +214,8 @@ public class WeaponsModule {
         this.grenadeManager = new GrenadeManager(core);
         this.grenadeManager.load(grenadesFile);
         this.c4Manager = new C4Manager(this);
+        // Sweep C4 holograms left behind by a previous run that crashed without a clean disable.
+        this.c4Manager.removeOrphanedDisplays();
 
         // Initialize Handcuffs
         this.handcuffManager = new HandcuffManager(core);
@@ -237,7 +240,8 @@ public class WeaponsModule {
         registerListener(new QuickActionListener(this));
         registerListener(new TaserListener(this));
         registerListener(new ShieldListener(this));
-        registerListener(new GrenadeListener(this));
+        this.grenadeListener = new GrenadeListener(this);
+        registerListener(grenadeListener);
         registerListener(c4Manager);
         this.utilityItemListener = new UtilityItemListener(this);
         registerListener(utilityItemListener);
@@ -453,9 +457,19 @@ public class WeaponsModule {
         if (dispatchGpsManager != null) {
             dispatchGpsManager.cleanup();
         }
+        if (grenadeListener != null) {
+            grenadeListener.cleanup();
+        }
         if (c4Manager != null) {
             c4Manager.cleanup();
         }
+        if (robberyManager != null) {
+            robberyManager.cleanup();
+        }
+        if (combatStunManager != null) {
+            combatStunManager.clear();
+        }
+        dev.openrp.weapons.mechanics.ShootingMechanics.cancelAllTasks();
         if (utilityItemListener != null) {
             utilityItemListener.cleanup();
         }

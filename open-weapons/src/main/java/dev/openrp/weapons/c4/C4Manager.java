@@ -179,6 +179,27 @@ public class C4Manager implements Listener {
       this.activeCharges.clear();
    }
 
+   /**
+    * Removes C4 hologram displays left in the world by a previous run that ended without a clean
+    * disable (e.g. a crash). The displays are persistent and tagged, but the charges they represent
+    * live only in memory, so any tagged display present at startup is an orphan that can never be
+    * detonated or defused. Must run at enable, while {@link #activeCharges} is still empty.
+    */
+   public void removeOrphanedDisplays() {
+      int removed = 0;
+      for (org.bukkit.World world : Bukkit.getWorlds()) {
+         for (org.bukkit.entity.Entity entity : world.getEntities()) {
+            if (entity.getScoreboardTags().contains("next_c4_charge")) {
+               entity.remove();
+               removed++;
+            }
+         }
+      }
+      if (removed > 0) {
+         module.getCore().getLogger().info("[OpenWeapons] Rimossi " + removed + " ologrammi C4 orfani da un avvio precedente.");
+      }
+   }
+
    public List<C4Charge> getVisibleCharges(Player player) {
       boolean admin = player.hasPermission("openrp.c4.remote.admin");
       List<C4Charge> charges = new ArrayList<>();

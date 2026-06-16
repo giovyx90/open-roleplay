@@ -684,6 +684,18 @@ public class ShootingMechanics {
         return updated;
     }
 
+    /**
+     * Cancels all pending hit-jump-restriction tasks and clears the tracking map. The map is static
+     * so it survives a {@code /reload}; this must be called on plugin disable to avoid leaking tasks
+     * and stale entries across reloads.
+     */
+    public static void cancelAllTasks() {
+        for (BukkitTask task : hitJumpRestrictionTasks.values()) {
+            task.cancel();
+        }
+        hitJumpRestrictionTasks.clear();
+    }
+
     private static void applyHitJumpRestriction(Player targetPlayer, JavaPlugin plugin) {
         UUID uuid = targetPlayer.getUniqueId();
         JumpRestrictionManager.restrict(targetPlayer, JumpRestrictionManager.REASON_GUN_HIT);
