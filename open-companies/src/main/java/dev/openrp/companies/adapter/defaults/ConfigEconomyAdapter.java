@@ -43,12 +43,18 @@ public final class ConfigEconomyAdapter implements EconomyAdapter {
         if (amount < 0) {
             return false;
         }
-        double current = balance(player, account);
-        if (current < amount) {
-            return false;
-        }
-        wallet(player).put(key(account), current - amount);
-        return true;
+        // Atomic read-modify-write: two concurrent withdrawals can't both pass the balance check and
+        // over-withdraw. A never-seen wallet is treated as holding the starting balance.
+        boolean[] ok = {false};
+        wallet(player).compute(key(account), (k, current) -> {
+            double balance = current == null ? startingBalance : current;
+            if (balance < amount) {
+                return current;
+            }
+            ok[0] = true;
+            return balance - amount;
+        });
+        return ok[0];
     }
 
     @Override
@@ -56,7 +62,7 @@ public final class ConfigEconomyAdapter implements EconomyAdapter {
         if (amount < 0) {
             return false;
         }
-        wallet(player).put(key(account), balance(player, account) + amount);
+        wallet(player).compute(key(account), (k, current) -> (current == null ? startingBalance : current) + amount);
         return true;
     }
 
@@ -79,12 +85,17 @@ public final class ConfigEconomyAdapter implements EconomyAdapter {
         if (amount < 0) {
             return false;
         }
-        double current = accountBalance(accountId);
-        if (current < amount) {
-            return false;
-        }
-        namedAccounts.put(key(accountId), current - amount);
-        return true;
+        // Atomic check-and-debit so concurrent company-account withdrawals can't over-draw.
+        boolean[] ok = {false};
+        namedAccounts.compute(key(accountId), (k, current) -> {
+            double balance = current == null ? 0.0 : current;
+            if (balance < amount) {
+                return current;
+            }
+            ok[0] = true;
+            return balance - amount;
+        });
+        return ok[0];
     }
 
     private Map<String, Double> wallet(OfflinePlayer player) {

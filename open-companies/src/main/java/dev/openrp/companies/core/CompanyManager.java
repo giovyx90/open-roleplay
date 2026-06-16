@@ -3,12 +3,12 @@ package dev.openrp.companies.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import dev.openrp.companies.adapter.AdapterRegistry;
 import dev.openrp.companies.adapter.StorageAdapter;
 import dev.openrp.companies.config.CompaniesSettings;
@@ -29,9 +29,13 @@ import dev.openrp.companies.model.PendingInvite;
  * {@link StorageAdapter} - so every invariant (creation modes, limits, role checks, invite/accept
  * flow, role changes) can be unit-tested directly.
  *
- * <p>It is <em>not</em> internally synchronized: callers (the services) serialize access per company
- * through {@code CompanyLocks}. Mutating methods persist through the storage adapter and return a
- * {@link CompanyResult}; the Bukkit-facing services add events, notifications and audit logging on top.</p>
+ * <p>Per-company invariants are serialized by the services through {@code CompanyLocks}. The backing
+ * maps are nonetheless {@link ConcurrentHashMap}s because read-only callers (e.g. the vending-machine
+ * integration) may query them off the main thread while the main thread mutates them; concurrent maps
+ * give those readers a consistent structure and weakly-consistent iteration instead of corruption or
+ * {@code ConcurrentModificationException}. Mutating methods persist through the storage adapter and
+ * return a {@link CompanyResult}; the Bukkit-facing services add events, notifications and audit
+ * logging on top.</p>
  */
 public final class CompanyManager {
 
@@ -39,10 +43,10 @@ public final class CompanyManager {
     private final CompanyValidator validator;
     private final AdapterRegistry adapters;
 
-    private final Map<String, Company> companies = new LinkedHashMap<>();
-    private final Map<UUID, CompanyApplication> applications = new LinkedHashMap<>();
-    private final Map<UUID, PendingInvite> invites = new LinkedHashMap<>();
-    private final Map<UUID, Long> creationCooldowns = new LinkedHashMap<>();
+    private final Map<String, Company> companies = new ConcurrentHashMap<>();
+    private final Map<UUID, CompanyApplication> applications = new ConcurrentHashMap<>();
+    private final Map<UUID, PendingInvite> invites = new ConcurrentHashMap<>();
+    private final Map<UUID, Long> creationCooldowns = new ConcurrentHashMap<>();
 
     public CompanyManager(CompaniesSettings settings, CompanyValidator validator, AdapterRegistry adapters) {
         this.settings = settings;
@@ -157,7 +161,9 @@ public final class CompanyManager {
             return check;
         }
         Company company = buildAndStore(ownerUuid, ownerName, displayName, type);
-        creationCooldowns.put(ownerUuid, System.currentTimeMillis());
+        if (ownerUuid != null) {
+            creationCooldowns.put(ownerUuid, System.currentTimeMillis());
+        }
         return CompanyResult.ok("company.created", "name", company.displayName(), "id", company.id())
                 .withPayload(company);
     }
@@ -567,7 +573,7 @@ public final class CompanyManager {
     }
 
     private long cooldownRemainingMillis(UUID ownerUuid) {
-        Long last = creationCooldowns.get(ownerUuid);
+        Long last = ownerUuid == null ? null : creationCooldowns.get(ownerUuid);
         if (last == null) {
             return 0;
         }

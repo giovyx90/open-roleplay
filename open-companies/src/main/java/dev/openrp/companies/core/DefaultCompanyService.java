@@ -154,7 +154,8 @@ public final class DefaultCompanyService implements CompanyService {
             clearIdentities(company);
             plugin.assetManager().removeAllOf(company.id());
             CompanyResult result = manager().delete(company.id());
-            plugin.locks().remove(company.id());
+            // The company's lock is intentionally retained (see CompanyLocks): evicting it here while
+            // held would let a concurrent same-id creation acquire a different lock and race the delete.
             audit("DELETE", "Company '" + company.id() + "' deleted");
             return result;
         } finally {

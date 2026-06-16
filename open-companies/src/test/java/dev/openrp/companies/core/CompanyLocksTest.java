@@ -3,7 +3,6 @@ package dev.openrp.companies.core;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
-import java.util.concurrent.locks.ReentrantLock;
 import org.junit.Test;
 
 public class CompanyLocksTest {
@@ -21,10 +20,10 @@ public class CompanyLocksTest {
     }
 
     @Test
-    public void removeDropsTheLock() {
+    public void lockIsRetainedForTheSessionToKeepSerialization() {
+        // Locks are intentionally never evicted: a stable instance per id is what guarantees that a
+        // delete and a concurrent same-id create are serialized rather than racing on two instances.
         CompanyLocks locks = new CompanyLocks();
-        ReentrantLock first = locks.get("acme");
-        locks.remove("acme");
-        assertNotSame(first, locks.get("acme"));
+        assertSame(locks.get("acme"), locks.get("acme"));
     }
 }
