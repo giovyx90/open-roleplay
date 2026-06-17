@@ -1,0 +1,64 @@
+# ============================================================================
+#  Open FDO - main configuration
+#  ---------------------------------------------------------------------------
+#  ADAPTER-FIRST and SETTING-NEUTRAL. The core knows nothing about any setting:
+#  authorities, ranks, acts, crimes and wanted levels all live in the dedicated
+#  files (corps.yml, ranks.yml, acts.yml, crimes.yml, wanted.yml). The bundled
+#  defaults reproduce an Italian realistic setting as a worked example; see
+#  examples/fantasy for a contrasting one. Detention execution, economic audit,
+#  external records and radio interception are provided by OTHER plugins that
+#  implement the public adapter interfaces - if none is present, the matching
+#  act simply does not appear.
+# ============================================================================
+
+branding:
+  product-name: "Open FDO"
+  message-prefix: "<gold>[FDO]</gold> "
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+# Which bundled adapter implementation to activate on startup.
+adapters:
+  storage: yaml    # yaml | memory
+  logging: file    # file | console | none
+
+storage:
+  file: fdo-data.yml
+
+logging:
+  file: fdo-audit.log
+
+duty:
+  # When no external badge plugin registers a DutyStatusAdapter, members clock in
+  # and out with /fdo servizio on|off. State is in-memory and clears on restart.
+  internal-fallback: true
+
+# ---------------------------------------------------------------------------
+# Custody. Hours here are IN-GAME hours; the wall-clock timer is scaled by
+# time.seconds-per-ig-hour below. The defaults reproduce the reference setting
+# (48h cautionary custody, 6h temporary detainment).
+# ---------------------------------------------------------------------------
+custody:
+  default-hours: 48
+  detain-hours: 6
+
+detention:
+  default-security-level: 1
+
+dossier:
+  # Pattern for dossier ids. Tokens: {anno} {numero} {sigla_corpo}. Avoid '.' in
+  # the pattern (it is the YAML path separator).
+  id-pattern: "{anno}/{numero}/{sigla_corpo}"
+
+time:
+  # One in-game hour = this many real seconds. Drives custody and sentence timers.
+  # Default 60 -> one IG hour is one real minute.
+  seconds-per-ig-hour: 60
+
+items:
+  badge-material: PAPER          # the tesserino item (give it CustomModelData via a resource pack)
+  book-material: WRITABLE_BOOK   # act books must be writable books
+
+debug: false

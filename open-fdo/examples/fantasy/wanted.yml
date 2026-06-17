@@ -1,0 +1,10 @@
+levels:
+  - level: 1
+    label: "Sospetto"
+    color: "yellow"
+  - level: 2
+    label: "Bandito ricercato"
+    color: "gold"
+  - level: 3
+    label: "Nemico del regno"
+    color: "red"

@@ -1,0 +1,31 @@
+# Charge catalogue. The core stores only the id on a dossier; the label lives here, so
+# renaming a charge updates every dossier at once. 'gravity' is an abstract hint the core
+# does not interpret. A fantasy server would define "Forbidden sorcery" instead.
+crimes:
+  furto:
+    label: "Art. 624 c.p. - Furto"
+    gravity: 2
+  rapina:
+    label: "Art. 628 c.p. - Rapina"
+    gravity: 4
+  lesioni:
+    label: "Art. 582 c.p. - Lesioni personali"
+    gravity: 3
+  omicidio:
+    label: "Art. 575 c.p. - Omicidio"
+    gravity: 5
+  resistenza:
+    label: "Art. 337 c.p. - Resistenza a pubblico ufficiale"
+    gravity: 3
+  stupefacenti:
+    label: "Art. 73 DPR 309/90 - Stupefacenti"
+    gravity: 4
+  porto_abusivo:
+    label: "Art. 4 L. 110/75 - Porto abusivo di armi"
+    gravity: 3
+  evasione:
+    label: "Art. 385 c.p. - Evasione"
+    gravity: 4
+  riciclaggio:
+    label: "Art. 648-bis c.p. - Riciclaggio"
+    gravity: 4

@@ -1,0 +1,21 @@
+# Corps (authorities). The display_name is the ONLY place a setting's flavour lives;
+# the core stores only the id. 'sigla' feeds the dossier id pattern. 'jurisdiction_over'
+# lets a corps request another's service sheets (internal affairs) - an abstract flag,
+# never "military".
+corps:
+  polizia:
+    display_name: "Polizia di Stato"
+    sigla: "PS"
+    jurisdiction_over: []
+  carabinieri:
+    display_name: "Arma dei Carabinieri"
+    sigla: "CC"
+    jurisdiction_over: [polizia, finanza]
+  finanza:
+    display_name: "Guardia di Finanza"
+    sigla: "GdF"
+    jurisdiction_over: []
+  magistratura:
+    display_name: "Magistratura"
+    sigla: "AG"
+    jurisdiction_over: [polizia, carabinieri, finanza]

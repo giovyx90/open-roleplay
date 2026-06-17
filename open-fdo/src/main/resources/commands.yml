@@ -1,0 +1,10 @@
+# Localized command aliases are reference documentation here: Bukkit resolves the actual
+# aliases from plugin.yml. The neutral roots are /fdo /atto /registro /detenzione /allerta;
+# the bundled aliases include the Italian /carcere for /detenzione. To rename a command,
+# add the alias in plugin.yml (and rebuild) - this file records the intended mapping.
+aliases:
+  fdo: [openfdo, ofdo]
+  atto: [act]
+  registro: [registry, archivio]
+  detenzione: [detention, carcere]
+  allerta: [alert]

@@ -1,0 +1,78 @@
+# Act catalogue. An act is offered to a member only when their rank holds 'capability'
+# AND any 'requires_adapter' is registered at runtime. The plugin never writes the act's
+# CONTENT - the member writes it in the book; the plugin stamps and registers. Flags:
+#   opens_dossier   - open a dossier on the subject
+#   starts_custody  - open cautionary custody (implies opens_dossier)
+#   custody_hours   - IG hours of custody, or 'default' for custody.default-hours
+#   seizes_evidence - record a piece of evidence with an open chain of custody
+#   flags_wanted    - add the subject to the wanted register at 'wanted_level'
+#   issues_fine     - record a monetary sanction note on the dossier
+#   requires_adapter- ECONOMY_AUDIT | EXTERNAL_RECORD | DETENTION | RADIO | EVIDENCE_SOURCE
+#   icon            - Material used as the menu icon
+acts:
+  arresto:
+    display_name: "Verbale di arresto"
+    capability: ARREST
+    opens_dossier: true
+    starts_custody: true
+    custody_hours: default
+    book_template: verbale_arresto
+    icon: IRON_BARS
+  fermo:
+    display_name: "Verbale di fermo"
+    capability: DETAIN_TEMPORARY
+    opens_dossier: true
+    starts_custody: true
+    # 'default' for a DETAIN_TEMPORARY act resolves to custody.detain-hours (config.yml), not the
+    # 48h cautionary custody. Set a number here to override per-act.
+    custody_hours: default
+    book_template: verbale_fermo
+    icon: LEAD
+  sequestro:
+    display_name: "Verbale di sequestro"
+    capability: SEIZE_EVIDENCE
+    seizes_evidence: true
+    book_template: verbale_sequestro
+    icon: CHEST
+  sanzione:
+    display_name: "Verbale di sanzione"
+    capability: ISSUE_FINE
+    issues_fine: true
+    book_template: verbale_sanzione
+    icon: GOLD_NUGGET
+  indagine:
+    display_name: "Apertura di indagine"
+    capability: OPEN_INVESTIGATION
+    opens_dossier: true
+    book_template: verbale_indagine
+    icon: BOOK
+  ricerca:
+    display_name: "Provvedimento di ricerca"
+    capability: FLAG_WANTED
+    flags_wanted: true
+    wanted_level: 2
+    book_template: verbale_ricerca
+    icon: TARGET
+  richiesta_mandato:
+    display_name: "Richiesta di mandato"
+    capability: REQUEST_WARRANT
+    book_template: verbale_richiesta_mandato
+    icon: WRITABLE_BOOK
+  mandato:
+    display_name: "Emissione di mandato"
+    capability: ISSUE_WARRANT
+    book_template: verbale_mandato
+    icon: WRITTEN_BOOK
+  audit:
+    display_name: "Verbale di audit economico"
+    capability: ECONOMIC_AUDIT
+    requires_adapter: ECONOMY_AUDIT
+    opens_dossier: true
+    book_template: verbale_audit
+    icon: EMERALD
+  referto:
+    display_name: "Allegazione di referto esterno"
+    capability: IMPORT_EXTERNAL_RECORD
+    requires_adapter: EXTERNAL_RECORD
+    book_template: verbale_referto
+    icon: PAPER

@@ -1,0 +1,16 @@
+# Only the keys that differ from the defaults are shown; copy the whole file or just merge
+# these into the generated config.yml.
+branding:
+  product-name: "Open FDO"
+  message-prefix: "<gold>[Guardia]</gold> "
+
+custody:
+  default-hours: 24
+  detain-hours: 4
+
+dossier:
+  # Setting-neutral: even the id format is config. e.g. GC-2026-1
+  id-pattern: "{sigla_corpo}-{anno}-{numero}"
+
+time:
+  seconds-per-ig-hour: 60

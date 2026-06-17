@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open FDO — Sistema nervoso dello stato RP · Open Roleplay</title>
+  <meta name="description" content="Open FDO: il sistema nervoso dello stato roleplay per Paper, adapter-first e neutro rispetto all'ambientazione. Corpi, gradi, capability, atti, fascicoli, prove con catena di custodia, ricercati e detenzione via adapter. API pubblica." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-fdo.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open FDO — Sistema nervoso dello stato RP · Open Roleplay" />
+  <meta property="og:description" content="Adapter-first e neutro rispetto all'ambientazione: corpi, gradi e capability da config, atti depositati come libri timbrati, fascicoli con catena di custodia, ricercati e detenzione via adapter." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-fdo.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Open Roleplay" />
+  <meta name="twitter:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260616-a11y" />
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open FDO",
+    "description": "Open FDO: il sistema nervoso dello stato roleplay per Paper, adapter-first e neutro rispetto all'ambientazione. Corpi, gradi, capability, atti, fascicoli, prove con catena di custodia, ricercati e detenzione via adapter.",
+    "url": "https://openroleplay.it/moduli/open-fdo.html",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Java / Paper 1.21.x",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "isAccessibleForFree": true,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Open Roleplay",
+      "url": "https://openroleplay.it/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+        <a href="../index.html#changelog">Changelog</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-fdo.jar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Scarica
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="../index.html#changelog">Changelog</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-fdo.jar" target="_blank" rel="noopener">Scarica il JAR</a>
+  </div>
+
+  <main id="main">
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open FDO</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/><path d="M12 7.8l1.2 2.5 2.7.3-2 1.9.6 2.7-2.5-1.4-2.5 1.4.6-2.7-2-1.9 2.7-.3z"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open FDO</h1>
+          <span class="badge badge--blue">Compilabile</span>
+        </div>
+        <p class="lead">Il sistema nervoso dello stato per server roleplay: corpi, gradi e capability, atti depositati come libri timbrati, fascicoli con catena di custodia delle prove, ricercati, detenzione e foglio di servizio. <strong>Neutro rispetto all'ambientazione</strong>: il core non conosce nessun corpo, grado, reato o sigla — tutto vive nella config o dietro adapter opzionali.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-fdo.jar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Scarica il JAR
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-fdo" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Sorgente
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://github.com/giovyx90/open-roleplay/blob/main/open-fdo/README.md" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            README
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Namespace</span><b>dev.openrp.fdo</b></div>
+          <div class="m"><span>Comandi</span><b>/fdo · /atto · /registro · /detenzione · /allerta</b></div>
+          <div class="m"><span>Dipendenze</span><b>nessuna obbligatoria</b></div>
+          <div class="m"><span>Opzionali</span><b>OpenCore · LuckPerms · WorldGuard · adapter di terze parti</b></div>
+          <div class="m"><span>API</span><b>OpenFdoApi</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEUTRALITA' ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Neutro rispetto all'ambientazione</h2>
+        <p class="lede reveal" data-d="1">Ogni feature passa un test: <em>funzionerebbe identica su un server fantasy medievale?</em> Se no per un'assunzione di ambientazione, finisce in config; se no perché il concetto non esiste in quel mondo, finisce dietro un adapter opzionale. Il realistico italiano è solo la configurazione di riferimento, inclusa come default.</p>
+        <div class="arch-diagram reveal" data-d="1" aria-label="Schema a tre livelli: core, config, adapter">
+          <div class="arch-core"><b>Core</b><br/><span>Authority · Act · Dossier · Evidence · Conviction · Wanted</span></div>
+          <div class="arch-row">
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Config<small>corps · ranks · acts · crimes · wanted</small></span></div>
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg><span>Adapter<small>detention · audit · referti · radio</small></span></div>
+          </div>
+        </div>
+        <p class="lede reveal">Il core non importa mai nulla dagli adapter. Se un adapter manca, la capability collegata sparisce in silenzio: nessun crash, nessuna dipendenza dura.</p>
+      </div>
+    </section>
+
+    <!-- ===================== CAPABILITY ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Capability, non corpi</h2>
+        <p class="lede reveal" data-d="1">Gli atti non sono legati ai corpi: sono legati a <em>capability</em>, e le capability sono assegnate ai gradi dalla config. I gradi inferiori sono ereditati dai superiori; un grado apicale può arruolare e promuovere nel proprio corpo.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Capability</th><th>Significato</th><th>Adapter</th></tr></thead>
+            <tbody>
+              <tr><td><code>DETAIN_TEMPORARY</code> / <code>ARREST</code></td><td>Fermo a tempo / arresto con fascicolo e custodia</td><td>—</td></tr>
+              <tr><td><code>ADD_CHARGE</code> / <code>SEIZE_EVIDENCE</code></td><td>Capi d'imputazione e sequestro prove</td><td>—</td></tr>
+              <tr><td><code>OPEN_INVESTIGATION</code> / <code>ISSUE_FINE</code></td><td>Apertura indagine e sanzioni</td><td>—</td></tr>
+              <tr><td><code>REQUEST_WARRANT</code> / <code>ISSUE_WARRANT</code></td><td>Richiesta ed emissione mandati</td><td>—</td></tr>
+              <tr><td><code>ISSUE_VERDICT</code> / <code>EXTEND_CUSTODY</code></td><td>Sentenza e proroga della custodia</td><td>—</td></tr>
+              <tr><td><code>FLAG_WANTED</code> / <code>DECLARE_ALERT</code></td><td>Registro ricercati e stato d'allerta</td><td>—</td></tr>
+              <tr><td><code>ECONOMIC_AUDIT</code></td><td>Audit economico in sola lettura</td><td>EconomyAudit</td></tr>
+              <tr><td><code>MANAGE_DETENTION</code></td><td>Gestione della detenzione</td><td>Detention</td></tr>
+              <tr><td><code>IMPORT_EXTERNAL_RECORD</code></td><td>Referti e atti esterni</td><td>ExternalRecord</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ATTO ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">L'atto è un libro</h2>
+        <p class="lede reveal" data-d="1"><code>/atto nuovo</code> mostra <strong>solo</strong> gli atti la cui capability è posseduta dal grado e il cui adapter (se richiesto) è presente. L'agente riceve un libro scrivibile e <strong>scrive lui il contenuto</strong>: il plugin non lo compila mai.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><div><b>Scrive l'agente</b><small>Il contenuto del verbale lo redige il giocatore nel libro. Il plugin non scrive testo al posto suo.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><b>Il plugin timbra</b><small>Alla firma: corpo, grado, matricola, data e id fascicolo. Poi registra l'atto e lo rende non contestabile.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></span><div><b>Effetti registrati</b><small>L'atto apre il fascicolo, avvia la custodia, sequestra la prova o segna il ricercato — secondo cosa dichiara in config.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FASCICOLO ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Fascicolo e catena di custodia</h2>
+        <p class="lede reveal" data-d="1">Il fascicolo ha tre sezioni: <strong>A</strong> intestazione (immutabile), <strong>B</strong> corpo del procedimento (capi, prove, note, custodia — mutabile), <strong>C</strong> esito (sentenza, immutabile una volta firmata). L'id segue il pattern di config, default <code>{anno}/{numero}/{sigla_corpo}</code>.</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Le prove tracciano una catena di custodia <strong>append-only</strong>: raccolta, trasferimenti, deposito</li>
+          <li>Un buco nella catena è ciò che rende la prova contestabile — il core registra, non arbitra</li>
+          <li>I capi d'imputazione pescano dal catalogo reati di <code>crimes.yml</code></li>
+          <li>La custodia cautelare ha una scadenza con timer; il giudice firma la sentenza in sezione C</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== ADAPTER ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Adapter</h2>
+        <p class="lede reveal" data-d="1">Cinque adapter di base hanno un default funzionante; gli adapter verso il mondo esterno sono opzionali e scoperti a runtime. Assenti, la capability e l'atto collegati semplicemente spariscono.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Adapter</th><th>Responsabilità</th><th>Assente →</th></tr></thead>
+            <tbody>
+              <tr><td><code>StorageAdapter</code></td><td>Persiste agenti, fascicoli, prove, ricercati, atti, detenzioni</td><td>default YAML/memoria</td></tr>
+              <tr><td><code>PermissionAdapter</code></td><td>Permessi Bukkit (riflette LuckPerms)</td><td>default bukkit</td></tr>
+              <tr><td><code>NotificationAdapter</code></td><td>Notifiche: evasioni, allerte</td><td>default chat</td></tr>
+              <tr><td><code>LoggingAdapter</code></td><td>Audit trail delle operazioni sensibili</td><td>file / console / none</td></tr>
+              <tr><td><code>RegionAdapter</code></td><td>Armadi prove e zone d'intercettazione</td><td>default no-op</td></tr>
+              <tr><td><code>DutyStatusAdapter</code></td><td>Stato di servizio</td><td>fallback interno <code>/fdo servizio</code></td></tr>
+              <tr><td><code>DetentionAdapter</code></td><td>Esecuzione <em>fisica</em> della pena</td><td>condanna registrata, RP manuale</td></tr>
+              <tr><td><code>EconomyAuditAdapter</code></td><td>Audit economico</td><td>la capability sparisce</td></tr>
+              <tr><td><code>ExternalRecordAdapter</code></td><td>Referti e atti esterni</td><td>la capability sparisce</td></tr>
+              <tr><td><code>RadioAdapter</code> · <code>EvidenceSourceAdapter</code></td><td>Intercettazione · tracce sulle prove</td><td>feature disattivata</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DETENZIONE ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Detenzione: evento astratto + adapter</h2>
+        <p class="lede reveal" data-d="1">Il core decide <em>che</em> c'è una condanna e gestisce il timer della pena e il rilascio automatico a fine pena; l'adapter decide cosa significa <em>fisicamente</em>.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M11 4v16M15 4v16"/></svg></span><div><b>Carcere realistico</b><small>Un modulo separato implementa region, routine ed evasioni.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/></svg></span><div><b>Segrete fantasy</b><small>Un adapter minimale teletrasporta nelle segrete e applica un bendaggio.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><div><b>Nessun adapter</b><small>La condanna resta nel fascicolo; l'esecuzione è lasciata al RP manuale.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== COMANDI ========================= -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Comandi</h2>
+        <p class="lede reveal" data-d="1">Cinque comandi radice. Il permesso Bukkit abilita solo l'uso del comando: l'autorità reale viene dalle capability del grado.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Comando</th><th>Funzione</th></tr></thead>
+            <tbody>
+              <tr><td><code>/fdo</code></td><td>Identità: info, identifica, tesserino, servizio, arruola, congeda, promuovi, degrada, reload</td></tr>
+              <tr><td><code>/atto nuovo [tipo] [bersaglio]</code></td><td>Apre il menu degli atti disponibili o consegna il libro da compilare e firmare</td></tr>
+              <tr><td><code>/registro</code></td><td>Archivi: fascicolo, lista, capo, wanted, foglio di servizio, prova (catena di custodia)</td></tr>
+              <tr><td><code>/detenzione</code></td><td>lista, info, rilascia, condanna, proroga (alias <code>/carcere</code>)</td></tr>
+              <tr><td><code>/allerta</code></td><td>stato, dichiara &lt;livello&gt;, revoca</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== API PUBBLICA ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">API pubblica</h2>
+        <p class="lede reveal" data-d="1">Recupera <code>OpenFdoApi</code> dal Services Manager di Bukkit. Registra i tuoi adapter (carcere, audit, referti) e usa lo stesso percorso validato dei comandi.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>java · OpenFdoApi</span><button class="copy-btn" data-copy="#fdo-api"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="fdo-api">OpenFdoApi api = Bukkit.getServicesManager().load(OpenFdoApi.class);
+
+// Collega il tuo modulo carcere come esecutore della pena
+api.adapters().setDetention(myPrisonModule);
+
+// Il modulo carcere segnala un'evasione confermata: il core aggiorna il
+// fascicolo, avvisa gli agenti in servizio e propone lo status ricercato
+api.reportEscape(inmate, "world", x, y, z);
+
+// Apri un fascicolo via API (stesso percorso validato dei comandi)
+api.dossiers().open(subject, "Mario", "polizia", agentUuid, 48);</code></pre>
+        </div>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li><code>agents()</code> — arruolamento, gradi e risoluzione capability</li>
+          <li><code>dossiers()</code> — fascicoli, capi d'imputazione, custodia e sentenze</li>
+          <li><code>evidence()</code> — prove e catena di custodia</li>
+          <li><code>wanted()</code> — registro ricercati</li>
+          <li><code>detention()</code> — ordini di detenzione e timer della pena</li>
+          <li><code>adapters()</code> — sostituzione runtime di storage, detention, audit e altro</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== SICUREZZA ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Sicurezza e neutralità</h2>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Il core non contiene il nome di nessun corpo, grado, reato o sigla: tutto in config</li>
+          <li>Il numero di fascicolo è un contatore persistito per anno e corpo: niente collisioni dopo un riavvio</li>
+          <li>Le sezioni A e C del fascicolo sono immutabili dopo la firma</li>
+          <li>Storage durevole: scrittura atomica con backup, recupero da write interrotti</li>
+          <li>Non crasha se un adapter manca: disattiva in silenzio la capability collegata</li>
+          <li>Eventi Bukkit: atto prodotto, fascicolo aperto</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-companies.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 6V4h6v2"/><path d="M8 11h2M14 11h2M8 15h2M14 15h2"/></svg></div><div><h4>Open Companies</h4><div class="id">open-companies</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-weapons.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4"/></svg></div><div><h4>Open Weapons</h4><div class="id">open-weapons</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-core.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg></div><div><h4>Open Core</h4><div class="id">open-core-paper</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-companies.html">Open Companies</a></li>
+            <li><a href="open-fdo.html">Open FDO</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=20260616-a11y" defer></script>
+</body>
+</html>

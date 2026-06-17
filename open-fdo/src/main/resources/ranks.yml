@@ -1,0 +1,89 @@
+# Ranks per corps, ordered (0 = lowest). Capabilities are granted directly at a rank
+# and INHERITED upward (a higher-order rank holds every lower rank's capabilities too).
+# 'apical: true' lets a rank enrol and promote within its own corps. Unknown capability
+# ids are skipped with a warning, never fatal.
+ranks:
+  polizia:
+    - id: agente
+      display_name: "Agente"
+      order: 0
+      capabilities: [DETAIN_TEMPORARY, ARREST, SEIZE_EVIDENCE, ADD_CHARGE, ISSUE_FINE]
+    - id: sovrintendente
+      display_name: "Sovrintendente"
+      order: 2
+      capabilities: [OPEN_INVESTIGATION]
+    - id: ispettore
+      display_name: "Ispettore"
+      order: 3
+      capabilities: [REQUEST_WARRANT, EXTEND_CUSTODY]
+    - id: commissario
+      display_name: "Commissario"
+      order: 4
+      capabilities: [FLAG_WANTED, MANAGE_DETENTION, DECLARE_ALERT]
+    - id: questore
+      display_name: "Questore"
+      order: 5
+      apical: true
+      capabilities: []
+  carabinieri:
+    - id: carabiniere
+      display_name: "Carabiniere"
+      order: 0
+      capabilities: [DETAIN_TEMPORARY, ARREST, SEIZE_EVIDENCE, ADD_CHARGE, ISSUE_FINE, IMPORT_EXTERNAL_RECORD]
+    - id: maresciallo
+      display_name: "Maresciallo"
+      order: 2
+      capabilities: [OPEN_INVESTIGATION, REQUEST_WARRANT]
+    - id: luogotenente
+      display_name: "Luogotenente"
+      order: 3
+      capabilities: [EXTEND_CUSTODY]
+    - id: ufficiale
+      display_name: "Ufficiale"
+      order: 4
+      capabilities: [FLAG_WANTED, MANAGE_DETENTION, DECLARE_ALERT]
+    - id: generale
+      display_name: "Generale"
+      order: 6
+      apical: true
+      capabilities: []
+  finanza:
+    - id: finanziere
+      display_name: "Finanziere"
+      order: 0
+      capabilities: [DETAIN_TEMPORARY, ARREST, SEIZE_EVIDENCE, ADD_CHARGE, ISSUE_FINE]
+    - id: brigadiere
+      display_name: "Brigadiere"
+      order: 2
+      capabilities: [OPEN_INVESTIGATION, ECONOMIC_AUDIT]
+    - id: maresciallo_gdf
+      display_name: "Maresciallo"
+      order: 3
+      capabilities: [REQUEST_WARRANT, EXTEND_CUSTODY]
+    - id: colonnello
+      display_name: "Colonnello"
+      order: 4
+      capabilities: [FLAG_WANTED, MANAGE_DETENTION]
+    - id: comandante
+      display_name: "Comandante"
+      order: 5
+      apical: true
+      capabilities: [DECLARE_ALERT]
+  magistratura:
+    - id: sostituto
+      display_name: "Sostituto Procuratore"
+      order: 0
+      capabilities: [OPEN_INVESTIGATION, REQUEST_WARRANT, ADD_CHARGE]
+    - id: pm
+      display_name: "Pubblico Ministero"
+      order: 2
+      capabilities: [ISSUE_WARRANT, FLAG_WANTED, EXTEND_CUSTODY]
+    - id: giudice
+      display_name: "Giudice"
+      order: 4
+      capabilities: [ISSUE_VERDICT]
+    - id: procuratore
+      display_name: "Procuratore Capo"
+      order: 5
+      apical: true
+      capabilities: [ISSUE_WARRANT, ISSUE_VERDICT]

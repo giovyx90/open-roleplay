@@ -1,0 +1,9 @@
+corps:
+  guardia_cittadina:
+    display_name: "Guardia Cittadina"
+    sigla: "GC"
+    jurisdiction_over: []
+  ordine_cavalieri:
+    display_name: "Ordine dei Cavalieri"
+    sigla: "OC"
+    jurisdiction_over: [guardia_cittadina]

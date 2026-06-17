@@ -1,0 +1,12 @@
+# Wanted levels. How many levels exist and what they mean is entirely config-defined;
+# the core only checks that a requested level exists. 'color' is a MiniMessage colour.
+levels:
+  - level: 1
+    label: "Sorvegliato speciale"
+    color: "yellow"
+  - level: 2
+    label: "Ricercato"
+    color: "gold"
+  - level: 3
+    label: "Pericoloso - armato e ricercato"
+    color: "red"

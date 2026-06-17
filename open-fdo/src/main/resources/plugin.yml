@@ -1,0 +1,60 @@
+name: OpenFDO
+version: '${project.version}'
+main: dev.openrp.fdo.OpenFdoPlugin
+api-version: '1.21'
+description: Adapter-first, setting-neutral state nervous system for Paper roleplay servers - authorities, acts, dossiers, evidence, convictions and wanted.
+authors: [Open Roleplay Workshop]
+# Every entry below is an OPTIONAL soft dependency. The core works without any of them:
+# - OpenCore   -> module lifecycle integration (reflective, optional)
+# - LuckPerms  -> permission routing (handled through the Bukkit permission layer)
+# - WorldGuard -> region-aware evidence lockers and intercept zones (optional RegionAdapter)
+# Detention execution, economic audit, external records and radio interception are provided by
+# OTHER plugins implementing the public adapter interfaces; OpenFDO discovers them at runtime.
+softdepend: [OpenCore, LuckPerms, WorldGuard]
+
+commands:
+  fdo:
+    description: Identity and personal management for an authority member.
+    usage: /fdo <help|info|identifica|tesserino|servizio|arruola|congeda|promuovi|degrada|reload>
+    aliases: [openfdo, ofdo]
+    permission: openfdo.use
+  atto:
+    description: Produce any official document (act).
+    usage: /atto <nuovo|lista> [tipo] [bersaglio]
+    aliases: [act]
+    permission: openfdo.use
+  registro:
+    description: Consult the archives (dossiers, service sheets, wanted register).
+    usage: /registro <fascicolo|servizio|wanted|lista>
+    aliases: [registry, archivio]
+    permission: openfdo.use
+  detenzione:
+    description: Manage detention.
+    usage: /detenzione <lista|info|rilascia>
+    aliases: [detention, carcere]
+    permission: openfdo.use
+  allerta:
+    description: Declare or clear the alert state.
+    usage: /allerta <stato|dichiara|revoca>
+    aliases: [alert]
+    permission: openfdo.use
+
+permissions:
+  openfdo.*:
+    description: Grants every Open FDO permission.
+    default: op
+    children:
+      openfdo.use: true
+      openfdo.admin: true
+      openfdo.reload: true
+  openfdo.use:
+    description: Allows using the Open FDO commands. Real authority comes from the member's rank capabilities, not from this node.
+    default: true
+  openfdo.admin:
+    description: Staff control - enrol/discharge members, force ranks, manage any dossier, bypass capability checks.
+    default: op
+    children:
+      openfdo.reload: true
+  openfdo.reload:
+    description: Allows reloading Open FDO configuration.
+    default: op

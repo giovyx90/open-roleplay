@@ -29,6 +29,7 @@ usati insieme ma leggibili e modificabili anche uno alla volta.
 | `open-weapons` | Standalone iniziale, compilabile | Plugin Paper per armi, munizioni, accessori, armature, granate, C4, manette, taser, utility RP, rapine e perquisizioni. Usa bridge open/no-op per servizi opzionali non ancora pubblicati. |
 | `open-vending-machines` | Standalone iniziale, compilabile | Plugin Paper adapter-first per distributori automatici roleplay: prodotti, stock, prezzi, casse, aziende opzionali e integrazioni economy/inventory sostituibili. |
 | `open-companies` | Standalone iniziale, compilabile | Plugin Paper adapter-first per aziende roleplay: ruoli, membri, inviti, camera di commercio (stato, licenze, sede), asset aziendali e API pubblica. Modalita' creazione PLAYER_DIRECT/PLAYER_APPLICATION/ADMIN_ONLY, con integrazione opzionale verso OpenVendingMachines. |
+| `open-fdo` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: il sistema nervoso dello stato. Corpi, gradi e capability tutti da config; atti depositati come libri timbrati; fascicoli con catena di custodia delle prove; ricercati, detenzione via adapter e foglio di servizio. Espone `OpenFdoApi`. |
 
 ## Stato della pubblicazione
 
@@ -45,6 +46,7 @@ Stato attuale:
 - `OpenWeapons`: plugin standalone iniziale e compilabile; armi, utility, rapine e perquisizioni funzionano come base pubblica, mentre le integrazioni opzionali degradano tramite bridge minimali quando il relativo modulo non e' presente.
 - `OpenVendingMachines`: plugin standalone iniziale e compilabile; distributori automatici configurabili con adapter sostituibili per economy, inventario, aziende, storage, notifiche e audit.
 - `OpenCompanies`: plugin standalone iniziale e compilabile; aziende con ruoli/capability, inviti, camera di commercio (stato, licenze, sede) e asset aziendali, con adapter sostituibili per storage, economy, permessi, regioni, identita', notifiche e audit. Espone `OpenCompaniesApi` e si integra opzionalmente con OpenVendingMachines.
+- `OpenFDO`: plugin standalone iniziale e compilabile, neutro rispetto all'ambientazione; corpi, gradi, capability, atti, reati e livelli ricercato sono tutti definiti in config. Gli atti si depositano scrivendo e firmando un libro che il plugin timbra; i fascicoli tracciano capi d'imputazione, prove con catena di custodia e sentenze; la detenzione e l'audit economico passano da adapter opzionali (assenti -> la capability sparisce). Espone `OpenFdoApi`.
 
 La priorita' dei prossimi passaggi e':
 
@@ -127,6 +129,11 @@ open-roleplay/
     src/main/java/dev/openrp/companies/
     src/main/resources/
     src/test/java/dev/openrp/companies/
+  open-fdo/
+    src/main/java/dev/openrp/fdo/
+    src/main/resources/
+    src/test/java/dev/openrp/fdo/
+    examples/
 ```
 
 ## Note per sviluppatori

@@ -1,0 +1,33 @@
+ranks:
+  guardia_cittadina:
+    - id: recluta
+      display_name: "Recluta"
+      order: 0
+      capabilities: [DETAIN_TEMPORARY, ARREST, SEIZE_EVIDENCE, ADD_CHARGE, ISSUE_FINE]
+    - id: guardia
+      display_name: "Guardia"
+      order: 1
+      capabilities: [OPEN_INVESTIGATION]
+    - id: sergente
+      display_name: "Sergente di Guardia"
+      order: 3
+      capabilities: [REQUEST_WARRANT, EXTEND_CUSTODY, FLAG_WANTED]
+    - id: capitano
+      display_name: "Capitano della Guardia"
+      order: 5
+      apical: true
+      capabilities: [MANAGE_DETENTION, DECLARE_ALERT, ISSUE_VERDICT]
+  ordine_cavalieri:
+    - id: scudiero
+      display_name: "Scudiero"
+      order: 0
+      capabilities: [DETAIN_TEMPORARY, ARREST, SEIZE_EVIDENCE]
+    - id: cavaliere
+      display_name: "Cavaliere"
+      order: 2
+      capabilities: [OPEN_INVESTIGATION, REQUEST_WARRANT, FLAG_WANTED, ADD_CHARGE]
+    - id: gran_maestro
+      display_name: "Gran Maestro"
+      order: 5
+      apical: true
+      capabilities: [ISSUE_WARRANT, ISSUE_VERDICT, MANAGE_DETENTION, DECLARE_ALERT, EXTEND_CUSTODY]

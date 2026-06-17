@@ -1,0 +1,37 @@
+# No economic audit and no external records: those capabilities are never assigned and the
+# adapters are not installed, so the matching acts do not exist in this world.
+acts:
+  arresto:
+    display_name: "Ordine di cattura"
+    capability: ARREST
+    opens_dossier: true
+    starts_custody: true
+    custody_hours: default
+    icon: IRON_BARS
+  fermo:
+    display_name: "Trattenimento"
+    capability: DETAIN_TEMPORARY
+    opens_dossier: true
+    starts_custody: true
+    custody_hours: default
+    icon: LEAD
+  sequestro:
+    display_name: "Confisca di prove"
+    capability: SEIZE_EVIDENCE
+    seizes_evidence: true
+    icon: CHEST
+  indagine:
+    display_name: "Apertura di inchiesta"
+    capability: OPEN_INVESTIGATION
+    opens_dossier: true
+    icon: BOOK
+  ricerca:
+    display_name: "Bando di ricerca"
+    capability: FLAG_WANTED
+    flags_wanted: true
+    wanted_level: 2
+    icon: TARGET
+  mandato:
+    display_name: "Editto di mandato"
+    capability: ISSUE_WARRANT
+    icon: WRITTEN_BOOK

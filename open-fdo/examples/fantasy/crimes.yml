@@ -1,0 +1,19 @@
+crimes:
+  stregoneria:
+    label: "Stregoneria proibita"
+    gravity: 5
+  furto:
+    label: "Furto"
+    gravity: 2
+  brigantaggio:
+    label: "Brigantaggio"
+    gravity: 4
+  tradimento:
+    label: "Alto tradimento alla corona"
+    gravity: 5
+  contrabbando:
+    label: "Contrabbando"
+    gravity: 3
+  diserzione:
+    label: "Diserzione dalla guardia"
+    gravity: 3
