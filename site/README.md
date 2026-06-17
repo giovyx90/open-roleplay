@@ -20,7 +20,8 @@ site/
 │   └── open-core-api.html
 ├── assets/
 │   ├── css/styles.css      # design system: tema chiaro + accento verde, toggle dark
-│   ├── js/main.js          # tema, menu mobile, copia-codice, reveal on scroll
+│   ├── js/modules.js       # registry canonico: moduli, download, footer, conteggi
+│   ├── js/main.js          # tema, menu mobile, rendering moduli, copia-codice, reveal
 │   └── img/                # favicon.svg, og-cover.svg
 ├── CNAME                   # openroleplay.it
 ├── .nojekyll               # disattiva Jekyll su GitHub Pages
@@ -43,10 +44,10 @@ python3 -m http.server 8080
 
 - **Colori / tema:** le variabili sono in cima a `assets/css/styles.css`
   (`:root` per il tema chiaro, `[data-theme="dark"]` per quello scuro).
-- **Contenuti moduli:** ogni pagina in `moduli/` è autonoma e segue lo stesso
-  template (nav/footer identici). Per aggiungere un modulo, copia una pagina
-  esistente e aggiorna l'elenco nella griglia di `index.html`, nel footer e in
-  `sitemap.xml`.
+- **Contenuti moduli:** `assets/js/modules.js` è la fonte dati unica per
+  conteggi, griglia homepage, card download e footer. Ogni pagina in `moduli/`
+  resta autonoma per il contenuto lungo; per aggiungere un modulo crea la pagina,
+  aggiorna `modules.js` e inserisci la URL in `sitemap.xml`.
 - **Download:** i pulsanti puntano agli asset stabili della release GitHub più
   recente, ad esempio
   `https://github.com/giovyx90/open-roleplay/releases/latest/download/open-weapons.jar`.

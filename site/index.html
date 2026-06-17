@@ -7,15 +7,15 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open Roleplay — Moduli Paper open source per Minecraft RP</title>
-  <meta name="description" content="Open Roleplay è una suite open source di moduli Paper per server Minecraft roleplay: armi, accessi, cosmetici, distributori, aziende e un core condiviso. Gratuita, modulare, adapter-first. Apache 2.0." />
+  <title>Open Roleplay — Moduli open source per Minecraft RP su Paper</title>
+  <meta name="description" content="Open Roleplay è una suite open source di moduli per server Minecraft roleplay su Paper: armi, accessi, cosmetici, distributori, aziende, FDO, core e API. Gratuita, modulare, adapter-first. Apache 2.0." />
   <meta name="theme-color" content="#16a34a" />
   <link rel="canonical" href="https://openroleplay.it/" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Open Roleplay — Moduli Paper open source per Minecraft RP" />
-  <meta property="og:description" content="La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare, adapter-first." />
+  <meta property="og:title" content="Open Roleplay — Moduli open source per Minecraft RP su Paper" />
+  <meta property="og:description" content="La suite open source di moduli per server Minecraft roleplay su Paper. Gratuita, modulare, adapter-first." />
   <meta property="og:url" content="https://openroleplay.it/" />
   <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
   <meta property="og:image:width" content="1200" />
@@ -36,7 +36,7 @@
     "@type": "WebSite",
     "name": "Open Roleplay",
     "url": "https://openroleplay.it/",
-    "description": "Suite open source di moduli Paper per server Minecraft roleplay.",
+    "description": "Suite open source di moduli per server Minecraft roleplay su Paper.",
     "inLanguage": "it",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
     "isAccessibleForFree": true,
@@ -105,7 +105,7 @@
           <div class="hero-copy">
             <span class="eyebrow reveal">Open source · Apache 2.0 · Paper 1.21.x</span>
             <h1 class="reveal" data-d="1">La suite <span class="grad-text">open source</span> per server Minecraft roleplay.</h1>
-            <p class="lead reveal" data-d="2">Open Roleplay è una raccolta di moduli Paper indipendenti — armi, accessi, cosmetici, distributori, aziende e un core condiviso. Usali insieme o uno alla volta. Leggibili, modificabili e tuoi.</p>
+            <p class="lead reveal" data-d="2">Open Roleplay è una raccolta di moduli indipendenti per server Paper — armi, accessi, cosmetici, distributori, aziende, FDO, core e API condivisa. Usali insieme o uno alla volta. Leggibili, modificabili e tuoi.</p>
             <div class="hero-cta reveal" data-d="3">
               <a class="btn btn-primary btn-lg" href="#moduli">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -119,7 +119,7 @@
             <div class="hero-meta reveal" data-d="4">
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Java 21</span>
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Paper 1.21.x</span>
-              <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>8 moduli</span>
+              <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-module-total>8</span> moduli</span>
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Resource pack inclusi</span>
             </div>
             <p class="manifesto-tag reveal" data-d="4">// È gratuito, e lo sarà per sempre.</p>
@@ -155,7 +155,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
 
         <!-- stats -->
         <div class="stats reveal">
-          <div class="stat"><b>8</b><span>moduli Paper</span></div>
+          <div class="stat"><b data-module-total>8</b><span>moduli pubblici</span></div>
           <div class="stat"><b>100%</b><span>open source</span></div>
           <div class="stat"><b>Apache&nbsp;2.0</b><span>licenza del codice</span></div>
           <div class="stat"><b>∞</b><span>gratis per sempre</span></div>
@@ -188,11 +188,11 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
       <div class="container">
         <div class="section-head center">
           <span class="eyebrow reveal">I moduli</span>
-          <h2 class="section-title reveal" data-d="1">Otto moduli, una sola famiglia</h2>
-          <p class="section-sub reveal" data-d="2">Ogni modulo è un plugin Paper autonomo con default funzionanti. Quando si trovano sullo stesso server, si riconoscono e collaborano — senza dipendenze obbligatorie.</p>
+          <h2 class="section-title reveal" data-d="1"><span data-module-total-word>Otto</span> moduli, una sola famiglia</h2>
+          <p class="section-sub reveal" data-d="2">Ogni modulo pubblicabile ha default funzionanti. Quando i plugin Paper si trovano sullo stesso server, si riconoscono e collaborano — senza dipendenze obbligatorie.</p>
         </div>
 
-        <div class="modules-grid">
+        <div class="modules-grid" data-module-grid>
           <!-- Open Weapons -->
           <article class="module-card reveal">
             <div class="module-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="2.4"/></svg></div>
@@ -334,7 +334,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
         </div>
         <div class="features">
           <div class="feature reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><h3>Davvero open</h3><p>Codice sotto Apache 2.0: leggilo, modificalo, adattalo. Niente offuscamento, niente componenti chiusi.</p></div>
-          <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Modulare</h3><p>Otto plugin separati. Installa solo ciò che ti serve: ognuno è leggibile e compilabile da solo.</p></div>
+          <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Modulare</h3><p><span data-module-total-word>Otto</span> moduli separati. Installa solo ciò che ti serve: ognuno è leggibile e compilabile da solo.</p></div>
           <div class="feature reveal" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div><h3>Integrabile</h3><p>API pubbliche via Bukkit Services, eventi cancellabili e adapter sostituibili: collega i tuoi sistemi senza fork.</p></div>
           <div class="feature reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Sicuro lato server</h3><p>Logica critica server-side, transazioni atomiche e lock per-risorsa: il client non viene mai fidato.</p></div>
           <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>Bilingue IT / EN</h3><p>Messaggi in italiano e inglese, selezionati in automatico dalla lingua del client. Tutto personalizzabile.</p></div>
@@ -497,7 +497,7 @@ mvn -B -ntp clean package</code></pre>
           <p class="section-sub reveal" data-d="2">I JAR pronti all'uso sono pubblicati nelle Release di GitHub. Preferisci compilare? Trovi il sorgente di ogni modulo nel monorepo.</p>
         </div>
 
-        <div class="dl-grid">
+        <div class="dl-grid" data-download-grid>
           <div class="dl-card reveal">
             <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4"/></svg></div><div><h4>Open Weapons</h4><div class="id">open-weapons</div></div></div>
             <div class="actions"><a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-weapons.jar" target="_blank" rel="noopener">Scarica JAR</a><a class="btn btn-outline btn-sm" href="moduli/open-weapons.html">Dettagli</a></div>
@@ -559,7 +559,7 @@ mvn -B -ntp clean package</code></pre>
             <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
             Open<b>Roleplay</b>
           </a>
-          <p class="footer-about">La suite open source di moduli Paper per server Minecraft roleplay. Gratuita, modulare e adapter-first.</p>
+          <p class="footer-about">La suite open source di moduli per server Minecraft roleplay su Paper. Gratuita, modulare e adapter-first.</p>
           <div class="footer-social">
             <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
             <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
@@ -567,7 +567,7 @@ mvn -B -ntp clean package</code></pre>
         </div>
         <div>
           <h5>Moduli</h5>
-          <ul>
+          <ul data-module-nav>
             <li><a href="moduli/open-weapons.html">Open Weapons</a></li>
             <li><a href="moduli/open-access.html">Open Access</a></li>
             <li><a href="moduli/open-cosmetics.html">Open Cosmetics</a></li>
@@ -609,6 +609,7 @@ mvn -B -ntp clean package</code></pre>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20260616-a11y" defer></script>
+  <script src="assets/js/modules.js?v=20260617-modules" defer></script>
+  <script src="assets/js/main.js?v=20260617-modules" defer></script>
 </body>
 </html>

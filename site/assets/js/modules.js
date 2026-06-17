@@ -1,0 +1,110 @@
+/* Open Roleplay module registry.
+   Keep this as the single source of truth for homepage cards, downloads,
+   footer module links, and module counts. */
+window.OpenRoleplayModules = [
+  {
+    id: "open-weapons",
+    name: "Open Weapons",
+    page: "open-weapons.html",
+    sourceDir: "open-weapons",
+    jar: "open-weapons.jar",
+    icon: "weapons",
+    status: "Snapshot",
+    statusClass: "badge--amber",
+    paperPlugin: true,
+    summary: "Armi da fuoco e melee, munizioni, accessori, armature e tutto il gameplay RP collegato al combat: rapine, perquisizioni, arresti, wanted e radio delle forze dell'ordine.",
+    tags: ["Armi & ammo", "Accessori", "Rapine", "Combat API"]
+  },
+  {
+    id: "open-access",
+    name: "Open Access",
+    page: "open-access.html",
+    sourceDir: "open-access",
+    jar: "open-access.jar",
+    icon: "access",
+    status: "Standalone",
+    statusClass: "",
+    paperPlugin: true,
+    summary: "Controllo accessi a regioni WorldGuard e blocchi sensibili: casse, porte, container e macchine. Profili, trust, ruoli e preset, con storage SQLite o MySQL.",
+    tags: ["WorldGuard", "Profili", "Preset", "SQLite/MySQL"]
+  },
+  {
+    id: "open-cosmetics",
+    name: "Open Cosmetics",
+    page: "open-cosmetics.html",
+    sourceDir: "open-cosmetics",
+    jar: "open-cosmetics.jar",
+    icon: "cosmetics",
+    status: "Standalone",
+    statusClass: "",
+    paperPlugin: true,
+    summary: "Cosmetici arma senza duplicare la logica del combat: LED, colori custom, skin con suoni dedicati, gettoni consumabili, editor, banco e stazioni nel mondo.",
+    tags: ["LED", "Skin", "Gettoni", "Editor & stazioni"]
+  },
+  {
+    id: "open-vending-machines",
+    name: "Open Vending Machines",
+    page: "open-vending.html",
+    sourceDir: "open-vending-machines",
+    jar: "open-vending-machines.jar",
+    icon: "vending",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "Distributori automatici roleplay realistici, rifornibili e assegnabili ad aziende. Adapter-first: porti la tua economy, il tuo inventario e le tue aziende senza fork.",
+    tags: ["Economy", "Stock & prezzi", "Aziende", "7 adapter"]
+  },
+  {
+    id: "open-companies",
+    name: "Open Companies",
+    page: "open-companies.html",
+    sourceDir: "open-companies",
+    jar: "open-companies.jar",
+    icon: "companies",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "Aziende roleplay, camera di commercio, asset fisici, treasury, ledger, cash, carte e paghe ricorrenti. Adapter-first: economy, storage, permessi, regioni e audit sono sostituibili.",
+    tags: ["Aziende", "Ruoli", "Licenze", "Asset", "OpenCompaniesApi"]
+  },
+  {
+    id: "open-fdo",
+    name: "Open FDO",
+    page: "open-fdo.html",
+    sourceDir: "open-fdo",
+    jar: "open-fdo.jar",
+    icon: "fdo",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "Il sistema nervoso dello stato roleplay, neutro rispetto all'ambientazione: corpi, gradi e capability da config, atti depositati come libri timbrati, fascicoli con catena di custodia delle prove, ricercati e detenzione via adapter.",
+    tags: ["Capability", "Atti", "Fascicoli", "Catena di custodia", "OpenFdoApi"]
+  },
+  {
+    id: "open-core-paper",
+    name: "Open Core",
+    page: "open-core.html",
+    sourceDir: "open-core-paper",
+    jar: "open-core-paper.jar",
+    icon: "core",
+    status: "Avviabile",
+    statusClass: "",
+    paperPlugin: true,
+    summary: "Il plugin di base. Nessun gameplay: espone un servizio Bukkit, un lifecycle ordinato dei moduli, database opzionale SQLite/MySQL, HUD e invio del resource pack.",
+    tags: ["/opencore", "Lifecycle moduli", "HikariCP", "Resource pack"]
+  },
+  {
+    id: "open-core-api",
+    name: "Open Core API",
+    page: "open-core-api.html",
+    sourceDir: "open-core-api",
+    jar: "open-core-api.jar",
+    jarLabel: "Scarica JAR API",
+    icon: "api",
+    status: "Contratti",
+    statusClass: "",
+    paperPlugin: false,
+    summary: "I contratti pubblici minimi condivisi dai moduli: lifecycle, accesso opzionale al database, messaggi, permessi, stato HUD e utility item. Tipi stabili, zero gameplay.",
+    tags: ["Module API", "OpenDatabase", "OpenMessages", "OpenItemBuilder"]
+  }
+];
