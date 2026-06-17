@@ -1,0 +1,41 @@
+# Config demo usata dal deploy serverless Vercel.
+
+server:
+  name: "Open Roleplay — Demo"
+  setting: "realistico"
+  mode: demo
+  theme_color: "#16a34a"
+  logo_url: null
+  timezone: "Europe/Rome"
+
+auth:
+  otp_expiry_minutes: 5
+  jwt_expiry_hours: 24
+  jwt_secret: "demo-secret-non-segreto"
+
+cors:
+  allowed_origins: []
+
+api:
+  port: 3000
+  require_tls: false
+  rate_limit:
+    auth: 60
+    general: 600
+
+demo:
+  seed: ./seed.demo.vercel.json
+
+layout: ./layout.demo.vercel.yml
+
+modules:
+  active:
+    - core
+    - economy
+    - companies
+    - openfdo
+    - politics
+    - jobs
+    - health
+    - identity
+    - education

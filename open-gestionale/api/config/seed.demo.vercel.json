@@ -1,0 +1,490 @@
+{
+  "_about": "Dati fittizi per la demo di Open Gestionale. Nessun dato reale. La struttura è la forma normalizzata che ogni data source restituisce.",
+  "players": [
+    {
+      "uuid": "11111111-1111-4111-8111-111111111111",
+      "display_name": "Marco Rossi",
+      "rank": "cittadino",
+      "rank_label": "Cittadino",
+      "corps": null,
+      "corps_label": null,
+      "capabilities": [],
+      "blurb": "Cittadino comune: conto, telefono, lavoro da barista. Vede solo i propri dati.",
+      "registered_at": "2025-11-02T18:20:00Z",
+      "last_seen": "2026-06-17T08:41:00Z",
+      "weekly_minutes": 612,
+      "economy": {
+        "balance": {
+          "currency": "EUR",
+          "cash": 84.5,
+          "bank": 1320.75,
+          "accounts": [
+            { "id": "acc-marco-bank", "label": "Conto corrente", "type": "bank", "amount": 1320.75 },
+            { "id": "acc-marco-cash", "label": "Contante", "type": "cash", "amount": 84.5 }
+          ]
+        },
+        "transactions": [
+          { "id": "tx-m-1", "ts": "2026-06-16T19:02:00Z", "type": "salary", "amount": 410.0, "currency": "EUR", "counterparty": "Caffè Centrale", "description": "Stipendio settimanale" },
+          { "id": "tx-m-2", "ts": "2026-06-15T13:10:00Z", "type": "purchase", "amount": -12.4, "currency": "EUR", "counterparty": "Distributore Via Roma", "description": "Spesa veloce" },
+          { "id": "tx-m-3", "ts": "2026-06-14T21:33:00Z", "type": "transfer_out", "amount": -50.0, "currency": "EUR", "counterparty": "Anna Verdi", "description": "Rimborso cena" },
+          { "id": "tx-m-4", "ts": "2026-06-12T09:00:00Z", "type": "fee", "amount": -8.0, "currency": "EUR", "counterparty": "Comune", "description": "Bollo amministrativo" },
+          { "id": "tx-m-5", "ts": "2026-06-09T18:55:00Z", "type": "salary", "amount": 410.0, "currency": "EUR", "counterparty": "Caffè Centrale", "description": "Stipendio settimanale" },
+          { "id": "tx-m-6", "ts": "2026-06-07T11:20:00Z", "type": "purchase", "amount": -34.9, "currency": "EUR", "counterparty": "Ferramenta Bianchi", "description": "Materiale" }
+        ],
+        "cards": [
+          { "id": "card-m-1", "holder": "Marco Rossi", "kind": "personal", "number_masked": "•••• 4471", "status": "active" }
+        ]
+      },
+      "justice": {
+        "casellario": {
+          "clean": false,
+          "entries": [
+            { "id": "cas-m-1", "date": "2026-03-18", "crime": "Guida senza patente", "outcome": "Sanzione amministrativa", "dossier_id": "2026/014/PS" }
+          ]
+        },
+        "service_sheet": null,
+        "dossier_subject_ids": ["2026/014/PS"],
+        "dossier_agent_ids": []
+      },
+      "politics": { "charges": [] },
+      "jobs": {
+        "current": { "title": "Barista", "employer": "Caffè Centrale", "wage": 410.0, "currency": "EUR", "hours_week": 24, "since": "2025-12-01" },
+        "history": [
+          { "title": "Magazziniere", "employer": "Bianchi Logistica", "from": "2025-09-01", "to": "2025-11-20" }
+        ]
+      },
+      "health": {
+        "record": { "blood_type": "0+", "allergies": ["Pollini"], "notes": "Nessuna patologia cronica.", "updated_at": "2026-05-30" },
+        "appointments": [
+          { "id": "app-m-1", "when": "2026-06-22T10:30:00Z", "dept": "Medicina generale", "doctor": "Dr.ssa Sara Neri", "status": "confermato" }
+        ]
+      },
+      "identity": {
+        "phone": { "number": "+39 351 0099 412", "carrier": "RP Mobile", "since": "2025-11-03" },
+        "documents": [
+          { "id": "doc-m-1", "type": "Carta d'identità", "number": "CI 7782011", "issued_at": "2025-11-02", "expires_at": "2035-11-02", "status": "valido" },
+          { "id": "doc-m-2", "type": "Patente B", "number": "PB 4410982", "issued_at": "2026-04-02", "expires_at": "2036-04-02", "status": "valido" }
+        ]
+      },
+      "education": {
+        "degrees": [ { "id": "deg-m-1", "title": "Diploma di maturità", "institution": "ITIS Galilei", "year": 2019 } ],
+        "enrollments": [ { "id": "enr-m-1", "course": "Corso barista avanzato", "institution": "Centro Formazione", "progress": 60 } ]
+      },
+      "notifications": [
+        { "id": "ntf-m-1", "ts": "2026-06-16T19:02:00Z", "kind": "economy", "title": "Stipendio accreditato", "body": "Hai ricevuto 410,00 € da Caffè Centrale." },
+        { "id": "ntf-m-2", "ts": "2026-06-12T09:00:00Z", "kind": "justice", "title": "Sanzione registrata", "body": "Annotata una sanzione amministrativa nel tuo casellario." }
+      ]
+    },
+    {
+      "uuid": "22222222-2222-4222-8222-222222222222",
+      "display_name": "Giulia Conti",
+      "rank": "sovrintendente",
+      "rank_label": "Sovrintendente",
+      "corps": "polizia",
+      "corps_label": "Polizia di Stato",
+      "capabilities": ["fdo.agent"],
+      "blurb": "Agente delle forze dell'ordine: oltre ai dati personali vede fascicoli gestiti, ricercati e foglio di servizio.",
+      "registered_at": "2025-08-14T09:00:00Z",
+      "last_seen": "2026-06-17T07:55:00Z",
+      "weekly_minutes": 1840,
+      "economy": {
+        "balance": {
+          "currency": "EUR",
+          "cash": 60.0,
+          "bank": 2510.0,
+          "accounts": [
+            { "id": "acc-giulia-bank", "label": "Conto corrente", "type": "bank", "amount": 2510.0 },
+            { "id": "acc-giulia-cash", "label": "Contante", "type": "cash", "amount": 60.0 }
+          ]
+        },
+        "transactions": [
+          { "id": "tx-g-1", "ts": "2026-06-15T18:00:00Z", "type": "salary", "amount": 980.0, "currency": "EUR", "counterparty": "Ministero dell'Interno", "description": "Stipendio" },
+          { "id": "tx-g-2", "ts": "2026-06-13T20:12:00Z", "type": "purchase", "amount": -22.0, "currency": "EUR", "counterparty": "Mensa", "description": "Pranzo" }
+        ],
+        "cards": [
+          { "id": "card-g-1", "holder": "Giulia Conti", "kind": "personal", "number_masked": "•••• 8810", "status": "active" }
+        ]
+      },
+      "justice": {
+        "casellario": { "clean": true, "entries": [] },
+        "service_sheet": {
+          "corps": "Polizia di Stato",
+          "rank": "Sovrintendente",
+          "badge": "PS-2291",
+          "active_duty": true,
+          "shifts": [
+            { "date": "2026-06-16", "hours": 8, "zone": "Centro" },
+            { "date": "2026-06-15", "hours": 8, "zone": "Stazione" },
+            { "date": "2026-06-13", "hours": 6, "zone": "Centro" }
+          ]
+        },
+        "dossier_subject_ids": [],
+        "dossier_agent_ids": ["2026/014/PS", "2026/021/PS", "2026/027/PS"]
+      },
+      "politics": { "charges": [] },
+      "jobs": {
+        "current": { "title": "Sovrintendente di P.S.", "employer": "Polizia di Stato", "wage": 980.0, "currency": "EUR", "hours_week": 36, "since": "2025-08-20" },
+        "history": []
+      },
+      "health": {
+        "record": { "blood_type": "A-", "allergies": [], "notes": "Idonea al servizio.", "updated_at": "2026-02-10" },
+        "appointments": []
+      },
+      "identity": {
+        "phone": { "number": "+39 351 7741 220", "carrier": "RP Mobile", "since": "2025-08-14" },
+        "documents": [
+          { "id": "doc-g-1", "type": "Carta d'identità", "number": "CI 5520119", "issued_at": "2025-08-14", "expires_at": "2035-08-14", "status": "valido" },
+          { "id": "doc-g-2", "type": "Tesserino di servizio", "number": "PS-2291", "issued_at": "2025-08-20", "expires_at": "2030-08-20", "status": "valido" }
+        ]
+      },
+      "education": {
+        "degrees": [ { "id": "deg-g-1", "title": "Laurea in Giurisprudenza", "institution": "Università Statale", "year": 2021 } ],
+        "enrollments": []
+      },
+      "notifications": [
+        { "id": "ntf-g-1", "ts": "2026-06-17T07:50:00Z", "kind": "justice", "title": "Nuovo fascicolo assegnato", "body": "Ti è stato assegnato il fascicolo 2026/027/PS." },
+        { "id": "ntf-g-2", "ts": "2026-06-16T22:10:00Z", "kind": "alert", "title": "Allerta revocata", "body": "Lo stato d'allerta in Centro è stato revocato." }
+      ]
+    },
+    {
+      "uuid": "33333333-3333-4333-8333-333333333333",
+      "display_name": "Anna Verdi",
+      "rank": "cittadino",
+      "rank_label": "Sindaco",
+      "corps": null,
+      "corps_label": null,
+      "capabilities": [],
+      "blurb": "Carica pubblica: oltre ai dati personali consulta cariche, leggi vigenti, decreti ed elezioni.",
+      "registered_at": "2025-06-01T10:00:00Z",
+      "last_seen": "2026-06-16T23:14:00Z",
+      "weekly_minutes": 1320,
+      "economy": {
+        "balance": {
+          "currency": "EUR",
+          "cash": 220.0,
+          "bank": 5840.3,
+          "accounts": [
+            { "id": "acc-anna-bank", "label": "Conto corrente", "type": "bank", "amount": 5840.3 },
+            { "id": "acc-anna-cash", "label": "Contante", "type": "cash", "amount": 220.0 }
+          ]
+        },
+        "transactions": [
+          { "id": "tx-a-1", "ts": "2026-06-15T17:00:00Z", "type": "salary", "amount": 1500.0, "currency": "EUR", "counterparty": "Comune", "description": "Indennità di carica" },
+          { "id": "tx-a-2", "ts": "2026-06-14T21:33:00Z", "type": "transfer_in", "amount": 50.0, "currency": "EUR", "counterparty": "Marco Rossi", "description": "Rimborso cena" }
+        ],
+        "cards": [
+          { "id": "card-a-1", "holder": "Anna Verdi", "kind": "personal", "number_masked": "•••• 1002", "status": "active" }
+        ]
+      },
+      "justice": {
+        "casellario": { "clean": true, "entries": [] },
+        "service_sheet": null,
+        "dossier_subject_ids": [],
+        "dossier_agent_ids": []
+      },
+      "politics": {
+        "charges": [
+          { "id": "chg-a-1", "office": "Sindaco", "since": "2026-01-15", "area": "Comune di Nova Roma" }
+        ]
+      },
+      "jobs": {
+        "current": { "title": "Sindaco", "employer": "Comune di Nova Roma", "wage": 1500.0, "currency": "EUR", "hours_week": 40, "since": "2026-01-15" },
+        "history": [ { "title": "Consigliere comunale", "employer": "Comune di Nova Roma", "from": "2025-06-01", "to": "2026-01-14" } ]
+      },
+      "health": {
+        "record": { "blood_type": "B+", "allergies": ["Penicillina"], "notes": "", "updated_at": "2026-01-20" },
+        "appointments": []
+      },
+      "identity": {
+        "phone": { "number": "+39 351 3300 188", "carrier": "RP Mobile", "since": "2025-06-01" },
+        "documents": [
+          { "id": "doc-a-1", "type": "Carta d'identità", "number": "CI 1009921", "issued_at": "2025-06-01", "expires_at": "2035-06-01", "status": "valido" }
+        ]
+      },
+      "education": {
+        "degrees": [ { "id": "deg-a-1", "title": "Laurea in Scienze Politiche", "institution": "Università Statale", "year": 2014 } ],
+        "enrollments": []
+      },
+      "notifications": [
+        { "id": "ntf-a-1", "ts": "2026-06-16T18:00:00Z", "kind": "politics", "title": "Legge promulgata", "body": "La Legge 2026/07 sulla mobilità è ora vigente." }
+      ]
+    },
+    {
+      "uuid": "44444444-4444-4444-8444-444444444444",
+      "display_name": "Luca Bianchi",
+      "rank": "cittadino",
+      "rank_label": "Imprenditore",
+      "corps": null,
+      "corps_label": null,
+      "capabilities": [],
+      "blurb": "Imprenditore: gestisce la propria azienda, i ruoli dei dipendenti, gli asset e le licenze.",
+      "registered_at": "2025-07-20T12:00:00Z",
+      "last_seen": "2026-06-17T06:30:00Z",
+      "weekly_minutes": 1980,
+      "economy": {
+        "balance": {
+          "currency": "EUR",
+          "cash": 540.0,
+          "bank": 9120.0,
+          "accounts": [
+            { "id": "acc-luca-bank", "label": "Conto corrente", "type": "bank", "amount": 9120.0 },
+            { "id": "acc-luca-cash", "label": "Contante", "type": "cash", "amount": 540.0 }
+          ]
+        },
+        "transactions": [
+          { "id": "tx-l-1", "ts": "2026-06-16T08:00:00Z", "type": "transfer_in", "amount": 2300.0, "currency": "EUR", "counterparty": "Cliente: Nova Trasporti", "description": "Fattura 2026/118" },
+          { "id": "tx-l-2", "ts": "2026-06-14T16:40:00Z", "type": "payroll", "amount": -1640.0, "currency": "EUR", "counterparty": "Dipendenti", "description": "Stipendi settimana" }
+        ],
+        "cards": [
+          { "id": "card-l-1", "holder": "Luca Bianchi", "kind": "personal", "number_masked": "•••• 6651", "status": "active" },
+          { "id": "card-l-2", "holder": "Bianchi Logistica", "kind": "company", "company": "Bianchi Logistica", "number_masked": "•••• 9032", "status": "active" }
+        ]
+      },
+      "justice": {
+        "casellario": { "clean": true, "entries": [] },
+        "service_sheet": null,
+        "dossier_subject_ids": [],
+        "dossier_agent_ids": []
+      },
+      "politics": { "charges": [] },
+      "jobs": {
+        "current": { "title": "Amministratore", "employer": "Bianchi Logistica", "wage": 0, "currency": "EUR", "hours_week": 50, "since": "2025-07-25" },
+        "history": []
+      },
+      "health": {
+        "record": { "blood_type": "AB+", "allergies": [], "notes": "", "updated_at": "2025-12-12" },
+        "appointments": []
+      },
+      "identity": {
+        "phone": { "number": "+39 351 2218 740", "carrier": "RP Mobile", "since": "2025-07-20" },
+        "documents": [
+          { "id": "doc-l-1", "type": "Carta d'identità", "number": "CI 3320781", "issued_at": "2025-07-20", "expires_at": "2035-07-20", "status": "valido" },
+          { "id": "doc-l-2", "type": "Patente C", "number": "PC 7781100", "issued_at": "2025-08-01", "expires_at": "2030-08-01", "status": "valido" }
+        ]
+      },
+      "education": {
+        "degrees": [ { "id": "deg-l-1", "title": "Diploma di ragioneria", "institution": "ITC Einaudi", "year": 2010 } ],
+        "enrollments": []
+      },
+      "notifications": [
+        { "id": "ntf-l-1", "ts": "2026-06-16T08:00:00Z", "kind": "economy", "title": "Fattura incassata", "body": "Accreditati 2.300,00 € sul conto aziendale." }
+      ]
+    },
+    {
+      "uuid": "55555555-5555-4555-8555-555555555555",
+      "display_name": "Sara Neri",
+      "rank": "medico",
+      "rank_label": "Medico",
+      "corps": "sanita",
+      "corps_label": "Sanità Pubblica",
+      "capabilities": [],
+      "blurb": "Medico ospedaliero: dati personali, cartella clinica e agenda degli appuntamenti.",
+      "registered_at": "2025-09-10T08:30:00Z",
+      "last_seen": "2026-06-17T07:10:00Z",
+      "weekly_minutes": 1560,
+      "economy": {
+        "balance": {
+          "currency": "EUR",
+          "cash": 110.0,
+          "bank": 3320.0,
+          "accounts": [
+            { "id": "acc-sara-bank", "label": "Conto corrente", "type": "bank", "amount": 3320.0 },
+            { "id": "acc-sara-cash", "label": "Contante", "type": "cash", "amount": 110.0 }
+          ]
+        },
+        "transactions": [
+          { "id": "tx-s-1", "ts": "2026-06-15T17:30:00Z", "type": "salary", "amount": 1180.0, "currency": "EUR", "counterparty": "Ospedale San Lorenzo", "description": "Stipendio" }
+        ],
+        "cards": [
+          { "id": "card-s-1", "holder": "Sara Neri", "kind": "personal", "number_masked": "•••• 3390", "status": "active" }
+        ]
+      },
+      "justice": {
+        "casellario": { "clean": true, "entries": [] },
+        "service_sheet": null,
+        "dossier_subject_ids": [],
+        "dossier_agent_ids": []
+      },
+      "politics": { "charges": [] },
+      "jobs": {
+        "current": { "title": "Medico di reparto", "employer": "Ospedale San Lorenzo", "wage": 1180.0, "currency": "EUR", "hours_week": 38, "since": "2025-09-15" },
+        "history": []
+      },
+      "health": {
+        "record": { "blood_type": "0-", "allergies": ["Lattice"], "notes": "Personale sanitario.", "updated_at": "2026-04-01" },
+        "appointments": [
+          { "id": "app-s-1", "when": "2026-06-18T09:00:00Z", "dept": "Medicina generale", "doctor": "Turno proprio", "status": "in agenda" }
+        ]
+      },
+      "identity": {
+        "phone": { "number": "+39 351 9912 005", "carrier": "RP Mobile", "since": "2025-09-10" },
+        "documents": [
+          { "id": "doc-s-1", "type": "Carta d'identità", "number": "CI 8810233", "issued_at": "2025-09-10", "expires_at": "2035-09-10", "status": "valido" },
+          { "id": "doc-s-2", "type": "Iscrizione Albo Medici", "number": "OM-44120", "issued_at": "2022-03-01", "expires_at": "2032-03-01", "status": "valido" }
+        ]
+      },
+      "education": {
+        "degrees": [
+          { "id": "deg-s-1", "title": "Laurea in Medicina e Chirurgia", "institution": "Università Statale", "year": 2018 },
+          { "id": "deg-s-2", "title": "Specializzazione in Medicina interna", "institution": "Policlinico", "year": 2022 }
+        ],
+        "enrollments": [ { "id": "enr-s-1", "course": "Aggiornamento ECM 2026", "institution": "Ordine dei Medici", "progress": 30 } ]
+      },
+      "notifications": [
+        { "id": "ntf-s-1", "ts": "2026-06-17T07:00:00Z", "kind": "health", "title": "Turno confermato", "body": "Il tuo turno del 18/06 in Medicina generale è confermato." }
+      ]
+    }
+  ],
+  "companies": [
+    {
+      "id": "comp-bianchi-logistica",
+      "name": "Bianchi Logistica",
+      "sector": "Logistica e trasporti",
+      "status": "active",
+      "hq": "Zona Industriale, Lotto 12",
+      "owner_uuid": "44444444-4444-4444-8444-444444444444",
+      "founded_at": "2025-07-25",
+      "balance": 9120.0,
+      "members": [
+        { "uuid": "44444444-4444-4444-8444-444444444444", "name": "Luca Bianchi", "role": "owner" },
+        { "uuid": "aaaaaaaa-0000-4000-8000-000000000001", "name": "Paolo Greco", "role": "autista" },
+        { "uuid": "aaaaaaaa-0000-4000-8000-000000000002", "name": "Sofia Rinaldi", "role": "magazziniere" }
+      ],
+      "assets": [
+        { "type": "ufficio", "label": "Ufficio amministrativo" },
+        { "type": "veicolo", "label": "Furgone targa NR-118-LB" },
+        { "type": "distributore", "label": "Distributore aziendale ingresso" }
+      ],
+      "licenses": ["Trasporto merci conto terzi", "Deposito"]
+    },
+    {
+      "id": "comp-caffe-centrale",
+      "name": "Caffè Centrale",
+      "sector": "Ristorazione",
+      "status": "active",
+      "hq": "Piazza Maggiore 3",
+      "owner_uuid": "aaaaaaaa-0000-4000-8000-000000000010",
+      "founded_at": "2025-05-10",
+      "balance": 2140.0,
+      "members": [
+        { "uuid": "aaaaaaaa-0000-4000-8000-000000000010", "name": "Elena Costa", "role": "owner" },
+        { "uuid": "11111111-1111-4111-8111-111111111111", "name": "Marco Rossi", "role": "barista" }
+      ],
+      "assets": [
+        { "type": "locale", "label": "Bar Piazza Maggiore" },
+        { "type": "registratore", "label": "Cassa POS" }
+      ],
+      "licenses": ["Somministrazione alimenti e bevande"]
+    }
+  ],
+  "dossiers": [
+    {
+      "id": "2026/014/PS",
+      "subject_uuid": "11111111-1111-4111-8111-111111111111",
+      "subject_name": "Marco Rossi",
+      "corps": "Polizia di Stato",
+      "agent_uuid": "22222222-2222-4222-8222-222222222222",
+      "agent_name": "Sovr. Giulia Conti",
+      "status": "closed",
+      "opened_at": "2026-03-18T15:00:00Z",
+      "charges": [ { "code": "CDS-116", "label": "Guida senza patente" } ],
+      "evidence": [
+        {
+          "id": "ev-014-1",
+          "label": "Verbale di accertamento",
+          "custody": [
+            { "ts": "2026-03-18T15:10:00Z", "actor": "Sovr. Conti", "action": "raccolta" },
+            { "ts": "2026-03-18T16:00:00Z", "actor": "Ufficio atti", "action": "deposito" }
+          ]
+        }
+      ],
+      "custody": null,
+      "verdict": { "issued_at": "2026-03-20T11:00:00Z", "outcome": "Sanzione amministrativa", "judge": "Giud. Ferri", "detail": "Multa di 80 € e annotazione." }
+    },
+    {
+      "id": "2026/021/PS",
+      "subject_uuid": "aaaaaaaa-0000-4000-8000-000000000050",
+      "subject_name": "Dario Lupo",
+      "corps": "Polizia di Stato",
+      "agent_uuid": "22222222-2222-4222-8222-222222222222",
+      "agent_name": "Sovr. Giulia Conti",
+      "status": "in_istruttoria",
+      "opened_at": "2026-06-02T09:30:00Z",
+      "charges": [
+        { "code": "CP-624", "label": "Furto" },
+        { "code": "CP-648", "label": "Ricettazione" }
+      ],
+      "evidence": [
+        {
+          "id": "ev-021-1",
+          "label": "Refurtiva sequestrata",
+          "custody": [
+            { "ts": "2026-06-02T10:00:00Z", "actor": "Sovr. Conti", "action": "sequestro" },
+            { "ts": "2026-06-02T12:00:00Z", "actor": "Armadio prove A", "action": "deposito" }
+          ]
+        }
+      ],
+      "custody": { "active": true, "expires_at": "2026-06-04T10:00:00Z", "note": "Custodia cautelare 48h" },
+      "verdict": null
+    },
+    {
+      "id": "2026/027/PS",
+      "subject_uuid": "aaaaaaaa-0000-4000-8000-000000000051",
+      "subject_name": "Ignoto (in identificazione)",
+      "corps": "Polizia di Stato",
+      "agent_uuid": "22222222-2222-4222-8222-222222222222",
+      "agent_name": "Sovr. Giulia Conti",
+      "status": "open",
+      "opened_at": "2026-06-17T07:45:00Z",
+      "charges": [ { "code": "CP-635", "label": "Danneggiamento" } ],
+      "evidence": [],
+      "custody": null,
+      "verdict": null
+    }
+  ],
+  "wanted": [
+    { "uuid": "aaaaaaaa-0000-4000-8000-000000000050", "name": "Dario Lupo", "level": 2, "level_label": "Medio", "reason": "Furto aggravato", "since": "2026-06-02" },
+    { "uuid": "aaaaaaaa-0000-4000-8000-000000000060", "name": "Vera Mancini", "level": 3, "level_label": "Alto", "reason": "Evasione", "since": "2026-05-28" }
+  ],
+  "laws": [
+    { "id": "law-1", "number": "2026/07", "title": "Regolamento della mobilità urbana", "status": "active", "enacted_at": "2026-06-16", "summary": "Limiti di velocità e zone a traffico limitato nel centro." },
+    { "id": "law-2", "number": "2026/06", "title": "Tariffe dei servizi comunali", "status": "active", "enacted_at": "2026-05-30", "summary": "Aggiornamento delle tariffe per licenze e concessioni." },
+    { "id": "law-3", "number": "2026/05", "title": "Disciplina del commercio ambulante", "status": "active", "enacted_at": "2026-05-02", "summary": "Aree e orari per il commercio su area pubblica." },
+    { "id": "law-4", "number": "2026/04", "title": "Sicurezza sul lavoro nelle aziende RP", "status": "active", "enacted_at": "2026-04-18", "summary": "Obblighi minimi per le aziende registrate." },
+    { "id": "law-5", "number": "2026/03", "title": "Regolamento sanitario", "status": "active", "enacted_at": "2026-03-10", "summary": "Accesso alle cure e gestione delle emergenze." },
+    { "id": "law-6", "number": "2026/02", "title": "Codice della polizia locale", "status": "active", "enacted_at": "2026-02-05", "summary": "Competenze e procedure della polizia locale." },
+    { "id": "law-7", "number": "2026/01", "title": "Bilancio comunale 2026", "status": "active", "enacted_at": "2026-01-20", "summary": "Approvazione del bilancio annuale." },
+    { "id": "law-8", "number": "2025/11", "title": "Vecchio regolamento mobilità", "status": "archived", "enacted_at": "2025-09-01", "summary": "Sostituito dalla Legge 2026/07." },
+    { "id": "law-9", "number": "2025/08", "title": "Tariffe 2025", "status": "archived", "enacted_at": "2025-06-01", "summary": "Sostituite dalla Legge 2026/06." },
+    { "id": "law-10", "number": "2025/04", "title": "Regolamento provvisorio del commercio", "status": "archived", "enacted_at": "2025-03-15", "summary": "Sostituito dalla Legge 2026/05." }
+  ],
+  "election": {
+    "id": "el-2026-cc",
+    "title": "Elezione del Consiglio Comunale",
+    "status": "in corso",
+    "opens_at": "2026-06-10T08:00:00Z",
+    "closes_at": "2026-06-24T20:00:00Z",
+    "turnout": 41.8,
+    "candidates": [
+      { "name": "Anna Verdi", "party": "Lista Civica Nova Roma", "poll": 38.5 },
+      { "name": "Roberto Sala", "party": "Movimento del Porto", "poll": 33.2 },
+      { "name": "Chiara De Luca", "party": "Insieme per la Città", "poll": 28.3 }
+    ]
+  },
+  "decrees": [
+    { "id": "dec-1", "number": "D-2026/22", "title": "Chiusura temporanea Via Roma", "issued_at": "2026-06-14", "authority": "Sindaco" },
+    { "id": "dec-2", "number": "D-2026/21", "title": "Ordinanza anti-rumore notturno", "issued_at": "2026-06-08", "authority": "Sindaco" },
+    { "id": "dec-3", "number": "D-2026/20", "title": "Nomina responsabile protezione civile", "issued_at": "2026-05-29", "authority": "Giunta" }
+  ],
+  "jobPostings": [
+    { "id": "job-1", "title": "Autista patente C", "employer": "Bianchi Logistica", "wage": 720.0, "currency": "EUR", "location": "Zona Industriale", "posted_at": "2026-06-15" },
+    { "id": "job-2", "title": "Cameriere/a", "employer": "Caffè Centrale", "wage": 380.0, "currency": "EUR", "location": "Piazza Maggiore", "posted_at": "2026-06-13" },
+    { "id": "job-3", "title": "Infermiere/a", "employer": "Ospedale San Lorenzo", "wage": 990.0, "currency": "EUR", "location": "Ospedale", "posted_at": "2026-06-11" },
+    { "id": "job-4", "title": "Agente di Polizia Locale", "employer": "Comune di Nova Roma", "wage": 900.0, "currency": "EUR", "location": "Comando", "posted_at": "2026-06-09" }
+  ],
+  "news": [
+    { "id": "news-1", "title": "Benvenuti nel nuovo gestionale", "body": "Da oggi puoi consultare conto, documenti, lavoro e servizi pubblici da web. Buon roleplay!", "author": "Staff", "published_at": "2026-06-17T07:00:00Z", "pinned": true },
+    { "id": "news-2", "title": "Elezioni comunali aperte", "body": "Le urne per il Consiglio Comunale restano aperte fino al 24 giugno. Informati sui candidati nella sezione Politica.", "author": "Staff", "published_at": "2026-06-10T08:00:00Z", "pinned": false },
+    { "id": "news-3", "title": "Manutenzione programmata", "body": "Sabato notte possibili brevi disservizi sul gestionale per aggiornamenti.", "author": "Staff", "published_at": "2026-06-06T19:00:00Z", "pinned": false }
+  ]
+}
