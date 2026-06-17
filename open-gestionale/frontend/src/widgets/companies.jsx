@@ -79,8 +79,10 @@ function CompanyRegistry({ data }) {
       <tbody>
         {items.map((c) => (
           <tr key={c.id}>
-            <td><strong>{c.name}</strong></td><td>{c.sector}</td><td>{c.hq || '—'}</td>
-            <td><Tag tone={statusTone(c.status)}>{c.status}</Tag></td>
+            <td data-label="Azienda"><strong>{c.name}</strong></td>
+            <td data-label="Settore">{c.sector}</td>
+            <td data-label="Sede">{c.hq || '—'}</td>
+            <td data-label="Stato"><Tag tone={statusTone(c.status)}>{c.status}</Tag></td>
           </tr>
         ))}
       </tbody>

@@ -74,7 +74,13 @@ function ServiceSheet({ data }) {
       {data.shifts && data.shifts.length > 0 && (
         <table className="table">
           <thead><tr><th>Data</th><th>Ore</th><th>Zona</th></tr></thead>
-          <tbody>{data.shifts.map((s, i) => <tr key={i}><td>{date(s.date)}</td><td>{s.hours}</td><td>{s.zone}</td></tr>)}</tbody>
+          <tbody>{data.shifts.map((s, i) => (
+            <tr key={i}>
+              <td data-label="Data">{date(s.date)}</td>
+              <td data-label="Ore">{s.hours}</td>
+              <td data-label="Zona">{s.zone}</td>
+            </tr>
+          ))}</tbody>
         </table>
       )}
     </div>

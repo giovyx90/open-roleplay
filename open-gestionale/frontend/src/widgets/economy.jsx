@@ -41,9 +41,9 @@ function Transactions({ data }) {
         <tbody>
           {items.map((t) => (
             <tr key={t.id}>
-              <td>{dateTime(t.ts)}</td>
-              <td><strong>{t.counterparty}</strong><br /><span className="muted">{t.description}</span></td>
-              <td className={`num ${t.amount < 0 ? 'neg' : 'pos'}`}>{money(t.amount, t.currency)}</td>
+              <td data-label="Data">{dateTime(t.ts)}</td>
+              <td data-label="Movimento"><strong>{t.counterparty}</strong><br /><span className="muted">{t.description}</span></td>
+              <td data-label="Importo" className={`num ${t.amount < 0 ? 'neg' : 'pos'}`}>{money(t.amount, t.currency)}</td>
             </tr>
           ))}
         </tbody>

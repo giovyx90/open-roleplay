@@ -19,8 +19,10 @@ function Documents({ data }) {
       <tbody>
         {items.map((d) => (
           <tr key={d.id}>
-            <td>{d.type}</td><td><code>{d.number}</code></td><td>{date(d.expires_at)}</td>
-            <td><Tag tone={statusTone(d.status)}>{d.status}</Tag></td>
+            <td data-label="Documento">{d.type}</td>
+            <td data-label="Numero"><code>{d.number}</code></td>
+            <td data-label="Scadenza">{date(d.expires_at)}</td>
+            <td data-label="Stato"><Tag tone={statusTone(d.status)}>{d.status}</Tag></td>
           </tr>
         ))}
       </tbody>

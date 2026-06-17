@@ -50,13 +50,26 @@ export default function Dashboard() {
 
         <div className="layout">
           <aside className="sidenav" aria-label="Sezioni">
+            {sections.length > 0 && (
+              <select
+                className="section-select"
+                value={active || ''}
+                onChange={(e) => setActive(e.target.value)}
+                aria-label="Sezione">
+                {sections.map((s) => (
+                  <option key={s.id} value={s.id}>{s.label}</option>
+                ))}
+              </select>
+            )}
             <nav>
               {sections.map((s) => (
                 <button key={s.id} type="button"
                   className={`sidenav__item ${active === s.id ? 'is-active' : ''}`}
-                  onClick={() => setActive(s.id)}>
+                  onClick={() => setActive(s.id)}
+                  aria-current={active === s.id ? 'page' : undefined}
+                  title={s.label}>
                   <span className="sidenav__icon" aria-hidden="true">{ICONS[s.icon] || '•'}</span>
-                  {s.label}
+                  <span className="sidenav__label">{s.label}</span>
                 </button>
               ))}
             </nav>
