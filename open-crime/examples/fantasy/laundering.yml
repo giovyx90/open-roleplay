@@ -1,0 +1,23 @@
+# Fantasy - riciclaggio attraverso mercanti e aste.
+laundering_methods:
+  mercante_ambulante:
+    display_name: "Mercante ambulante"
+    loss_percentage: 35
+    max_per_day: 8000
+    detection_risk: 8
+    duration_hours: 3
+
+  asta_clandestina:
+    display_name: "Asta clandestina"
+    loss_percentage: 25
+    max_per_day: 25000
+    detection_risk: 20
+    duration_hours: 12
+
+  gilda_mercantile:
+    display_name: "Gilda mercantile di facciata"
+    requires_adapter: COMPANIES
+    loss_percentage: 18
+    max_per_day: 60000
+    detection_risk: 15
+    duration_hours: 24

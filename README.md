@@ -30,6 +30,7 @@ usati insieme ma leggibili e modificabili anche uno alla volta.
 | `open-vending-machines` | Standalone iniziale, compilabile | Plugin Paper adapter-first per distributori automatici roleplay: prodotti, stock, prezzi, casse, aziende opzionali e integrazioni economy/inventory sostituibili. |
 | `open-companies` | Standalone iniziale, compilabile | Plugin Paper adapter-first per aziende roleplay: ruoli, membri, inviti, camera di commercio (stato, licenze, sede), asset aziendali e API pubblica. Modalita' creazione PLAYER_DIRECT/PLAYER_APPLICATION/ADMIN_ONLY, con integrazione opzionale verso OpenVendingMachines. |
 | `open-fdo` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: il sistema nervoso dello stato. Corpi, gradi e capability tutti da config; atti depositati come libri timbrati; fascicoli con catena di custodia delle prove; ricercati, detenzione via adapter e foglio di servizio. Espone `OpenFdoApi`. |
+| `open-crime` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: il sottobosco criminale. Organizzazioni illegali, gerarchia, territorio, produzione multistadio, traffico, riciclaggio ed estorsione, tutti da config. Niente "heat": le forze dell'ordine apprendono solo tramite Discovery generate da azioni RP concrete (denuncia, scoperta fisica, arresto, informatore, indagine). Economia, aziende e autorità via adapter opzionali. Espone `OpenCrimeApi`. |
 | `open-gestionale` | Demo, eseguibile | Gestionale web universale (non un plugin Paper): API bridge Node.js + frontend React. Carica il layout dall'API e renderizza widget adapter-first; moduli, label e permessi vengono dalla config. Auth via OTP in gioco + JWT, sola lettura sul DB di gioco, demo con dati fittizi. |
 
 ## Stato della pubblicazione
@@ -48,6 +49,7 @@ Stato attuale:
 - `OpenVendingMachines`: plugin standalone iniziale e compilabile; distributori automatici configurabili con adapter sostituibili per economy, inventario, aziende, storage, notifiche e audit.
 - `OpenCompanies`: plugin standalone iniziale e compilabile; aziende con ruoli/capability, inviti, camera di commercio (stato, licenze, sede) e asset aziendali, con adapter sostituibili per storage, economy, permessi, regioni, identita', notifiche e audit. Espone `OpenCompaniesApi` e si integra opzionalmente con OpenVendingMachines.
 - `OpenFDO`: plugin standalone iniziale e compilabile, neutro rispetto all'ambientazione; corpi, gradi, capability, atti, reati e livelli ricercato sono tutti definiti in config. Gli atti si depositano scrivendo e firmando un libro che il plugin timbra; i fascicoli tracciano capi d'imputazione, prove con catena di custodia e sentenze; la detenzione e l'audit economico passano da adapter opzionali (assenti -> la capability sparisce). Espone `OpenFdoApi`.
+- `OpenCrime`: plugin standalone iniziale e compilabile, adapter-first e neutro rispetto all'ambientazione; organizzazioni illegali, gerarchia, territorio, produzione, traffico, riciclaggio ed estorsione sono tutti definiti in config. Filosofia RP First: non esiste un "heat" nascosto, le forze dell'ordine non ricevono nulla in automatico e apprendono solo tramite Discovery generate da azioni RP concrete (denuncia, scoperta fisica, arresto, informatore, indagine). Economia (denaro sporco/pulito), aziende e autorità passano da adapter opzionali con default interni; assenti o non reali, la feature collegata degrada in silenzio. I cinque sottosistemi (syndicate, production, traffic, laundering, racket) si attivano dai toggle in `config.yml`. Espone `OpenCrimeApi`.
 - `OpenGestionale`: gestionale web universale e adapter-first, non un plugin Paper. API bridge Node.js (sul VPS, sola lettura sul DB di gioco) + frontend React statico (su CDN). Il layout e i widget sono risolti dall'API in base ai moduli attivi e alle capability del giocatore; il frontend non conosce l'ambientazione. Auth senza password (OTP in gioco + JWT), demo con dati fittizi, esempi `realistico-it` e `fantasy` sullo stesso codice. Avvio con `docker compose up` o `npm` dentro `open-gestionale/`.
 
 La priorita' dei prossimi passaggi e':
@@ -136,6 +138,11 @@ open-roleplay/
     src/main/resources/
     src/test/java/dev/openrp/fdo/
     examples/
+  open-crime/
+    src/main/java/dev/openrp/crime/
+    src/main/resources/
+    src/test/java/dev/openrp/crime/
+    examples/                 # realistico-it/ e fantasy/
   open-gestionale/            # progetto Node.js + React (non Maven)
     api/                      # bridge Node.js (Express, OpenAPI, SQLite)
     frontend/                 # SPA React (Vite)

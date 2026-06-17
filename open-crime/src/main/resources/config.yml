@@ -1,0 +1,74 @@
+# ============================================================================
+#  Open Crime - main configuration
+#  ---------------------------------------------------------------------------
+#  ADAPTER-FIRST and SETTING-NEUTRAL. The core knows nothing about any setting:
+#  goods, hierarchy, recipes, routes, laundering methods and racket rules all
+#  live in the dedicated files (goods.yml, syndicate.yml, production.yml,
+#  traffic.yml, laundering.yml, racket.yml). The bundled defaults reproduce an
+#  Italian realistic setting as a worked example; see examples/fantasy for a
+#  contrasting one.
+#
+#  RP FIRST: there is no hidden "heat" number. The authorities only ever learn
+#  about a crime through a concrete RP discovery (denuncia, physical discovery,
+#  arrest, informant, investigation). If nobody does anything, the plugin does
+#  nothing.
+# ============================================================================
+
+branding:
+  product-name: "Open Crime"
+  message-prefix: "<dark_red>[Crime]</dark_red> "
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+# Which subsystems are active. Each is conceptually a separate plugin that
+# depends on the core; here they ship as one plugin you toggle.
+modules:
+  syndicate: true
+  production: true
+  traffic: true
+  laundering: true     # uses the bundled internal ledger unless a bank adapter registers
+  racket: true         # needs a CompanyAdapter (e.g. Open Companies) to do anything
+
+adapters:
+  storage: yaml        # yaml | memory
+
+storage:
+  file: crime-data.yml
+
+time:
+  # Global time scale applied to every real-time duration (production minutes,
+  # laundering hours, racket periods). 1.0 = real time; 0.5 = twice as fast.
+  scale: 1.0
+
+discovery:
+  denuncia_radius: 12          # max blocks between a witness and an agent for /denuncia
+  denuncia_event_window: 120   # minutes within which a crime event is reportable
+  arrest_event_window: 360     # minutes of org events linkable to an arrest
+  informant_protection: false  # if true, the informant's identity is kept out of the database
+
+territory:
+  # When true, /territory and /produce require a real region backend (a registered
+  # RegionAdapter, e.g. a WorldGuard bridge). The bundled default ships this OFF so
+  # the plugin is usable out of the box with synthetic per-chunk regions.
+  require_worldguard: false
+  contested_notify_members: true
+
+production:
+  allow_pause_on_leave: true
+
+traffic:
+  goods_droppable_on_death: false
+  escort_max: 4
+
+laundering:
+  # When true, laundering needs a real bank adapter (not the bundled internal ledger).
+  # Shipped OFF so laundering works out of the box; turn it on with an Open Bank bridge.
+  requires_bank_adapter: false
+
+racket:
+  requires_companies_adapter: true
+  payment_auto: true     # automatic payment at each period if the company can pay
+
+debug: false

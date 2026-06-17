@@ -1,0 +1,17 @@
+# Fantasy - rotte tra le città libere.
+routes:
+  porto_franco_cittadella:
+    name: "Porto Franco - Cittadella"
+    origin_region: "porto_franco"
+    destination_region: "cittadella"
+    waypoints: ["foresta_nera"]
+    distance_km: 4.0
+    duration_minutes: 15
+
+  valico_montano:
+    name: "Valico Montano"
+    origin_region: "passo_del_corvo"
+    destination_region: "rocca_del_nord"
+    waypoints: []
+    distance_km: 9.0
+    duration_minutes: 28

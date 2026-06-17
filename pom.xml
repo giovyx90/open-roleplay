@@ -30,6 +30,7 @@
         <module>open-vending-machines</module>
         <module>open-companies</module>
         <module>open-fdo</module>
+        <module>open-crime</module>
     </modules>
 
     <properties>

@@ -1,0 +1,25 @@
+# Fantasy - gilda delle ombre. Stessa struttura, nomi diversi.
+hierarchy:
+  - id: adepto
+    display_name: "Adepto"
+    order: 0
+    capabilities: [PRODUCE]
+  - id: assassino
+    display_name: "Assassino"
+    order: 1
+    capabilities: [TRAFFIC, RACKET_COLLECT]
+  - id: maestro
+    display_name: "Maestro delle Ombre"
+    order: 2
+    capabilities: [INVITE, TERRITORY_CLAIM, PRODUCE_CANCEL, TRAFFIC_AGREEMENT, RACKET_IMPOSE, RACKET_ESCALATE, VIEW_TREASURY, TRAFFIC_LOG, LAUNDER, RACKET_MANAGE]
+  - id: gran_maestro
+    display_name: "Gran Maestro"
+    order: 3
+    apical: true
+    capabilities: [ALL]
+
+founding:
+  min_members: 2
+  initial_capital: 0
+  require_location: false
+  location_region: ""

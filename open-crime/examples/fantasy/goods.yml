@@ -1,0 +1,45 @@
+# Fantasy - beni proibiti. Stesse meccaniche del realistico, ambientazione diversa.
+goods:
+  veleno_vipera:
+    display_name: "Veleno di Vipera Nera"
+    category: poison
+    danger_level: 4
+    street_value: 800
+    item_material: GLASS_BOTTLE
+    item_custom_model_data: 8101
+    item_name: "&2Veleno di Vipera Nera"
+    item_lore:
+      - "&7Veleno letale e proibito"
+
+  pozione_proibita:
+    display_name: "Pozione Proibita"
+    category: potion
+    danger_level: 3
+    street_value: 650
+    item_material: POTION
+    item_custom_model_data: 8102
+    item_name: "&5Pozione Proibita"
+    item_lore:
+      - "&7Alchimia vietata dal Concilio"
+
+  artefatto_proibito:
+    display_name: "Artefatto Proibito"
+    category: artifact
+    danger_level: 5
+    street_value: 2000
+    item_material: ECHO_SHARD
+    item_custom_model_data: 8103
+    item_name: "&bArtefatto Proibito"
+    item_lore:
+      - "&7Reliquia interdetta"
+
+  tomo_magia_nera:
+    display_name: "Tomo di Magia Nera"
+    category: tome
+    danger_level: 4
+    street_value: 1200
+    item_material: BOOK
+    item_custom_model_data: 8104
+    item_name: "&8Tomo di Magia Nera"
+    item_lore:
+      - "&7Sapere proibito"

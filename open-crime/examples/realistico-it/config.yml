@@ -1,0 +1,26 @@
+# Realistico italiano - override "severo" rispetto ai default del plugin.
+# Copia solo le sezioni che vuoi cambiare.
+
+modules:
+  syndicate: true
+  production: true
+  traffic: true
+  laundering: true
+  racket: true
+
+discovery:
+  denuncia_radius: 15
+  denuncia_event_window: 180
+  arrest_event_window: 480
+  informant_protection: false
+
+territory:
+  require_worldguard: true        # richiede regioni WorldGuard reali
+  contested_notify_members: true
+
+laundering:
+  requires_bank_adapter: true     # richiede un bridge bancario reale (Open Bank)
+
+racket:
+  requires_companies_adapter: true
+  payment_auto: true

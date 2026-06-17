@@ -1,0 +1,68 @@
+# Fantasy - giardini di erbe proibite, laboratori alchemici, scriptoria.
+location_types:
+  giardino:
+    display_name: "Giardino di Erbe Proibite"
+    region_tag: "production_garden"
+    max_concurrent: 1
+    discoverable: true
+    discovery_radius: 20
+  alchemy_lab:
+    display_name: "Laboratorio Alchemico"
+    region_tag: "production_alchemy"
+    max_concurrent: 2
+    discoverable: true
+    discovery_radius: 12
+  scriptorium:
+    display_name: "Scriptorium"
+    region_tag: "production_scriptorium"
+    max_concurrent: 2
+    discoverable: true
+    discovery_radius: 10
+
+recipes:
+  veleno_vipera:
+    good_id: veleno_vipera
+    stages:
+      - id: raccolta
+        location_type: giardino
+        duration_minutes: 60
+        inputs:
+          - { item: WHEAT_SEEDS, amount: 16 }
+        outputs:
+          - { item: SPIDER_EYE, amount: 8 }
+        workers_required: 1
+      - id: distillazione
+        location_type: alchemy_lab
+        duration_minutes: 40
+        inputs:
+          - { item: SPIDER_EYE, amount: 8 }
+          - { item: GLASS_BOTTLE, amount: 4 }
+        output_good: veleno_vipera
+        output_good_amount: 4
+        workers_required: 1
+
+  pozione_proibita:
+    good_id: pozione_proibita
+    stages:
+      - id: distillazione
+        location_type: alchemy_lab
+        duration_minutes: 45
+        inputs:
+          - { item: FERMENTED_SPIDER_EYE, amount: 4 }
+          - { item: GLASS_BOTTLE, amount: 4 }
+        output_good: pozione_proibita
+        output_good_amount: 3
+        workers_required: 1
+
+  tomo_magia_nera:
+    good_id: tomo_magia_nera
+    stages:
+      - id: trascrizione
+        location_type: scriptorium
+        duration_minutes: 30
+        inputs:
+          - { item: BOOK, amount: 4 }
+          - { item: INK_SAC, amount: 4 }
+        output_good: tomo_magia_nera
+        output_good_amount: 2
+        workers_required: 1

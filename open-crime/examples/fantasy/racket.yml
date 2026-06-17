@@ -1,0 +1,17 @@
+# Fantasy - tributo imposto alle botteghe (richiede un CompanyAdapter).
+defaults:
+  amount: 1500
+  period_days: 7
+
+escalation:
+  levels:
+    1:
+      name: "Minaccia velata"
+      effect: notification_to_owner
+    2:
+      name: "Maledizione"
+      effect: company_reputation_malus
+      reputation_malus: 12
+    3:
+      name: "Visita notturna"
+      effect: none

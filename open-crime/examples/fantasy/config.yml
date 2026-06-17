@@ -1,0 +1,50 @@
+# Fantasy - configurazione completa di esempio.
+branding:
+  product-name: "Open Crime"
+  message-prefix: "<dark_purple>[Gilda]</dark_purple> "
+
+messages:
+  language: auto
+  fallback: en
+
+modules:
+  syndicate: true
+  production: true
+  traffic: true
+  laundering: true
+  racket: true
+
+adapters:
+  storage: yaml
+
+storage:
+  file: crime-data.yml
+
+time:
+  scale: 1.0
+
+discovery:
+  denuncia_radius: 20
+  denuncia_event_window: 240
+  arrest_event_window: 480
+  informant_protection: true
+
+territory:
+  require_worldguard: false
+  contested_notify_members: true
+
+production:
+  allow_pause_on_leave: true
+
+traffic:
+  goods_droppable_on_death: false
+  escort_max: 6
+
+laundering:
+  requires_bank_adapter: false
+
+racket:
+  requires_companies_adapter: true
+  payment_auto: true
+
+debug: false

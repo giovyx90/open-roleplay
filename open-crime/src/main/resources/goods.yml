@@ -1,0 +1,73 @@
+# ============================================================================
+#  Open Crime - illegal goods catalogue
+#  ---------------------------------------------------------------------------
+#  THIS IS WHERE THE SETTING LIVES. The core only ever handles "an illegal good
+#  with this id, danger level and street value". Names, categories and item look
+#  are config. danger_level (1..5) is narrative only - a judge may weigh it; it
+#  never triggers anything on its own. street_value is the base value per unit,
+#  read by the traffic and economy layers.
+#
+#  Give items a CustomModelData and ship a resource pack to make them look right;
+#  without one they fall back to the chosen material.
+# ============================================================================
+
+goods:
+  cocaina:
+    display_name: "Cocaina"
+    category: narcotic
+    danger_level: 4
+    street_value: 800
+    item_material: SUGAR
+    item_custom_model_data: 7101
+    item_name: "&fCocaina"
+    item_lore:
+      - "&7Sostanza stupefacente"
+      - "&8Detenzione e spaccio sono reato"
+
+  eroina:
+    display_name: "Eroina"
+    category: narcotic
+    danger_level: 5
+    street_value: 1200
+    item_material: BROWN_DYE
+    item_custom_model_data: 7102
+    item_name: "&6Eroina"
+    item_lore:
+      - "&7Sostanza stupefacente pesante"
+      - "&8Detenzione e spaccio sono reato"
+
+  marijuana:
+    display_name: "Marijuana"
+    category: narcotic
+    danger_level: 2
+    street_value: 250
+    item_material: KELP
+    item_custom_model_data: 7103
+    item_name: "&aMarijuana"
+    item_lore:
+      - "&7Sostanza stupefacente leggera"
+      - "&8Detenzione e spaccio sono reato"
+
+  metanfetamina:
+    display_name: "Metanfetamina"
+    category: narcotic
+    danger_level: 5
+    street_value: 1000
+    item_material: GLOWSTONE_DUST
+    item_custom_model_data: 7104
+    item_name: "&bMetanfetamina"
+    item_lore:
+      - "&7Sostanza sintetica"
+      - "&8Produzione e spaccio sono reato"
+
+  documenti_falsi:
+    display_name: "Documenti falsi"
+    category: document
+    danger_level: 2
+    street_value: 600
+    item_material: PAPER
+    item_custom_model_data: 7105
+    item_name: "&eDocumenti falsi"
+    item_lore:
+      - "&7Documenti contraffatti"
+      - "&8Falso in atto pubblico"

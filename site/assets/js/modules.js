@@ -81,6 +81,19 @@ window.OpenRoleplayModules = [
     tags: ["Capability", "Atti", "Fascicoli", "Catena di custodia", "OpenFdoApi"]
   },
   {
+    id: "open-crime",
+    name: "Open Crime",
+    page: "open-crime.html",
+    sourceDir: "open-crime",
+    jar: "open-crime.jar",
+    icon: "crime",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "Il sottobosco criminale roleplay, adapter-first e neutro: organizzazioni, territorio, produzione multistadio, traffico, riciclaggio ed estorsione. RP First: niente heat, le autorita' scoprono solo via denunce, arresti e informatori. Espone OpenCrimeApi.",
+    tags: ["Organizzazioni", "Produzione & traffico", "Riciclaggio", "Discovery RP", "OpenCrimeApi"]
+  },
+  {
     id: "open-gestionale",
     name: "Open Gestionale",
     page: "open-gestionale.html",

@@ -1,0 +1,119 @@
+# ============================================================================
+#  Open Crime - production (Open Production)
+#  ---------------------------------------------------------------------------
+#  Recipes turn real ingredients into illegal goods at physical locations over
+#  real time (scaled by time.scale in config.yml). Nothing is auto-produced:
+#  the worker supplies the inputs and comes back to collect.
+#
+#  A recipe is a list of stages. Run one stage with:
+#     /produce avvia <recipe> [stage]
+#  (the first stage is the default). A stage either yields plain `outputs`
+#  (a semi-finished item you carry to the next stage) or, with `output_good`,
+#  the final illegal good. Multi-stage recipes are chained by running the next
+#  stage with the previous stage's output in your inventory.
+#
+#  location_type binds a stage to a region tag the RegionAdapter resolves
+#  (e.g. a WorldGuard region carrying that tag). With no region backend and
+#  territory.require_worldguard off, any place qualifies.
+# ============================================================================
+
+location_types:
+  field:
+    display_name: "Campo"
+    region_tag: "production_field"
+    max_concurrent: 1
+    discoverable: true
+    discovery_radius: 20
+  lab:
+    display_name: "Laboratorio"
+    region_tag: "production_lab"
+    max_concurrent: 3
+    discoverable: true
+    discovery_radius: 12
+  printshop:
+    display_name: "Stamperia"
+    region_tag: "production_printshop"
+    max_concurrent: 2
+    discoverable: true
+    discovery_radius: 10
+
+recipes:
+  cocaina:
+    good_id: cocaina
+    stages:
+      - id: coltivazione
+        location_type: field
+        duration_minutes: 90
+        inputs:
+          - { item: WHEAT_SEEDS, amount: 16 }
+        outputs:
+          - { item: SUGAR_CANE, amount: 8 }
+        workers_required: 1
+      - id: lavorazione
+        location_type: lab
+        duration_minutes: 45
+        inputs:
+          - { item: SUGAR_CANE, amount: 8 }
+          - { item: GLASS_BOTTLE, amount: 4 }
+        output_good: cocaina
+        output_good_amount: 4
+        workers_required: 1
+
+  eroina:
+    good_id: eroina
+    stages:
+      - id: coltivazione
+        location_type: field
+        duration_minutes: 90
+        inputs:
+          - { item: BEETROOT_SEEDS, amount: 16 }
+        outputs:
+          - { item: BEETROOT, amount: 8 }
+        workers_required: 1
+      - id: sintesi
+        location_type: lab
+        duration_minutes: 50
+        inputs:
+          - { item: BEETROOT, amount: 8 }
+          - { item: GLASS_BOTTLE, amount: 4 }
+        output_good: eroina
+        output_good_amount: 3
+        workers_required: 1
+
+  marijuana:
+    good_id: marijuana
+    stages:
+      - id: coltivazione
+        location_type: field
+        duration_minutes: 60
+        inputs:
+          - { item: WHEAT_SEEDS, amount: 8 }
+        output_good: marijuana
+        output_good_amount: 6
+        workers_required: 1
+
+  metanfetamina:
+    good_id: metanfetamina
+    stages:
+      - id: sintesi
+        location_type: lab
+        duration_minutes: 45
+        inputs:
+          - { item: REDSTONE, amount: 8 }
+          - { item: GLASS_BOTTLE, amount: 4 }
+        output_good: metanfetamina
+        output_good_amount: 4
+        workers_required: 1
+
+  documenti_falsi:
+    good_id: documenti_falsi
+    stages:
+      - id: stampa
+        location_type: printshop
+        duration_minutes: 30
+        inputs:
+          - { item: PAPER, amount: 8 }
+          - { item: INK_SAC, amount: 2 }
+        output_good: documenti_falsi
+        output_good_amount: 4
+        workers_required: 1

@@ -1,0 +1,92 @@
+name: OpenCrime
+version: '${project.version}'
+main: dev.openrp.crime.OpenCrimePlugin
+api-version: '1.21'
+description: Adapter-first, setting-neutral underworld engine for Paper roleplay - illegal organisations, territory, production, traffic, laundering and extortion, with an RP-first discovery bridge to the authorities.
+authors: [Open Roleplay Workshop]
+# Every entry below is an OPTIONAL soft dependency. The core works without any of them:
+# - OpenCore     -> module lifecycle integration (reflective, optional)
+# - OpenFDO      -> authority bridge: agents, capabilities and dossier linking (AuthorityAdapter)
+# - OpenCompanies-> extortion targets and shell-company laundering (CompanyAdapter)
+# - LuckPerms    -> permission routing (handled through the Bukkit permission layer)
+# - WorldGuard   -> region-aware territory and production locations (optional RegionAdapter)
+# Economy (dirty/clean money) is provided either by the bundled internal ledger or by a plugin
+# that registers an EconomyAdapter (e.g. an Open Bank bridge). OpenCrime discovers all of these at
+# runtime and silently degrades the matching feature when one is absent.
+softdepend: [OpenCore, OpenFDO, OpenCompanies, OpenBank, LuckPerms, WorldGuard]
+
+commands:
+  opencrime:
+    description: Administration and status for Open Crime.
+    usage: /opencrime <status|reload>
+    aliases: [ocrime, crime]
+    permission: opencrime.use
+  denuncia:
+    description: Report a crime you witnessed to a nearby authority agent.
+    usage: /denuncia [descrizione]
+    aliases: [report]
+    permission: opencrime.use
+  informatore:
+    description: Collaborate with a nearby authority agent as an informant.
+    usage: /informatore
+    aliases: [informant]
+    permission: opencrime.use
+  syndicate:
+    description: Found and run an illegal organisation.
+    usage: /syndicate <fonda|info|invita|accetta|espelli|promuovi|degrada|scioglie|chat|treasury>
+    aliases: [sindacato, org]
+    permission: opencrime.use
+  territory:
+    description: Claim and manage territory for your organisation.
+    usage: /territory <claim|stato|mappa|abbandona>
+    aliases: [territorio]
+    permission: opencrime.use
+  produce:
+    description: Produce illegal goods at a production location.
+    usage: /produce <avvia|stato|raccogli|annulla>
+    aliases: [produzione]
+    permission: opencrime.use
+  traffic:
+    description: Move illegal goods along physical routes.
+    usage: /traffic <avvia|consegna|stato|accordo|log>
+    aliases: [traffico]
+    permission: opencrime.use
+  launder:
+    description: Launder dirty money into clean money.
+    usage: /launder <avvia|stato|storico>
+    aliases: [riciclaggio, ricicla]
+    permission: opencrime.use
+  racket:
+    description: Impose and manage protection over companies.
+    usage: /racket <imponi|lista|incassa|escalation|revoca|accetta|rifiuta>
+    aliases: [pizzo, estorsione]
+    permission: opencrime.use
+
+permissions:
+  opencrime.*:
+    description: Grants every Open Crime permission.
+    default: op
+    children:
+      opencrime.use: true
+      opencrime.admin: true
+      opencrime.reload: true
+  opencrime.use:
+    description: Allows using the Open Crime commands. Real authority comes from the member's rank capabilities, not from this node.
+    default: true
+  opencrime.admin:
+    description: Staff control - bypass organisation capability checks, manage any organisation, reload.
+    default: op
+    children:
+      opencrime.reload: true
+  opencrime.reload:
+    description: Allows reloading Open Crime configuration.
+    default: op
+  opencrime.authority.agent:
+    description: Fallback marker for an authority agent when no OpenFDO AuthorityAdapter is present. A nearby holder enables /denuncia and /informatore.
+    default: false
+  opencrime.authority.informant:
+    description: Fallback for the RECEIVE_INFORMANT capability when no AuthorityAdapter is present.
+    default: false
+  opencrime.authority.investigate:
+    description: Fallback for the OPEN_INVESTIGATION capability when no AuthorityAdapter is present.
+    default: false

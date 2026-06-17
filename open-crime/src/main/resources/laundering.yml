@@ -1,0 +1,47 @@
+# ============================================================================
+#  Open Crime - laundering methods (Open Laundering)
+#  ---------------------------------------------------------------------------
+#  Each method converts dirty money to clean money minus loss_percentage, over
+#  duration_hours (scaled by time.scale). The dirty amount is taken from the
+#  treasury when the wash starts; the clean amount is credited when it completes.
+#  An economic audit can only catch a process while it is still running.
+#
+#  requires_adapter hides a method unless that adapter is present:
+#    COMPANIES -> a CompanyAdapter (e.g. Open Companies)
+#    BANK      -> a real economy/bank adapter (not the bundled internal ledger)
+#  A method with no requires_adapter works with the bundled internal ledger.
+#
+#  detection_risk and max_per_day are read by the subsystem; detection itself
+#  is narrative (an audit is an RP action by the authorities, never automatic).
+# ============================================================================
+
+laundering_methods:
+  attivita_cash:
+    display_name: "Attivita in contanti"
+    loss_percentage: 10
+    max_per_day: 30000
+    detection_risk: 10
+    duration_hours: 6
+
+  azienda_fantasma:
+    display_name: "Azienda fantasma"
+    requires_adapter: COMPANIES
+    loss_percentage: 20
+    max_per_day: 50000
+    detection_risk: 15
+    duration_hours: 24
+
+  scommesse_clandestine:
+    display_name: "Scommesse clandestine"
+    loss_percentage: 40
+    max_per_day: 10000
+    detection_risk: 5
+    duration_hours: 2
+
+  compravendita_immobili:
+    display_name: "Compravendita immobili"
+    requires_adapter: COMPANIES
+    loss_percentage: 15
+    max_per_day: 100000
+    detection_risk: 25
+    duration_hours: 48

@@ -1,0 +1,51 @@
+# ============================================================================
+#  Open Crime - organisation hierarchy and founding (Open Syndicate)
+#  ---------------------------------------------------------------------------
+#  The hierarchy is config-driven and setting-neutral. A fantasy server's
+#  "Adepto -> Gran Maestro" loads exactly the same way as this realistic chain.
+#
+#  Capabilities are INHERITED UPWARD: a rank holds every capability granted to
+#  any rank at or below its order. So you only list each rank's NEW powers here.
+#  The apical rank usually holds ALL (a wildcard that passes every check).
+#
+#  Capability reference:
+#    INVITE EXPEL PROMOTE DEMOTE DISSOLVE VIEW_TREASURY TERRITORY_CLAIM
+#    PRODUCE PRODUCE_CANCEL TRAFFIC TRAFFIC_AGREEMENT TRAFFIC_LOG LAUNDER
+#    RACKET_IMPOSE RACKET_COLLECT RACKET_ESCALATE RACKET_MANAGE ALL
+# ============================================================================
+
+hierarchy:
+  - id: picciotto
+    display_name: "Picciotto"
+    order: 0
+    capabilities: [PRODUCE]
+  - id: soldato
+    display_name: "Soldato"
+    order: 1
+    capabilities: [TRAFFIC, RACKET_COLLECT]
+  - id: caporegime
+    display_name: "Caporegime"
+    order: 2
+    capabilities: [INVITE, TERRITORY_CLAIM, PRODUCE_CANCEL, TRAFFIC_AGREEMENT, RACKET_IMPOSE, RACKET_ESCALATE]
+  - id: consigliere
+    display_name: "Consigliere"
+    order: 3
+    capabilities: [VIEW_TREASURY, TRAFFIC_LOG, LAUNDER, RACKET_MANAGE]
+  - id: underboss
+    display_name: "Underboss"
+    order: 4
+    capabilities: [EXPEL, PROMOTE, DEMOTE]
+  - id: boss
+    display_name: "Boss"
+    order: 5
+    apical: true
+    capabilities: [ALL]
+
+# Founding requirements. min_members counts the founder plus any free players
+# physically nearby when /syndicate fonda is run (consent by presence). Shipped
+# at 1 so a lone founder can start; raise it to require a real founding crew.
+founding:
+  min_members: 1
+  initial_capital: 0      # informational unless a bank bridge enforces it
+  require_location: false
+  location_region: ""

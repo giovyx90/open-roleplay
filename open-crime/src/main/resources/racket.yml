@@ -1,0 +1,31 @@
+# ============================================================================
+#  Open Crime - racket / protection (Open Racket)
+#  ---------------------------------------------------------------------------
+#  Extortion over companies. Imposition is physical (a member faces the owner),
+#  payment runs on a timer when the company can pay, otherwise an agent collects
+#  physically. Requires a CompanyAdapter (e.g. Open Companies).
+#
+#  Escalation effects:
+#    notification_to_owner     -> only notifies the owner
+#    company_reputation_malus  -> applies reputation_malus through the company adapter
+#    none                      -> NO automatic effect; a pure narrative signal that
+#                                 "from here on it is unassisted RP". The plugin
+#                                 never destroys a company or punishes anyone.
+# ============================================================================
+
+defaults:
+  amount: 2000          # default periodic pizzo
+  period_days: 7        # weekly (scaled by time.scale)
+
+escalation:
+  levels:
+    1:
+      name: "Avvertimento"
+      effect: notification_to_owner
+    2:
+      name: "Pressione"
+      effect: company_reputation_malus
+      reputation_malus: 10
+    3:
+      name: "Azione diretta"
+      effect: none

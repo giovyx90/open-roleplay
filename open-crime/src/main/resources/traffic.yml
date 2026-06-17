@@ -1,0 +1,35 @@
+# ============================================================================
+#  Open Crime - traffic routes (Open Traffic)
+#  ---------------------------------------------------------------------------
+#  A route is an origin/destination region pair with optional waypoints. The
+#  carrier physically travels it carrying the marked goods; an interception is
+#  the authorities physically stopping and searching them. origin/destination
+#  regions are enforced only when a real RegionAdapter is active.
+#
+#  duration_minutes drives the expected-arrival estimate (scaled by time.scale).
+# ============================================================================
+
+routes:
+  porto_centro:
+    name: "Porto - Centro"
+    origin_region: "porto"
+    destination_region: "centro"
+    waypoints: ["lungomare", "stazione"]
+    distance_km: 3.0
+    duration_minutes: 12
+
+  zona_industriale_periferia:
+    name: "Zona industriale - Periferia"
+    origin_region: "zona_industriale"
+    destination_region: "periferia"
+    waypoints: ["tangenziale"]
+    distance_km: 5.5
+    duration_minutes: 18
+
+  confine_nord:
+    name: "Confine Nord"
+    origin_region: "valico"
+    destination_region: "deposito_nord"
+    waypoints: []
+    distance_km: 8.0
+    duration_minutes: 25
