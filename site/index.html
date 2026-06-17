@@ -8,14 +8,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Open Roleplay — Moduli open source per Minecraft RP su Paper</title>
-  <meta name="description" content="Open Roleplay è una suite open source di moduli per server Minecraft roleplay su Paper: armi, accessi, cosmetici, distributori, aziende, FDO, core e API. Gratuita, modulare, adapter-first. Apache 2.0." />
+  <meta name="description" content="Open Roleplay è una suite open source di moduli per server Minecraft roleplay su Paper: lavori, aziende, FDO, crime, armi, accessi, cosmetici, distributori, gestionale, core e API. Gratuita, modulare, adapter-first. Apache 2.0." />
   <meta name="theme-color" content="#16a34a" />
   <link rel="canonical" href="https://openroleplay.it/" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Open Roleplay — Moduli open source per Minecraft RP su Paper" />
-  <meta property="og:description" content="La suite open source di moduli per server Minecraft roleplay su Paper. Gratuita, modulare, adapter-first." />
+  <meta property="og:description" content="La suite open source di moduli per server Minecraft roleplay su Paper, con Open Jobs, aziende, FDO, crime, armi, accessi, gestionale e API condivise." />
   <meta property="og:url" content="https://openroleplay.it/" />
   <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
   <meta property="og:image:width" content="1200" />
@@ -36,7 +36,7 @@
     "@type": "WebSite",
     "name": "Open Roleplay",
     "url": "https://openroleplay.it/",
-    "description": "Suite open source di moduli per server Minecraft roleplay su Paper.",
+    "description": "Suite open source di moduli per server Minecraft roleplay su Paper, inclusi Open Jobs, aziende, FDO, crime, gestionale e API condivise.",
     "inLanguage": "it",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
     "isAccessibleForFree": true,
@@ -105,7 +105,7 @@
           <div class="hero-copy">
             <span class="eyebrow reveal">Open source · Apache 2.0 · Paper 1.21.x</span>
             <h1 class="reveal" data-d="1">La suite <span class="grad-text">open source</span> per server Minecraft roleplay.</h1>
-            <p class="lead reveal" data-d="2">Open Roleplay è una raccolta di moduli indipendenti per server Paper — armi, accessi, cosmetici, distributori, aziende, FDO, core e API condivisa. Usali insieme o uno alla volta. Leggibili, modificabili e tuoi.</p>
+            <p class="lead reveal" data-d="2">Open Roleplay è una raccolta di moduli indipendenti per server Paper — lavori base con Open Jobs, aziende, FDO, crime, armi, accessi, cosmetici, distributori, gestionale, core e API condivisa. Usali insieme o uno alla volta. Leggibili, modificabili e tuoi.</p>
             <div class="hero-cta reveal" data-d="3">
               <a class="btn btn-primary btn-lg" href="#moduli">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -119,7 +119,7 @@
             <div class="hero-meta reveal" data-d="4">
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Java 21</span>
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Paper 1.21.x</span>
-              <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-module-total>8</span> moduli</span>
+              <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-module-total>11</span> moduli</span>
               <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Resource pack inclusi</span>
             </div>
             <p class="manifesto-tag reveal" data-d="4">// È gratuito, e lo sarà per sempre.</p>
@@ -127,20 +127,19 @@
 
           <div class="hero-visual reveal" data-d="2">
             <div class="code-window">
-              <div class="code-window__bar"><i></i><i></i><i></i><span>MyRpIntegration.java</span></div>
-              <pre><code><span class="tok-com">// Recupera un modulo dal services manager</span>
-<span class="tok-type">OpenWeaponsApi</span> api = getServer()
+              <div class="code-window__bar"><i></i><i></i><i></i><span>OpenJobsBridge.java</span></div>
+              <pre><code><span class="tok-com">// Recupera Open Jobs dal services manager</span>
+<span class="tok-type">OpenJobsApi</span> api = getServer()
     .getServicesManager()
-    .<span class="tok-fn">load</span>(<span class="tok-type">OpenWeaponsApi</span>.class);
+    .<span class="tok-fn">load</span>(<span class="tok-type">OpenJobsApi</span>.class);
 
-<span class="tok-com">// Sostituisci un adapter a runtime</span>
-api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification</span>(myDiscordRelay);
+<span class="tok-com">// Collega la tua economy senza fork</span>
+api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setEconomy</span>(myEconomyBridge);
 
-<span class="tok-com">// Osserva o veta il combat</span>
-<span class="tok-key">@EventHandler</span>
-<span class="tok-key">public void</span> <span class="tok-fn">onHit</span>(<span class="tok-type">WeaponHitEvent</span> e) {
-    <span class="tok-key">if</span> (safezone(e)) e.<span class="tok-fn">setCancelled</span>(<span class="tok-key">true</span>);
-}</code></pre>
+<span class="tok-com">// Leggi sessione e tier per dashboard/licenze</span>
+api.<span class="tok-fn">getActiveSession</span>(playerId).<span class="tok-fn">ifPresent</span>(session -> {
+    api.<span class="tok-fn">getTier</span>(playerId, session.<span class="tok-fn">jobId</span>());
+});</code></pre>
             </div>
             <div class="float-card float-card--1">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -155,7 +154,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
 
         <!-- stats -->
         <div class="stats reveal">
-          <div class="stat"><b data-module-total>8</b><span>moduli pubblici</span></div>
+          <div class="stat"><b data-module-total>11</b><span>moduli pubblici</span></div>
           <div class="stat"><b>100%</b><span>open source</span></div>
           <div class="stat"><b>Apache&nbsp;2.0</b><span>licenza del codice</span></div>
           <div class="stat"><b>∞</b><span>gratis per sempre</span></div>
@@ -188,7 +187,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
       <div class="container">
         <div class="section-head center">
           <span class="eyebrow reveal">I moduli</span>
-          <h2 class="section-title reveal" data-d="1"><span data-module-total-word>Dieci</span> moduli, una sola famiglia</h2>
+          <h2 class="section-title reveal" data-d="1"><span data-module-total-word>Undici</span> moduli, una sola famiglia</h2>
           <p class="section-sub reveal" data-d="2">Ogni modulo pubblicabile ha default funzionanti. Quando i plugin Paper si trovano sullo stesso server, si riconoscono e collaborano — senza dipendenze obbligatorie.</p>
         </div>
 
@@ -277,8 +276,32 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
             </div>
           </article>
 
-          <!-- Open Core -->
+          <!-- Open Jobs -->
           <article class="module-card reveal" data-d="1">
+            <div class="module-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.6L3 17l4 4 6.9-6.9a3.5 3.5 0 0 0 4.6-4.6l-2.3 2.3-2.1-2.1z"/><path d="M14.5 9.5l4.5-4.5"/></svg></div>
+            <div class="module-card__head"><div><h3>Open Jobs</h3><div class="id">open-jobs</div></div><span class="badge badge--blue">Compilabile</span></div>
+            <p>I lavori base roleplay, adapter-first e neutri: sessioni fisiche, location, licenze professionali, progressione per anzianità e tre modelli di paga. RP First: paga l'attività reale, non il tempo.</p>
+            <div class="tags"><span>Sessioni di lavoro</span><span>3 modelli di paga</span><span>Progressione</span><span>Licenze</span><span>OpenJobsApi</span></div>
+            <div class="module-card__foot">
+              <a href="moduli/open-jobs.html">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="sec" href="https://github.com/giovyx90/open-roleplay/tree/main/open-jobs" target="_blank" rel="noopener">Sorgente</a>
+            </div>
+          </article>
+
+          <!-- Open Gestionale -->
+          <article class="module-card reveal" data-d="2">
+            <div class="module-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+            <div class="module-card__head"><div><h3>Open Gestionale</h3><div class="id">open-gestionale</div></div><span class="badge badge--blue">Demo</span></div>
+            <p>Gestionale web universale: API bridge Node.js + frontend React. Carica il layout dall'API e renderizza widget adapter-first, inclusi quelli per Open Jobs.</p>
+            <div class="tags"><span>Widget system</span><span>Adapter-first</span><span>API + React</span><span>OTP/JWT</span><span>Demo</span></div>
+            <div class="module-card__foot">
+              <a href="moduli/open-gestionale.html">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="sec" href="https://demo.openroleplay.it/" target="_blank" rel="noopener">Demo</a>
+            </div>
+          </article>
+
+          <!-- Open Core -->
+          <article class="module-card reveal">
             <div class="module-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
             <div class="module-card__head"><div><h3>Open Core</h3><div class="id">open-core-paper</div></div><span class="badge">Avviabile</span></div>
             <p>Il plugin di base. Nessun gameplay: espone un servizio Bukkit, un lifecycle ordinato dei moduli, database opzionale SQLite/MySQL, HUD e invio del resource pack.</p>
@@ -290,7 +313,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
           </article>
 
           <!-- Open Core API -->
-          <article class="module-card reveal" data-d="2">
+          <article class="module-card reveal" data-d="1">
             <div class="module-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><line x1="13.5" y1="4" x2="10.5" y2="20"/></svg></div>
             <div class="module-card__head"><div><h3>Open Core API</h3><div class="id">open-core-api</div></div><span class="badge">Contratti</span></div>
             <p>I contratti pubblici minimi condivisi dai moduli: lifecycle, accesso opzionale al database, messaggi, permessi, stato HUD e utility item. Tipi stabili, zero gameplay.</p>
@@ -332,6 +355,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
               <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 6V4h6v2"/><path d="M8 11h2M14 11h2M8 15h2M14 15h2"/></svg><span>Open Companies<small>aziende / licenze / treasury / asset</small></span></div>
               <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/><path d="M12 7.8l1.2 2.5 2.7.3-2 1.9.6 2.7-2.5-1.4-2.5 1.4.6-2.7-2-1.9 2.7-.3z"/></svg><span>Open FDO<small>autorità / atti / fascicoli / detenzione via adapter</small></span></div>
               <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><circle cx="9.5" cy="14.5" r="1.6"/><circle cx="14.5" cy="14.5" r="1.6"/><path d="M11.1 14.5h1.8"/></svg><span>Open Crime<small>organizzazioni / traffico / discovery RP</small></span></div>
+              <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.6L3 17l4 4 6.9-6.9a3.5 3.5 0 0 0 4.6-4.6l-2.3 2.3-2.1-2.1z"/><path d="M14.5 9.5l4.5-4.5"/></svg><span>Open Jobs<small>lavori base / sessioni / paghe via adapter</small></span></div>
               <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg><span>Open Gestionale<small>API bridge / dashboard / demo live</small></span></div>
             </div>
           </div>
@@ -348,7 +372,7 @@ api.<span class="tok-fn">adapters</span>().<span class="tok-fn">setNotification<
         </div>
         <div class="features">
           <div class="feature reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div><h3>Davvero open</h3><p>Codice sotto Apache 2.0: leggilo, modificalo, adattalo. Niente offuscamento, niente componenti chiusi.</p></div>
-          <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Modulare</h3><p><span data-module-total-word>Dieci</span> moduli separati. Installa solo ciò che ti serve: ognuno è leggibile e compilabile da solo.</p></div>
+          <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>Modulare</h3><p><span data-module-total-word>Undici</span> moduli separati. Installa solo ciò che ti serve: ognuno è leggibile e compilabile da solo.</p></div>
           <div class="feature reveal" data-d="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div><h3>Integrabile</h3><p>API pubbliche via Bukkit Services, eventi cancellabili e adapter sostituibili: collega i tuoi sistemi senza fork.</p></div>
           <div class="feature reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Sicuro lato server</h3><p>Logica critica server-side, transazioni atomiche e lock per-risorsa: il client non viene mai fidato.</p></div>
           <div class="feature reveal" data-d="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>Bilingue IT / EN</h3><p>Messaggi in italiano e inglese, selezionati in automatico dalla lingua del client. Tutto personalizzabile.</p></div>
@@ -560,8 +584,8 @@ mvn -B -ntp clean package</code></pre>
             </div>
             <div class="code">
               <div class="code__head"><span>bash · solo un modulo</span><button class="copy-btn" data-copy="#qs-one"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
-              <pre><code id="qs-one">mvn -B -ntp package -pl open-companies -am
-# il jar finisce in: open-companies/target/</code></pre>
+              <pre><code id="qs-one">mvn -B -ntp package -pl open-jobs -am
+# il jar finisce in: open-jobs/target/</code></pre>
             </div>
           </div>
         </div>
@@ -606,11 +630,19 @@ mvn -B -ntp clean package</code></pre>
             <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><circle cx="9.5" cy="14.5" r="1.6"/><circle cx="14.5" cy="14.5" r="1.6"/><path d="M11.1 14.5h1.8"/></svg></div><div><h4>Open Crime</h4><div class="id">open-crime</div></div></div>
             <div class="actions"><a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-crime.jar" target="_blank" rel="noopener">Scarica JAR</a><a class="btn btn-outline btn-sm" href="moduli/open-crime.html">Dettagli</a></div>
           </div>
+          <div class="dl-card reveal" data-d="1">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.6L3 17l4 4 6.9-6.9a3.5 3.5 0 0 0 4.6-4.6l-2.3 2.3-2.1-2.1z"/><path d="M14.5 9.5l4.5-4.5"/></svg></div><div><h4>Open Jobs</h4><div class="id">open-jobs</div></div></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-jobs.jar" target="_blank" rel="noopener">Scarica JAR</a><a class="btn btn-outline btn-sm" href="moduli/open-jobs.html">Dettagli</a></div>
+          </div>
+          <div class="dl-card reveal" data-d="2">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div><h4>Open Gestionale</h4><div class="id">open-gestionale</div></div></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="https://demo.openroleplay.it/" target="_blank" rel="noopener">Apri demo</a><a class="btn btn-outline btn-sm" href="moduli/open-gestionale.html">Dettagli</a></div>
+          </div>
           <div class="dl-card reveal">
             <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg></div><div><h4>Open Core</h4><div class="id">open-core-paper</div></div></div>
             <div class="actions"><a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-core-paper.jar" target="_blank" rel="noopener">Scarica JAR</a><a class="btn btn-outline btn-sm" href="moduli/open-core.html">Dettagli</a></div>
           </div>
-          <div class="dl-card reveal">
+          <div class="dl-card reveal" data-d="1">
             <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div><div><h4>Open Core API</h4><div class="id">open-core-api</div></div></div>
             <div class="actions"><a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-core-api.jar" target="_blank" rel="noopener">Scarica JAR API</a><a class="btn btn-outline btn-sm" href="moduli/open-core-api.html">Dettagli</a></div>
           </div>

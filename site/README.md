@@ -17,6 +17,7 @@ site/
 │   ├── open-companies.html
 │   ├── open-fdo.html
 │   ├── open-crime.html
+│   ├── open-jobs.html
 │   ├── open-gestionale.html
 │   ├── open-core.html
 │   └── open-core-api.html
@@ -66,6 +67,7 @@ open-vending-machines.jar
 open-companies.jar
 open-fdo.jar
 open-crime.jar
+open-jobs.jar
 open-core-paper.jar
 open-core-api.jar
 open-weapons-resource-pack.zip

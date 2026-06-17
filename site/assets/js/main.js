@@ -91,7 +91,8 @@
       7: "Sette",
       8: "Otto",
       9: "Nove",
-      10: "Dieci"
+      10: "Dieci",
+      11: "Undici"
     }[count] || String(count);
   }
 
