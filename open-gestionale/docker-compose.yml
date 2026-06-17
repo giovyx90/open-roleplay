@@ -1,0 +1,41 @@
+# Open Gestionale — stack completo su un singolo host.
+#
+# Out of the box avvia la DEMO (dati fittizi, nessun login):
+#   docker compose up --build
+#   API:      http://localhost:3000
+#   Frontend: http://localhost:8080
+#
+# Per la PRODUZIONE: monta config/gestionale.yml + config/layout.yml reali,
+# cambia GESTIONALE_CONFIG, punta il volume al DB del server e rigenera il
+# frontend con VITE_API_URL = dominio pubblico dell'API.
+
+services:
+  gestionale-api:
+    build: ./api
+    image: open-gestionale-api:local
+    environment:
+      - NODE_ENV=production
+      # Demo: usa la config demo bundlata. In produzione: /app/config/gestionale.yml
+      - GESTIONALE_CONFIG=/app/demo/gestionale.demo.yml
+    volumes:
+      - ./api/config:/app/config
+      - ./demo:/app/demo:ro
+      - ./data:/app/data
+      # In produzione monta il DB di Open Roleplay in sola lettura:
+      # - /path/to/openrp.db:/app/data/openrp.db:ro
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  gestionale-frontend:
+    build:
+      context: ./frontend
+      args:
+        # Deve puntare all'API raggiungibile dal BROWSER (non dal container).
+        VITE_API_URL: "http://localhost:3000"
+    image: open-gestionale-frontend:local
+    depends_on:
+      - gestionale-api
+    ports:
+      - "8080:80"
+    restart: unless-stopped

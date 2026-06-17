@@ -1,0 +1,49 @@
+# Layout fantasy. Nota gli hero economy.balance e identity.phone: restano qui
+# ma NON appariranno, perché i moduli "economy" e "identity" non sono attivi.
+# È la stessa lista del realistico, solo rietichettata: il gestionale non sa
+# nulla di "regni" o "gilde", lo dicono solo queste label.
+
+dashboard:
+  hero:
+    - { widget: economy.balance,    label: "Forziere" }          # filtrato: modulo assente
+    - { widget: jobs.current,       label: "Incarico di corte" }
+    - { widget: identity.phone,     label: "Messaggero", requires_module: identity }  # filtrato
+    - { widget: player.weekly_time, label: "Tempo nel regno" }
+
+  tabs:
+    - id: gilda
+      label: "La mia Gilda"
+      icon: key
+      widgets: [company.mine]
+      requires_module: companies
+    - id: corte
+      label: "Corte del Re"
+      icon: scale
+      widgets: [justice.casellario, justice.dossiers, justice.dossiers.agent, justice.wanted, justice.service_sheet]
+      requires_module: openfdo
+    - id: editti
+      label: "Editti del Re"
+      icon: landmark
+      widgets: [politics.charges, politics.laws, politics.decrees]
+      requires_module: politics
+    - id: infermeria
+      label: "Infermeria"
+      icon: heart
+      widgets: [health.record, health.appointments]
+      requires_module: health
+
+  sidebar:
+    - { widget: notifications.feed }
+    - { widget: server.news }
+
+  pages:
+    - id: incarichi
+      label: "Bandi del Regno"
+      icon: briefcase
+      widgets: [jobs.postings, jobs.history]
+      requires_module: jobs
+    - id: gilde
+      label: "Registro delle Gilde"
+      icon: building
+      widgets: [company.registry]
+      requires_module: companies

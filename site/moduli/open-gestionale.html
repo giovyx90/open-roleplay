@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Gestionale — Gestionale web adapter-first · Open Roleplay</title>
+  <meta name="description" content="Open Gestionale: gestionale web universale e open source per server roleplay. API bridge Node.js + frontend React, widget adapter-first che si adattano a qualsiasi ambientazione via config. Demo con dati fittizi." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-gestionale.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open Gestionale — Gestionale web adapter-first · Open Roleplay" />
+  <meta property="og:description" content="Gestionale web universale: il pannello non conosce l'ambientazione, lo decide la config. Widget modulari, API + React, demo navigabile." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-gestionale.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Open Roleplay" />
+  <meta name="twitter:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260616-a11y" />
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Gestionale",
+    "description": "Gestionale web universale e open source per server roleplay: API bridge Node.js + frontend React, widget adapter-first configurabili per qualsiasi ambientazione.",
+    "url": "https://openroleplay.it/moduli/open-gestionale.html",
+    "applicationCategory": "WebApplication",
+    "operatingSystem": "Node.js 22+ / Web (React)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "isAccessibleForFree": true,
+    "isPartOf": { "@type": "WebSite", "name": "Open Roleplay", "url": "https://openroleplay.it/" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+        <a href="../index.html#changelog">Changelog</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/tree/main/open-gestionale" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Sorgente
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="../index.html#changelog">Changelog</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/tree/main/open-gestionale" target="_blank" rel="noopener">Sorgente &amp; Docker</a>
+  </div>
+
+  <main id="main">
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open Gestionale</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open Gestionale</h1>
+          <span class="badge badge--blue">Demo</span>
+        </div>
+        <p class="lead">Un gestionale web <strong>universale</strong> per server roleplay: API bridge Node.js sul VPS + frontend React su CDN. Carica il layout dall'API e renderizza widget modulari. <strong>Non conosce nessuna ambientazione</strong>: sa solo che esistono giocatori, dati e widget — cosa mostrano lo decide la config del server.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://demo.openroleplay.it/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Apri la demo
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-gestionale" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Sorgente &amp; Docker
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://github.com/giovyx90/open-roleplay/blob/main/open-gestionale/README.md" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            README
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Stack</span><b>Node.js 22+ · React (Vite)</b></div>
+          <div class="m"><span>Deploy</span><b>API sul VPS · frontend su CDN</b></div>
+          <div class="m"><span>Database</span><b>SQLite · MySQL/MariaDB</b></div>
+          <div class="m"><span>Auth</span><b>OTP in-game + JWT</b></div>
+          <div class="m"><span>Licenza</span><b>Apache 2.0</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEUTRALITA' ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Non conosce l'ambientazione</h2>
+        <p class="lede reveal" data-d="1">Stesso test degli altri moduli: <em>funzionerebbe identico su un server fantasy medievale?</em> La risposta è in <code>examples/fantasy/</code>: lo <strong>stesso identico codice</strong> del realistico, cambiano solo <code>gestionale.yml</code> e <code>layout.yml</code>. I widget <code>economy.*</code> e <code>identity.*</code> spariscono da soli perché i loro moduli non sono attivi — nessuna riga toccata.</p>
+        <div class="arch-diagram reveal" data-d="1" aria-label="Schema a tre livelli: frontend, API, database">
+          <div class="arch-core"><b>API Bridge</b><br/><span>auth · config · widget REST · OpenAPI</span></div>
+          <div class="arch-row">
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Frontend React<small>statico · CDN · carica il layout</small></span></div>
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg><span>DB Open Roleplay<small>SQLite / MySQL · sola lettura</small></span></div>
+          </div>
+        </div>
+        <p class="lede reveal">Read-mostly: il gestionale legge i dati di gioco e scrive solo sulle proprie tabelle (sessioni, OTP, notizie, stato notifiche). L'integrità del gioco resta protetta.</p>
+      </div>
+    </section>
+
+    <!-- ===================== WIDGET SYSTEM ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Il layout è una risposta dell'API</h2>
+        <p class="lede reveal" data-d="1">Al login il frontend chiama <code>GET /config/layout</code> e riceve un layout <strong>già risolto</strong> per quel giocatore: i widget il cui modulo non è attivo, o per cui manca la capability, sono già stati tolti e i tab vuoti eliminati. Il frontend renderizza ciò che riceve e non sa quali moduli esistano.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></span><div><b>Widget autonomi</b><small>Ognuno conosce solo il proprio endpoint e quattro stati: caricamento, errore, non disponibile, dati.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/></svg></span><div><b>Doppio gate</b><small>Anche l'endpoint del widget controlla modulo e capability: un client non aggira il filtro del layout.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg></span><div><b>Degrada, non crasha</b><small>Modulo assente → il widget mostra "non disponibile" invece di rompersi.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AUTENTICAZIONE ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Niente password: identità dal gioco</h2>
+        <p class="lede reveal" data-d="1">Il gestionale non ha un proprio sistema di credenziali. Il giocatore digita <code>/gestionale login</code> in gioco, riceve un codice a 6 cifre (OTP, valido 5 minuti, monouso) e lo inserisce nel pannello. L'API emette un JWT che porta <strong>solo l'UUID</strong>: grado e capability vengono riletti dal DB a ogni richiesta, così una promozione in gioco si riflette al refresh.</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>OTP generato dal plugin Paper, hash legato all'UUID, scade e si invalida dopo l'uso</li>
+          <li>JWT firmati con la chiave dell'admin; l'avvio in produzione rifiuta il placeholder</li>
+          <li>Rate limiting su auth (per IP) e API (per token); HTTPS obbligatorio fuori dallo sviluppo</li>
+          <li>I permessi rispecchiano quelli dei plugin: nessun modello di ruoli separato</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== MODULI E WIDGET ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Moduli e widget</h2>
+        <p class="lede reveal" data-d="1">I widget crescono con i moduli Open Roleplay installati. <code>core</code> è sempre presente; gli altri si attivano in <code>modules.active</code>.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Modulo</th><th>Widget</th><th>Visibile a</th></tr></thead>
+            <tbody>
+              <tr><td><code>core</code></td><td>profilo, tempo settimanale, notifiche, notizie</td><td>tutti</td></tr>
+              <tr><td><code>economy</code></td><td>bilancio, transazioni, carte, bonifico</td><td>tutti</td></tr>
+              <tr><td><code>companies</code></td><td>le mie aziende, dettaglio, registro pubblico</td><td>tutti / membri</td></tr>
+              <tr><td><code>openfdo</code></td><td>casellario, fascicoli, ricercati, foglio di servizio</td><td>tutti / FDO via capability</td></tr>
+              <tr><td><code>politics</code></td><td>cariche, leggi, elezioni, decreti</td><td>tutti</td></tr>
+              <tr><td><code>jobs</code></td><td>lavoro attuale, storico, offerte</td><td>tutti</td></tr>
+              <tr><td><code>health</code></td><td>cartella clinica, appuntamenti</td><td>tutti</td></tr>
+              <tr><td><code>identity</code></td><td>documenti, telefono</td><td>tutti</td></tr>
+              <tr><td><code>education</code></td><td>titoli di studio, corsi</td><td>tutti</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEMO ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Demo con dati fittizi</h2>
+        <p class="lede reveal" data-d="1">Niente da installare per capire cosa fa: la demo gira con un seed di dati fittizi e nessun login. Scegli un profilo e vedi widget diversi in base al ruolo — è lo stesso meccanismo di permessi del gioco.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><b>Cittadino</b><small>Solo i propri dati: conto, telefono, lavoro, casellario.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/></svg></span><div><b>Agente FDO</b><small>In più: fascicoli gestiti, ricercati, foglio di servizio.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/></svg></span><div><b>Politico, imprenditore, medico</b><small>Leggi ed elezioni, azienda e organico, cartella clinica.</small></div></div>
+        </div>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>bash · demo in un comando</span><button class="copy-btn" data-copy="#og-demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="og-demo">git clone https://github.com/giovyx90/open-roleplay
+cd open-roleplay/open-gestionale
+docker compose up --build
+# API: http://localhost:3000 — Frontend: http://localhost:8080</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEPLOYMENT ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Deployment</h2>
+        <p class="lede reveal" data-d="1">Due progetti indipendenti. Il frontend è statico: gira su qualsiasi CDN (spesso gratis) e viene servito dall'edge, vicino ai giocatori. L'API resta sul VPS, vicina al DB.</p>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li><strong>Frontend</strong> su Vercel / Netlify / Cloudflare Pages con <code>VITE_API_URL</code> verso il bridge</li>
+          <li><strong>API</strong> sul VPS dietro reverse proxy TLS, con accesso al DB di Open Roleplay</li>
+          <li>CORS configurato in <code>gestionale.yml</code> con la lista dei domini frontend</li>
+          <li>Un'istanza per server: i dati dei giocatori non escono mai dal server del gestore</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== COSA NON FA ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Cosa non fa mai</h2>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Non modifica i dati di gameplay (il bonifico è simulato in demo, in produzione richiede un adapter dedicato)</li>
+          <li>Non ha un sistema di permessi proprio: legge le capability dal DB e le rispetta</li>
+          <li>Non assume nessuna ambientazione: nomi e struttura vengono dalla config</li>
+          <li>Non crasha se un modulo manca: mostra il widget "non disponibile"</li>
+          <li>Non richiede un account separato: l'identità passa dal server Minecraft</li>
+          <li>Nessun telemetry, nessun analytics esterno</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-fdo.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/></svg></div><div><h4>Open FDO</h4><div class="id">open-fdo</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-companies.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 6V4h6v2"/></svg></div><div><h4>Open Companies</h4><div class="id">open-companies</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-core.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg></div><div><h4>Open Core</h4><div class="id">open-core-paper</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli per server Minecraft roleplay su Paper. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul data-module-nav>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-companies.html">Open Companies</a></li>
+            <li><a href="open-fdo.html">Open FDO</a></li>
+            <li><a href="open-gestionale.html">Open Gestionale</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/modules.js?v=20260617-gestionale" defer></script>
+  <script src="../assets/js/main.js?v=20260617-gestionale" defer></script>
+</body>
+</html>

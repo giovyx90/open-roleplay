@@ -1,0 +1,52 @@
+# Layout realistico italiano — riproduce un gestionale "alla Zero":
+# tab Economia, Proprietà, Istruzione, Giustizia; hero Bilancio/Lavoro/Telefono/
+# Tempo; sezioni di menu Centro Impieghi, Concorsi, Leggi.
+
+dashboard:
+  hero:
+    - { widget: economy.balance,    label: "Bilancio" }
+    - { widget: jobs.current,       label: "Lavoro" }
+    - { widget: identity.phone,     label: "Telefono", requires_module: identity }
+    - { widget: player.weekly_time, label: "Tempo settimanale" }
+
+  tabs:
+    - id: economy
+      label: "Economia"
+      icon: wallet
+      widgets: [economy.transactions, economy.cards, economy.transfers]
+    - id: property
+      label: "Proprietà"
+      icon: key
+      widgets: [company.mine]
+      requires_module: companies
+    - id: education
+      label: "Istruzione"
+      icon: cap
+      widgets: [education.degrees, education.enrollments]
+      requires_module: education
+    - id: justice
+      label: "Giustizia"
+      icon: scale
+      widgets: [justice.casellario, justice.dossiers, justice.dossiers.agent, justice.wanted, justice.service_sheet]
+      requires_module: openfdo
+
+  sidebar:
+    - { widget: notifications.feed }
+    - { widget: server.news }
+
+  pages:
+    - id: jobs
+      label: "Centro Impieghi"
+      icon: briefcase
+      widgets: [jobs.postings, jobs.history]
+      requires_module: jobs
+    - id: concorsi
+      label: "Concorsi"
+      icon: trophy
+      widgets: [jobs.postings]
+      requires_module: jobs
+    - id: leggi
+      label: "Leggi"
+      icon: landmark
+      widgets: [politics.laws, politics.decrees, politics.elections]
+      requires_module: politics

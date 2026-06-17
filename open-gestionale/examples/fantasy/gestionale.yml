@@ -1,0 +1,47 @@
+# Configurazione fantasy medievale — la PROVA di neutralità.
+# Stesso codice del realistico: cambia solo questo file e il layout. Niente
+# modulo economia (nel regno non esiste "il conto in banca"); la Giustizia
+# diventa la Corte del Re, le aziende diventano Gilde, le leggi Editti.
+# I widget economy.* e identity.* spariscono da soli perché il loro modulo
+# non è attivo: nessuna riga di codice cambia.
+
+server:
+  name: "Regno di Valdoria"
+  setting: "fantasy"
+  mode: real
+  theme_color: "#7c3aed"
+  logo_url: "/assets/stemma.svg"
+  timezone: "Europe/Rome"
+
+database:
+  type: sqlite
+  path: ./data/valdoria.db
+
+auth:
+  otp_expiry_minutes: 5
+  jwt_expiry_hours: 24
+  jwt_secret: "CAMBIA_QUESTA_CHIAVE_IN_PRODUZIONE"
+
+cors:
+  allowed_origins:
+    - "https://corte.valdoria.it"
+
+api:
+  port: 3000
+  require_tls: true
+  rate_limit:
+    auth: 10
+    general: 300
+
+layout: ./layout.yml
+
+modules:
+  active:
+    - core
+    - companies      # Gilde
+    - openfdo        # Corte del Re / Guardia
+    - politics       # Editti e cariche
+    - jobs           # Incarichi
+    - health         # Infermeria
+    # niente "economy": nel regno non c'è il modulo economia
+    # niente "identity": niente telefoni nel medioevo

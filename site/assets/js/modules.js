@@ -81,6 +81,19 @@ window.OpenRoleplayModules = [
     tags: ["Capability", "Atti", "Fascicoli", "Catena di custodia", "OpenFdoApi"]
   },
   {
+    id: "open-gestionale",
+    name: "Open Gestionale",
+    page: "open-gestionale.html",
+    sourceDir: "open-gestionale",
+    icon: "gestionale",
+    status: "Demo",
+    statusClass: "badge--blue",
+    paperPlugin: false,
+    download: { href: "https://demo.openroleplay.it/", label: "Apri demo" },
+    summary: "Gestionale web universale: API bridge Node.js + frontend React. Carica il layout dall'API e renderizza widget adapter-first. Non conosce l'ambientazione: moduli, label e permessi vengono dalla config. Demo navigabile con dati fittizi.",
+    tags: ["Widget system", "Adapter-first", "API + React", "OTP/JWT", "Demo"]
+  },
+  {
     id: "open-core-paper",
     name: "Open Core",
     page: "open-core.html",

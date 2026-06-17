@@ -67,7 +67,8 @@
     companies: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 6V4h6v2"/><path d="M8 11h2M14 11h2M8 15h2M14 15h2"/></svg>',
     fdo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/><path d="M12 7.8l1.2 2.5 2.7.3-2 1.9.6 2.7-2.5-1.4-2.5 1.4.6-2.7-2-1.9 2.7-.3z"/></svg>',
     core: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
-    api: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><line x1="13.5" y1="4" x2="10.5" y2="20"/></svg>'
+    api: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><line x1="13.5" y1="4" x2="10.5" y2="20"/></svg>',
+    gestionale: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>'
   };
 
   function esc(value) {
@@ -156,10 +157,17 @@
     grid.innerHTML = modules.map(function (mod, i) {
       var delay = i % 3;
       var delayAttr = delay ? ' data-d="' + delay + '"' : "";
+      // JAR modules link to the release download; non-JAR modules (es. il
+      // gestionale web) usano un override `download` o ripiegano sul sorgente.
+      var primaryHref = mod.jar ? (RELEASE_DOWNLOAD_URL + mod.jar)
+        : (mod.download ? mod.download.href : sourceHref(mod));
+      var primaryLabel = mod.jar ? (mod.jarLabel || "Scarica JAR")
+        : (mod.download ? mod.download.label : "Sorgente");
+      var primaryExternal = !!(mod.jar || mod.download);
       return '<div class="dl-card reveal"' + delayAttr + ">" +
         '<div class="top"><div class="ic">' + (MODULE_ICONS[mod.icon] || MODULE_ICONS.core) + "</div><div><h4>" + esc(mod.name) + '</h4><div class="id">' + esc(mod.id) + "</div></div></div>" +
         '<div class="actions">' +
-          '<a class="btn btn-primary btn-sm" href="' + esc(RELEASE_DOWNLOAD_URL + mod.jar) + '" target="_blank" rel="noopener">' + esc(mod.jarLabel || "Scarica JAR") + "</a>" +
+          '<a class="btn btn-primary btn-sm" href="' + esc(primaryHref) + '"' + (primaryExternal ? ' target="_blank" rel="noopener"' : "") + ">" + esc(primaryLabel) + "</a>" +
           '<a class="btn btn-outline btn-sm" href="' + esc(moduleHref(mod)) + '">Dettagli</a>' +
         "</div>" +
       "</div>";

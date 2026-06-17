@@ -1,0 +1,15 @@
+# Dipendenze e build
+node_modules/
+dist/
+
+# Dati e config reali (generati dall'admin a partire dagli .example)
+data/
+api/config/gestionale.yml
+api/config/layout.yml
+*.db
+*.db-journal
+
+# Ambiente
+.env
+.env.*
+!.env.example

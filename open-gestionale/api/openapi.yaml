@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Open Gestionale API
+  version: "1.0"
+  description: >
+    Contratto REST tra un server Open Roleplay e il suo gestionale web.
+    Read-mostly: il bridge legge i dati di gioco e scrive solo su tabelle
+    proprie. Ogni risposta è incapsulata in `{ data, meta }`; gli errori in
+    `{ error: { code, message } }`. Se un modulo non è attivo, l'endpoint del
+    widget risponde 404 con codice `WIDGET_NOT_AVAILABLE`.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://api.gestionale.tuoserver.it
+    description: Bridge sul VPS del server
+  - url: http://localhost:3000
+    description: Sviluppo locale
+tags:
+  - name: auth
+  - name: config
+  - name: player
+  - name: widget
+  - name: demo
+paths:
+  /health:
+    get:
+      summary: Stato del servizio
+      security: []
+      responses:
+        "200": { description: OK }
+
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: Login con UUID Minecraft + OTP generato in-game
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uuid, otp]
+              properties:
+                uuid: { type: string }
+                otp: { type: string, example: "048213" }
+      responses:
+        "200":
+          description: Token emesso
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AuthResult" }
+        "401": { $ref: "#/components/responses/Error" }
+        "429": { $ref: "#/components/responses/Error" }
+
+  /auth/demo:
+    post:
+      tags: [auth, demo]
+      summary: Login demo senza OTP (solo se il server è in modalità demo)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uuid]
+              properties:
+                uuid: { type: string }
+      responses:
+        "200":
+          description: Token demo emesso
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AuthResult" }
+        "403": { $ref: "#/components/responses/Error" }
+
+  /auth/refresh:
+    post:
+      tags: [auth]
+      summary: Rinnova il token (rilegge grado e capability dal DB)
+      responses:
+        "200": { description: Nuovo token }
+
+  /auth/logout:
+    post:
+      tags: [auth]
+      summary: Logout (il client scarta il token)
+      security: []
+      responses:
+        "200": { description: OK }
+
+  /demo/profiles:
+    get:
+      tags: [demo]
+      summary: Roster dei profili demo (solo modalità demo)
+      security: []
+      responses:
+        "200": { description: Lista profili }
+        "403": { $ref: "#/components/responses/Error" }
+
+  /config/server:
+    get:
+      tags: [config]
+      summary: Nome, tema, fuso, modalità e moduli attivi del server
+      security: []
+      responses:
+        "200": { description: Config server }
+
+  /config/layout:
+    get:
+      tags: [config]
+      summary: Layout risolto per il giocatore (widget filtrati per modulo e capability)
+      responses:
+        "200": { description: Layout dashboard }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /player/me:
+    get:
+      tags: [player]
+      summary: Identità del giocatore autenticato
+      responses:
+        "200": { description: Profilo }
+        "401": { $ref: "#/components/responses/Error" }
+
+  /widget/{widgetId}:
+    get:
+      tags: [widget]
+      summary: Dati di un widget per il giocatore corrente
+      description: >
+        widgetId è l'id di registro, es. `economy.balance`, `economy.transactions`,
+        `company.detail`, `justice.dossiers`, `politics.laws`. Alcuni widget
+        accettano query: `page`, `limit` (collezioni), `id` (`company.detail`),
+        `status` (`politics.laws`), `unread` (`notifications.feed`).
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: page
+          in: query
+          schema: { type: integer, minimum: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 200 }
+        - name: id
+          in: query
+          schema: { type: string }
+      responses:
+        "200": { description: Payload del widget }
+        "403":
+          description: Capability insufficiente (WIDGET_FORBIDDEN)
+        "404":
+          description: Widget sconosciuto o modulo non attivo (WIDGET_NOT_AVAILABLE)
+
+  /widget/notifications.feed/{id}/read:
+    post:
+      tags: [widget]
+      summary: Segna una notifica come letta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: OK }
+        "404": { $ref: "#/components/responses/Error" }
+
+  /widget/economy.transfers:
+    post:
+      tags: [widget]
+      summary: Bonifico (unica scrittura, abilitata solo in demo)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [to, amount]
+              properties:
+                to: { type: string }
+                amount: { type: number }
+                note: { type: string }
+      responses:
+        "200": { description: Bonifico simulato }
+        "403": { $ref: "#/components/responses/Error" }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Error:
+      description: Errore
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+  schemas:
+    Meta:
+      type: object
+      properties:
+        timestamp: { type: string, format: date-time }
+        version: { type: string }
+    AuthResult:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            token: { type: string }
+            expires_at: { type: string, format: date-time }
+            player: { type: object }
+        meta: { $ref: "#/components/schemas/Meta" }
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: string, example: WIDGET_NOT_AVAILABLE }
+            message: { type: string }
+security:
+  - bearerAuth: []

@@ -1,0 +1,46 @@
+# Layout di esempio. Copialo in layout.yml e adatta label, ordine e widget.
+# Vedi anche examples/realistico-it/layout.yml e examples/fantasy/layout.yml.
+
+dashboard:
+  hero:
+    - { widget: economy.balance,    label: "Bilancio" }
+    - { widget: jobs.current,       label: "Lavoro" }
+    - { widget: identity.phone,     label: "Telefono", requires_module: identity }
+    - { widget: player.weekly_time, label: "Tempo settimanale" }
+
+  tabs:
+    - id: economy
+      label: "Economia"
+      icon: wallet
+      widgets: [economy.transactions, economy.cards, economy.transfers]
+    - id: property
+      label: "Proprietà"
+      icon: key
+      widgets: [company.mine]
+      requires_module: companies
+    - id: justice
+      label: "Giustizia"
+      icon: scale
+      widgets: [justice.casellario, justice.dossiers, justice.dossiers.agent, justice.wanted, justice.service_sheet]
+      requires_module: openfdo
+    - id: politics
+      label: "Politica"
+      icon: landmark
+      widgets: [politics.charges, politics.laws, politics.elections, politics.decrees]
+      requires_module: politics
+
+  sidebar:
+    - { widget: notifications.feed }
+    - { widget: server.news }
+
+  pages:
+    - id: jobs
+      label: "Centro Impieghi"
+      icon: briefcase
+      widgets: [jobs.postings, jobs.history]
+      requires_module: jobs
+    - id: registry
+      label: "Registro Aziende"
+      icon: building
+      widgets: [company.registry]
+      requires_module: companies

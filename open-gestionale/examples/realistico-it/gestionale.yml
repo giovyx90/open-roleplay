@@ -1,0 +1,52 @@
+# Configurazione di riferimento: realistico italiano.
+# Punto di partenza per un server RP realistico. Copiala, cambia i segreti,
+# punta il database e adatta i moduli attivi.
+
+server:
+  name: "Nome del Server"
+  setting: "realistico"
+  mode: real                     # demo | real
+  theme_color: "#16a34a"
+  logo_url: "/assets/logo.svg"
+  timezone: "Europe/Rome"
+
+database:
+  type: sqlite                   # sqlite | mysql | mariadb
+  path: ./data/openrp.db
+  # Per MySQL/MariaDB:
+  # host: 127.0.0.1
+  # port: 3306
+  # name: openrp
+  # user: gestionale
+  # password: "..."
+
+auth:
+  otp_expiry_minutes: 5
+  jwt_expiry_hours: 24
+  jwt_secret: "CAMBIA_QUESTA_CHIAVE_IN_PRODUZIONE"
+
+cors:
+  allowed_origins:
+    - "https://gestionale.tuoserver.it"
+    - "https://tuoserver.it"
+    # In sviluppo: http://localhost:5173
+
+api:
+  port: 3000
+  require_tls: true
+  rate_limit:
+    auth: 10
+    general: 300
+
+layout: ./layout.yml
+
+modules:
+  active:
+    - core
+    - economy
+    - companies
+    - openfdo
+    - politics
+    - jobs
+    - identity
+    - education

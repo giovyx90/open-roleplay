@@ -1,0 +1,23 @@
+{
+  "name": "open-gestionale-api",
+  "version": "1.0.0",
+  "description": "API bridge per Open Gestionale — espone in sola lettura il DB di un server Open Roleplay come widget adapter-first.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:demo": "GESTIONALE_CONFIG=../demo/gestionale.demo.yml node src/index.js",
+    "import-seed": "node db/import-seed.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

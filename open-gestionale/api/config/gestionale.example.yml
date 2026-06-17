@@ -1,0 +1,44 @@
+# Copia questo file in gestionale.yml e adattalo:
+#   cp config/gestionale.example.yml config/gestionale.yml
+# Poi imposta database, jwt_secret e CORS. La chiave JWT DEVE essere cambiata
+# prima della produzione (l'avvio fallisce se resta il placeholder con NODE_ENV=production).
+
+server:
+  name: "Nome del Server"
+  setting: "realistico"          # etichetta libera; il codice resta neutro
+  mode: real                     # demo | real
+  theme_color: "#16a34a"
+  logo_url: null
+  timezone: "Europe/Rome"
+
+database:
+  type: sqlite                   # sqlite | mysql | mariadb
+  path: ./data/openrp.db         # stesso DB usato dai plugin Paper (sola lettura per il gioco)
+
+auth:
+  otp_expiry_minutes: 5
+  jwt_expiry_hours: 24
+  jwt_secret: "CAMBIA_QUESTA_CHIAVE_IN_PRODUZIONE"
+
+cors:
+  allowed_origins:
+    - "https://gestionale.tuoserver.it"
+    # In sviluppo aggiungi: http://localhost:5173
+
+api:
+  port: 3000
+  require_tls: true              # rifiuta connessioni non-HTTPS (dietro reverse proxy)
+  rate_limit:
+    auth: 10                     # tentativi/ora per IP
+    general: 300                 # richieste/ora per token
+
+layout: ./layout.example.yml     # in produzione: ./layout.yml
+
+modules:
+  active:
+    - core
+    - economy
+    - companies
+    - openfdo
+    - politics
+    - jobs

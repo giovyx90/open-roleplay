@@ -1,0 +1,44 @@
+# Configurazione della DEMO di Open Gestionale.
+# Nessun database reale: i dati arrivano dal seed. Nessun login: si sceglie un
+# profilo dalla landing. Tutto è fittizio.
+
+server:
+  name: "Open Roleplay — Demo"
+  setting: "realistico"          # solo un'etichetta, il codice resta neutro
+  mode: demo                     # demo | real
+  theme_color: "#16a34a"
+  logo_url: null
+  timezone: "Europe/Rome"
+
+auth:
+  otp_expiry_minutes: 5
+  jwt_expiry_hours: 24
+  jwt_secret: "demo-secret-non-segreto"   # ok: è una demo pubblica
+
+cors:
+  allowed_origins: []            # vuoto = riflette qualsiasi origine (demo pubblica)
+
+api:
+  port: 3000
+  require_tls: false
+  rate_limit:
+    auth: 60
+    general: 600
+
+# In modalità demo i dati arrivano da qui invece che dal DB.
+demo:
+  seed: ./seed.json
+
+layout: ./layout.demo.yml
+
+modules:
+  active:
+    - core
+    - economy
+    - companies
+    - openfdo
+    - politics
+    - jobs
+    - health
+    - identity
+    - education
