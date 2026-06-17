@@ -87,7 +87,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); overflow-x: hidden; }
 
 body {
   font-family: var(--font-sans);
@@ -117,7 +117,7 @@ h1, h2, h3, h4 { font-family: var(--font-disp); line-height: 1.12; font-weight: 
 .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 22px; }
 .container, .hero-grid > *, .manifesto > *, .arch > *, .module-card, .feature, .dl-card, .pill-item, .mod-meta .m { min-width: 0; }
 
-.section { padding: clamp(56px, 9vw, 116px) 0; position: relative; }
+.section { padding: clamp(56px, 9vw, 116px) 0; position: relative; overflow-x: hidden; }
 .section--tight { padding: clamp(40px, 6vw, 72px) 0; }
 
 .eyebrow {
@@ -602,7 +602,8 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
   .changelog-entry { grid-template-columns: 1fr; }
   .changelog-date { width: fit-content; grid-template-columns: auto auto; align-items: baseline; gap: 8px; }
   .dl-grid { grid-template-columns: 1fr; }
-  .dl-card .actions .btn { flex: 1 1 160px; }
+  .dl-card .actions { flex-direction: column; flex-wrap: nowrap; }
+  .dl-card .actions .btn { width: 100%; flex: 0 0 auto; }
   .mod-hero .hero-cta .btn { flex: 1 1 190px; }
   .breadcrumb { flex-wrap: wrap; }
 }
@@ -630,7 +631,7 @@ td code, p code, li code { font-family: var(--font-mono); font-size: .84em; back
     white-space: normal;
   }
   .btn svg { flex: none; }
-  .hero-cta .btn, .mod-hero .hero-cta .btn, .cta-banner .hero-cta .btn, .dl-card .actions .btn {
+  .hero-cta .btn, .mod-hero .hero-cta .btn, .cta-banner .hero-cta .btn {
     width: 100%;
     flex-basis: 100%;
   }
