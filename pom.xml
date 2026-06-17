@@ -31,6 +31,7 @@
         <module>open-companies</module>
         <module>open-fdo</module>
         <module>open-crime</module>
+        <module>open-jobs</module>
     </modules>
 
     <properties>

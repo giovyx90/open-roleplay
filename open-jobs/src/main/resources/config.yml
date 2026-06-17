@@ -1,0 +1,57 @@
+# ============================================================================
+#  Open Jobs - main configuration
+#  ---------------------------------------------------------------------------
+#  ADAPTER-FIRST and SETTING-NEUTRAL. The core knows no job by name: jobs,
+#  location types and the progression ladder live in jobs.yml,
+#  location_types.yml and progression.yml. The bundled defaults reproduce an
+#  Italian realistic setting as a worked example; see examples/fantasy for a
+#  contrasting one on the same code.
+#
+#  RP FIRST: a basic job is a physical activity anyone can do - no hiring, no
+#  company, no menu. Go, work, get paid. The plugin pays the activity actually
+#  done during a session (blocks broken, fish caught, items crafted), never the
+#  minutes merely spent standing in the region.
+# ============================================================================
+
+branding:
+  product-name: "Open Jobs"
+  message-prefix: "<gold>[Jobs]</gold> "
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+general:
+  # Minutes a worker may stay outside the location (paused) before the session is
+  # abandoned and finalised. A paused session keeps its banked active time.
+  session_abandoned_minutes: 10
+  # Pay an abandoned session for what was actually produced (still subject to the
+  # job's minimum_payout). When false, an abandoned session pays nothing.
+  payout_partial_abandoned: true
+  # Master toggles for the optional pay modifiers (a job can still opt out per-job).
+  cooperative_enabled: true
+  seasonal_enabled: false
+  # When true, sessions require a real region backend (a registered RegionAdapter,
+  # e.g. a WorldGuard bridge). Shipped OFF so the plugin works out of the box with
+  # synthetic per-chunk regions; delivery-point gating is only enforced with a real
+  # backend.
+  require_region_backend: false
+
+adapters:
+  economy: true     # look for an EconomyAdapter (wage payouts)
+  companies: true   # look for a CompanyEmploymentAdapter (employer redirection)
+  identity: true    # look for an IdentityAdapter (physical licence items)
+  worldguard: true  # look for a RegionAdapter (real regions and tags)
+
+storage:
+  adapter: yaml     # yaml | memory
+  file: jobs-data.yml
+
+fallback:
+  # What to do with a payout when no economy adapter is present. The setting-neutral
+  # core has no money item, so without an economy backend the wage is recorded in the
+  # work record and the worker is notified; a currency-item bridge can deliver it.
+  no_economy_payout: inventory   # inventory | chest | none
+  chest_region: ""
+
+debug: false

@@ -1,0 +1,81 @@
+# ============================================================================
+#  Open Jobs - location types
+#  ---------------------------------------------------------------------------
+#  A location type defines HOW work is detected and WHICH materials count. The
+#  core listens to the matching Bukkit event and only counts actions on the
+#  listed materials: breaking dirt in a mine is not work, breaking stone is.
+#
+#  activity_detection:
+#    block_break    -> counts breaking a listed block (mine, forest, farm)
+#    fishing        -> counts a fish/loot reeled in (water); empty list = any catch
+#    crafting       -> counts a transformation on a designated bench (workshop);
+#                      paid per the job's transformations, not per material
+#    chest_deposit  -> recognised for setting-neutral configs; left to a bridge
+#    custom         -> recognised for setting-neutral configs; left to a bridge
+#
+#  region_tag is the flag a real region backend (e.g. WorldGuard) must carry for
+#  the location to qualify. With the bundled per-chunk adapter every tag passes.
+# ============================================================================
+
+location_types:
+  mine:
+    display_name: "Miniera"
+    activity_detection: block_break
+    region_tag: job_mine
+    valid_materials:
+      - STONE
+      - DEEPSLATE
+      - COAL_ORE
+      - DEEPSLATE_COAL_ORE
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
+      - DIAMOND_ORE
+      - DEEPSLATE_DIAMOND_ORE
+
+  forest:
+    display_name: "Bosco"
+    activity_detection: block_break
+    region_tag: job_forest
+    valid_materials:
+      - OAK_LOG
+      - BIRCH_LOG
+      - SPRUCE_LOG
+      - DARK_OAK_LOG
+      - ACACIA_LOG
+      - JUNGLE_LOG
+
+  farm:
+    display_name: "Campo"
+    activity_detection: block_break
+    region_tag: job_farm
+    valid_materials:
+      - WHEAT
+      - CARROTS
+      - POTATOES
+      - BEETROOTS
+
+  water:
+    display_name: "Specchio d'acqua"
+    activity_detection: fishing
+    region_tag: job_water
+    valid_materials:
+      - COD
+      - SALMON
+      - TROPICAL_FISH
+      - PUFFERFISH
+
+  workshop:
+    display_name: "Officina"
+    activity_detection: crafting
+    region_tag: job_workshop
+    valid_materials: []
+
+  street:
+    display_name: "Strada"
+    activity_detection: block_break
+    region_tag: job_street
+    valid_materials:
+      - SHORT_GRASS
+      - TALL_GRASS

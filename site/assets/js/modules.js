@@ -94,6 +94,19 @@ window.OpenRoleplayModules = [
     tags: ["Organizzazioni", "Produzione & traffico", "Riciclaggio", "Discovery RP", "OpenCrimeApi"]
   },
   {
+    id: "open-jobs",
+    name: "Open Jobs",
+    page: "open-jobs.html",
+    sourceDir: "open-jobs",
+    jar: "open-jobs.jar",
+    icon: "jobs",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "I lavori base roleplay, adapter-first e neutri: sessioni di lavoro fisiche, location, licenze professionali, progressione per anzianita' e tre modelli di paga. RP First: paga l'attivita' reale, non il tempo. Espone OpenJobsApi.",
+    tags: ["Sessioni di lavoro", "3 modelli di paga", "Progressione", "Licenze", "OpenJobsApi"]
+  },
+  {
     id: "open-gestionale",
     name: "Open Gestionale",
     page: "open-gestionale.html",

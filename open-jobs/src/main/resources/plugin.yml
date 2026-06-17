@@ -1,0 +1,41 @@
+name: OpenJobs
+version: '${project.version}'
+main: dev.openrp.jobs.OpenJobsPlugin
+api-version: '1.21'
+description: Adapter-first, setting-neutral basic-jobs engine for Paper roleplay - physical work sessions, work locations, professional licences, seniority progression and three payment models. RP First - it pays the work done, not the time.
+authors: [Open Roleplay Workshop]
+# Every entry below is an OPTIONAL soft dependency. The core works without any of them:
+# - OpenCore     -> module lifecycle integration (reflective, optional)
+# - OpenEconomy  -> wage payouts (EconomyAdapter); without it pay is recorded only
+# - OpenCompanies-> employer payout redirection (CompanyEmploymentAdapter)
+# - OpenIdentity -> physical licence items carrying the live tier (IdentityAdapter)
+# - WorldGuard   -> real work-location regions and tags (optional RegionAdapter)
+# - LuckPerms    -> permission routing (handled through the Bukkit permission layer)
+softdepend: [OpenCore, OpenEconomy, OpenCompanies, OpenIdentity, WorldGuard, LuckPerms]
+
+commands:
+  lavoro:
+    description: Find, start, end and review your basic jobs.
+    usage: /lavoro <lista|info|inizia|fine|stato|profilo|licenza|admin>
+    aliases: [job, jobs, work]
+    permission: openjobs.use
+
+permissions:
+  openjobs.*:
+    description: Grants every Open Jobs permission.
+    default: op
+    children:
+      openjobs.use: true
+      openjobs.admin: true
+      openjobs.reload: true
+  openjobs.use:
+    description: Allows using the Open Jobs commands.
+    default: true
+  openjobs.admin:
+    description: Staff control - issue/revoke licences, terminate sessions, manage locations, view stats, reload.
+    default: op
+    children:
+      openjobs.reload: true
+  openjobs.reload:
+    description: Allows reloading Open Jobs configuration.
+    default: op

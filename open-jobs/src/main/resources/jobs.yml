@@ -1,0 +1,159 @@
+# ============================================================================
+#  Open Jobs - job definitions  (reference setting: realistic Italian)
+#  ---------------------------------------------------------------------------
+#  Each job binds a location_type, a payment_model and the optional layers a
+#  server may switch on (licence, progression, cooperative, tools, season,
+#  shifts, transformations). The core knows none of these jobs by name.
+#
+#  payment_model:
+#    a_produzione -> paid per produced unit (payment.rates), min payment.minimum_payout
+#    a_sessione   -> paid by active time (payment.rate_per_hour), malus below the
+#                    activity floor (payment.activity_threshold / inactivity_penalty)
+#    a_consegna   -> nothing during extraction; paid per unit (payment.delivery_rates)
+#                    once the worker reaches payment.delivery_location
+#
+#  IMPORTANT: rate keys are the broken BLOCK material (or caught/crafted item).
+#  A mature wheat crop block is WHEAT, carrots CARROTS, potatoes POTATOES, etc.
+# ============================================================================
+
+jobs:
+
+  minatore:
+    display_name: "Minatore"
+    category: estrattivo
+    location_type: mine
+    payment_model: a_produzione
+    requires_license: true
+    license:
+      auto_issue: true
+      revocable: true
+      display_name: "Tesserino da Minatore"
+      item_material: PAPER
+      item_custom_model_data: 3001
+    progression_enabled: true
+    cooperative:
+      enabled: true
+      min_players: 2
+      max_bonus_players: 4
+      bonus_per_player: 0.05
+    required_tool:
+      enabled: true
+      material: WOODEN_PICKAXE
+      bonus_materials:
+        DIAMOND_PICKAXE: 1.1
+        NETHERITE_PICKAXE: 1.2
+    payment:
+      minimum_payout: 5.0
+      rates:
+        STONE: 0.3
+        DEEPSLATE: 0.3
+        COAL_ORE: 2.0
+        DEEPSLATE_COAL_ORE: 2.0
+        IRON_ORE: 5.0
+        DEEPSLATE_IRON_ORE: 5.0
+        GOLD_ORE: 8.0
+        DEEPSLATE_GOLD_ORE: 8.0
+        DIAMOND_ORE: 20.0
+        DEEPSLATE_DIAMOND_ORE: 20.0
+
+  boscaiolo:
+    display_name: "Boscaiolo"
+    category: estrattivo
+    location_type: forest
+    payment_model: a_consegna
+    requires_license: false
+    progression_enabled: true
+    payment:
+      delivery_location: segheria_centrale
+      delivery_rates:
+        OAK_LOG: 3.0
+        BIRCH_LOG: 3.0
+        SPRUCE_LOG: 3.5
+        DARK_OAK_LOG: 4.0
+        ACACIA_LOG: 3.0
+        JUNGLE_LOG: 3.0
+
+  pescatore:
+    display_name: "Pescatore"
+    category: estrattivo
+    location_type: water
+    payment_model: a_produzione
+    requires_license: false
+    progression_enabled: true
+    seasonal:
+      enabled: true
+      spring: 1.1
+      summer: 1.4
+      autumn: 0.9
+      winter: 0.6
+    payment:
+      minimum_payout: 3.0
+      rates:
+        COD: 2.0
+        SALMON: 3.0
+        TROPICAL_FISH: 5.0
+        PUFFERFISH: 1.0
+
+  falegname:
+    display_name: "Falegname"
+    category: trasformativo
+    location_type: workshop
+    payment_model: a_produzione
+    requires_license: true
+    license:
+      auto_issue: false
+      revocable: true
+      display_name: "Patente di Falegnameria"
+      item_material: PAPER
+      item_custom_model_data: 3002
+    progression_enabled: true
+    transformations:
+      - input:
+          - material: OAK_LOG
+            amount: 1
+        output:
+          - material: OAK_PLANKS
+            amount: 4
+        payout: 2.0
+        craft_time_seconds: 10
+      - input:
+          - material: OAK_PLANKS
+            amount: 3
+        output:
+          - material: OAK_SLAB
+            amount: 6
+        payout: 1.5
+        craft_time_seconds: 8
+
+  agricoltore:
+    display_name: "Agricoltore"
+    category: estrattivo
+    location_type: farm
+    payment_model: a_consegna
+    requires_license: false
+    progression_enabled: true
+    seasonal:
+      enabled: true
+      spring: 1.3
+      summer: 1.1
+      autumn: 1.5
+      winter: 0.4
+    payment:
+      delivery_location: mercato_alimentare
+      delivery_rates:
+        WHEAT: 1.5
+        CARROTS: 2.0
+        POTATOES: 1.8
+        BEETROOTS: 2.5
+
+  spazzino:
+    display_name: "Spazzino"
+    category: servizio
+    location_type: street
+    payment_model: a_sessione
+    requires_license: false
+    progression_enabled: true
+    payment:
+      rate_per_hour: 100.0
+      activity_threshold: 0.3
+      inactivity_penalty: 0.5

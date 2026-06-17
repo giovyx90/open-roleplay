@@ -1,0 +1,86 @@
+# Open Jobs - messages (English). Lines rendered with plain() accept MiniMessage tags.
+general:
+  player_only: "Only a player can use this command."
+  no_permission: "You do not have permission to do that."
+  player_not_found: "Player '{player}' not found."
+  reload_done: "Open Jobs configuration reloaded."
+  unknown_subcommand: "Unknown subcommand. Try /lavoro lista."
+
+model:
+  a_produzione: "per production"
+  a_sessione: "per session"
+  a_consegna: "on delivery"
+
+session:
+  already_working: "You already have an active work session. Use /lavoro fine before starting another."
+  requires_region_backend: "Work requires a real region backend (e.g. WorldGuard) on this server."
+  no_region: "You are not in any work region."
+  not_a_work_location: "No job is done here. Go to a work location."
+  job_gone: "The job '{job}' is no longer configured."
+  wrong_location: "This region is not a valid {type} location."
+  location_full: "Location '{location}' is full. Try again later."
+  need_license: "You need a licence to work as a {job}. Ask whoever issues it."
+  need_tool: "You need at least a {tool} in your inventory to work."
+  started: "You started working as {job} at {location}. Get to it!"
+  not_working: "You have no active work session."
+  ended: "Work finished ({job}). Produced: {produced}. Pay: {amount}. Tier: {tier}."
+  abandoned_paid: "Session abandoned ({job}). Produced: {produced}. Partial pay: {amount}."
+  not_delivered: "You must deliver the goods to the delivery point ({location}) to be paid."
+  paused: "Session paused: you left the location."
+  resumed: "Session resumed: back to work."
+
+progression:
+  tier_up: "Promotion! You are now {tier} as a {job}."
+
+list:
+  header: "Available jobs"
+  empty: "<gray>No jobs configured.</gray>"
+  entry: "<white>{job}</white> <gray>({id})</gray> <dark_gray>·</dark_gray> <gray>pay {model}</gray> <dark_gray>·</dark_gray> <gray>licence:</gray> {license} <dark_gray>·</dark_gray> <gray>locations:</gray> <white>{locations}</white>"
+  license_yes: "yes"
+  license_no: "no"
+
+info:
+  usage: "Usage: /lavoro info <job>"
+  unknown: "Unknown job '{job}'."
+  header: "Job: {job}"
+  basics: "<gray>Category:</gray> <white>{category}</white> <gray>Location:</gray> <white>{type}</white> <gray>Pay:</gray> <white>{model}</white>"
+  license: "<gray>Licence required:</gray> <white>{license}</white>"
+  no_locations: "<gray>No active location for this job.</gray>"
+  location: "<gray>-</gray> <white>{location}</white> <gray>(capacity: {capacity})</gray>"
+  progression: "<gray>Tiers:</gray> <white>{tiers}</white>"
+
+status:
+  header: "Session in progress: {job}"
+  body: "<gray>Location:</gray> <white>{location}</white> <gray>State:</gray> <white>{state}</white> <gray>Active time:</gray> <white>{minutes} min</white> <gray>Produced:</gray> <white>{produced}</white> <gray>Estimated pay:</gray> <green>{estimate}</green>"
+  state_active: "active"
+  state_paused: "paused"
+
+profile:
+  header: "Work profile of {player}"
+  empty: "<gray>No work sessions recorded.</gray>"
+  entry: "<white>{job}</white> <dark_gray>·</dark_gray> <gray>tier:</gray> <white>{tier}</white> <dark_gray>·</dark_gray> <gray>sessions:</gray> <white>{sessions}</white> <dark_gray>·</dark_gray> <gray>produced:</gray> <white>{produced}</white> <dark_gray>·</dark_gray> <gray>earnings:</gray> <green>{payout}</green> <dark_gray>·</dark_gray> <gray>to next tier:</gray> <white>{next}</white>"
+
+license:
+  header: "Your licences"
+  empty: "<gray>You hold no licences.</gray>"
+  entry: "<white>{job}</white> <dark_gray>·</dark_gray> <gray>status:</gray> <white>{status}</white> <dark_gray>·</dark_gray> <gray>issued:</gray> <white>{date}</white>"
+  status_active: "active"
+  status_revoked: "revoked"
+  status_expired: "expired"
+
+admin:
+  usage: "Usage: /lavoro admin <licenza|sessione|location|stats|reload>"
+  license_usage: "Usage: /lavoro admin licenza <emetti|revoca> <player> <job>"
+  license_issued: "{job} licence issued to {player}."
+  license_revoked: "{job} licence revoked from {player}."
+  license_absent: "{player} has no {job} licence."
+  session_usage: "Usage: /lavoro admin sessione termina <player>"
+  no_session: "That player has no active session."
+  session_terminated: "Session terminated."
+  location_usage: "Usage: /lavoro admin location <add <job> <region> [capacity] | remove <id>>"
+  location_added: "Location added (id: {id}) for {job} on region '{region}'."
+  location_removed: "Location '{id}' removed."
+  location_absent: "Location '{id}' not found."
+  stats_usage: "Usage: /lavoro admin stats <player|job>"
+  stats_job_header: "Job stats: {job}"
+  stats_job_body: "<gray>Workers:</gray> <white>{workers}</white> <gray>Sessions:</gray> <white>{sessions}</white> <gray>Produced:</gray> <white>{produced}</white> <gray>Total pay:</gray> <green>{payout}</green>"

@@ -1,0 +1,55 @@
+# Open Jobs - fantasy: tipi di location. Stesso codice, ambientazione opposta.
+location_types:
+  cava:
+    display_name: "Cava"
+    activity_detection: block_break
+    region_tag: job_mine
+    valid_materials:
+      - STONE
+      - DEEPSLATE
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
+      - EMERALD_ORE
+      - DEEPSLATE_EMERALD_ORE
+
+  foresta:
+    display_name: "Foresta Antica"
+    activity_detection: block_break
+    region_tag: job_forest
+    valid_materials:
+      - OAK_LOG
+      - SPRUCE_LOG
+      - DARK_OAK_LOG
+      - BIRCH_LOG
+
+  fiume:
+    display_name: "Fiume"
+    activity_detection: fishing
+    region_tag: job_water
+    valid_materials:
+      - COD
+      - SALMON
+      - PUFFERFISH
+
+  bottega:
+    display_name: "Bottega di Gilda"
+    activity_detection: crafting
+    region_tag: job_workshop
+    valid_materials: []
+
+  stalla:
+    display_name: "Stalla"
+    activity_detection: block_break
+    region_tag: job_stable
+    valid_materials:
+      - HAY_BLOCK
+
+  sentiero:
+    display_name: "Sentiero"
+    activity_detection: block_break
+    region_tag: job_road
+    valid_materials:
+      - SHORT_GRASS
+      - TALL_GRASS

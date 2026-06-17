@@ -1,0 +1,128 @@
+# Open Jobs - fantasy: definizione lavori. Lo stesso plugin del realistico-it.
+jobs:
+
+  cercatore:
+    display_name: "Cercatore di Minerali"
+    category: estrattivo
+    location_type: cava
+    payment_model: a_produzione
+    requires_license: false
+    progression_enabled: true
+    required_tool:
+      enabled: true
+      material: STONE_PICKAXE
+      bonus_materials:
+        IRON_PICKAXE: 1.1
+        DIAMOND_PICKAXE: 1.2
+    payment:
+      minimum_payout: 5.0
+      rates:
+        STONE: 0.3
+        DEEPSLATE: 0.3
+        IRON_ORE: 5.0
+        DEEPSLATE_IRON_ORE: 5.0
+        GOLD_ORE: 8.0
+        DEEPSLATE_GOLD_ORE: 8.0
+        EMERALD_ORE: 18.0
+        DEEPSLATE_EMERALD_ORE: 18.0
+
+  taglialegna:
+    display_name: "Taglialegna"
+    category: estrattivo
+    location_type: foresta
+    payment_model: a_produzione
+    requires_license: false
+    progression_enabled: true
+    payment:
+      minimum_payout: 4.0
+      rates:
+        OAK_LOG: 3.0
+        SPRUCE_LOG: 3.5
+        DARK_OAK_LOG: 4.0
+        BIRCH_LOG: 3.0
+
+  pescatore_fiume:
+    display_name: "Pescatore del Fiume"
+    category: estrattivo
+    location_type: fiume
+    payment_model: a_produzione
+    requires_license: false
+    progression_enabled: true
+    seasonal:
+      enabled: true
+      spring: 1.2
+      summer: 1.3
+      autumn: 1.0
+      winter: 0.7
+    payment:
+      minimum_payout: 3.0
+      rates:
+        COD: 2.0
+        SALMON: 3.0
+        PUFFERFISH: 1.0
+
+  carpentiere:
+    display_name: "Carpentiere di Gilda"
+    category: trasformativo
+    location_type: bottega
+    payment_model: a_produzione
+    requires_license: true
+    license:
+      auto_issue: false
+      revocable: true
+      display_name: "Sigillo della Gilda dei Carpentieri"
+    progression_enabled: true
+    transformations:
+      - input:
+          - material: OAK_LOG
+            amount: 1
+        output:
+          - material: OAK_PLANKS
+            amount: 4
+        payout: 2.0
+        craft_time_seconds: 10
+
+  fabbro_armi:
+    display_name: "Fabbro d'Armi"
+    category: trasformativo
+    location_type: bottega
+    payment_model: a_produzione
+    requires_license: true
+    license:
+      auto_issue: false
+      revocable: true
+      display_name: "Sigillo della Gilda dei Fabbri"
+    progression_enabled: true
+    transformations:
+      - input:
+          - material: IRON_INGOT
+            amount: 2
+        output:
+          - material: IRON_SWORD
+            amount: 1
+        payout: 9.0
+        craft_time_seconds: 20
+
+  stalliere:
+    display_name: "Stalliere"
+    category: servizio
+    location_type: stalla
+    payment_model: a_sessione
+    requires_license: false
+    progression_enabled: true
+    payment:
+      rate_per_hour: 90.0
+      activity_threshold: 0.3
+      inactivity_penalty: 0.5
+
+  cantoniere:
+    display_name: "Cantoniere"
+    category: servizio
+    location_type: sentiero
+    payment_model: a_sessione
+    requires_license: false
+    progression_enabled: true
+    payment:
+      rate_per_hour: 85.0
+      activity_threshold: 0.3
+      inactivity_penalty: 0.5

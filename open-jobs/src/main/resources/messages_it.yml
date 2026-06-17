@@ -1,0 +1,86 @@
+# Open Jobs - messaggi (italiano). Le righe rese con plain() accettano tag MiniMessage.
+general:
+  player_only: "Solo un giocatore puo' usare questo comando."
+  no_permission: "Non hai il permesso di farlo."
+  player_not_found: "Giocatore '{player}' non trovato."
+  reload_done: "Configurazione di Open Jobs ricaricata."
+  unknown_subcommand: "Sottocomando sconosciuto. Usa /lavoro lista."
+
+model:
+  a_produzione: "a produzione"
+  a_sessione: "a sessione"
+  a_consegna: "a consegna"
+
+session:
+  already_working: "Hai gia' una sessione di lavoro attiva. Usa /lavoro fine prima di iniziarne un'altra."
+  requires_region_backend: "Il lavoro richiede un backend di regioni reale (es. WorldGuard) su questo server."
+  no_region: "Non sei in nessuna regione di lavoro."
+  not_a_work_location: "Qui non si svolge nessun lavoro. Vai in una location di lavoro."
+  job_gone: "Il lavoro '{job}' non e' piu' configurato."
+  wrong_location: "Questa regione non e' una location valida di tipo {type}."
+  location_full: "La location '{location}' e' al completo. Riprova piu' tardi."
+  need_license: "Ti serve una licenza per fare il {job}. Rivolgiti a chi la rilascia."
+  need_tool: "Ti serve almeno un {tool} nell'inventario per lavorare."
+  started: "Hai iniziato a lavorare come {job} a {location}. Buon lavoro!"
+  not_working: "Non hai nessuna sessione di lavoro attiva."
+  ended: "Lavoro terminato ({job}). Prodotto: {produced}. Paga: {amount}. Grado: {tier}."
+  abandoned_paid: "Sessione abbandonata ({job}). Prodotto: {produced}. Paga parziale: {amount}."
+  not_delivered: "Devi consegnare le risorse al punto di consegna ({location}) per essere pagato."
+  paused: "Sessione in pausa: sei uscito dalla location."
+  resumed: "Sessione ripresa: sei tornato al lavoro."
+
+progression:
+  tier_up: "Avanzamento! Ora sei {tier} come {job}."
+
+list:
+  header: "Lavori disponibili"
+  empty: "<gray>Nessun lavoro configurato.</gray>"
+  entry: "<white>{job}</white> <gray>({id})</gray> <dark_gray>·</dark_gray> <gray>paga {model}</gray> <dark_gray>·</dark_gray> <gray>licenza:</gray> {license} <dark_gray>·</dark_gray> <gray>location:</gray> <white>{locations}</white>"
+  license_yes: "si'"
+  license_no: "no"
+
+info:
+  usage: "Uso: /lavoro info <lavoro>"
+  unknown: "Lavoro '{job}' sconosciuto."
+  header: "Lavoro: {job}"
+  basics: "<gray>Categoria:</gray> <white>{category}</white> <gray>Location:</gray> <white>{type}</white> <gray>Paga:</gray> <white>{model}</white>"
+  license: "<gray>Licenza richiesta:</gray> <white>{license}</white>"
+  no_locations: "<gray>Nessuna location attiva per questo lavoro.</gray>"
+  location: "<gray>-</gray> <white>{location}</white> <gray>(capienza: {capacity})</gray>"
+  progression: "<gray>Gradi:</gray> <white>{tiers}</white>"
+
+status:
+  header: "Sessione in corso: {job}"
+  body: "<gray>Location:</gray> <white>{location}</white> <gray>Stato:</gray> <white>{state}</white> <gray>Tempo attivo:</gray> <white>{minutes} min</white> <gray>Prodotto:</gray> <white>{produced}</white> <gray>Paga stimata:</gray> <green>{estimate}</green>"
+  state_active: "attiva"
+  state_paused: "in pausa"
+
+profile:
+  header: "Profilo lavorativo di {player}"
+  empty: "<gray>Nessuna sessione di lavoro registrata.</gray>"
+  entry: "<white>{job}</white> <dark_gray>·</dark_gray> <gray>grado:</gray> <white>{tier}</white> <dark_gray>·</dark_gray> <gray>sessioni:</gray> <white>{sessions}</white> <dark_gray>·</dark_gray> <gray>prodotto:</gray> <white>{produced}</white> <dark_gray>·</dark_gray> <gray>guadagni:</gray> <green>{payout}</green> <dark_gray>·</dark_gray> <gray>al prossimo grado:</gray> <white>{next}</white>"
+
+license:
+  header: "Le tue licenze"
+  empty: "<gray>Non possiedi nessuna licenza.</gray>"
+  entry: "<white>{job}</white> <dark_gray>·</dark_gray> <gray>stato:</gray> <white>{status}</white> <dark_gray>·</dark_gray> <gray>emessa:</gray> <white>{date}</white>"
+  status_active: "attiva"
+  status_revoked: "revocata"
+  status_expired: "scaduta"
+
+admin:
+  usage: "Uso: /lavoro admin <licenza|sessione|location|stats|reload>"
+  license_usage: "Uso: /lavoro admin licenza <emetti|revoca> <giocatore> <lavoro>"
+  license_issued: "Licenza di {job} emessa a {player}."
+  license_revoked: "Licenza di {job} revocata a {player}."
+  license_absent: "{player} non ha una licenza di {job}."
+  session_usage: "Uso: /lavoro admin sessione termina <giocatore>"
+  no_session: "Quel giocatore non ha una sessione attiva."
+  session_terminated: "Sessione terminata."
+  location_usage: "Uso: /lavoro admin location <add <lavoro> <regione> [capienza] | remove <id>>"
+  location_added: "Location aggiunta (id: {id}) per {job} sulla regione '{region}'."
+  location_removed: "Location '{id}' rimossa."
+  location_absent: "Location '{id}' non trovata."
+  stats_usage: "Uso: /lavoro admin stats <giocatore|lavoro>"
+  stats_job_header: "Statistiche lavoro: {job}"
+  stats_job_body: "<gray>Lavoratori:</gray> <white>{workers}</white> <gray>Sessioni:</gray> <white>{sessions}</white> <gray>Prodotto:</gray> <white>{produced}</white> <gray>Paga totale:</gray> <green>{payout}</green>"

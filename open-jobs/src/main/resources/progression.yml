@@ -1,0 +1,44 @@
+# ============================================================================
+#  Open Jobs - progression ladder
+#  ---------------------------------------------------------------------------
+#  Progression is NOT XP. The tier is derived from the number of completed
+#  sessions over time: a worker with a hundred sessions in three months is
+#  experienced because they were present and consistent. The tier is per job.
+#
+#  Optional decay slowly erodes the effective session count of a worker who
+#  disappears, so a long-absent "master" does not keep the bonus forever; it is
+#  repaid simply by returning to work.
+# ============================================================================
+
+progression:
+  tiers:
+    - id: novizio
+      order: 0
+      sessions_required: 0
+      pay_multiplier: 1.0
+      display_name: "Novizio"
+    - id: apprendista
+      order: 1
+      sessions_required: 20
+      pay_multiplier: 1.1
+      display_name: "Apprendista"
+    - id: lavoratore
+      order: 2
+      sessions_required: 60
+      pay_multiplier: 1.2
+      display_name: "Lavoratore"
+    - id: esperto
+      order: 3
+      sessions_required: 150
+      pay_multiplier: 1.35
+      display_name: "Esperto"
+    - id: mastro
+      order: 4
+      sessions_required: 300
+      pay_multiplier: 1.5
+      display_name: "Mastro"
+
+  decay:
+    enabled: true
+    inactive_days_threshold: 45
+    decay_sessions_per_day: 0.5

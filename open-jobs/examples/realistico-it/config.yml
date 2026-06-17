@@ -1,0 +1,34 @@
+# Override realistico-it: setup più severo rispetto ai default del plugin.
+# Copia solo questo file in plugins/OpenJobs/ e fai /lavoro admin reload; jobs.yml,
+# location_types.yml e progression.yml restano ai default (che sono già il realistico-it).
+
+branding:
+  product-name: "Open Jobs"
+  message-prefix: "<gold>[Lavoro]</gold> "
+
+messages:
+  language: it
+  fallback: it
+
+general:
+  session_abandoned_minutes: 5
+  payout_partial_abandoned: true
+  cooperative_enabled: true
+  seasonal_enabled: true        # attiva la stagionalità di Pescatore e Agricoltore
+  require_region_backend: true  # richiede regioni reali (WorldGuard) e abilita il gating consegna
+
+adapters:
+  economy: true
+  companies: true
+  identity: true
+  worldguard: true
+
+storage:
+  adapter: yaml
+  file: jobs-data.yml
+
+fallback:
+  no_economy_payout: inventory
+  chest_region: ""
+
+debug: false
