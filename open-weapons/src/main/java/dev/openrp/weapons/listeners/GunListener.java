@@ -438,7 +438,12 @@ public class GunListener implements Listener {
 
         ItemStack offhand = player.getInventory().getItemInOffHand();
         ItemStack stashedOffhand = offhand == null || offhand.getType().isAir() ? null : offhand.clone();
-        aimingSwaps.put(player.getUniqueId(), new AimingSwap(player.getInventory().getHeldItemSlot(), stashedOffhand));
+        String instanceId = module.getWeaponRegistry().getInstanceId(mainHand);
+        aimingSwaps.put(player.getUniqueId(), new AimingSwap(
+                player.getInventory().getHeldItemSlot(),
+                stashedOffhand,
+                mainWeapon.getId(),
+                instanceId));
         player.getInventory().setItemInOffHand(mainHand);
         player.getInventory().setItemInMainHand(createAimingProxy());
         applyAimingUseVisual(mainHand, mainWeapon);
@@ -613,6 +618,51 @@ public class GunListener implements Listener {
     private ItemStack getStashedOffhand(Player player) {
         AimingSwap swap = aimingSwaps.get(player.getUniqueId());
         return swap != null ? swap.stashedOffhand() : null;
+    }
+
+    private ItemStack recoverAimingWeapon(Player player) {
+        AimingSwap swap = aimingSwaps.get(player.getUniqueId());
+        if (swap == null || !isAimingProxy(player.getInventory().getItemInMainHand())) {
+            return getActiveWeaponItem(player);
+        }
+
+        ItemStack offhand = player.getInventory().getItemInOffHand();
+        WeaponDefinition offhandWeapon = module.getWeaponRegistry().getWeapon(offhand);
+        if (matchesAimingSwap(offhand, offhandWeapon, swap)) {
+            return offhand;
+        }
+
+        ItemStack[] contents = player.getInventory().getStorageContents();
+        for (int slot = 0; slot < contents.length; slot++) {
+            if (slot == player.getInventory().getHeldItemSlot()) {
+                continue;
+            }
+            ItemStack candidate = contents[slot];
+            WeaponDefinition candidateWeapon = module.getWeaponRegistry().getWeapon(candidate);
+            if (!matchesAimingSwap(candidate, candidateWeapon, swap)) {
+                continue;
+            }
+
+            player.getInventory().setItem(slot, null);
+            player.getInventory().setItemInOffHand(candidate);
+            player.updateInventory();
+            return candidate;
+        }
+
+        return offhand;
+    }
+
+    private boolean matchesAimingSwap(ItemStack item, WeaponDefinition weapon, AimingSwap swap) {
+        if (!isAimingFirearm(weapon) || item == null || item.getType().isAir()) {
+            return false;
+        }
+        String instanceId = module.getWeaponRegistry().getInstanceId(item);
+        if (swap.weaponInstanceId() != null
+                && !swap.weaponInstanceId().isBlank()
+                && swap.weaponInstanceId().equals(instanceId)) {
+            return true;
+        }
+        return weapon.getId().equals(swap.weaponId());
     }
 
     private void applyAimingUseVisual(ItemStack item, WeaponDefinition weapon) {
@@ -858,16 +908,23 @@ public class GunListener implements Listener {
         if (action != Action.LEFT_CLICK_AIR && action != Action.LEFT_CLICK_BLOCK) {
             return;
         }
-        if (isDuplicateFireInput(player)) {
-            return;
-        }
 
         ItemStack weaponItem = getActiveWeaponItem(player);
         WeaponDefinition weapon = module.getWeaponRegistry().getWeapon(weaponItem);
         if (!isAimingFirearm(weapon)) {
             if (isAimingProxy(player.getInventory().getItemInMainHand())) {
-                stopAimingAnimation(player);
+                weaponItem = recoverAimingWeapon(player);
+                weapon = module.getWeaponRegistry().getWeapon(weaponItem);
             }
+            if (!isAimingFirearm(weapon)) {
+                if (isAimingProxy(player.getInventory().getItemInMainHand())) {
+                    stopAimingAnimation(player);
+                }
+                return;
+            }
+        }
+
+        if (isDuplicateFireInput(player)) {
             return;
         }
 
@@ -1350,7 +1407,7 @@ public class GunListener implements Listener {
         }
     }
 
-    private record AimingSwap(int slot, ItemStack stashedOffhand) {
+    private record AimingSwap(int slot, ItemStack stashedOffhand, String weaponId, String weaponInstanceId) {
     }
 
     private enum MagazineSourceType {
@@ -1644,7 +1701,11 @@ public class GunListener implements Listener {
             return;
         }
         if (stashedOffhand.getAmount() <= 1) {
-            aimingSwaps.put(player.getUniqueId(), new AimingSwap(swap.slot(), null));
+            aimingSwaps.put(player.getUniqueId(), new AimingSwap(
+                    swap.slot(),
+                    null,
+                    swap.weaponId(),
+                    swap.weaponInstanceId()));
             return;
         }
         stashedOffhand.setAmount(stashedOffhand.getAmount() - 1);
