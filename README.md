@@ -18,6 +18,28 @@ Open Roleplay e' una suite open source per esperienze Minecraft roleplay su
 Paper. Questa repository contiene moduli Paper separati, pensati per essere
 usati insieme ma leggibili e modificabili anche uno alla volta.
 
+## Cos'e' Open Roleplay (e cosa non e')
+
+Open Roleplay **non e' un server roleplay pronto all'uso**. E' l'infrastruttura
+aperta su cui costruire il tuo: un framework di moduli indipendenti, contratti
+pubblici stabili e implementazioni di riferimento.
+
+- **E':** le fondamenta strutturali di un server RP — lifecycle dei plugin,
+  accesso ai dati, aziende, lavori, forze dell'ordine, crimine, accessi — con
+  una configurazione di riferimento da cui partire.
+- **Non e':** un pacchetto "installa e gioca" con ambientazione, contenuti e
+  regole gia' decisi al posto tuo.
+
+L'analogia e' quella tra un **framework** e un **sito preconfezionato**: ti
+togliamo il lavoro ingrato delle fondamenta, ma il mondo che i tuoi giocatori
+vedranno lo costruisci tu sopra — in configurazione e tramite adapter, senza
+fork. Le fondamenta sono il prodotto; il mondo e' tuo.
+
+Per capire perche' abbiamo scelto questa strada e cosa significa "finito" per un
+framework, leggi [`FILOSOFIA.md`](FILOSOFIA.md). Per iniziare a costruirci sopra
+in concreto (configurare, scrivere adapter, consumare le API), vedi
+[`docs/costruire-sopra.md`](docs/costruire-sopra.md).
+
 ## Moduli
 
 | Modulo | Stato | Descrizione |
