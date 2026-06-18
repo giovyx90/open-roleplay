@@ -1,0 +1,59 @@
+# ============================================================================
+#  Open Politics - main configuration
+#  ---------------------------------------------------------------------------
+#  ADAPTER-FIRST and SETTING-NEUTRAL. The core knows nothing about any setting:
+#  governments, charges, act types and law categories all live in the dedicated
+#  files (governments.yml, charges.yml, act_types.yml, law_categories.yml). The
+#  bundled defaults reproduce a realistic Italian municipality as a worked
+#  example; see examples/fantasy and examples/oligarchia for contrasting ones.
+#
+#  THE PLUGIN CERTIFIES, IT DOES NOT GOVERN. A law that bans weapons downtown
+#  does not disable weapons downtown: it is a signed document the authorities
+#  use as a narrative reference. The plugin records who had the authority to
+#  decide, stamps the decision and exposes it via API. The consequences are RP.
+# ============================================================================
+
+branding:
+  product-name: "Open Politics"
+  message-prefix: "<gold>[Politica]</gold> "
+
+messages:
+  language: auto   # auto | en | it
+  fallback: en
+
+# The four functional areas of the plugin. They are not separate sub-plugins:
+# they are aspects of the same system you toggle. Acts depend on charges; laws
+# depend on acts - turning an upstream area off disables what builds on it.
+modules:
+  charges: true
+  government: true
+  acts: true
+  laws: true
+
+adapters:
+  storage: yaml        # yaml | memory
+
+storage:
+  file: politics-data.yml
+
+time:
+  # Global time scale applied to every real-time duration (campaign days, voting
+  # days, term durations, veto windows). 1.0 = real time; 0.5 = twice as fast.
+  scale: 1.0
+
+acts:
+  id_pattern: "{anno}/{numero}/{sigla}"   # format of act ids; {anno} {numero} {sigla}
+  physical_book: true                     # write the act body into a signed in-game book
+
+laws:
+  public_registry: true                   # /politica leggi is readable by everyone
+  historical_archive: true                # keep repealed laws in /politica archivio
+  link_openfdo: true                      # expose the active registry to an OpenFDO bridge
+
+elections:
+  announce_opening: true                  # broadcast when an election opens
+  announce_results: true                  # broadcast the result when it closes
+  anonymous_voting: true                  # never expose who voted for whom
+  check_interval_minutes: 5               # how often election/term lifecycles tick
+
+debug: false

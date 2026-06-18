@@ -1,0 +1,21 @@
+# ============================================================================
+#  Governments - the institutional bodies of your server.
+#  A government is a set of charges plus a mechanism to assign them. The core
+#  does not know what a "Comune" is: it knows a government owns charges and has
+#  a default assignment mechanism. The charges themselves are in charges.yml.
+# ============================================================================
+
+governments:
+  comune:
+    display_name: "Comune di San Valdino"
+    sigla: "COM"
+    active: true
+    # Default assignment mechanism for charges that do not declare their own.
+    # election | appointment | hereditary | conquest
+    assignment_mechanism: election
+    charges:
+      - sindaco
+      - vice_sindaco
+      - consiglio_comunale
+      - assessore_economia
+      - assessore_sicurezza

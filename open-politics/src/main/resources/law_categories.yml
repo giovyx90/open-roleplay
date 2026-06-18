@@ -1,0 +1,18 @@
+# ============================================================================
+#  Law categories - how the public registry is organised.
+#  Pure labels. The core never attaches behaviour to a category: a judge in RP
+#  weighs a "penale" law exactly as the server agrees to, the plugin only files
+#  it under that heading.
+# ============================================================================
+
+law_categories:
+  civile:
+    display_name: "Diritto Civile"
+  penale:
+    display_name: "Diritto Penale"
+  commerciale:
+    display_name: "Diritto Commerciale"
+  urbanistica:
+    display_name: "Urbanistica"
+  ordine_pubblico:
+    display_name: "Ordine Pubblico"

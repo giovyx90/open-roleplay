@@ -1,0 +1,72 @@
+charges:
+  # Il Re appartiene a chi controlla fisicamente la sala del trono (region WorldGuard).
+  re:
+    display_name: "Re di Aldoria"
+    government_id: regno
+    authority_level: 100
+    max_holders: 1
+    term_duration_days: 0          # regna finche' controlla il trono
+    capabilities:
+      - SIGN_ACT
+      - SIGN_LAW
+      - APPOINT
+      - REMOVE
+      - DISSOLVE
+      - DECLARE_EMERGENCY
+      - MANAGE_BUDGET
+      - VETO
+    assignment_mechanism:
+      type: conquest
+      control_region: "sala_del_trono"
+      check_interval_minutes: 10
+      min_control_minutes: 30
+
+  # I Lord sono nominati dal Re. Organo collegiale che vota i decreti del regno.
+  consiglio_lord:
+    display_name: "Consiglio dei Lord"
+    government_id: regno
+    authority_level: 50
+    max_holders: 5
+    term_duration_days: 0
+    capabilities:
+      - SIGN_ACT
+      - SIGN_LAW
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+      requires_confirmation: false
+    collegiate:
+      enabled: true
+      quorum: 0.6
+      majority: 0.5
+      duration_hours: 72
+
+  # Il Gran Cancelliere e' nominato dal Re e firma le lettere patenti.
+  gran_cancelliere:
+    display_name: "Gran Cancelliere"
+    government_id: regno
+    authority_level: 40
+    max_holders: 1
+    term_duration_days: 0
+    capabilities:
+      - SIGN_ACT
+      - APPOINT
+      - REVOKE_LICENSE
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+
+  # La carica passa per ereditarieta': il Comandante designa il proprio successore.
+  comandante_guardia:
+    display_name: "Comandante della Guardia"
+    government_id: regno
+    authority_level: 30
+    max_holders: 1
+    term_duration_days: 0
+    capabilities:
+      - SIGN_ACT
+      - DECLARE_EMERGENCY
+    assignment_mechanism:
+      type: hereditary
+      succession_order: designated
+      allow_self_designation: true

@@ -1,0 +1,51 @@
+# ============================================================================
+#  Act types - the documents charge holders can sign.
+#  Completely configurable; the core hardcodes no type. An act is produced by a
+#  holder of capability_required. If can_become_law and the iter completes, the
+#  act is promulgated into a Law (see law_categories.yml). The plugin tracks the
+#  iter; it never forces it.
+# ============================================================================
+
+act_types:
+  decreto:
+    display_name: "Decreto Sindacale"
+    capability_required: SIGN_ACT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false
+
+  proposta_legge:
+    display_name: "Proposta di Legge"
+    capability_required: SIGN_ACT
+    can_become_law: true
+    requires_vote: true             # must pass the collegiate body before it is law
+    submit_to: consiglio_comunale   # the collegiate charge that votes on it
+    veto_allowed: true
+    veto_capability: VETO
+    veto_window_hours: 24
+    promulgated_by_capability: SIGN_LAW
+    law_category: civile            # default category of the resulting law
+
+  delibera:
+    display_name: "Delibera Consiliare"
+    capability_required: SIGN_ACT
+    can_become_law: true
+    requires_vote: true
+    submit_to: consiglio_comunale
+    veto_allowed: false
+    promulgated_by_capability: SIGN_LAW
+    law_category: ordine_pubblico
+
+  nomina:
+    display_name: "Atto di Nomina"
+    capability_required: APPOINT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false
+
+  ordinanza:
+    display_name: "Ordinanza"
+    capability_required: SIGN_ACT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false

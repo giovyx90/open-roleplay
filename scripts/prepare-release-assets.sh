@@ -37,6 +37,8 @@ copy_module_jar "open-vending-machines" "open-vending-machines.jar"
 copy_module_jar "open-companies" "open-companies.jar"
 copy_module_jar "open-fdo" "open-fdo.jar"
 copy_module_jar "open-crime" "open-crime.jar"
+copy_module_jar "open-jobs" "open-jobs.jar"
+copy_module_jar "open-politics" "open-politics.jar"
 
 if compgen -G "$ROOT_DIR/target/resource-packs/*.zip" > /dev/null; then
   cp "$ROOT_DIR"/target/resource-packs/*.zip "$OUT_DIR"/
