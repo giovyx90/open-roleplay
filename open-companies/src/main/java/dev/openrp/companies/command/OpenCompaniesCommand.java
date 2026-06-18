@@ -720,12 +720,21 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
         switch (sub) {
             case "create" -> {
                 if (args.length == 2) {
-                    return CommandSuggestions.filter(plugin.settings().allowedTypes(), args[1]);
+                    return CommandSuggestions.filter(List.of("<nome>"), args[1]);
+                }
+                if (args.length >= 3) {
+                    return CommandSuggestions.filter(plugin.settings().allowedTypes(), args[args.length - 1]);
                 }
             }
             case "apply" -> {
+                if (args.length == 2) {
+                    return CommandSuggestions.filter(List.of("<nome>"), args[1]);
+                }
                 if (args.length == 3) {
                     return CommandSuggestions.filter(plugin.settings().allowedTypes(), args[2]);
+                }
+                if (args.length == 4) {
+                    return CommandSuggestions.filter(List.of("<descrizione>"), args[3]);
                 }
             }
             case "invite" -> {
@@ -736,12 +745,19 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     return CommandSuggestions.filter(options, args[1]);
                 }
                 if (args.length == 3) {
-                    return CommandSuggestions.filter(assignableRoleNames(), args[2]);
+                    String firstArg = args[1].toLowerCase(Locale.ROOT);
+                    if (!firstArg.equals("accept") && !firstArg.equals("deny")) {
+                        return CommandSuggestions.filter(assignableRoleNames(), args[2]);
+                    }
                 }
             }
             case "fire", "role" -> {
                 if (args.length == 2) {
-                    return CommandSuggestions.filter(memberNames(sender), args[1]);
+                    List<String> members = memberNames(sender);
+                    if (members.isEmpty()) {
+                        members = List.of("<membro>");
+                    }
+                    return CommandSuggestions.filter(members, args[1]);
                 }
                 if (args.length == 3 && sub.equals("role")) {
                     return CommandSuggestions.filter(assignableRoleNames(), args[2]);
@@ -787,7 +803,26 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     return CommandSuggestions.filter(onlinePlayerNames(), args[3]);
                 }
             }
-            case "create", "givecash", "givecard" -> {
+            case "create" -> {
+                if (args.length == 3) {
+                    return CommandSuggestions.filter(onlinePlayerNames(), args[2]);
+                }
+                if (args.length == 4) {
+                    return CommandSuggestions.filter(List.of("<nome>"), args[3]);
+                }
+                if (args.length >= 5) {
+                    return CommandSuggestions.filter(plugin.settings().allowedTypes(), args[args.length - 1]);
+                }
+            }
+            case "givecash" -> {
+                if (args.length == 3) {
+                    return CommandSuggestions.filter(onlinePlayerNames(), args[2]);
+                }
+                if (args.length == 4) {
+                    return CommandSuggestions.filter(List.of("<importo>"), args[3]);
+                }
+            }
+            case "givecard" -> {
                 if (args.length == 3) {
                     return CommandSuggestions.filter(onlinePlayerNames(), args[2]);
                 }
@@ -803,9 +838,17 @@ public final class OpenCompaniesCommand implements CommandExecutor, TabCompleter
                     return CommandSuggestions.filter(licenseNames(), args[4]);
                 }
             }
-            case "approve", "deny" -> {
+            case "approve" -> {
                 if (args.length == 3) {
                     return CommandSuggestions.filter(pendingApplicationIds(), args[2]);
+                }
+            }
+            case "deny" -> {
+                if (args.length == 3) {
+                    return CommandSuggestions.filter(pendingApplicationIds(), args[2]);
+                }
+                if (args.length >= 4) {
+                    return CommandSuggestions.filter(List.of("<motivo>"), args[args.length - 1]);
                 }
             }
             default -> {
