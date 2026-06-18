@@ -1,0 +1,8 @@
+governments:
+  consiglio:
+    display_name: "Consiglio dei Cinque"
+    sigla: "C5"
+    active: true
+    assignment_mechanism: appointment
+    charges:
+      - consigliere

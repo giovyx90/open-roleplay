@@ -1,0 +1,9 @@
+law_categories:
+  legge_regno:
+    display_name: "Legge del Regno"
+  crimini_corona:
+    display_name: "Crimini contro la Corona"
+  commercio:
+    display_name: "Commercio e Gilde"
+  guerra:
+    display_name: "Diritto di Guerra"

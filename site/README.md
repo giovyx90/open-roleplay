@@ -18,6 +18,7 @@ site/
 │   ├── open-fdo.html
 │   ├── open-crime.html
 │   ├── open-jobs.html
+│   ├── open-politics.html
 │   ├── open-gestionale.html
 │   ├── open-core.html
 │   └── open-core-api.html
@@ -68,6 +69,7 @@ open-companies.jar
 open-fdo.jar
 open-crime.jar
 open-jobs.jar
+open-politics.jar
 open-core-paper.jar
 open-core-api.jar
 open-weapons-resource-pack.zip

@@ -107,6 +107,19 @@ window.OpenRoleplayModules = [
     tags: ["Sessioni di lavoro", "3 modelli di paga", "Progressione", "Licenze", "OpenJobsApi"]
   },
   {
+    id: "open-politics",
+    name: "Open Politics",
+    page: "open-politics.html",
+    sourceDir: "open-politics",
+    jar: "open-politics.jar",
+    icon: "politics",
+    status: "Compilabile",
+    statusClass: "badge--blue",
+    paperPlugin: true,
+    summary: "Il motore politico roleplay, adapter-first e neutro: cariche, governi, elezioni, atti firmati e registro pubblico delle leggi. Il plugin certifica, non governa: registra chi aveva l'autorita' di decidere ed espone la decisione, le conseguenze sono RP. Espone OpenPoliticsApi.",
+    tags: ["Cariche & governi", "4 meccanismi", "Elezioni", "Atti & leggi", "OpenPoliticsApi"]
+  },
+  {
     id: "open-gestionale",
     name: "Open Gestionale",
     page: "open-gestionale.html",
