@@ -1,0 +1,592 @@
+[1mApache Maven 3.8.7[m
+Maven home: /usr/share/maven
+Java version: 21.0.11, vendor: Ubuntu, runtime: /usr/lib/jvm/java-21-openjdk-amd64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.6.87.2-microsoft-standard-wsl2", arch: "amd64", family: "unix"
+[[1;36mDEBUG[m] Created new class realm maven.api
+[[1;36mDEBUG[m] Importing foreign packages into class realm maven.api
+[[1;36mDEBUG[m]   Imported: javax.annotation.* < plexus.core
+[[1;36mDEBUG[m]   Imported: javax.annotation.security.* < plexus.core
+[[1;36mDEBUG[m]   Imported: javax.inject.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.artifact < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.classrealm < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.cli < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.configuration < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.exception < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.execution < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.execution.scope < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.lifecycle < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.model < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.monitor < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.plugin < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.profiles < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.project < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.reporting < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.rtinfo < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.settings < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.toolchain < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.usability < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.events < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.observers < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.resource < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.classworlds < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.component < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.configuration < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.container < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.context < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.logging < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.personality < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.artifact < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.collection < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.deployment < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.graph < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.impl < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.installation < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.internal.impl < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.metadata < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.resolution < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.spi < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.transfer < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.version < plexus.core
+[[1;36mDEBUG[m]   Imported: org.fusesource.jansi.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.event.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.helpers.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.spi.* < plexus.core
+[[1;36mDEBUG[m] Populating class realm maven.api
+[[1;34mINFO[m] Error stacktraces are turned on.
+[[1;36mDEBUG[m] Message scheme: color
+[[1;36mDEBUG[m] Message styles: [1;36mdebug[m [1;34minfo[m [1;33mwarning[m [1;31merror[m [1;32msuccess[m [1;31mfailure[m [1mstrong[m [32mmojo[m [36mproject[m
+[[1;36mDEBUG[m] Reading global settings from /usr/share/maven/conf/settings.xml
+[[1;36mDEBUG[m] Reading user settings from /home/lolocass/.m2/settings.xml
+[[1;36mDEBUG[m] Reading global toolchains from /usr/share/maven/conf/toolchains.xml
+[[1;36mDEBUG[m] Reading user toolchains from /home/lolocass/.m2/toolchains.xml
+[[1;36mDEBUG[m] Using local repository at /home/lolocass/.m2/repository
+[[1;36mDEBUG[m] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /home/lolocass/.m2/repository
+[[1;34mINFO[m] Scanning for projects...
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-roleplay:pom:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging pom from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-core-api:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-core-paper:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-access:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-cosmetics:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-weapons:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-vending-machines:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-companies:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-fdo:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-crime:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] Extension realms for project dev.openrp:open-jobs:jar:0.1.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Open Roleplay                                                      [pom]
+[[1;34mINFO[m] Open Core API                                                      [jar]
+[[1;34mINFO[m] Open Core                                                          [jar]
+[[1;34mINFO[m] Open Access                                                        [jar]
+[[1;34mINFO[m] Open Cosmetics                                                     [jar]
+[[1;34mINFO[m] Open Weapons                                                       [jar]
+[[1;34mINFO[m] Open Vending Machines                                              [jar]
+[[1;34mINFO[m] Open Companies                                                     [jar]
+[[1;34mINFO[m] Open FDO                                                           [jar]
+[[1;34mINFO[m] Open Crime                                                         [jar]
+[[1;34mINFO[m] Open Jobs                                                          [jar]
+[[1;36mDEBUG[m] === REACTOR BUILD PLAN ================================================
+[[1;36mDEBUG[m] Project: dev.openrp:open-roleplay:pom:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-core-api:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-core-paper:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-access:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-cosmetics:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-weapons:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-vending-machines:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-companies:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-fdo:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-crime:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Project: dev.openrp:open-jobs:jar:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, install]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] =======================================================================
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mdev.openrp:open-roleplay[0;1m >----------------------[m
+[[1;34mINFO[m] [1mBuilding Open Roleplay 0.1.0-SNAPSHOT                             [1/11][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Using mirror maven-default-http-blocker (http://0.0.0.0/) for apache.snapshots (http://repository.apache.org/snapshots).
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] === PROJECT BUILD PLAN ================================================
+[[1;36mDEBUG[m] Project:       dev.openrp:open-roleplay:0.1.0-SNAPSHOT
+[[1;36mDEBUG[m] Dependencies (collect): [test]
+[[1;36mDEBUG[m] Dependencies (resolve): [test]
+[[1;36mDEBUG[m] Repositories (dependencies): [papermc (https://repo.papermc.io/repository/maven-public/, default, releases+snapshots), codemc-releases (https://repo.codemc.io/repository/maven-releases/, default, releases+snapshots), codemc-snapshots (https://repo.codemc.io/repository/maven-snapshots/, default, releases+snapshots), enginehub-maven (https://maven.enginehub.org/repo/, default, releases+snapshots), nexomc-releases (https://repo.nexomc.com/releases, default, releases+snapshots), triumphteam-snapshots (https://repo.triumphteam.dev/snapshots, default, releases+snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[[1;36mDEBUG[m] Repositories (plugins)     : [central (https://repo.maven.apache.org/maven2, default, releases)]
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Goal:          org.apache.maven.plugins:maven-clean-plugin:2.5:clean (default-clean)
+[[1;36mDEBUG[m] Style:         Regular
+[[1;36mDEBUG[m] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <directory default-value="${project.build.directory}"/>
+  <excludeDefaultDirectories default-value="false">${clean.excludeDefaultDirectories}</excludeDefaultDirectories>
+  <failOnError default-value="true">${maven.clean.failOnError}</failOnError>
+  <followSymLinks default-value="false">${clean.followSymLinks}</followSymLinks>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <reportDirectory default-value="${project.reporting.outputDirectory}"/>
+  <retryOnError default-value="true">${maven.clean.retryOnError}</retryOnError>
+  <skip default-value="false">${clean.skip}</skip>
+  <testOutputDirectory default-value="${project.build.testOutputDirectory}"/>
+  <verbose>${clean.verbose}</verbose>
+</configuration>
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Goal:          org.apache.maven.plugins:maven-enforcer-plugin:3.5.0:enforce (enforce-build-environment)
+[[1;36mDEBUG[m] Style:         Regular
+[[1;36mDEBUG[m] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <commandLineRules>${rules}</commandLineRules>
+  <fail default-value="true">${enforcer.fail}</fail>
+  <failFast default-value="false">${enforcer.failFast}</failFast>
+  <failIfNoRules default-value="true">${enforcer.failIfNoRules}</failIfNoRules>
+  <ignoreCache default-value="false">${enforcer.ignoreCache}</ignoreCache>
+  <mojoExecution default-value="${mojoExecution}"/>
+  <project default-value="${project}"/>
+  <rules>
+    <requireJavaVersion>
+      <version>[21,)</version>
+    </requireJavaVersion>
+    <requireMavenVersion>
+      <version>[3.8.1,)</version>
+    </requireMavenVersion>
+  </rules>
+  <rulesToExecute>${enforcer.rules}</rulesToExecute>
+  <rulesToSkip>${enforcer.skipRules}</rulesToSkip>
+  <session default-value="${session}"/>
+  <skip default-value="false">${enforcer.skip}</skip>
+</configuration>
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Goal:          org.codehaus.mojo:exec-maven-plugin:3.5.0:exec (build-resource-packs)
+[[1;36mDEBUG[m] Style:         Regular
+[[1;36mDEBUG[m] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <addOutputToClasspath default-value="true">${addOutputToClasspath}</addOutputToClasspath>
+  <addResourcesToClasspath default-value="false">${addResourcesToClasspath}</addResourcesToClasspath>
+  <arguments>
+    <argument>/mnt/c/Users/LoloCass/open-roleplay/scripts/build-resource-packs.sh</argument>
+  </arguments>
+  <async default-value="false">${exec.async}</async>
+  <asyncDestroyOnShutdown default-value="true">${exec.asyncDestroyOnShutdown}</asyncDestroyOnShutdown>
+  <basedir default-value="${basedir}"/>
+  <buildDirectory default-value="${project.build.directory}"/>
+  <classpathScope default-value="runtime">${exec.classpathScope}</classpathScope>
+  <commandlineArgs>${exec.args}</commandlineArgs>
+  <executable>bash</executable>
+  <forceJava default-value="false">${exec.forceJava}</forceJava>
+  <includePluginDependencies default-value="false">${exec.includePluginsDependencies}</includePluginDependencies>
+  <inheritIo>${exec.inheritIo}</inheritIo>
+  <longClasspath default-value="false">${exec.longClasspath}</longClasspath>
+  <longModulepath default-value="true">${exec.longModulepath}</longModulepath>
+  <outputFile>${exec.outputFile}</outputFile>
+  <pluginDependencies default-value="${plugin.artifacts}"/>
+  <project default-value="${project}"/>
+  <quietLogs default-value="false">${exec.quietLogs}</quietLogs>
+  <session default-value="${session}"/>
+  <skip default-value="false">${exec.skip}</skip>
+  <sourceRoot>${sourceRoot}</sourceRoot>
+  <testSourceRoot>${testSourceRoot}</testSourceRoot>
+  <timeout default-value="0">${exec.timeout}</timeout>
+  <toolchain default-value="jdk">${exec.toolchain}</toolchain>
+  <toolchainJavaHomeEnvName default-value="TOOLCHAIN_JAVA_HOME">${exec.toolchainJavaHomeEnvName}</toolchainJavaHomeEnvName>
+  <useMavenLogger default-value="false">${exec.useMavenLogger}</useMavenLogger>
+  <workingDirectory>${exec.workingdir}</workingDirectory>
+</configuration>
+[[1;36mDEBUG[m] -----------------------------------------------------------------------
+[[1;36mDEBUG[m] Goal:          org.apache.maven.plugins:maven-install-plugin:2.4:install (default-install)
+[[1;36mDEBUG[m] Style:         Regular
+[[1;36mDEBUG[m] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <artifact default-value="${project.artifact}"/>
+  <attachedArtifacts default-value="${project.attachedArtifacts}"/>
+  <createChecksum default-value="false">${createChecksum}</createChecksum>
+  <localRepository>${localRepository}</localRepository>
+  <packaging default-value="${project.packaging}"/>
+  <pomFile default-value="${project.file}"/>
+  <skip default-value="false">${maven.install.skip}</skip>
+  <updateReleaseInfo default-value="false">${updateReleaseInfo}</updateReleaseInfo>
+</configuration>
+[[1;36mDEBUG[m] =======================================================================
+[[1;36mDEBUG[m] Dependency collection stats {ConflictMarker.analyzeTime=47424, ConflictMarker.markTime=46991, ConflictMarker.nodeCount=1, ConflictIdSorter.graphTime=23352, ConflictIdSorter.topsortTime=505947, ConflictIdSorter.conflictIdCount=0, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=1049468, ConflictResolver.conflictItemCount=0, DefaultDependencyCollector.collectTime=149934, DefaultDependencyCollector.transformTime=3281907}
+[[1;36mDEBUG[m] dev.openrp:open-roleplay:pom:0.1.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:2.5:clean[m [1m(default-clean)[m @ [36mopen-roleplay[0;1m ---[m
+[[1;36mDEBUG[m] Using mirror maven-default-http-blocker (http://0.0.0.0/) for apache.snapshots (http://people.apache.org/repo/m2-snapshot-repository).
+[[1;36mDEBUG[m] Dependency collection stats {ConflictMarker.analyzeTime=1355078, ConflictMarker.markTime=50536, ConflictMarker.nodeCount=3, ConflictIdSorter.graphTime=84712, ConflictIdSorter.topsortTime=54916, ConflictIdSorter.conflictIdCount=3, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=916553, ConflictResolver.conflictItemCount=3, DefaultDependencyCollector.collectTime=25140077, DefaultDependencyCollector.transformTime=2508704}
+[[1;36mDEBUG[m] org.apache.maven.plugins:maven-clean-plugin:jar:2.5
+[[1;36mDEBUG[m]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[[1;36mDEBUG[m]    org.codehaus.plexus:plexus-utils:jar:3.0:compile
+[[1;36mDEBUG[m] Created new class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.5
+[[1;36mDEBUG[m] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.5
+[[1;36mDEBUG[m]   Imported:  < maven.api
+[[1;36mDEBUG[m] Populating class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.5
+[[1;36mDEBUG[m]   Included: org.apache.maven.plugins:maven-clean-plugin:jar:2.5
+[[1;36mDEBUG[m]   Included: org.codehaus.plexus:plexus-utils:jar:3.0
+[[1;36mDEBUG[m] Configuring mojo org.apache.maven.plugins:maven-clean-plugin:2.5:clean from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-clean-plugin:2.5, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48]
+[[1;36mDEBUG[m] Configuring mojo 'org.apache.maven.plugins:maven-clean-plugin:2.5:clean' with basic configurator -->
+[[1;36mDEBUG[m]   (f) directory = /mnt/c/Users/LoloCass/open-roleplay/target
+[[1;36mDEBUG[m]   (f) excludeDefaultDirectories = false
+[[1;36mDEBUG[m]   (f) failOnError = true
+[[1;36mDEBUG[m]   (f) followSymLinks = false
+[[1;36mDEBUG[m]   (f) outputDirectory = /mnt/c/Users/LoloCass/open-roleplay/target/classes
+[[1;36mDEBUG[m]   (f) reportDirectory = /mnt/c/Users/LoloCass/open-roleplay/target/site
+[[1;36mDEBUG[m]   (f) retryOnError = true
+[[1;36mDEBUG[m]   (f) skip = false
+[[1;36mDEBUG[m]   (f) testOutputDirectory = /mnt/c/Users/LoloCass/open-roleplay/target/test-classes
+[[1;36mDEBUG[m] -- end configuration --
+[[1;36mDEBUG[m] Skipping non-existing directory /mnt/c/Users/LoloCass/open-roleplay/target
+[[1;36mDEBUG[m] Skipping non-existing directory /mnt/c/Users/LoloCass/open-roleplay/target/classes
+[[1;36mDEBUG[m] Skipping non-existing directory /mnt/c/Users/LoloCass/open-roleplay/target/test-classes
+[[1;36mDEBUG[m] Skipping non-existing directory /mnt/c/Users/LoloCass/open-roleplay/target/site
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.5.0:enforce[m [1m(enforce-build-environment)[m @ [36mopen-roleplay[0;1m ---[m
+[[1;36mDEBUG[m] Dependency collection stats {ConflictMarker.analyzeTime=133073, ConflictMarker.markTime=115797, ConflictMarker.nodeCount=14, ConflictIdSorter.graphTime=36057, ConflictIdSorter.topsortTime=28904, ConflictIdSorter.conflictIdCount=11, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=1254738, ConflictResolver.conflictItemCount=14, DefaultDependencyCollector.collectTime=139286365, DefaultDependencyCollector.transformTime=1608856}
+[[1;36mDEBUG[m] org.apache.maven.plugins:maven-enforcer-plugin:jar:3.5.0
+[[1;36mDEBUG[m]    org.codehaus.plexus:plexus-utils:jar:4.0.1:compile
+[[1;36mDEBUG[m]    org.codehaus.plexus:plexus-xml:jar:3.0.0:compile
+[[1;36mDEBUG[m]    org.apache.maven.enforcer:enforcer-api:jar:3.5.0:compile
+[[1;36mDEBUG[m]    org.apache.maven.enforcer:enforcer-rules:jar:3.5.0:compile
+[[1;36mDEBUG[m]       org.apache.maven.resolver:maven-resolver-util:jar:1.4.1:compile (version managed from default)
+[[1;36mDEBUG[m]          org.apache.maven.resolver:maven-resolver-api:jar:1.4.1:provided (scope managed from default) (version managed from default)
+[[1;36mDEBUG[m]       org.apache.commons:commons-lang3:jar:3.14.0:compile (version managed from default)
+[[1;36mDEBUG[m]       commons-codec:commons-codec:jar:1.17.0:compile (version managed from default)
+[[1;36mDEBUG[m]       commons-io:commons-io:jar:2.16.1:compile (version managed from default)
+[[1;36mDEBUG[m]       org.apache-extras.beanshell:bsh:jar:2.0b6:compile
+[[1;36mDEBUG[m] Created new class realm plugin>org.apache.maven.plugins:maven-enforcer-plugin:3.5.0
+[[1;36mDEBUG[m] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-enforcer-plugin:3.5.0
+[[1;36mDEBUG[m]   Imported:  < maven.api
+[[1;36mDEBUG[m] Populating class realm plugin>org.apache.maven.plugins:maven-enforcer-plugin:3.5.0
+[[1;36mDEBUG[m]   Included: org.apache.maven.plugins:maven-enforcer-plugin:jar:3.5.0
+[[1;36mDEBUG[m]   Included: org.codehaus.plexus:plexus-utils:jar:4.0.1
+[[1;36mDEBUG[m]   Included: org.codehaus.plexus:plexus-xml:jar:3.0.0
+[[1;36mDEBUG[m]   Included: org.apache.maven.enforcer:enforcer-api:jar:3.5.0
+[[1;36mDEBUG[m]   Included: org.apache.maven.enforcer:enforcer-rules:jar:3.5.0
+[[1;36mDEBUG[m]   Included: org.apache.maven.resolver:maven-resolver-util:jar:1.4.1
+[[1;36mDEBUG[m]   Included: org.apache.commons:commons-lang3:jar:3.14.0
+[[1;36mDEBUG[m]   Included: commons-codec:commons-codec:jar:1.17.0
+[[1;36mDEBUG[m]   Included: commons-io:commons-io:jar:2.16.1
+[[1;36mDEBUG[m]   Included: org.apache-extras.beanshell:bsh:jar:2.0b6
+[[1;36mDEBUG[m] Configuring mojo org.apache.maven.plugins:maven-enforcer-plugin:3.5.0:enforce from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-enforcer-plugin:3.5.0, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48]
+[[1;36mDEBUG[m] Configuring mojo 'org.apache.maven.plugins:maven-enforcer-plugin:3.5.0:enforce' with basic configurator -->
+[[1;36mDEBUG[m]   (s) commandLineRules = []
+[[1;36mDEBUG[m]   (s) fail = true
+[[1;36mDEBUG[m]   (s) failFast = false
+[[1;36mDEBUG[m]   (s) failIfNoRules = true
+[[1;36mDEBUG[m]   (f) ignoreCache = false
+[[1;36mDEBUG[m]   (f) mojoExecution = org.apache.maven.plugins:maven-enforcer-plugin:3.5.0:enforce {execution: enforce-build-environment}
+[[1;36mDEBUG[m]   (f) project = MavenProject: dev.openrp:open-roleplay:0.1.0-SNAPSHOT @ /mnt/c/Users/LoloCass/open-roleplay/pom.xml
+[[1;36mDEBUG[m]   (f) rules = <rules><requireJavaVersion><version>[21,)</version>
+</requireJavaVersion>
+<requireMavenVersion><version>[3.8.1,)</version>
+</requireMavenVersion>
+</rules>
+
+[[1;36mDEBUG[m]   (s) rulesToExecute = []
+[[1;36mDEBUG[m]   (s) rulesToSkip = []
+[[1;36mDEBUG[m]   (f) session = org.apache.maven.execution.MavenSession@5b94ccbc
+[[1;36mDEBUG[m]   (f) skip = false
+[[1;36mDEBUG[m] -- end configuration --
+[[1;36mDEBUG[m] Executing Rule 0: EnforcerRuleDesc[name=requireJavaVersion, rule=RequireJavaVersion[message=null, version=[21,), display=false], level=ERROR]
+[[1;36mDEBUG[m] Check cache for class org.apache.maven.enforcer.rules.version.RequireJavaVersion with id 85578455
+[[1;36mDEBUG[m] Add cache class org.apache.maven.enforcer.rules.version.RequireJavaVersion with id 85578455
+[[1;36mDEBUG[m] Detected Java Version: '21.0.11'
+[[1;36mDEBUG[m] Normalized Java Version: '21.0.11'
+[[1;36mDEBUG[m] Parsed Version: Major: 21 Minor: 0 Incremental: 11 Build: 0 Qualifier: null
+[[1;36mDEBUG[m] Detected JDK Version: 21.0.11 is allowed in the range [21,).
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[[1;36mDEBUG[m] Finish Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion takes 14 ms
+[[1;36mDEBUG[m] Executing Rule 1: EnforcerRuleDesc[name=requireMavenVersion, rule=RequireMavenVersion[message=null, version=[3.8.1,)], level=ERROR]
+[[1;36mDEBUG[m] Check cache for class org.apache.maven.enforcer.rules.version.RequireMavenVersion with id -929924990
+[[1;36mDEBUG[m] Add cache class org.apache.maven.enforcer.rules.version.RequireMavenVersion with id -929924990
+[[1;36mDEBUG[m] Detected Maven Version: 3.8.7
+[[1;36mDEBUG[m] Detected Maven Version: 3.8.7 is allowed in the range [3.8.1,).
+[[1;34mINFO[m] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[[1;36mDEBUG[m] Finish Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion takes 3 ms
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.5.0:exec[m [1m(build-resource-packs)[m @ [36mopen-roleplay[0;1m ---[m
+[[1;36mDEBUG[m] Dependency collection stats {ConflictMarker.analyzeTime=47699, ConflictMarker.markTime=52005, ConflictMarker.nodeCount=11, ConflictIdSorter.graphTime=16032, ConflictIdSorter.topsortTime=17080, ConflictIdSorter.conflictIdCount=9, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=413181, ConflictResolver.conflictItemCount=11, DefaultDependencyCollector.collectTime=31031329, DefaultDependencyCollector.transformTime=572475}
+[[1;36mDEBUG[m] org.codehaus.mojo:exec-maven-plugin:jar:3.5.0
+[[1;36mDEBUG[m]    org.apache.maven.resolver:maven-resolver-util:jar:1.4.1:compile
+[[1;36mDEBUG[m]       org.apache.maven.resolver:maven-resolver-api:jar:1.4.1:compile
+[[1;36mDEBUG[m]    org.codehaus.plexus:plexus-utils:jar:4.0.2:compile
+[[1;36mDEBUG[m]    org.codehaus.plexus:plexus-xml:jar:3.0.1:compile
+[[1;36mDEBUG[m]    org.apache.commons:commons-exec:jar:1.4.0:compile
+[[1;36mDEBUG[m]    org.ow2.asm:asm:jar:9.7.1:compile
+[[1;36mDEBUG[m]    org.ow2.asm:asm-commons:jar:9.7.1:compile
+[[1;36mDEBUG[m]       org.ow2.asm:asm-tree:jar:9.7.1:compile
+[[1;36mDEBUG[m] Created new class realm plugin>org.codehaus.mojo:exec-maven-plugin:3.5.0
+[[1;36mDEBUG[m] Importing foreign packages into class realm plugin>org.codehaus.mojo:exec-maven-plugin:3.5.0
+[[1;36mDEBUG[m]   Imported:  < maven.api
+[[1;36mDEBUG[m] Populating class realm plugin>org.codehaus.mojo:exec-maven-plugin:3.5.0
+[[1;36mDEBUG[m]   Included: org.codehaus.mojo:exec-maven-plugin:jar:3.5.0
+[[1;36mDEBUG[m]   Included: org.apache.maven.resolver:maven-resolver-util:jar:1.4.1
+[[1;36mDEBUG[m]   Included: org.codehaus.plexus:plexus-utils:jar:4.0.2
+[[1;36mDEBUG[m]   Included: org.codehaus.plexus:plexus-xml:jar:3.0.1
+[[1;36mDEBUG[m]   Included: org.apache.commons:commons-exec:jar:1.4.0
+[[1;36mDEBUG[m]   Included: org.ow2.asm:asm:jar:9.7.1
+[[1;36mDEBUG[m]   Included: org.ow2.asm:asm-commons:jar:9.7.1
+[[1;36mDEBUG[m]   Included: org.ow2.asm:asm-tree:jar:9.7.1
+[[1;36mDEBUG[m] Configuring mojo org.codehaus.mojo:exec-maven-plugin:3.5.0:exec from plugin realm ClassRealm[plugin>org.codehaus.mojo:exec-maven-plugin:3.5.0, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48]
+[[1;36mDEBUG[m] Configuring mojo 'org.codehaus.mojo:exec-maven-plugin:3.5.0:exec' with basic configurator -->
+[[1;36mDEBUG[m]   (f) addOutputToClasspath = true
+[[1;36mDEBUG[m]   (f) addResourcesToClasspath = false
+[[1;36mDEBUG[m]   (f) arguments = [/mnt/c/Users/LoloCass/open-roleplay/scripts/build-resource-packs.sh]
+[[1;36mDEBUG[m]   (f) async = false
+[[1;36mDEBUG[m]   (f) asyncDestroyOnShutdown = true
+[[1;36mDEBUG[m]   (f) basedir = /mnt/c/Users/LoloCass/open-roleplay
+[[1;36mDEBUG[m]   (f) buildDirectory = /mnt/c/Users/LoloCass/open-roleplay/target
+[[1;36mDEBUG[m]   (f) classpathScope = runtime
+[[1;36mDEBUG[m]   (f) executable = bash
+[[1;36mDEBUG[m]   (f) forceJava = false
+[[1;36mDEBUG[m]   (f) includePluginDependencies = false
+[[1;36mDEBUG[m]   (f) longClasspath = false
+[[1;36mDEBUG[m]   (f) longModulepath = true
+[[1;36mDEBUG[m]   (f) pluginDependencies = [org.codehaus.mojo:exec-maven-plugin:maven-plugin:3.5.0:, org.apache.maven.resolver:maven-resolver-util:jar:1.4.1:compile, org.apache.maven.resolver:maven-resolver-api:jar:1.4.1:compile, org.codehaus.plexus:plexus-utils:jar:4.0.2:compile, org.codehaus.plexus:plexus-xml:jar:3.0.1:compile, org.apache.commons:commons-exec:jar:1.4.0:compile, org.ow2.asm:asm:jar:9.7.1:compile, org.ow2.asm:asm-commons:jar:9.7.1:compile, org.ow2.asm:asm-tree:jar:9.7.1:compile]
+[[1;36mDEBUG[m]   (f) project = MavenProject: dev.openrp:open-roleplay:0.1.0-SNAPSHOT @ /mnt/c/Users/LoloCass/open-roleplay/pom.xml
+[[1;36mDEBUG[m]   (f) quietLogs = false
+[[1;36mDEBUG[m]   (f) session = org.apache.maven.execution.MavenSession@5b94ccbc
+[[1;36mDEBUG[m]   (f) skip = false
+[[1;36mDEBUG[m]   (f) timeout = 0
+[[1;36mDEBUG[m]   (f) toolchain = jdk
+[[1;36mDEBUG[m]   (f) toolchainJavaHomeEnvName = TOOLCHAIN_JAVA_HOME
+[[1;36mDEBUG[m]   (f) useMavenLogger = false
+[[1;36mDEBUG[m] -- end configuration --
+[[1;36mDEBUG[m] env: DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+[[1;36mDEBUG[m] env: DISPLAY=:0
+[[1;36mDEBUG[m] env: HOME=/home/lolocass
+[[1;36mDEBUG[m] env: HOSTTYPE=x86_64
+[[1;36mDEBUG[m] env: LANG=C.UTF-8
+[[1;36mDEBUG[m] env: LESSCLOSE=/usr/bin/lesspipe %s %s
+[[1;36mDEBUG[m] env: LESSOPEN=| /usr/bin/lesspipe %s
+[[1;36mDEBUG[m] env: LOGNAME=lolocass
+[[1;36mDEBUG[m] env: LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+[[1;36mDEBUG[m] env: MAVEN_CMD_LINE_ARGS= clean install -X
+[[1;36mDEBUG[m] env: MAVEN_PROJECTBASEDIR=/mnt/c/Users/LoloCass/open-roleplay
+[[1;36mDEBUG[m] env: NAME=SONNY-POTENTE
+[[1;36mDEBUG[m] env: OLDPWD=/mnt/c/Users/LoloCass/open-roleplay
+[[1;36mDEBUG[m] env: PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/java/jdk-23/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/java8path:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/playit_gg/bin/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/ZeroTier/One/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.12/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Users/LoloCass/AppData/Local/Programs/Python/Python314/Scripts/:/mnt/c/Users/LoloCass/AppData/Local/Programs/Python/Python314/:/mnt/c/Users/LoloCass/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/LoloCass/scoop/shims:/mnt/c/Program Files/Java/jdk-23/bin:/mnt/c/Program Files/java/jdk-23/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/java8path:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/playit_gg/bin/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/ZeroTier/One/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.12/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Users/LoloCass/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/LoloCass/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/LoloCass/.local/bin:/mnt/c/Users/LoloCass/AppData/Roaming/npm:/mnt/c/Users/LoloCass/AppData/Local/Programs/Antigravity IDE/bin:/mnt/c/Users/LoloCass/AppData/Local/Programs/Windsurf/bin:/snap/bin
+[[1;36mDEBUG[m] env: PULSE_SERVER=unix:/mnt/wslg/PulseServer
+[[1;36mDEBUG[m] env: PWD=/mnt/c/Users/LoloCass/open-roleplay
+[[1;36mDEBUG[m] env: SDKMAN_BROKER_API=https://broker.sdkman.io
+[[1;36mDEBUG[m] env: SDKMAN_CANDIDATES_API=https://api.sdkman.io/2
+[[1;36mDEBUG[m] env: SDKMAN_CANDIDATES_DIR=/home/lolocass/.sdkman/candidates
+[[1;36mDEBUG[m] env: SDKMAN_DIR=/home/lolocass/.sdkman
+[[1;36mDEBUG[m] env: SDKMAN_PLATFORM=linuxx64
+[[1;36mDEBUG[m] env: SHELL=/bin/bash
+[[1;36mDEBUG[m] env: SHLVL=1
+[[1;36mDEBUG[m] env: TERM=xterm-256color
+[[1;36mDEBUG[m] env: USER=lolocass
+[[1;36mDEBUG[m] env: WAYLAND_DISPLAY=wayland-0
+[[1;36mDEBUG[m] env: WSL2_GUI_APPS_ENABLED=1
+[[1;36mDEBUG[m] env: WSLENV=WT_SESSION:WT_PROFILE_ID:
+[[1;36mDEBUG[m] env: WSL_DISTRO_NAME=Ubuntu
+[[1;36mDEBUG[m] env: WSL_INTEROP=/run/WSL/622_interop
+[[1;36mDEBUG[m] env: WT_PROFILE_ID={61c54bbd-c2c6-5271-96e7-009a87ff44bf}
+[[1;36mDEBUG[m] env: WT_SESSION=a9c5999f-b9ea-4b9a-b8dd-4791d6cad8f6
+[[1;36mDEBUG[m] env: XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+[[1;36mDEBUG[m] env: XDG_RUNTIME_DIR=/run/user/1000/
+[[1;36mDEBUG[m] env: _=/usr/bin/mvn
+[[1;36mDEBUG[m] Executing command line: [bash, /mnt/c/Users/LoloCass/open-roleplay/scripts/build-resource-packs.sh]
+[[1;31mERROR[m] Command execution failed.
+[1;31morg.apache.commons.exec.ExecuteException[m: [1;31mProcess exited with an error: 2 (Exit value: 2)[m
+    [1mat[m org.apache.commons.exec.DefaultExecutor.executeInternal ([1mDefaultExecutor.java:355[m)
+    [1mat[m org.apache.commons.exec.DefaultExecutor.execute ([1mDefaultExecutor.java:253[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:903[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:863[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.execute ([1mExecMojo.java:454[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 ([1mMojoExecutor.java:370[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute ([1mMojoExecutor.java:351[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:215[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:171[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:163[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:298[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:960[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:293[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:196[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for Open Roleplay 0.1.0-SNAPSHOT:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Open Roleplay ...................................... [1;31mFAILURE[m [  0.860 s]
+[[1;34mINFO[m] Open Core API ...................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Core .......................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Access ........................................ [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Cosmetics ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Weapons ....................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Vending Machines .............................. [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Companies ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open FDO ........................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Crime ......................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] Open Jobs .......................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.434 s
+[[1;34mINFO[m] Finished at: 2026-06-18T13:07:49+02:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.codehaus.mojo:exec-maven-plugin:3.5.0:exec[m [1m(build-resource-packs)[m on project [36mopen-roleplay[m: [1;31mCommand execution failed.[m: Process exited with an error: 2 (Exit value: 2) -> [1m[Help 1][m
+[1;31morg.apache.maven.lifecycle.LifecycleExecutionException[m: [1;31mFailed to execute goal [32morg.codehaus.mojo:exec-maven-plugin:3.5.0:exec[m [1m(build-resource-packs)[m on project [36mopen-roleplay[m: [1;31mCommand execution failed.[m[m
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 ([1mMojoExecutor.java:375[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute ([1mMojoExecutor.java:351[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:215[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:171[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:163[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:298[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:960[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:293[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:196[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.apache.maven.plugin.MojoExecutionException: [1;31mCommand execution failed.[m
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.execute ([1mExecMojo.java:469[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 ([1mMojoExecutor.java:370[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute ([1mMojoExecutor.java:351[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:215[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:171[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:163[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:298[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:960[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:293[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:196[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.apache.commons.exec.ExecuteException: [1;31mProcess exited with an error: 2 (Exit value: 2)[m
+    [1mat[m org.apache.commons.exec.DefaultExecutor.executeInternal ([1mDefaultExecutor.java:355[m)
+    [1mat[m org.apache.commons.exec.DefaultExecutor.execute ([1mDefaultExecutor.java:253[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:903[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:863[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.execute ([1mExecMojo.java:454[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 ([1mMojoExecutor.java:370[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute ([1mMojoExecutor.java:351[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:215[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:171[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:163[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:298[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:960[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:293[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:196[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[[1;31mERROR[m] 
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
