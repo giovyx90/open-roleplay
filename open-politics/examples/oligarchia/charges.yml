@@ -1,0 +1,26 @@
+charges:
+  # Una sola carica paritaria con cinque seggi: nessuno e' superiore. I cinque cooptano i nuovi
+  # membri per nomina interna (chi e' gia' Consigliere ha APPOINT). Ogni delibera richiede il voto
+  # collegiale - 3 voti su 5 (quorum 1.0, maggioranza 0.5+).
+  consigliere:
+    display_name: "Consigliere"
+    government_id: consiglio
+    authority_level: 10
+    max_holders: 5
+    term_duration_days: 0          # mandato illimitato
+    capabilities:
+      - SIGN_ACT
+      - SIGN_LAW
+      - APPOINT
+      - REMOVE
+      - MANAGE_BUDGET
+      - REVOKE_LICENSE
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+      requires_confirmation: false
+    collegiate:
+      enabled: true
+      quorum: 1.0                  # tutti e cinque devono partecipare
+      majority: 0.5               # 3 su 5 per approvare
+      duration_hours: 48

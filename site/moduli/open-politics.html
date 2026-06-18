@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <script>
+    /* Set the theme before first paint to avoid a flash; mirrors assets/js/main.js. */
+    (function(){try{var t=localStorage.getItem("or-theme");if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Politics — Il motore politico RP · Open Roleplay</title>
+  <meta name="description" content="Open Politics: il motore politico per Paper, adapter-first e neutro rispetto all'ambientazione. Cariche, governi, elezioni, atti firmati e registro pubblico delle leggi. Il plugin certifica, non governa: le conseguenze sono RP. API pubblica." />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="canonical" href="https://openroleplay.it/moduli/open-politics.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Open Politics — Il motore politico RP · Open Roleplay" />
+  <meta property="og:description" content="Adapter-first e neutro: cariche, governi, quattro meccanismi di assegnazione, atti firmati e registro pubblico delle leggi. Il plugin certifica, non governa." />
+  <meta property="og:url" content="https://openroleplay.it/moduli/open-politics.html" />
+  <meta property="og:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Open Roleplay" />
+  <meta name="twitter:image" content="https://openroleplay.it/assets/img/og-cover.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260618-politics" />
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Politics",
+    "description": "Open Politics: il motore politico per Paper, adapter-first e neutro rispetto all'ambientazione. Cariche, governi, elezioni, atti firmati e registro pubblico delle leggi, con un principio RP-first: il plugin certifica chi aveva l'autorità di decidere, non esegue le conseguenze.",
+    "url": "https://openroleplay.it/moduli/open-politics.html",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Java / Paper 1.21.x",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "isAccessibleForFree": true,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Open Roleplay",
+      "url": "https://openroleplay.it/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="../index.html" aria-label="Open Roleplay — home">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="nm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#nm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+        Open<b>Roleplay</b>
+      </a>
+      <nav class="nav-links" aria-label="Principale">
+        <a href="../index.html#moduli">Moduli</a>
+        <a href="../index.html#filosofia">Filosofia</a>
+        <a href="../index.html#architettura">Architettura</a>
+        <a href="../index.html#installazione">Installazione</a>
+        <a href="../index.html#download">Download</a>
+        <a href="../index.html#changelog">Changelog</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Cambia tema chiaro/scuro" title="Tema chiaro/scuro">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-politics.jar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Scarica
+        </a>
+        <button class="icon-btn nav-burger" data-burger aria-label="Apri menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="../index.html#moduli">Moduli</a>
+    <a href="../index.html#filosofia">Filosofia</a>
+    <a href="../index.html#architettura">Architettura</a>
+    <a href="../index.html#installazione">Installazione</a>
+    <a href="../index.html#download">Download</a>
+    <a href="../index.html#changelog">Changelog</a>
+    <a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a>
+    <a class="btn btn-primary" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-politics.jar" target="_blank" rel="noopener">Scarica il JAR</a>
+  </div>
+
+  <main id="main">
+    <!-- ========================= MOD HERO ========================= -->
+    <section class="mod-hero">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow--a"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="../index.html#moduli">Moduli</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Open Politics</span>
+        </nav>
+
+        <div class="mod-hero__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10M9.5 21V10M14.5 21V10M19 21V10"/><path d="M12 3 4 8h16z"/></svg></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h1>Open Politics</h1>
+          <span class="badge badge--blue">Compilabile</span>
+        </div>
+        <p class="lead">Il motore <strong>politico</strong> per server roleplay: il Sindaco eletto, il Re per conquista, il Senato che vota una legge. Il core non conosce nessuna di queste cose — conosce <strong>una carica con un titolare, un governo che la assegna, un atto firmato, una legge registrata</strong>. <strong>Il plugin certifica, non governa</strong>: registra chi aveva l'autorità di decidere ed espone la decisione, le conseguenze le vivono i giocatori.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://github.com/giovyx90/open-roleplay/releases/latest/download/open-politics.jar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Scarica il JAR
+          </a>
+          <a class="btn btn-ghost btn-lg" href="https://github.com/giovyx90/open-roleplay/tree/main/open-politics" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            Sorgente
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://github.com/giovyx90/open-roleplay/blob/main/open-politics/README.md" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            README
+          </a>
+        </div>
+
+        <div class="mod-meta">
+          <div class="m"><span>Namespace</span><b>dev.openrp.politics</b></div>
+          <div class="m"><span>Comandi</span><b>/politica · /voto · /openpolitics</b></div>
+          <div class="m"><span>Dipendenze</span><b>nessuna obbligatoria</b></div>
+          <div class="m"><span>Opzionali</span><b>OpenCore · OpenFDO · OpenCompanies · OpenEconomy · OpenIdentity · WorldGuard · LuckPerms</b></div>
+          <div class="m"><span>API</span><b>OpenPoliticsApi</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RP FIRST ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">RP First: il plugin certifica, non governa</h2>
+        <p class="lede reveal" data-d="1">Open Politics <strong>non esegue mai</strong> le conseguenze di una decisione politica. Una legge che vieta le armi in centro <strong>non disabilita</strong> le armi in centro: è un documento firmato dall'autorità competente che giocatori e FDO usano come riferimento narrativo. Se qualcuno porta un'arma in centro, le FDO lo multano in RP. <em>Il plugin non tocca niente.</em></p>
+        <div class="arch-diagram reveal" data-d="1" aria-label="Schema a tre livelli: core, config, adapter">
+          <div class="arch-core"><b>Core</b><br/><span>Charge · Government · Election · Act · Law · CollegiateVote</span></div>
+          <div class="arch-row">
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Config<small>governments · charges · act_types · law_categories</small></span></div>
+            <div class="arch-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg><span>Adapter<small>economy · company · identity · region · authority</small></span></div>
+          </div>
+        </div>
+        <p class="lede reveal">Il <strong>test di neutralità</strong>: "Sindaco" → config. "Decreto Legge" → config. "Elezione democratica" → config (è un tipo di meccanismo). "Titolare di una carica che produce un atto firmato" → core. Il realistico italiano (un Comune) è solo la configurazione di riferimento; <code>examples/fantasy</code> (un Regno) e <code>examples/oligarchia</code> (un Consiglio dei Cinque) sono l'opposto sullo stesso codice.</p>
+      </div>
+    </section>
+
+    <!-- ===================== QUATTRO AREE ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Le quattro aree</h2>
+        <p class="lede reveal" data-d="1">Non sono sottomoduli separati: sono aspetti dello stesso sistema, attivabili in <code>config.yml</code>. Gli atti dipendono dalle cariche; le leggi dipendono dagli atti.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Area</th><th>Domanda</th><th>Cosa fa</th></tr></thead>
+            <tbody>
+              <tr><td><code>charges</code></td><td>Cosa sei</td><td>Ruoli istituzionali con autorità ordinale, titolari, mandato e capability.</td></tr>
+              <tr><td><code>government</code></td><td>Come ci sei arrivato</td><td>Insieme di cariche con un meccanismo di assegnazione.</td></tr>
+              <tr><td><code>acts</code></td><td>Cosa firmi</td><td>Documenti ufficiali prodotti da chi ne ha la capability — timbrati come libro fisico.</td></tr>
+              <tr><td><code>laws</code></td><td>Cosa hai deciso</td><td>Atti che hanno completato l'iter: registro pubblico, archivio storico, mai eseguito.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MECCANISMI ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">I quattro meccanismi di assegnazione</h2>
+        <p class="lede reveal" data-d="1">Come si ottiene una carica è nella config. Elezione e conquista sono gli <strong>unici</strong> casi in cui il plugin assegna una carica automaticamente; tutto il resto è firmato da un titolare.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><div><b>Elezione</b><small>I giocatori votano. Il plugin gestisce campagna, candidature, raccolta voti (uno a testa), calcolo del risultato e assegnazione automatica al/ai vincitore/i. Voto anonimo.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11l2 2 4-4"/><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></span><div><b>Nomina</b><small>Decisione unilaterale di chi detiene <code>APPOINT</code> su quella carica. Nessun voto.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22v-6M5 12H2M22 12h-3"/><circle cx="12" cy="12" r="4"/></svg></span><div><b>Ereditarietà</b><small>La carica passa al successore designato dal titolare con <code>/politica successore</code>. Senza successore, diventa vacante.</small></div></div>
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span><div><b>Conquista</b><small>Appartiene a chi controlla fisicamente una region (via <code>RegionAdapter</code>, es. WorldGuard). Il plugin verifica periodicamente il controllo.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ITER LEGISLATIVO ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">L'iter legislativo</h2>
+        <p class="lede reveal" data-d="1">Un atto di un tipo con <code>requires_vote</code> viene sottoposto a un <strong>organo collegiale</strong> (una carica con <code>max_holders &gt; 1</code>): quorum e maggioranza decidono se passa. Se il tipo prevede <code>veto_allowed</code>, si apre una <strong>finestra di veto</strong> per chi detiene <code>VETO</code>. Quando l'iter è completo e il tipo è <code>can_become_law</code>, l'atto è <strong>promulgato</strong> in legge.</p>
+        <p class="lede reveal">Il plugin <strong>traccia</strong> l'iter, non lo forza: uno step saltato resta registrato come proceduralmente contestabile, non punito. Le leggi attive sono pubbliche (<code>/politica leggi</code>); le abrogate restano nell'<strong>archivio storico</strong>, così un giudice in RP può applicare la legge che era in vigore al momento del fatto — anche se oggi è abrogata.</p>
+        <div class="pill-grid">
+          <div class="pill-item reveal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6M9 17h4"/></svg></span><div><b>Capability, non permessi</b><small>L'autorità vera non è un nodo permesso: è la carica che ricopri. <code>SIGN_ACT</code>, <code>SIGN_LAW</code>, <code>APPOINT</code>, <code>VETO</code>, <code>DECLARE_EMERGENCY</code>… la config decide quale carica le detiene.</small></div></div>
+          <div class="pill-item reveal" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><div><b>Mandato e scadenza</b><small>Una carica può avere un mandato a tempo. Alla scadenza il plugin re-indice l'elezione o applica la successione, secondo il meccanismo della carica.</small></div></div>
+          <div class="pill-item reveal" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><div><b>Storage durevole</b><small>Cariche, atti, leggi, elezioni e voti collegiali su YAML atomico con backup (o <code>memory</code>). Una scrittura interrotta non corrompe i dati.</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ADAPTER ====================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Adapter</h2>
+        <p class="lede reveal" data-d="1">Ogni adapter ha un default funzionante ed è scoperto a runtime dal Bukkit ServicesManager. Assente o non reale, la feature collegata degrada in silenzio — nessun crash, nessuna dipendenza dura.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Adapter</th><th>Default</th><th>Assente / non reale →</th></tr></thead>
+            <tbody>
+              <tr><td><code>StorageAdapter</code></td><td>YAML atomico con backup (o <code>memory</code>)</td><td>—</td></tr>
+              <tr><td><code>PermissionAdapter</code></td><td>Bukkit (riflette LuckPerms)</td><td>—</td></tr>
+              <tr><td><code>NotificationAdapter</code></td><td>chat / broadcast</td><td>—</td></tr>
+              <tr><td><code>EconomyAdapter</code></td><td>no-op</td><td>un bridge Open Economy espone il budget pubblico ai titolari di <code>MANAGE_BUDGET</code></td></tr>
+              <tr><td><code>CompanyAdapter</code></td><td>no-op</td><td>un bridge Open Companies riconosce le revoche di licenza dei titolari di <code>REVOKE_LICENSE</code></td></tr>
+              <tr><td><code>IdentityAdapter</code></td><td>no-op</td><td>un bridge Open Identity rende le cariche un tesserino fisico che decade a fine mandato</td></tr>
+              <tr><td><code>RegionAdapter</code></td><td>no-op</td><td>un bridge WorldGuard abilita il meccanismo <code>conquest</code></td></tr>
+              <tr><td><code>AuthorityAdapter</code></td><td>no-op</td><td>un bridge Open FDO riceve le dichiarazioni di stato d'emergenza</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== COMANDI ========================= -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Comandi</h2>
+        <p class="lede reveal" data-d="1">Il permesso <code>openpolitics.use</code> abilita i comandi; <code>openpolitics.admin</code> sblocca <code>/politica admin</code>. L'autorità vera è la carica che ricopri.</p>
+        <div class="table-wrap reveal" data-d="1">
+          <table>
+            <thead><tr><th>Comando</th><th>Funzione</th></tr></thead>
+            <tbody>
+              <tr><td><code>/politica cariche</code> · <code>carica &lt;id&gt;</code></td><td>cariche attive con titolari, e dettaglio di una carica</td></tr>
+              <tr><td><code>/politica leggi</code> · <code>legge &lt;id&gt;</code> · <code>archivio</code></td><td>registro pubblico, testo di una legge, archivio storico</td></tr>
+              <tr><td><code>/politica atti</code> · <code>governo</code></td><td>atti firmati recenti, struttura del governo</td></tr>
+              <tr><td><code>/politica atto &lt;tipo&gt; &lt;titolo&gt;</code></td><td>firma un atto e ricevi il libro timbrato</td></tr>
+              <tr><td><code>/politica nomina · rimuovi · veto · successore · abroga</code></td><td>azioni dei titolari, gated dalle capability della carica</td></tr>
+              <tr><td><code>/politica emergenza · elezioni indici · vota</code></td><td>stato d'emergenza, indizione elezioni, voto collegiale</td></tr>
+              <tr><td><code>/voto lista · candidatura · &lt;id&gt; &lt;player&gt; · risultati</code></td><td>partecipazione alle elezioni</td></tr>
+              <tr><td><code>/openpolitics &lt;status|reload&gt;</code></td><td>stato adapter/contatori e ricarica config</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== API PUBBLICA ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">API pubblica</h2>
+        <p class="lede reveal" data-d="1">Recupera <code>OpenPoliticsApi</code> dal Services Manager di Bukkit. È il registro istituzionale del server: chi ricopre quale carica, cosa può fare, cosa ha firmato e — soprattutto per gli altri moduli — il <strong>registro pubblico delle leggi</strong> che Open FDO aggancia ai fascicoli.</p>
+        <div class="code reveal" data-d="1">
+          <div class="code__head"><span>java · OpenPoliticsApi</span><button class="copy-btn" data-copy="#politics-api"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-label">Copia</span></button></div>
+          <pre><code id="politics-api">OpenPoliticsApi api = Bukkit.getServicesManager().load(OpenPoliticsApi.class);
+
+// Open FDO: aggancia le leggi violate a un fascicolo e applica la legge del tempo del fatto
+List&lt;Law&gt; attive = api.getActiveLaws("comune");
+boolean inVigore = api.wasActiveDuring(lawId, momentoDelFatto);
+
+// Chi puo' dichiarare l'allerta? Open FDO lo chiede per sapere chi attiva l'emergenza
+List&lt;String&gt; cariche = api.chargesWithCapability("comune", PoliticalCapability.DECLARE_EMERGENCY);
+
+// Registra il tuo bridge come adapter
+api.adapters().setIdentity(myIdentityBridge);</code></pre>
+        </div>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li><code>governments()</code> / <code>charges()</code> / <code>holdersOf(id)</code> — struttura e titolari</li>
+          <li><code>hasCapability(uuid, cap)</code> — l'autorità live di un giocatore</li>
+          <li><code>getActiveLaws(gov)</code> / <code>getLaw(id)</code> — il registro pubblico</li>
+          <li><code>wasActiveDuring(id, moment)</code> — la legge del tempo del fatto, per i giudici RP</li>
+          <li><code>recentActs(n)</code> / <code>openElections()</code> — atti ed elezioni in corso</li>
+          <li><code>adapters()</code> — sostituzione runtime di economy, company, identity, region, authority</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== SICUREZZA ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal">Sicurezza e neutralità</h2>
+        <ul class="bullets reveal cols-2" data-d="1">
+          <li>Il core non contiene nomi di cariche, governi, tipi di atto o categorie di legge: tutto in config</li>
+          <li>Non esegue le conseguenze di una legge — le certifica e le espone</li>
+          <li>Non impone l'iter legislativo — lo traccia e segnala se è stato rispettato</li>
+          <li>Non assegna cariche automaticamente, tranne nei meccanismi <code>election</code> e <code>conquest</code></li>
+          <li>Non espone i voti elettorali quando <code>anonymous_voting</code> è attivo</li>
+          <li>Non crasha se un adapter manca: disattiva in silenzio la capability collegata</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="block">
+      <div class="container">
+        <h2 class="reveal" style="margin-bottom:24px;">Altri moduli</h2>
+        <div class="related-grid">
+          <a class="dl-card reveal" href="open-fdo.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.6 8 10 4.5-1.4 8-5 8-10V5l-8-3z"/><path d="M12 7.8l1.2 2.5 2.7.3-2 1.9.6 2.7-2.5-1.4-2.5 1.4.6-2.7-2-1.9 2.7-.3z"/></svg></div><div><h4>Open FDO</h4><div class="id">open-fdo</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="1" href="open-crime.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><circle cx="9.5" cy="14.5" r="1.6"/><circle cx="14.5" cy="14.5" r="1.6"/><path d="M11.1 14.5h1.8"/></svg></div><div><h4>Open Crime</h4><div class="id">open-crime</div></div></div>
+          </a>
+          <a class="dl-card reveal" data-d="2" href="open-gestionale.html">
+            <div class="top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div><h4>Open Gestionale</h4><div class="id">open-gestionale</div></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#fm)"/><g fill="none" stroke="#04130a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M18.5 14.5 11.5 24l7 9.5"/><path d="M29.5 14.5 36.5 24l-7 9.5"/></g><path d="M24 19.4 28.6 24 24 28.6 19.4 24Z" fill="#04130a" opacity=".92"/></svg>
+            Open<b>Roleplay</b>
+          </a>
+          <p class="footer-about">La suite open source di moduli per server Minecraft roleplay su Paper. Gratuita, modulare e adapter-first.</p>
+          <div class="footer-social">
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a class="icon-btn" href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener" aria-label="Wiki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Moduli</h5>
+          <ul data-module-nav>
+            <li><a href="open-weapons.html">Open Weapons</a></li>
+            <li><a href="open-access.html">Open Access</a></li>
+            <li><a href="open-cosmetics.html">Open Cosmetics</a></li>
+            <li><a href="open-vending.html">Open Vending Machines</a></li>
+            <li><a href="open-companies.html">Open Companies</a></li>
+            <li><a href="open-fdo.html">Open FDO</a></li>
+            <li><a href="open-crime.html">Open Crime</a></li>
+            <li><a href="open-jobs.html">Open Jobs</a></li>
+            <li><a href="open-politics.html">Open Politics</a></li>
+            <li><a href="open-gestionale.html">Open Gestionale</a></li>
+            <li><a href="open-core.html">Open Core</a></li>
+            <li><a href="open-core-api.html">Open Core API</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Risorse</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay" target="_blank" rel="noopener">Repository GitHub</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/wiki" target="_blank" rel="noopener">Wiki</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/releases" target="_blank" rel="noopener">Release</a></li>
+            <li><a href="../index.html#installazione">Installazione</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Progetto</h5>
+          <ul>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/LICENSE" target="_blank" rel="noopener">Licenza Apache 2.0</a></li>
+            <li><a href="https://github.com/giovyx90/open-roleplay/blob/main/TRADEMARKS.md" target="_blank" rel="noopener">Marchi</a></li>
+            <li><a href="../index.html#filosofia">Filosofia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Roleplay Workshop · openroleplay.it</span>
+        <div class="lic">
+          <span>Codice sotto Apache License 2.0</span>
+          <span>Made for Minecraft Paper 1.21.x</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/modules.js?v=20260618-politics" defer></script>
+  <script src="../assets/js/main.js?v=20260618-politics" defer></script>
+</body>
+</html>

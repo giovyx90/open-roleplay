@@ -1,0 +1,104 @@
+# ============================================================================
+#  Charges - the institutional roles of each government.
+#  A charge has a display name, an ordinal authority level, a holder cap, a term
+#  duration and a set of POLITICAL CAPABILITIES. Capabilities never produce an
+#  automatic effect: they enable commands and certify that whoever acted had the
+#  authority to act. The core hardcodes no charge name - it is all here.
+#
+#  Capabilities: SIGN_ACT SIGN_LAW APPOINT REMOVE DISSOLVE DECLARE_EMERGENCY
+#                MANAGE_BUDGET REVOKE_LICENSE CALL_ELECTION VETO
+#
+#  assignment_mechanism.type: election | appointment | hereditary | conquest
+# ============================================================================
+
+charges:
+  sindaco:
+    display_name: "Sindaco"
+    government_id: comune
+    authority_level: 10
+    max_holders: 1
+    term_duration_days: 30
+    capabilities:
+      - SIGN_ACT
+      - SIGN_LAW
+      - APPOINT
+      - REMOVE
+      - DECLARE_EMERGENCY
+      - MANAGE_BUDGET
+      - CALL_ELECTION
+      - VETO
+    assignment_mechanism:
+      type: election
+      campaign_duration_days: 3
+      voting_duration_days: 1
+      eligible_voters: all          # all | citizens | members
+      eligible_candidates: all
+      min_candidates: 2
+      result: plurality             # majority | plurality | runoff
+
+  vice_sindaco:
+    display_name: "Vice Sindaco"
+    government_id: comune
+    authority_level: 8
+    max_holders: 1
+    term_duration_days: 30
+    capabilities:
+      - SIGN_ACT
+      - REMOVE
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+      requires_confirmation: false
+
+  assessore_economia:
+    display_name: "Assessore all'Economia"
+    government_id: comune
+    authority_level: 7
+    max_holders: 1
+    term_duration_days: 30
+    capabilities:
+      - SIGN_ACT
+      - MANAGE_BUDGET
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+      requires_confirmation: false
+
+  assessore_sicurezza:
+    display_name: "Assessore alla Sicurezza"
+    government_id: comune
+    authority_level: 7
+    max_holders: 1
+    term_duration_days: 30
+    capabilities:
+      - SIGN_ACT
+      - DECLARE_EMERGENCY
+    assignment_mechanism:
+      type: appointment
+      appointed_by_capability: APPOINT
+      requires_confirmation: false
+
+  consiglio_comunale:
+    display_name: "Consiglio Comunale"
+    government_id: comune
+    authority_level: 5
+    max_holders: 8
+    term_duration_days: 30
+    capabilities:
+      - SIGN_ACT
+      - SIGN_LAW
+    assignment_mechanism:
+      type: election
+      campaign_duration_days: 3
+      voting_duration_days: 1
+      eligible_voters: all
+      eligible_candidates: all
+      min_candidates: 2
+      result: plurality
+    # A charge with max_holders > 1 can act as a collegiate body: members vote
+    # internally on an act before it can become law.
+    collegiate:
+      enabled: true
+      quorum: 0.5                   # fraction of members that must take part
+      majority: 0.5                 # fraction of cast ballots needed to approve
+      duration_hours: 48           # how long an internal vote stays open

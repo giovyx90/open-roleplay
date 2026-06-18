@@ -1,0 +1,44 @@
+act_types:
+  # Il Re decide da solo: l'editto diventa legge senza voto.
+  editto:
+    display_name: "Editto Reale"
+    capability_required: SIGN_ACT
+    can_become_law: true
+    requires_vote: false
+    veto_allowed: false
+    promulgated_by_capability: SIGN_LAW
+    law_category: legge_regno
+
+  proclama:
+    display_name: "Proclama"
+    capability_required: SIGN_ACT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false
+
+  # Una decisione del Consiglio dei Lord: richiede il voto dell'organo collegiale.
+  decreto_lord:
+    display_name: "Decreto del Consiglio"
+    capability_required: SIGN_ACT
+    can_become_law: true
+    requires_vote: true
+    submit_to: consiglio_lord
+    veto_allowed: true
+    veto_capability: VETO          # il Re puo' porre veto
+    veto_window_hours: 48
+    promulgated_by_capability: SIGN_LAW
+    law_category: legge_regno
+
+  lettera_patente:
+    display_name: "Lettera Patente"
+    capability_required: SIGN_ACT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false
+
+  sentenza_reale:
+    display_name: "Sentenza Reale"
+    capability_required: SIGN_ACT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false

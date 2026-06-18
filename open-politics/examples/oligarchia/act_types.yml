@@ -1,0 +1,18 @@
+act_types:
+  # L'unico atto: la delibera del Consiglio. Richiede il voto interno dei cinque e diventa Editto.
+  delibera:
+    display_name: "Delibera del Consiglio"
+    capability_required: SIGN_ACT
+    can_become_law: true
+    requires_vote: true
+    submit_to: consigliere
+    veto_allowed: false
+    promulgated_by_capability: SIGN_LAW
+    law_category: editto
+
+  nomina:
+    display_name: "Atto di Cooptazione"
+    capability_required: APPOINT
+    can_become_law: false
+    requires_vote: false
+    veto_allowed: false

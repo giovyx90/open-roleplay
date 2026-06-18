@@ -1,0 +1,11 @@
+governments:
+  regno:
+    display_name: "Regno di Aldoria"
+    sigla: "REG"
+    active: true
+    assignment_mechanism: appointment
+    charges:
+      - re
+      - consiglio_lord
+      - gran_cancelliere
+      - comandante_guardia

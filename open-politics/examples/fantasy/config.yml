@@ -1,0 +1,42 @@
+# Open Politics - configurazione FANTASY MEDIEVALE.
+# Stesso codice del realistico italiano: cambia solo la config. Un Regno con un Re per conquista,
+# Lord di nomina reale, un Gran Cancelliere e una Guardia. Gli atti sono editti e proclami.
+branding:
+  product-name: "Cancelleria del Regno"
+  message-prefix: "<gold>[Corona]</gold> "
+
+messages:
+  language: auto
+  fallback: it
+
+modules:
+  charges: true
+  government: true
+  acts: true
+  laws: true
+
+adapters:
+  storage: yaml
+
+storage:
+  file: politics-data.yml
+
+time:
+  scale: 1.0
+
+acts:
+  id_pattern: "{sigla}-{anno}-{numero}"
+  physical_book: true
+
+laws:
+  public_registry: true
+  historical_archive: true
+  link_openfdo: true
+
+elections:
+  announce_opening: true
+  announce_results: true
+  anonymous_voting: true
+  check_interval_minutes: 5
+
+debug: false
