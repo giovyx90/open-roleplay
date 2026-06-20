@@ -8,9 +8,9 @@ Prima di tutto: Open Roleplay e' una **base**, non un prodotto chiavi in mano
 contributo". Una buona PR rende il framework piu' capace o piu' stabile **senza
 decidere cose che spettano al singolo server**.
 
-## Due modi di partecipare
+## Tre modi di partecipare
 
-Capire quale dei due stai facendo evita la maggior parte degli equivoci in review:
+Capire quale dei tre stai facendo evita la maggior parte degli equivoci in review:
 
 - **Estendere per il tuo server** — nuovi lavori, reati, aziende, prezzi,
   ambientazione. Quasi sempre **non e' codice**: e' configurazione, e vive nel
@@ -19,6 +19,20 @@ Capire quale dei due stai facendo evita la maggior parte degli equivoci in revie
   [`docs/costruire-sopra.md`](docs/costruire-sopra.md).
 - **Contribuire alla base** — rendere il framework piu' capace, piu' stabile o
   piu' leggibile per tutti. E' questo che accogliamo qui sotto forma di PR.
+- **Contribuire al server faro** — il mondo condiviso in `community-server/`:
+  costruzioni, modelli e config del server che sviluppiamo *insieme*. Qui le
+  decisioni editoriali si prendono in comune e il flusso e' "Costruisci → fatti
+  approvare → entra in gioco", con la regola anti-grief che **il mondo live non
+  si tocca a mano**. Guide dedicate:
+  [`community-server/CONTRIBUTING-BUILDS.md`](community-server/CONTRIBUTING-BUILDS.md)
+  e [`community-server/CONTRIBUTING-MODELS.md`](community-server/CONTRIBUTING-MODELS.md).
+
+## Branch
+
+Le PR di contribuzione puntano sempre a **`dev`** (branch di integrazione e
+default). `main` e' la produzione: ci si arriva solo con la promozione
+`dev → main` fatta dai maintainer a CI verde. Dettagli in
+[`docs/governance.md`](docs/governance.md).
 
 Se la tua estensione e' grande e autonoma, valuta un **modulo a se'** che vive
 accanto a Open Roleplay invece che dentro: il punto 4 di

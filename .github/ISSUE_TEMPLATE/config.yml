@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Domande e idee
+    url: https://github.com/giovyx90/open-roleplay/discussions
+    about: Per domande generali, idee e coordinamento usa le Discussions.
+  - name: Come si contribuisce
+    url: https://github.com/giovyx90/open-roleplay/blob/dev/CONTRIBUTING.md
+    about: Leggi le linee guida prima di aprire una proposta.

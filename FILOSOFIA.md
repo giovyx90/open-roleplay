@@ -120,7 +120,34 @@ contribuire:
   capace o più stabile *senza* decidere cose che spettano al singolo server. In
   caso di dubbio, vince la config. Vedi [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
+## Il framework e il server faro
+
+C'è una seconda cosa, accanto al framework, e conviene non confonderle.
+
+Il **framework** (`open-*`) resta quello descritto qui sopra: neutro, riusabile,
+"il mondo è tuo". Non cambia. Ma esiste anche un **server faro**
+(`community-server/`): un server roleplay *concreto e condiviso*, costruito in
+pubblico, a cui chiunque può collaborare — codice, costruzioni, modelli. Lì la
+filosofia è diversa e dichiarata: non "è una base da sviluppare per conto tuo",
+ma "**aiuta a sviluppare questo server, insieme**".
+
+Le due cose non si contraddicono: il server faro *usa* il framework esattamente
+come farebbe un server esterno, ed è la dimostrazione vivente che le fondamenta
+funzionano. La differenza sta in chi possiede le decisioni:
+
+- nel **framework**, le scelte editoriali non si prendono qui (vincono config e
+  adapter);
+- nel **server faro**, le scelte editoriali si prendono *insieme*, e il mondo è
+  di tutti.
+
+Il principio che rende possibile collaborare a un mondo unico senza grief è uno
+solo: **nessuno modifica il mondo di produzione a mano; tutto entra in gioco solo
+tramite pull request approvata**. Vedi
+[`community-server/FILOSOFIA-SERVER.md`](community-server/FILOSOFIA-SERVER.md).
+
 ## In una riga
 
-Open Roleplay ti dà le fondamenta giuste per un server roleplay serio e ti lascia
-costruirci sopra il *tuo* mondo. Le fondamenta sono il prodotto. Il mondo è tuo.
+Open Roleplay ti dà le fondamenta giuste per un server roleplay serio: usale per
+costruire il *tuo* mondo (il framework è tuo), oppure aiutaci a costruire quello
+*condiviso* (il server faro, insieme). Le fondamenta sono il prodotto; il mondo è
+tuo — o di tutti, se scegli il server faro.

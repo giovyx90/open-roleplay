@@ -1,0 +1,8 @@
+# Le costruzioni del server faro sono schematic WorldEdit/FAWE (binari,
+# autoconsistenti). Vanno versionate con Git LFS per non gonfiare la history.
+# I contributori devono installare git-lfs ed eseguire `git lfs install` una volta.
+*.schem filter=lfs diff=lfs merge=lfs -text
+*.schematic filter=lfs diff=lfs merge=lfs -text
+
+# Le preview delle costruzioni possono pesare: anch'esse via LFS.
+community-server/builds/**/preview.png filter=lfs diff=lfs merge=lfs -text

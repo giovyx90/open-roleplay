@@ -1,0 +1,31 @@
+name: "Proposta modello (server faro)"
+description: Proponi un modello / asset per il resource pack del server. Il bot ti riserva un id.
+title: "[model] "
+labels: ["model", "server-faro", "needs-model-id"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Apri questa issue per **riservare un `custom_model_data`** prima di lavorare.
+        Un bot commentera' il prossimo id libero per il base item scelto.
+        Vedi `community-server/CONTRIBUTING-MODELS.md`.
+  - type: input
+    id: name
+    attributes:
+      label: Nome del modello
+    validations:
+      required: true
+  - type: input
+    id: base_item
+    attributes:
+      label: Base item
+      description: L'item Minecraft su cui si aggancia il custom_model_data.
+      placeholder: minecraft:paper
+    validations:
+      required: true
+  - type: textarea
+    id: desc
+    attributes:
+      label: Descrizione / riferimenti
+    validations:
+      required: false

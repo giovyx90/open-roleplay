@@ -1,0 +1,27 @@
+# Manifest di esempio per una costruzione del server faro.
+# Le cartelle che iniziano con "_" sono esempi/template: la CI valida il
+# manifest ma NON richiede il file region.schem (qui assente di proposito).
+# Per una costruzione vera, copia questa cartella in builds/<slug>/, aggiungi
+# region.schem (Git LFS) e registra il claim in registry/claims.yml.
+
+id: _example
+author: giovyx90
+world: world
+
+# Angolo MINIMO da cui parte il paste nel mondo di produzione.
+anchor: { x: 0, y: 64, z: 0 }
+
+# Dimensione del volume (estensione positiva su ogni asse), in blocchi.
+# Deve combaciare con le dimensioni dello schematic esportato.
+size: { x: 16, y: 8, z: 16 }
+
+# Rotazione applicata al paste: 0, 90, 180 o 270 gradi.
+# 90/270 scambiano l'estensione su x e z nel calcolo dell'area.
+rotation: 0
+
+license: CC-BY-4.0
+attribution: "Esempio di riferimento - Open Roleplay Workshop"
+description: "Cartella di esempio che mostra il formato del manifest di una costruzione."
+
+# Altre build che devono essere incollate prima di questa (ordine di deploy).
+depends_on: []

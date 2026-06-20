@@ -1,0 +1,20 @@
+# Registro degli id `custom_model_data` del server faro.
+#
+# I modelli sono JSON (mergeabili), ma due PR diverse possono scegliere lo
+# stesso numero `custom_model_data` sullo stesso base item: e' il "conflitto di
+# merge" dei modelli. Questo file e' la fonte unica che alloca gli id, cosi' la
+# collisione si vede subito e la CI la blocca.
+#
+# Struttura: per ogni base item, la lista degli id allocati.
+#   cmd     il numero custom_model_data (univoco per base item)
+#   owner   chi/quale area lo usa (es. community-server, open-weapons)
+#   model   path del modello sotto assets/.../models/custom/...
+#   pr      numero della PR (informativo)
+#
+# Per riservare un id prima di lavorare, apri una issue "Proposta modello":
+# il bot ti commenta il prossimo id libero.
+
+base_items:
+  # Esempio (commentato): primo id libero per la carta = 1000.
+  # minecraft:paper:
+  #   - { cmd: 1000, owner: community-server, model: custom/community/example_card, pr: 0 }

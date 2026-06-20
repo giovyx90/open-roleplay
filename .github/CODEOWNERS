@@ -1,2 +1,16 @@
-# Default owner for everything in the repo.
+# Owner di default per tutto il repo (framework + governance).
 * @giovyx90
+
+# Layer del server faro: aree di contribuzione con owner per-path, cosi' i
+# responsabili di build e modelli possono revisionare senza avere il controllo
+# globale del repo. Aggiungi qui i team man mano che crescono.
+/community-server/builds/    @giovyx90
+/community-server/models/    @giovyx90
+/community-server/assets/    @giovyx90
+
+# Il registro e le sue regole sono critici: solo i maintainer li approvano.
+/community-server/registry/  @giovyx90
+
+# Pipeline di deploy e workflow: solo i maintainer.
+/.github/workflows/          @giovyx90
+/scripts/                    @giovyx90

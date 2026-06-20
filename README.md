@@ -40,6 +40,31 @@ framework, leggi [`FILOSOFIA.md`](FILOSOFIA.md). Per iniziare a costruirci sopra
 in concreto (configurare, scrivere adapter, consumare le API), vedi
 [`docs/costruire-sopra.md`](docs/costruire-sopra.md).
 
+## Il server faro (collaborativo)
+
+Accanto al framework c'e' un **server condiviso**, sviluppato in pubblico, a cui
+chiunque puo' collaborare — codice, costruzioni e modelli — **senza griefare**.
+Vive in [`community-server/`](community-server/README.md). Il framework resta
+neutro e riusabile ("il mondo e' tuo"); il server faro e' invece **uno solo** e
+si costruisce **insieme**, con il flusso *"Costruisci → fatti approvare → entra in
+gioco"*.
+
+Come funziona, in breve:
+
+- Il mondo Minecraft e' binario e non si fonde con git: ogni costruzione e' uno
+  **schematic + manifest** e prenota un'area in un **registro di claim**. La CI
+  rileva da sola le **sovrapposizioni** (il "conflitto di merge" di un mondo non
+  piatto) — niente grief, niente costruzioni una sopra l'altra.
+- I **modelli** sono JSON con un registro che alloca gli id `custom_model_data`,
+  cosi' due PR non collidono.
+- Le PR puntano a **`dev`**; la promozione a **`main`** aggiorna la produzione e
+  un deploy automatico incolla le costruzioni approvate (nessuno tocca il mondo a
+  mano).
+
+Approfondimenti: [`community-server/README.md`](community-server/README.md),
+[`community-server/FILOSOFIA-SERVER.md`](community-server/FILOSOFIA-SERVER.md) e
+[`docs/governance.md`](docs/governance.md).
+
 ## Moduli
 
 | Modulo | Stato | Descrizione |
@@ -55,6 +80,7 @@ in concreto (configurare, scrivere adapter, consumare le API), vedi
 | `open-crime` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: il sottobosco criminale. Organizzazioni illegali, gerarchia, territorio, produzione multistadio, traffico, riciclaggio ed estorsione, tutti da config. Niente "heat": le forze dell'ordine apprendono solo tramite Discovery generate da azioni RP concrete (denuncia, scoperta fisica, arresto, informatore, indagine). Economia, aziende e autorità via adapter opzionali. Espone `OpenCrimeApi`. |
 | `open-jobs` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: i lavori base. Un'attivita' fisica accessibile a chiunque, senza assunzioni ne' aziende. Sessioni di lavoro fisiche, location, licenze professionali, progressione per anzianita' (sessioni reali, niente XP) e tre modelli di paga (a produzione, a sessione, a consegna), tutti da config. RP First: paga l'attivita' reale, non il tempo. Economia, aziende, identita' e regioni via adapter opzionali. Espone `OpenJobsApi`. |
 | `open-politics` | Standalone iniziale, compilabile | Plugin Paper adapter-first e neutro rispetto all'ambientazione: motore politico per cariche, governi, elezioni, nomine, successioni, conquiste, atti firmati e registro pubblico delle leggi. RP First: il plugin certifica chi aveva l'autorita' di decidere e registra la decisione; le conseguenze restano roleplay. Economia, aziende, identita', regioni e autorita' via adapter opzionali. Espone `OpenPoliticsApi`. |
+| `open-build` | Strumento server faro | Plugin Paper per il flusso di contribuzione del mondo condiviso: `/orp-build export` salva la selezione WorldEdit come schematic + manifest pronti per la PR, `/orp-build import` incolla in produzione le costruzioni approvate. WorldEdit e' soft-dependency: assente, i comandi degradano con un messaggio chiaro. |
 | `open-gestionale` | Demo, eseguibile | Gestionale web universale (non un plugin Paper): API bridge Node.js + frontend React. Carica il layout dall'API e renderizza widget adapter-first; moduli, label e permessi vengono dalla config. Auth via OTP in gioco + JWT, sola lettura sul DB di gioco, demo con dati fittizi. |
 
 ## Stato della pubblicazione

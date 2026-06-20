@@ -1,0 +1,6 @@
+# I modelli del server faro vivono qui, namespaced sotto custom/community/...
+# Esempio: custom/community/example_card.json agganciato a minecraft:paper via
+# custom_model_data registrato in community-server/registry/model-ids.yml.
+#
+# Questo pacchetto viene raccolto automaticamente da
+# scripts/build-resource-packs.sh (glob */assets/resource-pack).

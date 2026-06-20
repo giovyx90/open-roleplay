@@ -1,0 +1,35 @@
+name: "Bug"
+description: Segnala un comportamento errato in un modulo o nello strumento di build.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Cosa succede
+      description: Comportamento osservato e comportamento atteso.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Come riprodurlo
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: module
+    attributes:
+      label: Modulo / componente
+      placeholder: open-jobs, open-build, validate-builds, ...
+    validations:
+      required: false
+  - type: textarea
+    id: env
+    attributes:
+      label: Ambiente
+      placeholder: Versione Paper, Java, OS, branch.
+    validations:
+      required: false

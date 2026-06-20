@@ -1,0 +1,22 @@
+# Configurazione del server faro condiviso.
+#
+# Definisce i confini del mondo entro cui le costruzioni possono essere
+# prenotate. La CI usa questi limiti per rifiutare build fuori area. Se un mondo
+# non e' elencato qui, il controllo "entro i confini" viene saltato (ma il
+# controllo anti-sovrapposizione resta sempre attivo).
+
+name: Open Roleplay Community
+
+worlds:
+  world:
+    # Confini inclusivi del volume costruibile (coordinate blocco).
+    # Imposta valori reali per il tuo mondo; null = nessun limite su quell'asse.
+    bounds:
+      min: { x: -10000, y: -64, z: -10000 }
+      max: { x: 10000, y: 320, z: 10000 }
+
+# Parametri del deploy automatico (i secret veri stanno nelle GitHub Secrets,
+# non qui). Vedi community-server/DEPLOY.md.
+deploy:
+  # Comando che il server prod esegue per incollare una costruzione approvata.
+  import_command: "orp-build import {slug}"

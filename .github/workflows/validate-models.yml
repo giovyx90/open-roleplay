@@ -1,0 +1,30 @@
+name: Validate models
+
+on:
+  push:
+    branches: [dev, main]
+    paths:
+      - 'community-server/assets/**'
+      - 'community-server/registry/model-ids.yml'
+      - 'scripts/validate-models.sh'
+  pull_request:
+    paths:
+      - 'community-server/assets/**'
+      - 'community-server/registry/model-ids.yml'
+      - 'scripts/validate-models.sh'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install pyyaml
+      - run: bash scripts/validate-models.sh
+      # prova che il pack si impacchetta ancora
+      - run: bash scripts/build-resource-packs.sh "${RUNNER_TEMP}/packs"

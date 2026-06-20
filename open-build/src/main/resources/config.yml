@@ -1,0 +1,12 @@
+# Configurazione di Open Build.
+
+# Cartella da cui /orp-build import legge le costruzioni approvate.
+# In produzione, puntala alla copia sincronizzata del repo, es:
+#   /srv/open-roleplay/community-server/builds
+builds-dir: "community-server/builds"
+
+# Cartella in cui /orp-build export scrive schematic + manifest pronti per la PR.
+output-dir: "plugins/OpenBuild/out"
+
+# Se incollare anche i blocchi d'aria dello schematic (di norma no).
+paste-air: false

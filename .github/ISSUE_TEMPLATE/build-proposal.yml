@@ -1,0 +1,48 @@
+name: "Proposta costruzione (server faro)"
+description: Proponi una costruzione da aggiungere al mondo condiviso.
+title: "[build] "
+labels: ["build", "server-faro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proponi una costruzione **prima** di aprire la PR, cosi' coordiniamo
+        l'area ed evitiamo sovrapposizioni. Vedi `community-server/CONTRIBUTING-BUILDS.md`.
+  - type: input
+    id: name
+    attributes:
+      label: Nome della costruzione
+      placeholder: Piazza centrale, Commissariato nord, ...
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Scopo RP
+      description: A cosa serve nel roleplay del server.
+    validations:
+      required: true
+  - type: input
+    id: world
+    attributes:
+      label: Mondo di destinazione
+      value: world
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: Area indicativa (anchor + size)
+      description: Coordinate dell'angolo minimo e dimensione approssimativa.
+      placeholder: "anchor x=1024 y=64 z=-512, size 48x30x40"
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Regole
+      options:
+        - label: La costruzione non si sovrappone ad aree gia' usate (la verifichero' in claims.yml).
+          required: true
+        - label: User, solo asset che posso licenziare.
+          required: true

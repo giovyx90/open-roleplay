@@ -1,0 +1,20 @@
+name: OpenBuild
+version: '${project.version}'
+main: dev.openrp.build.OpenBuildPlugin
+api-version: '1.21'
+description: Strumento del server faro per esportare costruzioni come schematic + manifest e incollare in produzione quelle approvate.
+authors: [Open Roleplay Workshop]
+# WorldEdit e' richiesto per export/import; se assente i comandi degradano con un messaggio chiaro.
+softdepend: [WorldEdit, OpenCore]
+
+commands:
+  orp-build:
+    description: Esporta/importa le costruzioni del server faro.
+    usage: /orp-build <export|import|info> <slug>
+    aliases: [orpbuild, ob]
+    permission: openbuild.use
+
+permissions:
+  openbuild.use:
+    description: Consente di usare i comandi di Open Build.
+    default: op

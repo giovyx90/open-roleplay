@@ -1,0 +1,66 @@
+name: Allocate model id
+
+# Quando si apre/etichetta una issue "Proposta modello", riserva e commenta il
+# prossimo custom_model_data libero per il base item indicato, leggendo gli id
+# gia' usati da community-server/registry/model-ids.yml.
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  allocate:
+    if: contains(join(github.event.issue.labels.*.name, ','), 'needs-model-id')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install pyyaml
+      - name: Calcola prossimo id
+        id: calc
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import os, re, yaml
+          body = os.environ.get("ISSUE_BODY", "")
+          # estrae il base item dal corpo della issue (riga con minecraft:...)
+          m = re.search(r'(minecraft:[a-z0-9_./]+)', body)
+          base = m.group(1) if m else "minecraft:paper"
+          with open("community-server/registry/model-ids.yml") as f:
+              reg = yaml.safe_load(f) or {}
+          entries = (reg.get("base_items") or {}).get(base) or []
+          used = [e.get("cmd") for e in entries if isinstance(e.get("cmd"), int)]
+          nxt = (max(used) + 1) if used else 1000
+          print(f"base={base}")
+          print(f"cmd={nxt}")
+          PY
+      - name: Commenta sulla issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const base = '${{ steps.calc.outputs.base }}';
+            const cmd = '${{ steps.calc.outputs.cmd }}';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                `Id riservato: **custom_model_data \`${cmd}\`** su \`${base}\`.`,
+                ``,
+                `Nella PR registralo in \`community-server/registry/model-ids.yml\`:`,
+                '```yaml',
+                `base_items:`,
+                `  ${base}:`,
+                `    - { cmd: ${cmd}, owner: community-server, model: custom/community/<nome>, pr: <pr> }`,
+                '```',
+                `La CI \`validate-models\` blocca eventuali id duplicati.`,
+              ].join('\n')
+            });

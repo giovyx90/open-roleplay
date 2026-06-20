@@ -33,6 +33,7 @@
         <module>open-crime</module>
         <module>open-jobs</module>
         <module>open-politics</module>
+        <module>open-build</module>
     </modules>
 
     <properties>

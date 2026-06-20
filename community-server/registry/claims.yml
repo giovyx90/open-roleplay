@@ -1,0 +1,22 @@
+# Registro delle aree (claim) del server faro.
+#
+# Ogni costruzione approvata prenota un volume (AABB) nel mondo. La CI calcola
+# l'AABB di ogni build proposta da `anchor + size + rotation` (in build.yml) e
+# lo confronta con tutti i claim qui sotto: se due volumi nello stesso mondo si
+# intersecano, e' il nostro "conflitto di merge" spaziale e la PR fallisce.
+# Questo e' cio' che rende collaborabile un mondo NON piatto senza griefare:
+# nessuno costruisce sopra il lavoro di un altro.
+#
+# Campi:
+#   id        identificatore (== slug della cartella in builds/)
+#   world     nome del mondo Minecraft di destinazione
+#   min       angolo minimo del volume {x, y, z}
+#   max       angolo massimo del volume {x, y, z}
+#   pr        numero della PR che ha introdotto il claim (informativo)
+#   status    pending | approved
+#   deployed  true quando lo schematic e' stato incollato in produzione
+#
+# `min`/`max` devono combaciare con l'AABB calcolato dal manifest: la CI lo
+# verifica, cosi' il registro resta la fonte di verita' leggibile a colpo d'occhio.
+
+claims: []

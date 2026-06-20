@@ -1,0 +1,30 @@
+name: Validate builds
+
+on:
+  push:
+    branches: [dev, main]
+    paths:
+      - 'community-server/builds/**'
+      - 'community-server/registry/claims.yml'
+      - 'community-server/server.yml'
+      - 'scripts/validate-builds.sh'
+  pull_request:
+    paths:
+      - 'community-server/builds/**'
+      - 'community-server/registry/claims.yml'
+      - 'community-server/server.yml'
+      - 'scripts/validate-builds.sh'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-builds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install pyyaml
+      - run: bash scripts/validate-builds.sh

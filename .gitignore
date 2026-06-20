@@ -16,7 +16,10 @@ target/
 !.env.example
 
 node_modules/
-build/
+# Output di build dei progetti JS (gestionale). Ancorati per non ingoiare
+# package Java legittimi come dev/openrp/build/ del modulo open-build.
+/build/
+open-gestionale/**/build/
 dist/
 out/
 release-assets/

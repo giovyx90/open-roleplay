@@ -1,0 +1,60 @@
+name: Deploy builds
+
+# Incolla in produzione le costruzioni approvate. Gira sui tag v* (tagliati da
+# main) dopo che la promozione dev -> main e' avvenuta. Richiede i secret RCON.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Solo elenco, niente connessione"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install pyyaml
+
+      # Senza i secret RCON il deploy gira in dry-run (sicuro).
+      - name: Deploy (o dry-run)
+        env:
+          PROD_RCON_HOST: ${{ secrets.PROD_RCON_HOST }}
+          PROD_RCON_PORT: ${{ secrets.PROD_RCON_PORT }}
+          PROD_RCON_PASSWORD: ${{ secrets.PROD_RCON_PASSWORD }}
+          FORCE_DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          if [ "${FORCE_DRY_RUN}" = "true" ] || [ -z "${PROD_RCON_HOST}" ]; then
+            echo "Esecuzione in dry-run (manca host RCON o richiesto esplicitamente)."
+            bash scripts/deploy-builds.sh --dry-run
+          else
+            bash scripts/deploy-builds.sh
+          fi
+
+      # Committa deployed=true su main se il registro e' cambiato (solo deploy reale).
+      - name: Commit stato deploy
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          REG=community-server/registry/claims.yml
+          if git diff --quiet -- "$REG"; then
+            echo "Nessuna modifica al registro da committare."
+            exit 0
+          fi
+          cp "$REG" "${RUNNER_TEMP}/claims.yml"
+          git config user.name "open-roleplay-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          cp "${RUNNER_TEMP}/claims.yml" "$REG"
+          git add "$REG"
+          git commit -m "deploy: segna costruzioni come deployate"
+          git push origin main
